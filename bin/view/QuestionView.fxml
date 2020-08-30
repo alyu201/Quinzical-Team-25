@@ -8,24 +8,24 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Question">
+      <Text fx:id="labelQuestionTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Question">
          <font>
             <Font size="52.0" />
          </font>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="QuestionHolder">
+      <Text fx:id="labelQuestion" strokeType="OUTSIDE" strokeWidth="0.0" text="QuestionHolder">
          <font>
             <Font size="52.0" />
          </font>
       </Text>
-      <TextField text="Enter your answer here!" />
-      <Button mnemonicParsing="false" text="Button" />
-      <Text fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct!">
+      <TextField fx:id="textfieldAnswer" />
+      <Button fx:id="buttonAnswerSubmit" mnemonicParsing="false" text="Button" />
+      <Text fx:id="labelAnswer" fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct!">
          <font>
             <Font size="52.0" />
          </font>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="have been added to your winnings!">
+      <Text fx:id="labelAddedWinnings" strokeType="OUTSIDE" strokeWidth="0.0" text="have been added to your winnings!">
          <font>
             <Font size="52.0" />
          </font>

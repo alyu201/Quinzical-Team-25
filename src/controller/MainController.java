@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.JepordayTuple;
@@ -21,23 +22,25 @@ public class MainController {
 	private MainModel model;
 
 	@FXML
-	Button buttonReset;
+	private Button buttonReset;
 
 	@FXML
-	Text labelWinnings;
+	private Text labelWinnings;
 
 	@FXML
-	GridPane gridQuestions;
+	private GridPane gridQuestions;
 
 	public void initialize() {
 		this.buttonReset.setOnAction(event -> {
 			this.model.resetState();
-			for (int row = 0; row < this.gridQuestions.getRowCount(); ++row) {
-				for (int col = 0; col < this.gridQuestions.getColumnCount(); ++col) {
-					// todo reset greying out
+			this.gridQuestions.getChildren().forEach(x -> {
+				if (x.isDisabled()) {
+					x.setDisable(false);
 				}
-			}
-
+			});
+			
+			this.labelWinnings.setText("Winnings: $0");
+			//this.labelWinnings.setTextFill(Color.web("#00FF00", 0.8));
 		});
 
 		ArrayList<String> uniqueCategories = new ArrayList<String>();
@@ -51,7 +54,9 @@ public class MainController {
 		for (String category : uniqueCategories) {
 			row = 1;
 			++col;
-			Label categoryLabel = new Label(category);
+			String uppercaseCategory = category.substring(0, 1).toUpperCase() + category.substring(1);
+			Label categoryLabel = new Label(uppercaseCategory);
+			categoryLabel.setStyle("-fx-font: 30 arial;");
 			categoryLabel.setPrefSize(200, 100);
 			this.gridQuestions.add(categoryLabel, col, 0);
 			ArrayList<JepordayTuple> filteredQuestions = new ArrayList<JepordayTuple>();
