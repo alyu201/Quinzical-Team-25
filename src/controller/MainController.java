@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -19,7 +21,7 @@ import model.MainModel;
 
 public class MainController {
 
-	private MainModel model;
+	private static MainModel model;
 
 	@FXML
 	private Button buttonReset;
@@ -38,9 +40,9 @@ public class MainController {
 					x.setDisable(false);
 				}
 			});
-			
+
 			this.labelWinnings.setText("Winnings: $0");
-			//this.labelWinnings.setTextFill(Color.web("#00FF00", 0.8));
+			// this.labelWinnings.setTextFill(Color.web("#00FF00", 0.8));
 		});
 
 		ArrayList<String> uniqueCategories = new ArrayList<String>();
@@ -79,12 +81,18 @@ public class MainController {
 					this.model.setCompleted(question);
 					this.model.putState();
 					try {
-						Stage primaryStage = (Stage) buttonReset.getScene().getWindow();
+//						Stage primaryStage = (Stage) buttonReset.getScene().getWindow();
+//						Parent root = loader.load();
+//						primaryStage.getScene().setRoot(root);
+
 						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuestionView.fxml"));
 						QuestionController controller = new QuestionController(question);
 						loader.setController(controller);
-						Parent root = loader.load();
-						primaryStage.getScene().setRoot(root);
+				        Parent sParent = loader.load();
+				        Scene sScene = new Scene(sParent, 800, 800);
+				        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				        window.setScene(sScene);
+				        window.show();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}

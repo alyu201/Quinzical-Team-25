@@ -2,22 +2,26 @@ package controller;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.JepordayTuple;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class QuestionController {
 
 	private JepordayTuple model;
 
 	@FXML
-	private Label labelQuestionTitle;
+	private Text labelQuestionTitle;
 
 	@FXML
-	private Label labelQuestion;
+	private Text labelQuestion;
 
 	@FXML
 	private TextField textfieldAnswer;
@@ -26,15 +30,29 @@ public class QuestionController {
 	private Button buttonAnswerSubmit;
 
 	@FXML
-	private Label labelAnswer;
+	private Text labelAnswer;
 
 	@FXML
-	private Label labelAddedWinnings;
+	private Text labelAddedWinnings;
 
 	public void initialize() throws InterruptedException {
-		Thread.sleep(1000);
-		System.out.println(this.model.toString());
-		this.labelAnswer.setText("hi");
+		this.labelQuestion.setText(this.model.question);
+		this.textfieldAnswer.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent ke) {
+				if (ke.getCode().equals(KeyCode.ENTER)) {
+					String answer = textfieldAnswer.getText(); 
+					if(answer.toLowerCase().contains(model.answer.toLowerCase())) {
+						System.out.println("correct!");
+					}
+					else {
+						System.out.println("incorrect!");
+						System.out.println(model.answer);
+					}
+				}
+			}
+		});
+		
 	}
 
 	QuestionController(JepordayTuple model) {
