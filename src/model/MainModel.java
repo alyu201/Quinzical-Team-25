@@ -12,14 +12,27 @@ public class MainModel {
 	private static File STATE_FILE = new File("./state");
 	private static File CATEGORIES_DIRECTORY = new File("./categories");
 
+	private static MainModel mainModel;
 	private ArrayList<JepordayTuple> questions;
+	private JepordayTuple currentQuestion;
 	private int winnings;
 
 	// Get state from STATE_FILE or fall back to categories folder
-	public MainModel() {
+	private MainModel() {
 		this.questions = new ArrayList<JepordayTuple>();
 		this.winnings = 0;
+		this.currentQuestion = null;
 		getState();
+	}
+
+	public static MainModel getMainModel() {
+		if(mainModel == null) {
+			mainModel = new MainModel();
+			return mainModel;
+		}
+		else {
+			return mainModel;
+		}
 	}
 
 	public void getState() {
@@ -39,7 +52,7 @@ public class MainModel {
 					}
 					scanner.close();
 				} catch (IOException e) {
-					System.out.println("bad boy!");
+					System.out.println(e.toString());
 				}
 			} else {
 				// read from categories
@@ -49,12 +62,12 @@ public class MainModel {
 							Scanner scanner = new Scanner(file);
 							while (scanner.hasNextLine()) {
 								String line = scanner.nextLine();
-								this.questions.add(new JepordayTuple(file.getName(), line.split(","), false));
+								this.questions.add(new JepordayTuple(file.getName(), line.split(","), false, false));
 							}
 							winnings = 0;
 							scanner.close();
 						} catch (IOException e) {
-							System.out.println("bad boy!");
+							System.out.println(e.toString());
 						}
 					});
 
@@ -108,14 +121,14 @@ public class MainModel {
 	public void setWinnings(int w) {
 		this.winnings = w;
 	}
-	
+
 	public void addWinnings(int w) {
 		this.winnings += w;
 	}
-	
+
 	public void setCompleted(JepordayTuple question) {
-		for(JepordayTuple q : this.questions) {
-			if(q.equals(question) && q.completed.equals(false)) {
+		for (JepordayTuple q : this.questions) {
+			if (q.equals(question) && q.completed.equals(false)) {
 				q.completed = true;
 				int index = this.questions.indexOf(q);
 				this.questions.set(index, q);
@@ -123,4 +136,13 @@ public class MainModel {
 			}
 		}
 	}
+
+	public void setCurrentQuestion(JepordayTuple q) {
+		this.currentQuestion = q;
+	}
+
+	public JepordayTuple getCurrentQuestion() {
+		return this.currentQuestion;
+	}
+
 }

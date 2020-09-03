@@ -21,12 +21,12 @@ import model.MainModel;
 
 public class MainController {
 
-	private MainModel model;
+	public static MainModel model;
 
 	@FXML
 	private Button buttonReset;
 
-	//TODO: Add as TextFlow and add coloured text as green
+	// TODO: Add as TextFlow and add coloured text as green
 	@FXML
 	private Text labelWinnings;
 
@@ -34,9 +34,9 @@ public class MainController {
 	private GridPane gridQuestions;
 
 	public void initialize() {
-		this.labelWinnings.setText("Winnings: $" + this.model.getWinnings());
+		this.labelWinnings.setText("Winnings: $" + model.getWinnings());
 		this.buttonReset.setOnAction(event -> {
-			this.model.resetState();
+			model.resetState();
 			this.gridQuestions.getChildren().forEach(x -> {
 				if (x.isDisabled()) {
 					x.setDisable(false);
@@ -46,9 +46,10 @@ public class MainController {
 		});
 
 		ArrayList<String> uniqueCategories = new ArrayList<String>();
-		this.model.getQuestions().forEach(q -> {
-			if (!uniqueCategories.contains(q.category))
+		model.getQuestions().forEach(q -> {
+			if (!uniqueCategories.contains(q.category)) {
 				uniqueCategories.add(q.category);
+			}
 		});
 
 		int col = -1;
@@ -78,12 +79,14 @@ public class MainController {
 				buttonQuestion.setOnAction(event -> {
 
 					buttonQuestion.setDisable(true);
-					this.model.setCompleted(question);
-					this.model.putState();
+					model.setCompleted(question);
+					model.putState();
 					try {
 						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuestionView.fxml"));
-						QuestionController controller = new QuestionController(question);
+						model.setCurrentQuestion(question);
+						QuestionController controller = new QuestionController();
 						loader.setController(controller);
+						model.setCurrentQuestion(question);
 						Parent sParent = loader.load();
 						Scene sScene = new Scene(sParent, 800, 800);
 						Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -96,17 +99,14 @@ public class MainController {
 				this.gridQuestions.add(buttonQuestion, col, row);
 				++row;
 			}
-
 		}
 
 		// this.gridQuestions.addEventHandler(arg0, arg1);
+		System.out.println("changed!");
 
 	}
 
 	public MainController() {
-		this.model = new MainModel();
+		model = MainModel.getMainModel();
 	}
-
-	// switch to question scene
-
 }

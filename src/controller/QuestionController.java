@@ -8,7 +8,9 @@ import java.io.PrintWriter;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -16,12 +18,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.JepordayTuple;
+import model.MainModel;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class QuestionController {
 
-	private JepordayTuple model;
+	private MainModel model;
 
 	@FXML
 	private Text labelQuestionTitle;
@@ -41,25 +44,29 @@ public class QuestionController {
 	@FXML
 	private Text labelAddedWinnings;
 
+	@FXML
+	private Button buttonReturnBoard;
+
 	public void initialize() throws InterruptedException {
-		this.labelQuestion.setText(this.model.question);
+		this.labelQuestion.setText(this.model.getCurrentQuestion().question);
 
 		EventHandler<KeyEvent> answerHandler = new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent ke) {
 				if (ke.getCode().equals(KeyCode.ENTER)) {
 					String answer = textfieldAnswer.getText();
-					if (answer.toLowerCase().contains(model.answer.toLowerCase())) {
+					if (answer.toLowerCase().contains(model.getCurrentQuestion().answer.toLowerCase())) {
 						labelAnswer.setFill(Color.GREEN);
 						labelAnswer.setText("Correct!");
 						labelAnswer.setVisible(true);
 
-						labelAddedWinnings.setText("$" + model.worth + " have been added to your winnings");
+						labelAddedWinnings.setText("$" + model.getCurrentQuestion().worth + " have been added to your winnings");
 						labelAddedWinnings.setVisible(true);
+						model.addWinnings(Integer.valueOf(model.getCurrentQuestion().worth));
 						// MainController.model.addWinnings(Integer.valueOf(model.worth));
 					} else {
 						labelAnswer.setFill(Color.RED);
-						labelAnswer.setText("Incorrect! The correct answer was \"" + model.answer + "\"");
+						labelAnswer.setText("Incorrect! The correct answer was \"" + model.getCurrentQuestion().answer + "\"");
 						labelAnswer.setVisible(true);
 					}
 					textfieldAnswer.setDisable(true);
@@ -77,7 +84,7 @@ public class QuestionController {
 			public void run() {
 
 				try {
-					String command = "echo " + model.question + " | festival --tts";
+					String command = "echo " + model.getCurrentQuestion().question + " | festival --tts";
 					ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
 					Process process = pb.start();
 					int exitStatus = process.waitFor();
@@ -90,10 +97,21 @@ public class QuestionController {
 			}
 		}.start();
 
+		buttonReturnBoard.setOnAction(event -> {
+			try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainView.fxml"));
+				Parent sParent = loader.load();
+				Scene sScene = new Scene(sParent, 800, 800);
+				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				window.setScene(sScene);
+				window.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
-	QuestionController(JepordayTuple model) {
-		this.model = model;
+	QuestionController() {
+		this.model = MainModel.getMainModel();
 	}
-
 }
