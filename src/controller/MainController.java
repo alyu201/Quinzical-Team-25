@@ -21,7 +21,7 @@ import model.MainModel;
 
 public class MainController {
 
-	private static MainModel model;
+	static MainModel model;
 
 	@FXML
 	private Button buttonReset;
@@ -81,18 +81,15 @@ public class MainController {
 					this.model.setCompleted(question);
 					this.model.putState();
 					try {
-//						Stage primaryStage = (Stage) buttonReset.getScene().getWindow();
-//						Parent root = loader.load();
-//						primaryStage.getScene().setRoot(root);
-
 						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuestionView.fxml"));
 						QuestionController controller = new QuestionController(question);
 						loader.setController(controller);
-				        Parent sParent = loader.load();
-				        Scene sScene = new Scene(sParent, 800, 800);
-				        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				        window.setScene(sScene);
-				        window.show();
+						Parent sParent = loader.load();
+						Scene sScene = new Scene(sParent, 800, 800);
+						Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+						window.setScene(sScene);
+						window.show();
+						// System.out.println("FINISHED? " + controller.isFinished());
 					} catch (IOException e) {
 						e.printStackTrace();
 					}

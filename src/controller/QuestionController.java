@@ -1,5 +1,10 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,29 +42,50 @@ public class QuestionController {
 
 	public void initialize() throws InterruptedException {
 		this.labelQuestion.setText(this.model.question);
-		this.textfieldAnswer.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+		EventHandler<KeyEvent> answerHandler = new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent ke) {
 				if (ke.getCode().equals(KeyCode.ENTER)) {
-					String answer = textfieldAnswer.getText(); 
-					if(answer.toLowerCase().contains(model.answer.toLowerCase())) {
+					String answer = textfieldAnswer.getText();
+					if (answer.toLowerCase().contains(model.answer.toLowerCase())) {
 						System.out.println("correct!");
-					}
-					else {
+						MainController.model.addWinnings(Integer.valueOf(model.worth));
+					} else {
 						System.out.println("incorrect!");
 						System.out.println(model.answer);
 					}
 				}
 			}
-		});
-		
+		};
+
+		this.textfieldAnswer.setOnKeyPressed(answerHandler);
+		this.buttonAnswerSubmit.setOnKeyPressed(answerHandler);
+
+		// Text to speech the model question
+		new Thread() {
+
+			@Override
+			public void run() {
+
+				try {
+					String command = "echo " + model.question + " | festival --tts";
+					ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
+					Process process = pb.start();
+					int exitStatus = process.waitFor();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}.start();
+
 	}
 
 	QuestionController(JepordayTuple model) {
 		this.model = model;
 	}
 
-	public void setQuestion(JepordayTuple question) {
-		this.model = question;
-	}
 }

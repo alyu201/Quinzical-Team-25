@@ -109,6 +109,10 @@ public class MainModel {
 		this.winnings = w;
 	}
 	
+	public void addWinnings(int w) {
+		this.winnings += w;
+	}
+	
 	public void setCompleted(JepordayTuple question) {
 		for(JepordayTuple q : this.questions) {
 			if(q.equals(question) && q.completed.equals(false)) {
