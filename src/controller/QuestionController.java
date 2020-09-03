@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -44,12 +45,16 @@ public class QuestionController {
 	@FXML
 	private Button buttonReturnBoard;
 
-	public void initialize() throws InterruptedException {
+	public void initialize() {
+
+		// Wrap text and set question to GUI
 		this.labelQuestion.setWrappingWidth(780);
 		this.labelAddedWinnings.setWrappingWidth(780);
 		this.labelQuestion.setText(this.model.getCurrentQuestion().question);
 
-		EventHandler<KeyEvent> answerHandler = new EventHandler<KeyEvent>() {
+		// Key event detect on press 'Enter' key. Show on GUI if question answered
+		// correctly and winnings
+		EventHandler<KeyEvent> answerHandlerKeyEvent = new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent ke) {
 				if (ke.getCode().equals(KeyCode.ENTER)) {
@@ -75,8 +80,33 @@ public class QuestionController {
 			}
 		};
 
-		this.textfieldAnswer.setOnKeyPressed(answerHandler);
-		// this.buttonAnswerSubmit.setOnMouseClicked(answerHandler);
+		// Mouse event show on GUI if question answered correctly and winnings
+		EventHandler<MouseEvent> answerHandlerMouseEvent = new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent me) {
+				String answer = textfieldAnswer.getText();
+				if (answer.toLowerCase().contains(model.getCurrentQuestion().answer.toLowerCase())) {
+					labelAnswer.setFill(Color.GREEN);
+					labelAnswer.setText("Correct!");
+					labelAddedWinnings
+							.setText("$" + model.getCurrentQuestion().worth + " have been added to your winnings");
+					labelAddedWinnings.setVisible(true);
+					model.addWinnings(Integer.valueOf(model.getCurrentQuestion().worth));
+				} else {
+					labelAnswer.setFill(Color.RED);
+					labelAnswer.setText("Incorrect!");
+					labelAddedWinnings.setText("The correct answer was \"" + model.getCurrentQuestion().answer + "\"");
+				}
+				labelAnswer.setVisible(true);
+				labelAddedWinnings.setVisible(true);
+				textfieldAnswer.setDisable(true);
+				model.putState();
+			}
+		};
+
+		// Set handlers
+		this.textfieldAnswer.setOnKeyPressed(answerHandlerKeyEvent);
+		this.buttonAnswerSubmit.setOnMouseClicked(answerHandlerMouseEvent);
 
 		// Text to speech the model question
 		new Thread() {
@@ -93,6 +123,7 @@ public class QuestionController {
 			}
 		}.start();
 
+		// Return to main scene
 		buttonReturnBoard.setOnAction(event -> {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainView.fxml"));

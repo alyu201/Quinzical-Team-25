@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -31,7 +30,6 @@ public class MainController {
 	@FXML
 	private Button buttonReset;
 
-	// TODO: Add as TextFlow and add coloured text as green
 	@FXML
 	private Text labelWinnings;
 
@@ -39,7 +37,8 @@ public class MainController {
 	private GridPane gridQuestions;
 
 	public void initialize() {
-		// Setting winnings ammount
+
+		// Setting winnings amount
 		this.labelWinnings.setText("Winnings: $" + model.getWinnings());
 
 		// Reset action
@@ -123,7 +122,7 @@ public class MainController {
 			}
 		}
 
-		// Check if jeporday game is complete. If completed create a dialog finalising
+		// Check if jeporday game is complete. If completed create a dialog finalizing
 		// the result. This is done on another thread such that it does not halt the
 		// MainMenu scene from drawing
 		new Thread() {
@@ -133,16 +132,12 @@ public class MainController {
 				int completedQuestions = (int) model.getQuestions().stream()
 						.filter(question -> question.completed == true).count();
 				if (completedQuestions == model.getQuestions().size()) {
-					Alert alert = new Alert(AlertType.INFORMATION, "asfdasdf", ButtonType.YES, ButtonType.NO);
+					Alert alert = new Alert(AlertType.INFORMATION, "", ButtonType.OK);
 					alert.setTitle("Jeporday");
 					alert.setHeaderText("Congratulations!");
 					alert.setContentText("You have completed your game of jeporday. Your total winnings are $"
-							+ model.getWinnings() + ". Would you let to reset the game to play again?");
+							+ model.getWinnings() + ". Press the 'Reset' button if you would like to play again");
 					alert.show();
-					if (alert.getResult() == ButtonType.YES) {
-						alert.close();
-						buttonReset.fire();
-					}
 				}
 			}
 		}.run();
@@ -151,4 +146,5 @@ public class MainController {
 	public MainController() {
 		model = MainModel.getMainModel();
 	}
+
 }
