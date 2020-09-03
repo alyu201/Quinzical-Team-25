@@ -7,8 +7,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * MainModel is a singleton providing a shared model for the jeporday game. It
+ * contains the state of all jeporday tuples and the games current winnings.
+ */
 public class MainModel {
 
+	// Constants
 	private static File STATE_FILE = new File("./state");
 	private static File CATEGORIES_DIRECTORY = new File("./categories");
 
@@ -17,7 +22,6 @@ public class MainModel {
 	private JepordayTuple currentQuestion;
 	private int winnings;
 
-	// Get state from STATE_FILE or fall back to categories folder
 	private MainModel() {
 		this.questions = new ArrayList<JepordayTuple>();
 		this.winnings = 0;
@@ -25,16 +29,21 @@ public class MainModel {
 		getState();
 	}
 
+	// Singleton
 	public static MainModel getMainModel() {
-		if(mainModel == null) {
+		if (mainModel == null) {
 			mainModel = new MainModel();
 			return mainModel;
-		}
-		else {
+		} else {
 			return mainModel;
 		}
 	}
 
+	/**
+	 * Attempt to fetch the game state from a defined state file. If this state file
+	 * does not exist then fallback to reading state from the given jeporday
+	 * categories folder
+	 */
 	public void getState() {
 		try {
 			if (STATE_FILE.exists()) {

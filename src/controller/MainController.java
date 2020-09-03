@@ -34,7 +34,10 @@ public class MainController {
 	private GridPane gridQuestions;
 
 	public void initialize() {
+		// Setting winnings ammount
 		this.labelWinnings.setText("Winnings: $" + model.getWinnings());
+
+		// Reset action
 		this.buttonReset.setOnAction(event -> {
 			model.resetState();
 			this.gridQuestions.getChildren().forEach(x -> {
@@ -42,9 +45,10 @@ public class MainController {
 					x.setDisable(false);
 				}
 			});
-
+			this.labelWinnings.setText("Winnings: $" + model.getWinnings());
 		});
 
+		// Filter an array for unique category names
 		ArrayList<String> uniqueCategories = new ArrayList<String>();
 		model.getQuestions().forEach(q -> {
 			if (!uniqueCategories.contains(q.category)) {
@@ -52,16 +56,21 @@ public class MainController {
 			}
 		});
 
+		// Populate jeporday board with category labels and question buttons
 		int col = -1;
 		int row = 1;
 		for (String category : uniqueCategories) {
 			row = 1;
 			++col;
+
+			// Add category label to grid
 			String uppercaseCategory = category.substring(0, 1).toUpperCase() + category.substring(1);
 			Label categoryLabel = new Label(uppercaseCategory);
 			categoryLabel.setStyle("-fx-font: 30 arial;");
 			categoryLabel.setPrefSize(200, 100);
 			this.gridQuestions.add(categoryLabel, col, 0);
+
+			// Filter questions by current category
 			ArrayList<JepordayTuple> filteredQuestions = new ArrayList<JepordayTuple>();
 			for (JepordayTuple question : this.model.getQuestions()) {
 				if (question.category.equals(category)) {
@@ -69,18 +78,24 @@ public class MainController {
 				}
 			}
 			for (JepordayTuple question : filteredQuestions) {
+				// Add question button to grid
 				Button buttonQuestion = new Button(question.worth);
 				buttonQuestion.setPrefSize(300, 30);
 				buttonQuestion.setAlignment(Pos.CENTER);
-				System.out.println(question.toString());
+
+				// Disable button if question has been answered
 				if (question.completed == true) {
 					buttonQuestion.setDisable(true);
 				}
+
+				// Change to question scene for selected question
 				buttonQuestion.setOnAction(event -> {
 
 					buttonQuestion.setDisable(true);
 					model.setCompleted(question);
 					model.putState();
+					
+					// Change scene
 					try {
 						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuestionView.fxml"));
 						model.setCurrentQuestion(question);
@@ -100,10 +115,6 @@ public class MainController {
 				++row;
 			}
 		}
-
-		// this.gridQuestions.addEventHandler(arg0, arg1);
-		System.out.println("changed!");
-
 	}
 
 	public MainController() {

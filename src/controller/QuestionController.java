@@ -1,10 +1,6 @@
 package controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,10 +13,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.JepordayTuple;
-import model.MainModel;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.MainModel;
 
 public class QuestionController {
 
@@ -60,16 +54,18 @@ public class QuestionController {
 						labelAnswer.setText("Correct!");
 						labelAnswer.setVisible(true);
 
-						labelAddedWinnings.setText("$" + model.getCurrentQuestion().worth + " have been added to your winnings");
+						labelAddedWinnings
+								.setText("$" + model.getCurrentQuestion().worth + " have been added to your winnings");
 						labelAddedWinnings.setVisible(true);
 						model.addWinnings(Integer.valueOf(model.getCurrentQuestion().worth));
-						// MainController.model.addWinnings(Integer.valueOf(model.worth));
 					} else {
 						labelAnswer.setFill(Color.RED);
-						labelAnswer.setText("Incorrect! The correct answer was \"" + model.getCurrentQuestion().answer + "\"");
+						labelAnswer.setText(
+								"Incorrect! The correct answer was \"" + model.getCurrentQuestion().answer + "\"");
 						labelAnswer.setVisible(true);
 					}
 					textfieldAnswer.setDisable(true);
+					model.putState();
 				}
 			}
 		};
@@ -82,7 +78,6 @@ public class QuestionController {
 
 			@Override
 			public void run() {
-
 				try {
 					String command = "echo " + model.getCurrentQuestion().question + " | festival --tts";
 					ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);

@@ -1,9 +1,15 @@
 package model;
 
+/**
+ * JepordayTuple represents a mutable tuple of the a jeporday category,
+ * question, question worth, question answer, completion status and correctly
+ * answered status.
+ * 
+ */
 public class JepordayTuple {
 	public final String category;
-	public final String worth;
 	public final String question;
+	public final String worth;
 	public final String answer;
 	public Boolean completed;
 	public Boolean correctlyAnswered;
@@ -37,19 +43,21 @@ public class JepordayTuple {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
+		}
 
-		if (obj == null || getClass() != obj.getClass())
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
+		}
 
 		JepordayTuple tuple = (JepordayTuple) obj;
 
-		// call equals() method of the underlying objects
 		if (!category.equals(tuple.category) || !worth.equals(tuple.worth) || !question.equals(tuple.question)
 				|| !answer.equals(tuple.answer) || !completed.equals(tuple.completed)
-				|| !correctlyAnswered.equals(tuple.correctlyAnswered))
+				|| !correctlyAnswered.equals(tuple.correctlyAnswered)) {
 			return false;
+		}
 
 		return true;
 	}
@@ -67,6 +75,7 @@ public class JepordayTuple {
 
 	@Override
 	public String toString() {
-		return this.category + "," + this.worth + "," + this.question + "," + this.answer + "," + this.completed + "," + this.correctlyAnswered;
+		return this.category + "," + this.worth + "," + this.question + "," + this.answer + "," + this.completed + ","
+				+ this.correctlyAnswered;
 	}
 }
