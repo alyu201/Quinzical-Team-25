@@ -12,7 +12,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
-      <Separator orientation="VERTICAL" prefHeight="45.0" prefWidth="20.0" />
+      <Separator orientation="VERTICAL" prefHeight="45.0" prefWidth="20.0" visible="false" />
       <Text fx:id="labelTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeporday" textAlignment="CENTER" wrappingWidth="800.0">
          <font>
             <Font size="52.0" />
@@ -38,7 +38,7 @@
                <font>
                   <Font size="33.0" />
                </font></Text>
-            <Separator prefHeight="4.0" prefWidth="184.0" />
+            <Separator prefHeight="4.0" prefWidth="184.0" visible="false" />
             <Button fx:id="buttonReset" mnemonicParsing="false" prefHeight="57.0" prefWidth="179.0" text="Reset">
                <font>
                   <Font size="25.0" />

@@ -59,7 +59,8 @@ public class QuestionController {
 			public void handle(KeyEvent ke) {
 				if (ke.getCode().equals(KeyCode.ENTER)) {
 					String answer = textfieldAnswer.getText();
-					if (answer.toLowerCase().contains(model.getCurrentQuestion().answer.toLowerCase())) {
+					if (answer.toLowerCase()
+							.contains(model.getCurrentQuestion().answer.toLowerCase().replaceAll(" ", ""))) {
 						labelAnswer.setFill(Color.GREEN);
 						labelAnswer.setText("Correct!");
 						labelAddedWinnings
@@ -85,7 +86,8 @@ public class QuestionController {
 			@Override
 			public void handle(MouseEvent me) {
 				String answer = textfieldAnswer.getText();
-				if (answer.toLowerCase().contains(model.getCurrentQuestion().answer.toLowerCase())) {
+				if (answer.toLowerCase()
+						.contains(model.getCurrentQuestion().answer.toLowerCase().replaceAll(" ", ""))) {
 					labelAnswer.setFill(Color.GREEN);
 					labelAnswer.setText("Correct!");
 					labelAddedWinnings

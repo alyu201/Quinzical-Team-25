@@ -2,9 +2,10 @@
 <h5 align="center">Andreas Knapp - akna890</h5>
 
 ### Building
+By default running `./script.sh' will build and run the project. If you would like to do both individually you may run
 ```shell script
-$ cargo install ftab-dump
-$ ftab-dump -v ftab.bin -o ftab_dump
+$ ./script.sh build 
+$ ./script.sh run
 ```
 
 ### License

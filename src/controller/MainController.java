@@ -71,7 +71,7 @@ public class MainController {
 			// Add category label to grid
 			String uppercaseCategory = category.substring(0, 1).toUpperCase() + category.substring(1);
 			Label categoryLabel = new Label(uppercaseCategory);
-			categoryLabel.setStyle("-fx-font: 30 arial;");
+			categoryLabel.setStyle("-fx-font-size: 30");
 			categoryLabel.setPrefSize(200, 100);
 			categoryLabel.setAlignment(Pos.CENTER);
 			this.gridQuestions.add(categoryLabel, col, 0);

@@ -11,7 +11,7 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Separator orientation="VERTICAL" prefHeight="32.0" prefWidth="0.0" />
+      <Separator orientation="VERTICAL" prefHeight="32.0" prefWidth="0.0" visible="false" />
       <Text fx:id="labelQuestionTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Question:">
          <font>
             <Font size="52.0" />
@@ -22,11 +22,11 @@
             <Font size="37.0" />
          </font>
       </Text>
-      <Separator orientation="VERTICAL" prefHeight="32.0" prefWidth="0.0" />
+      <Separator orientation="VERTICAL" prefHeight="32.0" prefWidth="0.0" visible="false" />
       <HBox alignment="TOP_CENTER" prefHeight="68.0" prefWidth="800.0">
          <children>
             <TextField fx:id="textfieldAnswer" prefHeight="56.0" prefWidth="518.0" promptText="Enter an answer here" />
-            <Separator prefHeight="11.0" prefWidth="2.0" />
+            <Separator prefHeight="11.0" prefWidth="2.0" visible="false" />
             <Button fx:id="buttonAnswerSubmit" mnemonicParsing="false" prefHeight="59.0" prefWidth="144.0" text="Submit Answer" />
          </children>
       </HBox>
