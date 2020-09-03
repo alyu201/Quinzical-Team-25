@@ -21,11 +21,12 @@ import model.MainModel;
 
 public class MainController {
 
-	static MainModel model;
+	private MainModel model;
 
 	@FXML
 	private Button buttonReset;
 
+	//TODO: Add as TextFlow and add coloured text as green
 	@FXML
 	private Text labelWinnings;
 
@@ -33,6 +34,7 @@ public class MainController {
 	private GridPane gridQuestions;
 
 	public void initialize() {
+		this.labelWinnings.setText("Winnings: $" + this.model.getWinnings());
 		this.buttonReset.setOnAction(event -> {
 			this.model.resetState();
 			this.gridQuestions.getChildren().forEach(x -> {
@@ -41,8 +43,6 @@ public class MainController {
 				}
 			});
 
-			this.labelWinnings.setText("Winnings: $0");
-			// this.labelWinnings.setTextFill(Color.web("#00FF00", 0.8));
 		});
 
 		ArrayList<String> uniqueCategories = new ArrayList<String>();
@@ -89,7 +89,6 @@ public class MainController {
 						Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 						window.setScene(sScene);
 						window.show();
-						// System.out.println("FINISHED? " + controller.isFinished());
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -99,6 +98,8 @@ public class MainController {
 			}
 
 		}
+
+		// this.gridQuestions.addEventHandler(arg0, arg1);
 
 	}
 

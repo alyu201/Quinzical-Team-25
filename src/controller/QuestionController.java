@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.JepordayTuple;
@@ -49,18 +50,25 @@ public class QuestionController {
 				if (ke.getCode().equals(KeyCode.ENTER)) {
 					String answer = textfieldAnswer.getText();
 					if (answer.toLowerCase().contains(model.answer.toLowerCase())) {
-						System.out.println("correct!");
-						MainController.model.addWinnings(Integer.valueOf(model.worth));
+						labelAnswer.setFill(Color.GREEN);
+						labelAnswer.setText("Correct!");
+						labelAnswer.setVisible(true);
+
+						labelAddedWinnings.setText("$" + model.worth + " have been added to your winnings");
+						labelAddedWinnings.setVisible(true);
+						// MainController.model.addWinnings(Integer.valueOf(model.worth));
 					} else {
-						System.out.println("incorrect!");
-						System.out.println(model.answer);
+						labelAnswer.setFill(Color.RED);
+						labelAnswer.setText("Incorrect! The correct answer was \"" + model.answer + "\"");
+						labelAnswer.setVisible(true);
 					}
+					textfieldAnswer.setDisable(true);
 				}
 			}
 		};
 
 		this.textfieldAnswer.setOnKeyPressed(answerHandler);
-		this.buttonAnswerSubmit.setOnKeyPressed(answerHandler);
+		// this.buttonAnswerSubmit.setOnMouseClicked(answerHandler);
 
 		// Text to speech the model question
 		new Thread() {
