@@ -1,35 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fx:id="labelQuestionTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Question">
+      <Separator orientation="VERTICAL" prefHeight="32.0" prefWidth="0.0" />
+      <Text fx:id="labelQuestionTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Question:">
          <font>
             <Font size="52.0" />
          </font>
       </Text>
-      <Text fx:id="labelQuestion" strokeType="OUTSIDE" strokeWidth="0.0" text="QuestionHolder">
+      <Text fx:id="labelQuestion" strokeType="OUTSIDE" strokeWidth="0.0" text="QuestionHolder" textAlignment="CENTER">
          <font>
-            <Font size="52.0" />
+            <Font size="37.0" />
          </font>
       </Text>
-      <TextField fx:id="textfieldAnswer" />
-      <Button fx:id="buttonAnswerSubmit" mnemonicParsing="false" text="Submit Answer" />
-      <Text fx:id="labelAnswer" fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct!" visible="false">
-         <font>
-            <Font size="52.0" />
-         </font>
-      </Text>
-      <Text fx:id="labelAddedWinnings" strokeType="OUTSIDE" strokeWidth="0.0" text="have been added to your winnings!" visible="false">
-         <font>
-            <Font size="52.0" />
-         </font>
-      </Text>
-      <Button fx:id="buttonReturnBoard" mnemonicParsing="false" text="Return to board" />
+      <Separator orientation="VERTICAL" prefHeight="32.0" prefWidth="0.0" />
+      <HBox alignment="TOP_CENTER" prefHeight="68.0" prefWidth="800.0">
+         <children>
+            <TextField fx:id="textfieldAnswer" prefHeight="56.0" prefWidth="518.0" promptText="Enter an answer here" />
+            <Separator prefHeight="11.0" prefWidth="2.0" />
+            <Button fx:id="buttonAnswerSubmit" mnemonicParsing="false" prefHeight="59.0" prefWidth="144.0" text="Submit Answer" />
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" prefHeight="352.0" prefWidth="924.0">
+         <children>
+            <Text fx:id="labelAnswer" fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct!" textAlignment="CENTER" visible="false" wrappingWidth="258.697265625">
+               <font>
+                  <Font size="44.0" />
+               </font>
+            </Text>
+            <Text fx:id="labelAddedWinnings" strokeType="OUTSIDE" strokeWidth="0.0" text="have been added to your winnings!" textAlignment="CENTER" visible="false">
+               <font>
+                  <Font size="44.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="buttonReturnBoard" alignment="CENTER" layoutX="310.0" layoutY="32.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="157.0" text="Return to board" />
+         </children>
+      </AnchorPane>
    </children>
 </VBox>

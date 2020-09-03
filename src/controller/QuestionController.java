@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import model.MainModel;
 
+/**
+ * Controller for QuestionView
+ */
 public class QuestionController {
 
 	private MainModel model;
@@ -42,6 +45,8 @@ public class QuestionController {
 	private Button buttonReturnBoard;
 
 	public void initialize() throws InterruptedException {
+		this.labelQuestion.setWrappingWidth(780);
+		this.labelAddedWinnings.setWrappingWidth(780);
 		this.labelQuestion.setText(this.model.getCurrentQuestion().question);
 
 		EventHandler<KeyEvent> answerHandler = new EventHandler<KeyEvent>() {
@@ -52,18 +57,18 @@ public class QuestionController {
 					if (answer.toLowerCase().contains(model.getCurrentQuestion().answer.toLowerCase())) {
 						labelAnswer.setFill(Color.GREEN);
 						labelAnswer.setText("Correct!");
-						labelAnswer.setVisible(true);
-
 						labelAddedWinnings
 								.setText("$" + model.getCurrentQuestion().worth + " have been added to your winnings");
 						labelAddedWinnings.setVisible(true);
 						model.addWinnings(Integer.valueOf(model.getCurrentQuestion().worth));
 					} else {
 						labelAnswer.setFill(Color.RED);
-						labelAnswer.setText(
-								"Incorrect! The correct answer was \"" + model.getCurrentQuestion().answer + "\"");
-						labelAnswer.setVisible(true);
+						labelAnswer.setText("Incorrect!");
+						labelAddedWinnings
+								.setText("The correct answer was \"" + model.getCurrentQuestion().answer + "\"");
 					}
+					labelAnswer.setVisible(true);
+					labelAddedWinnings.setVisible(true);
 					textfieldAnswer.setDisable(true);
 					model.putState();
 				}
@@ -81,14 +86,10 @@ public class QuestionController {
 				try {
 					String command = "echo " + model.getCurrentQuestion().question + " | festival --tts";
 					ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
-					Process process = pb.start();
-					int exitStatus = process.waitFor();
+					pb.start();
 				} catch (IOException e) {
 					e.printStackTrace();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
 				}
-
 			}
 		}.start();
 

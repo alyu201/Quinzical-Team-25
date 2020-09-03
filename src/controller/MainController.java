@@ -5,20 +5,25 @@ import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.JepordayTuple;
 import model.MainModel;
 
+/**
+ * Controller for MainView
+ */
 public class MainController {
 
 	public static MainModel model;
@@ -45,6 +50,7 @@ public class MainController {
 					x.setDisable(false);
 				}
 			});
+			// Winnings will be zero as state has been reset
 			this.labelWinnings.setText("Winnings: $" + model.getWinnings());
 		});
 
@@ -68,11 +74,12 @@ public class MainController {
 			Label categoryLabel = new Label(uppercaseCategory);
 			categoryLabel.setStyle("-fx-font: 30 arial;");
 			categoryLabel.setPrefSize(200, 100);
+			categoryLabel.setAlignment(Pos.CENTER);
 			this.gridQuestions.add(categoryLabel, col, 0);
 
 			// Filter questions by current category
 			ArrayList<JepordayTuple> filteredQuestions = new ArrayList<JepordayTuple>();
-			for (JepordayTuple question : this.model.getQuestions()) {
+			for (JepordayTuple question : model.getQuestions()) {
 				if (question.category.equals(category)) {
 					filteredQuestions.add(question);
 				}
@@ -80,7 +87,8 @@ public class MainController {
 			for (JepordayTuple question : filteredQuestions) {
 				// Add question button to grid
 				Button buttonQuestion = new Button(question.worth);
-				buttonQuestion.setPrefSize(300, 30);
+				buttonQuestion.setPrefSize(300, 50);
+				buttonQuestion.setStyle("-fx-font-size:20");
 				buttonQuestion.setAlignment(Pos.CENTER);
 
 				// Disable button if question has been answered
@@ -90,15 +98,14 @@ public class MainController {
 
 				// Change to question scene for selected question
 				buttonQuestion.setOnAction(event -> {
-
-					buttonQuestion.setDisable(true);
-					model.setCompleted(question);
+					// Set this question to be completed
+					model.setCurrentQuestion(question);
+					model.setCompleted(model.getCurrentQuestion());
 					model.putState();
-					
-					// Change scene
+
+					// Change to question scene
 					try {
 						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuestionView.fxml"));
-						model.setCurrentQuestion(question);
 						QuestionController controller = new QuestionController();
 						loader.setController(controller);
 						model.setCurrentQuestion(question);
@@ -115,6 +122,30 @@ public class MainController {
 				++row;
 			}
 		}
+
+		// Check if jeporday game is complete. If completed create a dialog finalising
+		// the result. This is done on another thread such that it does not halt the
+		// MainMenu scene from drawing
+		new Thread() {
+
+			@Override
+			public void run() {
+				int completedQuestions = (int) model.getQuestions().stream()
+						.filter(question -> question.completed == true).count();
+				if (completedQuestions == model.getQuestions().size()) {
+					Alert alert = new Alert(AlertType.INFORMATION, "asfdasdf", ButtonType.YES, ButtonType.NO);
+					alert.setTitle("Jeporday");
+					alert.setHeaderText("Congratulations!");
+					alert.setContentText("You have completed your game of jeporday. Your total winnings are $"
+							+ model.getWinnings() + ". Would you let to reset the game to play again?");
+					alert.show();
+					if (alert.getResult() == ButtonType.YES) {
+						alert.close();
+						buttonReset.fire();
+					}
+				}
+			}
+		}.run();
 	}
 
 	public MainController() {

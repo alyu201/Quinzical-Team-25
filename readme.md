@@ -7,3 +7,6 @@ $ cargo install ftab-dump
 $ ftab-dump -v ftab.bin -o ftab_dump
 ```
 
+### License
+Distributed under the [MIT software license](http://www.opensource.org/licenses/mit-license.php).
+
