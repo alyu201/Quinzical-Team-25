@@ -137,8 +137,8 @@ public class MainModel {
 
 	public void setCompleted(JepordayTuple question) {
 		for (JepordayTuple q : this.questions) {
-			if (q.equals(question) && q.completed.equals(false)) {
-				q.completed = true;
+			if (q.equals(question) && q.getCompeted().equals(false)) {
+				q.setCompeted(true);
 				int index = this.questions.indexOf(q);
 				this.questions.set(index, q);
 				break;

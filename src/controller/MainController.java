@@ -56,8 +56,8 @@ public class MainController {
 		// Filter an array for unique category names
 		ArrayList<String> uniqueCategories = new ArrayList<String>();
 		model.getQuestions().forEach(q -> {
-			if (!uniqueCategories.contains(q.category)) {
-				uniqueCategories.add(q.category);
+			if (!uniqueCategories.contains(q.getCategory())) {
+				uniqueCategories.add(q.getCategory());
 			}
 		});
 
@@ -79,19 +79,19 @@ public class MainController {
 			// Filter questions by current category
 			ArrayList<JepordayTuple> filteredQuestions = new ArrayList<JepordayTuple>();
 			for (JepordayTuple question : model.getQuestions()) {
-				if (question.category.equals(category)) {
+				if (question.getCategory().equals(category)) {
 					filteredQuestions.add(question);
 				}
 			}
 			for (JepordayTuple question : filteredQuestions) {
 				// Add question button to grid
-				Button buttonQuestion = new Button(question.worth);
+				Button buttonQuestion = new Button(question.getWorth());
 				buttonQuestion.setPrefSize(300, 50);
 				buttonQuestion.setStyle("-fx-font-size:20");
 				buttonQuestion.setAlignment(Pos.CENTER);
 
 				// Disable button if question has been answered
-				if (question.completed == true) {
+				if (question.getCompeted() == true) {
 					buttonQuestion.setDisable(true);
 				}
 
@@ -130,7 +130,7 @@ public class MainController {
 			@Override
 			public void run() {
 				int completedQuestions = (int) model.getQuestions().stream()
-						.filter(question -> question.completed == true).count();
+						.filter(question -> question.getCompeted() == true).count();
 				if (completedQuestions == model.getQuestions().size()) {
 					Alert alert = new Alert(AlertType.INFORMATION, "", ButtonType.OK);
 					alert.setTitle("Jeporday");

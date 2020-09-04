@@ -50,7 +50,7 @@ public class QuestionController {
 		// Wrap text and set question to GUI
 		this.labelQuestion.setWrappingWidth(780);
 		this.labelAddedWinnings.setWrappingWidth(780);
-		this.labelQuestion.setText(this.model.getCurrentQuestion().question);
+		this.labelQuestion.setText(this.model.getCurrentQuestion().getQuestion());
 
 		// Key event detect on press 'Enter' key. Show on GUI if question answered
 		// correctly and winnings
@@ -60,18 +60,18 @@ public class QuestionController {
 				if (ke.getCode().equals(KeyCode.ENTER)) {
 					String answer = textfieldAnswer.getText();
 					if (answer.toLowerCase()
-							.contains(model.getCurrentQuestion().answer.toLowerCase().replaceAll(" ", ""))) {
+							.contains(model.getCurrentQuestion().getAnswer().toLowerCase().replaceAll(" ", ""))) {
 						labelAnswer.setFill(Color.GREEN);
 						labelAnswer.setText("Correct!");
-						labelAddedWinnings
-								.setText("$" + model.getCurrentQuestion().worth + " have been added to your winnings");
+						labelAddedWinnings.setText(
+								"$" + model.getCurrentQuestion().getWorth() + " have been added to your winnings");
 						labelAddedWinnings.setVisible(true);
-						model.addWinnings(Integer.valueOf(model.getCurrentQuestion().worth));
+						model.addWinnings(Integer.valueOf(model.getCurrentQuestion().getWorth()));
 					} else {
 						labelAnswer.setFill(Color.RED);
 						labelAnswer.setText("Incorrect!");
 						labelAddedWinnings
-								.setText("The correct answer was \"" + model.getCurrentQuestion().answer + "\"");
+								.setText("The correct answer was \"" + model.getCurrentQuestion().getAnswer() + "\"");
 					}
 					labelAnswer.setVisible(true);
 					labelAddedWinnings.setVisible(true);
@@ -87,17 +87,18 @@ public class QuestionController {
 			public void handle(MouseEvent me) {
 				String answer = textfieldAnswer.getText();
 				if (answer.toLowerCase()
-						.contains(model.getCurrentQuestion().answer.toLowerCase().replaceAll(" ", ""))) {
+						.contains(model.getCurrentQuestion().getAnswer().toLowerCase().replaceAll(" ", ""))) {
 					labelAnswer.setFill(Color.GREEN);
 					labelAnswer.setText("Correct!");
 					labelAddedWinnings
-							.setText("$" + model.getCurrentQuestion().worth + " have been added to your winnings");
+							.setText("$" + model.getCurrentQuestion().getWorth() + " have been added to your winnings");
 					labelAddedWinnings.setVisible(true);
-					model.addWinnings(Integer.valueOf(model.getCurrentQuestion().worth));
+					model.addWinnings(Integer.valueOf(model.getCurrentQuestion().getWorth()));
 				} else {
 					labelAnswer.setFill(Color.RED);
 					labelAnswer.setText("Incorrect!");
-					labelAddedWinnings.setText("The correct answer was \"" + model.getCurrentQuestion().answer + "\"");
+					labelAddedWinnings
+							.setText("The correct answer was \"" + model.getCurrentQuestion().getAnswer() + "\"");
 				}
 				labelAnswer.setVisible(true);
 				labelAddedWinnings.setVisible(true);
@@ -116,7 +117,7 @@ public class QuestionController {
 			@Override
 			public void run() {
 				try {
-					String command = "echo " + model.getCurrentQuestion().question + " | festival --tts";
+					String command = "echo " + model.getCurrentQuestion().getQuestion() + " | festival --tts";
 					ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
 					pb.start();
 				} catch (IOException e) {

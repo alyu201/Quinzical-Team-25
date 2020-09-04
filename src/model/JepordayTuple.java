@@ -7,12 +7,12 @@ package model;
  * 
  */
 public class JepordayTuple {
-	public final String category;
-	public final String question;
-	public final String worth;
-	public final String answer;
-	public Boolean completed;
-	public Boolean correctlyAnswered;
+	private final String category;
+	private final String question;
+	private final String worth;
+	private final String answer;
+	private Boolean completed;
+	private Boolean correctlyAnswered;
 
 	public JepordayTuple(String first, String second, String third, String fourth, Boolean fifth, Boolean sixth) {
 		this.category = first;
@@ -39,6 +39,38 @@ public class JepordayTuple {
 		this.answer = xs[3];
 		this.completed = Boolean.parseBoolean(xs[4]);
 		this.correctlyAnswered = Boolean.parseBoolean(xs[5]);
+	}
+
+	public String getCategory() {
+		return this.category;
+	}
+
+	public String getQuestion() {
+		return this.question;
+	}
+
+	public String getWorth() {
+		return this.worth;
+	}
+
+	public String getAnswer() {
+		return this.answer;
+	}
+
+	public Boolean getCompeted() {
+		return this.completed;
+	}
+
+	public void setCompeted(Boolean c) {
+		this.completed = c;
+	}
+
+	public Boolean getCorrectlyAnswered() {
+		return this.correctlyAnswered;
+	}
+
+	public void setCorrectlyAnswered(Boolean c) {
+		this.correctlyAnswered = c;
 	}
 
 	@Override
