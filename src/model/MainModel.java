@@ -9,7 +9,8 @@ import java.util.Scanner;
 
 /**
  * MainModel is a singleton providing a shared model for the jeporday game. It
- * contains the state of all jeporday tuples and the games current winnings.
+ * contains the state of all jeporday tuples, currently selected question and
+ * the games current winnings.
  */
 public class MainModel {
 
@@ -52,7 +53,6 @@ public class MainModel {
 					Scanner scanner = new Scanner(STATE_FILE);
 					while (scanner.hasNextLine()) {
 						String line = scanner.nextLine();
-
 						if (!scanner.hasNextLine()) {
 							winnings = Integer.valueOf(line);
 						} else {
@@ -61,7 +61,7 @@ public class MainModel {
 					}
 					scanner.close();
 				} catch (IOException e) {
-					System.out.println(e.toString());
+					System.out.println("Error reading from state file: " + e.toString());
 				}
 			} else {
 				// read from categories
@@ -79,17 +79,19 @@ public class MainModel {
 							System.out.println(e.toString());
 						}
 					});
-
 				} else {
-					System.out.println("Neither exist");
-					// throw
+					System.out.println(
+							"Neither the state file or categories folder exist, are you sure you are running this in the correct directory?");
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Error reading from categories folder or state file: " + e.toString());
 		}
 	}
 
+	/**
+	 * Write the state of the model to disk
+	 */
 	public void putState() {
 		try {
 			STATE_FILE.createNewFile();
@@ -100,10 +102,13 @@ public class MainModel {
 			fw.write(String.format("%s\n", Integer.toString(winnings)));
 			fw.close();
 		} catch (IOException e) {
-			System.out.println(e.toString());
+			System.out.println("Error writing state to file: " + e.toString());
 		}
 	}
 
+	/**
+	 * Reset the state of the model and write this fresh state to disk
+	 */
 	public void resetState() {
 		if (STATE_FILE.exists()) {
 			STATE_FILE.delete();
@@ -113,6 +118,22 @@ public class MainModel {
 		this.getState();
 		this.putState();
 
+	}
+
+	/**
+	 * Search for a question in the model and mark it completed
+	 * 
+	 * @param question
+	 */
+	public void setCompleted(JepordayTuple question) {
+		for (JepordayTuple q : this.questions) {
+			if (q.equals(question) && q.getCompeted().equals(false)) {
+				q.setCompeted(true);
+				int index = this.questions.indexOf(q);
+				this.questions.set(index, q);
+				break;
+			}
+		}
 	}
 
 	public ArrayList<JepordayTuple> getQuestions() {
@@ -135,17 +156,6 @@ public class MainModel {
 		this.winnings += w;
 	}
 
-	public void setCompleted(JepordayTuple question) {
-		for (JepordayTuple q : this.questions) {
-			if (q.equals(question) && q.getCompeted().equals(false)) {
-				q.setCompeted(true);
-				int index = this.questions.indexOf(q);
-				this.questions.set(index, q);
-				break;
-			}
-		}
-	}
-
 	public void setCurrentQuestion(JepordayTuple q) {
 		this.currentQuestion = q;
 	}
@@ -153,5 +163,4 @@ public class MainModel {
 	public JepordayTuple getCurrentQuestion() {
 		return this.currentQuestion;
 	}
-
 }

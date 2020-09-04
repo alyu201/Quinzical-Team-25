@@ -21,7 +21,8 @@ import model.JepordayTuple;
 import model.MainModel;
 
 /**
- * Controller for MainView
+ * Controller for MainView. Displays a title, grid of buttons containing each
+ * category question and the users total winnings.
  */
 public class MainController {
 

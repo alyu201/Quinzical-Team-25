@@ -18,7 +18,10 @@ import javafx.scene.control.TextField;
 import model.MainModel;
 
 /**
- * Controller for QuestionView
+ * Controller for QuestionView. Handles a single question in the jeporday
+ * question set. The user must type an answer to the question hint and the GUI
+ * will display if the user has input correct answer. If the user's input answer
+ * is incorrect then the correct answer will be displayed
  */
 public class QuestionController {
 
@@ -58,25 +61,7 @@ public class QuestionController {
 			@Override
 			public void handle(KeyEvent ke) {
 				if (ke.getCode().equals(KeyCode.ENTER)) {
-					String answer = textfieldAnswer.getText();
-					if (answer.toLowerCase()
-							.contains(model.getCurrentQuestion().getAnswer().toLowerCase().replaceAll(" ", ""))) {
-						labelAnswer.setFill(Color.GREEN);
-						labelAnswer.setText("Correct!");
-						labelAddedWinnings.setText(
-								"$" + model.getCurrentQuestion().getWorth() + " have been added to your winnings");
-						labelAddedWinnings.setVisible(true);
-						model.addWinnings(Integer.valueOf(model.getCurrentQuestion().getWorth()));
-					} else {
-						labelAnswer.setFill(Color.RED);
-						labelAnswer.setText("Incorrect!");
-						labelAddedWinnings
-								.setText("The correct answer was \"" + model.getCurrentQuestion().getAnswer() + "\"");
-					}
-					labelAnswer.setVisible(true);
-					labelAddedWinnings.setVisible(true);
-					textfieldAnswer.setDisable(true);
-					model.putState();
+					answerQuestion();
 				}
 			}
 		};
@@ -85,25 +70,7 @@ public class QuestionController {
 		EventHandler<MouseEvent> answerHandlerMouseEvent = new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent me) {
-				String answer = textfieldAnswer.getText();
-				if (answer.toLowerCase()
-						.contains(model.getCurrentQuestion().getAnswer().toLowerCase().replaceAll(" ", ""))) {
-					labelAnswer.setFill(Color.GREEN);
-					labelAnswer.setText("Correct!");
-					labelAddedWinnings
-							.setText("$" + model.getCurrentQuestion().getWorth() + " have been added to your winnings");
-					labelAddedWinnings.setVisible(true);
-					model.addWinnings(Integer.valueOf(model.getCurrentQuestion().getWorth()));
-				} else {
-					labelAnswer.setFill(Color.RED);
-					labelAnswer.setText("Incorrect!");
-					labelAddedWinnings
-							.setText("The correct answer was \"" + model.getCurrentQuestion().getAnswer() + "\"");
-				}
-				labelAnswer.setVisible(true);
-				labelAddedWinnings.setVisible(true);
-				textfieldAnswer.setDisable(true);
-				model.putState();
+				answerQuestion();
 			}
 		};
 
@@ -143,5 +110,29 @@ public class QuestionController {
 
 	QuestionController() {
 		this.model = MainModel.getMainModel();
+	}
+
+	/**
+	 * Check if the question has been answered correctly and display the result of
+	 * the answer to the GUI
+	 */
+	public void answerQuestion() {
+		String answer = textfieldAnswer.getText();
+		if (answer.toLowerCase().contains(model.getCurrentQuestion().getAnswer().toLowerCase().replaceAll(" ", ""))) {
+			labelAnswer.setFill(Color.GREEN);
+			labelAnswer.setText("Correct!");
+			labelAddedWinnings
+					.setText("$" + model.getCurrentQuestion().getWorth() + " have been added to your winnings");
+			labelAddedWinnings.setVisible(true);
+			model.addWinnings(Integer.valueOf(model.getCurrentQuestion().getWorth()));
+		} else {
+			labelAnswer.setFill(Color.RED);
+			labelAnswer.setText("Incorrect!");
+			labelAddedWinnings.setText("The correct answer was \"" + model.getCurrentQuestion().getAnswer() + "\"");
+		}
+		labelAnswer.setVisible(true);
+		labelAddedWinnings.setVisible(true);
+		textfieldAnswer.setDisable(true);
+		model.putState();
 	}
 }

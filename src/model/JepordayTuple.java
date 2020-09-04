@@ -3,8 +3,7 @@ package model;
 /**
  * JepordayTuple represents a mutable tuple of the a jeporday category,
  * question, question worth, question answer, completion status and correctly
- * answered status.
- * 
+ * answered status
  */
 public class JepordayTuple {
 	private final String category;
@@ -13,15 +12,6 @@ public class JepordayTuple {
 	private final String answer;
 	private Boolean completed;
 	private Boolean correctlyAnswered;
-
-	public JepordayTuple(String first, String second, String third, String fourth, Boolean fifth, Boolean sixth) {
-		this.category = first;
-		this.worth = second;
-		this.question = third;
-		this.answer = fourth;
-		this.completed = fifth;
-		this.correctlyAnswered = sixth;
-	}
 
 	public JepordayTuple(String name, String[] xs, Boolean fifth, Boolean sixth) {
 		this.category = name;
