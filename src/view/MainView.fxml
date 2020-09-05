@@ -13,7 +13,7 @@
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
       <Separator orientation="VERTICAL" prefHeight="45.0" prefWidth="20.0" visible="false" />
-      <Text fx:id="labelTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeporday" textAlignment="CENTER" wrappingWidth="800.0">
+      <Text fx:id="labelTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeopardy" textAlignment="CENTER" wrappingWidth="800.0">
          <font>
             <Font size="52.0" />
          </font>

@@ -8,8 +8,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * MainModel is a singleton providing a shared model for the jeporday game. It
- * contains the state of all jeporday tuples, currently selected question and
+ * MainModel is a singleton providing a shared model for the jeopardy game. It
+ * contains the state of all jeopardy tuples, currently selected question and
  * the games current winnings.
  */
 public class MainModel {
@@ -19,12 +19,12 @@ public class MainModel {
 	private static File CATEGORIES_DIRECTORY = new File("./categories");
 
 	private static MainModel mainModel;
-	private ArrayList<JepordayTuple> questions;
-	private JepordayTuple currentQuestion;
+	private ArrayList<JeopardyTuple> questions;
+	private JeopardyTuple currentQuestion;
 	private int winnings;
 
 	private MainModel() {
-		this.questions = new ArrayList<JepordayTuple>();
+		this.questions = new ArrayList<JeopardyTuple>();
 		this.winnings = 0;
 		this.currentQuestion = null;
 		getState();
@@ -42,7 +42,7 @@ public class MainModel {
 
 	/**
 	 * Attempt to fetch the game state from a defined state file. If this state file
-	 * does not exist then fallback to reading state from the given jeporday
+	 * does not exist then fallback to reading state from the given jeopardy
 	 * categories folder
 	 */
 	public void getState() {
@@ -56,7 +56,7 @@ public class MainModel {
 						if (!scanner.hasNextLine()) {
 							winnings = Integer.valueOf(line);
 						} else {
-							questions.add(new JepordayTuple(line.split(",")));
+							questions.add(new JeopardyTuple(line.split(",")));
 						}
 					}
 					scanner.close();
@@ -71,7 +71,7 @@ public class MainModel {
 							Scanner scanner = new Scanner(file);
 							while (scanner.hasNextLine()) {
 								String line = scanner.nextLine();
-								this.questions.add(new JepordayTuple(file.getName(), line.split(","), false, false));
+								this.questions.add(new JeopardyTuple(file.getName(), line.split(","), false, false));
 							}
 							winnings = 0;
 							scanner.close();
@@ -96,7 +96,7 @@ public class MainModel {
 		try {
 			STATE_FILE.createNewFile();
 			FileWriter fw = new FileWriter(STATE_FILE);
-			for (JepordayTuple quad : this.questions) {
+			for (JeopardyTuple quad : this.questions) {
 				fw.write(String.format("%s\n", quad.toString()));
 			}
 			fw.write(String.format("%s\n", Integer.toString(winnings)));
@@ -113,7 +113,7 @@ public class MainModel {
 		if (STATE_FILE.exists()) {
 			STATE_FILE.delete();
 		}
-		this.questions = new ArrayList<JepordayTuple>();
+		this.questions = new ArrayList<JeopardyTuple>();
 		this.winnings = 0;
 		this.getState();
 		this.putState();
@@ -125,8 +125,8 @@ public class MainModel {
 	 * 
 	 * @param question
 	 */
-	public void setCompleted(JepordayTuple question) {
-		for (JepordayTuple q : this.questions) {
+	public void setCompleted(JeopardyTuple question) {
+		for (JeopardyTuple q : this.questions) {
 			if (q.equals(question) && q.getCompeted().equals(false)) {
 				q.setCompeted(true);
 				int index = this.questions.indexOf(q);
@@ -136,11 +136,11 @@ public class MainModel {
 		}
 	}
 
-	public ArrayList<JepordayTuple> getQuestions() {
+	public ArrayList<JeopardyTuple> getQuestions() {
 		return this.questions;
 	}
 
-	public void setQuestions(ArrayList<JepordayTuple> xs) {
+	public void setQuestions(ArrayList<JeopardyTuple> xs) {
 		this.questions = xs;
 	}
 
@@ -156,11 +156,11 @@ public class MainModel {
 		this.winnings += w;
 	}
 
-	public void setCurrentQuestion(JepordayTuple q) {
+	public void setCurrentQuestion(JeopardyTuple q) {
 		this.currentQuestion = q;
 	}
 
-	public JepordayTuple getCurrentQuestion() {
+	public JeopardyTuple getCurrentQuestion() {
 		return this.currentQuestion;
 	}
 }

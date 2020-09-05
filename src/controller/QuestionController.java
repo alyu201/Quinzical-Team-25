@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 import model.MainModel;
 
 /**
- * Controller for QuestionView. Handles a single question in the jeporday
+ * Controller for QuestionView. Handles a single question in the jeopardy
  * question set. The user must type an answer to the question hint and the GUI
  * will display if the user has input correct answer. If the user's input answer
  * is incorrect then the correct answer will be displayed

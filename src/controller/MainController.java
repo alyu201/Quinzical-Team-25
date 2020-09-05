@@ -15,9 +15,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.JepordayTuple;
+import model.JeopardyTuple;
 import model.MainModel;
 
 /**
@@ -62,7 +63,7 @@ public class MainController {
 			}
 		});
 
-		// Populate jeporday board with category labels and question buttons
+		// Populate jeopardy board with category labels and question buttons
 		int col = -1;
 		int row = 1;
 		for (String category : uniqueCategories) {
@@ -78,13 +79,13 @@ public class MainController {
 			this.gridQuestions.add(categoryLabel, col, 0);
 
 			// Filter questions by current category
-			ArrayList<JepordayTuple> filteredQuestions = new ArrayList<JepordayTuple>();
-			for (JepordayTuple question : model.getQuestions()) {
+			ArrayList<JeopardyTuple> filteredQuestions = new ArrayList<JeopardyTuple>();
+			for (JeopardyTuple question : model.getQuestions()) {
 				if (question.getCategory().equals(category)) {
 					filteredQuestions.add(question);
 				}
 			}
-			for (JepordayTuple question : filteredQuestions) {
+			for (JeopardyTuple question : filteredQuestions) {
 				// Add question button to grid
 				Button buttonQuestion = new Button(question.getWorth());
 				buttonQuestion.setPrefSize(300, 50);
@@ -123,7 +124,7 @@ public class MainController {
 			}
 		}
 
-		// Check if jeporday game is complete. If completed create a dialog finalizing
+		// Check if jeopardy game is complete. If completed create a dialog finalizing
 		// the result. This is done on another thread such that it does not halt the
 		// MainMenu scene from drawing
 		new Thread() {
@@ -134,10 +135,12 @@ public class MainController {
 						.filter(question -> question.getCompeted() == true).count();
 				if (completedQuestions == model.getQuestions().size()) {
 					Alert alert = new Alert(AlertType.INFORMATION, "", ButtonType.OK);
-					alert.setTitle("Jeporday");
+					alert.setTitle("jeopardy");
 					alert.setHeaderText("Congratulations!");
-					alert.setContentText("You have completed your game of jeporday. Your total winnings are $"
+					alert.setContentText("You have completed your game of Jeopardy. Your total winnings are $"
 							+ model.getWinnings() + ". Press the 'Reset' button if you would like to play again");
+					alert.getDialogPane().getChildren().stream().filter(node -> node instanceof Label)
+							.forEach(node -> ((Label) node).setMinHeight(Region.USE_PREF_SIZE));
 					alert.show();
 				}
 			}
