@@ -1,4 +1,5 @@
-<h1 align="center">Assignment 2 - Jeporday</h1>
+<h1 align="center">Assignment 3 - Quinzical</h1>
+<h5 align="center">Amy Lyu - ???</h5>
 <h5 align="center">Andreas Knapp - akna890</h5>
 
 ### Running 
