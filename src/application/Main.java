@@ -1,11 +1,16 @@
 package application;
 
+import java.io.FileWriter;
 import java.io.IOException;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 
@@ -21,6 +26,34 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+		dep();
 		launch(args);
+	}
+
+	public static void dep() {
+		JSONObject obj = new JSONObject();
+
+		obj.put("name", "Pankaj Kumar");
+		obj.put("age", new Integer(32));
+
+		JSONArray cities = new JSONArray();
+		cities.add("New York");
+		cities.add("Bangalore");
+		cities.add("San Francisco");
+
+		obj.put("cities", cities);
+
+		try {
+
+			FileWriter file = new FileWriter("data.json");
+			file.write(obj.toJSONString());
+			file.flush();
+			file.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		System.out.print(obj.toJSONString());
 	}
 }
