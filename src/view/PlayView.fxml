@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayController">
+   <children>
+      <ToolBar fx:id="toolBar" prefHeight="67.0" prefWidth="800.0">
+         <items>
+            <Button fx:id="butonBack" mnemonicParsing="false" onMouseClicked="#onClickButtonBack" prefHeight="48.0" prefWidth="106.0" text="Back" />
+         </items>
+      </ToolBar>
+      <Separator orientation="VERTICAL" prefHeight="200.0" visible="false" />
+      <Button fx:id="buttonPlay" mnemonicParsing="false" onMouseClicked="#onClickButtonPlay" prefHeight="167.0" prefWidth="391.0" text="Play sound" textAlignment="CENTER" />
+   </children>
+</VBox>

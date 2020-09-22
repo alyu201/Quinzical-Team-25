@@ -32,12 +32,12 @@ public class MainMenuController {
 
 	@FXML
 	private void onClickButtonPlay(Event e) {
-		System.out.println("play");
+		SceneManager.changeScene(getClass().getResource("/view/PlayView.fxml"), e);
 	}
 
 	@FXML
 	private void onClickButtonPractice(Event e) {
-		System.out.println("Practice");
+		SceneManager.changeScene(getClass().getResource("/view/PlayView.fxml"), e);
 	}
 
 	@FXML
