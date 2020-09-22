@@ -18,6 +18,9 @@ public class MainMenuController {
 	private Button buttonLeaderboard;
 
 	@FXML
+	private Button buttonCreateQuestions;
+
+	@FXML
 	private Button buttonSettings;
 
 	@FXML
@@ -40,6 +43,11 @@ public class MainMenuController {
 	@FXML
 	private void onClickButtonLeaderboard(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/LeaderboardView.fxml"), e);
+	}
+
+	@FXML
+	private void onClickButtonCreateQuestions(Event e) {
+		System.out.println("create questions");
 	}
 
 	@FXML

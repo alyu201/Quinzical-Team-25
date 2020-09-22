@@ -11,23 +11,23 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LeaderboardController">
    <children>
-      <ToolBar prefHeight="67.0" prefWidth="800.0">
+      <ToolBar fx:id="toolBar" prefHeight="67.0" prefWidth="800.0">
          <items>
             <Button fx:id="butonBack" mnemonicParsing="false" onMouseClicked="#onClickButtonBack" prefHeight="48.0" prefWidth="106.0" text="Back" />
          </items>
       </ToolBar>
       <Separator orientation="VERTICAL" prefHeight="200.0" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Leaderboard">
+      <Text fx:id="textTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaderboard">
          <font>
             <Font size="78.0" />
          </font>
       </Text>
       <Separator orientation="VERTICAL" prefHeight="200.0" />
-      <TableView prefHeight="798.0" prefWidth="800.0">
+      <TableView fx:id="tableViewLeaderboard" prefHeight="798.0" prefWidth="800.0">
         <columns>
-          <TableColumn prefWidth="87.0" text="Rank" />
-          <TableColumn prefWidth="367.0" text="Name" />
-            <TableColumn prefWidth="345.0" text="Score" />
+          <TableColumn fx:id="tableColumnRank" prefWidth="87.0" text="Rank" />
+          <TableColumn fx:id="tableColumnName" prefWidth="367.0" text="Name" />
+            <TableColumn fx:id="tableColumnScore" prefWidth="345.0" text="Score" />
         </columns>
       </TableView>
    </children>

@@ -21,11 +21,17 @@ public class SettingsController {
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
-		model.getLeaderboard();
-		textVolume.textProperty().bind(Bindings.format("%.0f", sliderVolume.valueProperty()));
+
+		textVolume.setText("" + model.getVolume());
+		sliderVolume.setValue(new Double(model.getVolume()));
+		sliderVolume.valueProperty().addListener((observable, oldValue, newValue) -> {
+			textVolume.setText("" + newValue.intValue());
+			this.model.setVolume(newValue.intValue());
+			System.out.println("" + this.model.getVolume());
+		});
 
 	}
-	
+
 	@FXML
 	private void onClickButtonBack(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);

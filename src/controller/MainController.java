@@ -45,7 +45,6 @@ public class MainController {
 
 		// Reset action
 		this.buttonReset.setOnAction(event -> {
-			model.resetState();
 			this.gridQuestions.getChildren().forEach(x -> {
 				if (x.isDisabled()) {
 					x.setDisable(false);
@@ -102,7 +101,6 @@ public class MainController {
 					// Set this question to be completed
 					model.setCurrentQuestion(question);
 					model.setCompleted(model.getCurrentQuestion());
-					model.putState();
 
 					// Change to question scene
 					try {

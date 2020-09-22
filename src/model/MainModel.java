@@ -32,6 +32,8 @@ public class MainModel {
 	private ArrayList<JeopardyTuple> questions;
 	private HashMap<String, Integer> leaderboard;
 	private JeopardyTuple currentQuestion;
+	private int volume;
+	private String voiceType;
 	private int winnings;
 
 	private MainModel() {
@@ -39,7 +41,9 @@ public class MainModel {
 		this.winnings = 0;
 		this.currentQuestion = null;
 		this.leaderboard = new HashMap<String, Integer>();
-		getState();
+		this.getLeaderboardState();
+		this.volume = 0;
+		this.voiceType = null; 
 	}
 
 	// Singleton
@@ -52,90 +56,21 @@ public class MainModel {
 		}
 	}
 
-	/**
-	 * Attempt to fetch the game state from a defined state file. If this state file
-	 * does not exist then fallback to reading state from the given jeopardy
-	 * categories folder
-	 */
-	public void getState() {
-		try {
-			if (STATE_FILE.exists()) {
-				// read from state file
-				try {
-					Scanner scanner = new Scanner(STATE_FILE);
-					while (scanner.hasNextLine()) {
-						String line = scanner.nextLine();
-						if (!scanner.hasNextLine()) {
-							winnings = Integer.valueOf(line);
-						} else {
-							questions.add(new JeopardyTuple(line.split(",")));
-						}
-					}
-					scanner.close();
-				} catch (IOException e) {
-					System.out.println("Error reading from state file: " + e.toString());
-				}
-			} else {
-				// read from categories
-				if (CATEGORIES_DIRECTORY.exists() && CATEGORIES_DIRECTORY.isDirectory()) {
-					Arrays.stream(CATEGORIES_DIRECTORY.listFiles()).forEach(file -> {
-						try {
-							Scanner scanner = new Scanner(file);
-							while (scanner.hasNextLine()) {
-								String line = scanner.nextLine();
-								this.questions.add(new JeopardyTuple(file.getName(), line.split(","), false, false));
-							}
-							winnings = 0;
-							scanner.close();
-						} catch (IOException e) {
-							System.out.println(e.toString());
-						}
-					});
-				} else {
-					System.out.println(
-							"Neither the state file or categories folder exist, are you sure you are running this in the correct directory?");
-				}
-			}
-		} catch (Exception e) {
-			System.out.println("Error reading from categories folder or state file: " + e.toString());
-		}
+	
+
+	public HashMap<String, Integer> getLeaderboard() {
+		return this.leaderboard;
 	}
 
-	/**
-	 * Write the state of the model to disk
-	 */
-	public void putState() {
-		try {
-			STATE_FILE.createNewFile();
-			FileWriter fw = new FileWriter(STATE_FILE);
-			for (JeopardyTuple quad : this.questions) {
-				fw.write(String.format("%s\n", quad.toString()));
-			}
-			fw.write(String.format("%s\n", Integer.toString(winnings)));
-			fw.close();
-		} catch (IOException e) {
-			System.out.println("Error writing state to file: " + e.toString());
-		}
-	}
-
-	/**
-	 * Reset the state of the model and write this fresh state to disk
-	 */
-	public void resetState() {
-		if (STATE_FILE.exists()) {
-			STATE_FILE.delete();
-		}
-		this.questions = new ArrayList<JeopardyTuple>();
-		this.winnings = 0;
-		this.getState();
-		this.putState();
-
+	public void setLeaderboard(HashMap<String, Integer> map) {
+		this.leaderboard = map;
 	}
 
 	/**
 	 * Retrieve leaderboard from file
+	 * TODO: file existence check
 	 */
-	public void getLeaderboard() {
+	public void getLeaderboardState() {
 		JSONParser parser = new JSONParser();
 
 		try (Reader reader = new FileReader(LEADERBOARD_FILE)) {
@@ -146,7 +81,6 @@ public class MainModel {
 				// TODO: this is kinda backwards man
 				this.leaderboard.put((String)key, Integer.valueOf(value.toString()));
 			});
-			System.out.println(obj.keySet().toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
@@ -156,8 +90,9 @@ public class MainModel {
 
 	/**
 	 * Write leaderboard to file
+	 * TODO: existence
 	 */
-	public void putLeaderboard() {
+	public void putLeaderboardState() {
 		JSONObject obj = new JSONObject();
 		this.leaderboard.forEach((key, value) -> {
 			obj.put(key, value);
@@ -168,6 +103,14 @@ public class MainModel {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void setVolume(int volume) {
+		this.volume = volume;
+	}
+	
+	public int getVolume() {
+		return this.volume;
 	}
 
 	/**

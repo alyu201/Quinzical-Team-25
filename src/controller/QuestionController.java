@@ -133,6 +133,5 @@ public class QuestionController {
 		labelAnswer.setVisible(true);
 		labelAddedWinnings.setVisible(true);
 		textfieldAnswer.setDisable(true);
-		model.putState();
 	}
 }

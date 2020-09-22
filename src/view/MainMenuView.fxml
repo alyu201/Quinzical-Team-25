@@ -8,13 +8,13 @@
 
 <VBox fx:id="vBoxPane" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
    <children>
-      <Separator orientation="VERTICAL" prefHeight="91.0" prefWidth="14.0" visible="false" />
+      <Separator orientation="VERTICAL" prefHeight="41.0" prefWidth="14.0" visible="false" />
       <Text fx:id="textTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Quinzical" textAlignment="CENTER">
          <font>
             <Font size="78.0" />
          </font>
       </Text>
-      <Separator orientation="VERTICAL" prefHeight="57.0" prefWidth="14.0" visible="false" />
+      <Separator orientation="VERTICAL" prefHeight="41.0" prefWidth="14.0" visible="false" />
       <Button fx:id="buttonPlay" mnemonicParsing="false" onMouseClicked="#onClickButtonPlay" prefHeight="81.0" prefWidth="376.0" text="Play">
          <font>
             <Font size="36.0" />
@@ -22,6 +22,12 @@
       </Button>
       <Separator orientation="VERTICAL" prefHeight="14.0" prefWidth="14.0" visible="false" />
       <Button fx:id="buttonPractice" mnemonicParsing="false" onMouseClicked="#onClickButtonPractice" prefHeight="81.0" prefWidth="376.0" text="Practice">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <Separator orientation="VERTICAL" prefHeight="14.0" prefWidth="14.0" visible="false" />
+      <Button fx:id="butionCreateQuestions" mnemonicParsing="false" onMouseClicked="#onClickButtonCreateQuestions" prefHeight="81.0" prefWidth="376.0" text="Create Questions">
          <font>
             <Font size="36.0" />
          </font>
