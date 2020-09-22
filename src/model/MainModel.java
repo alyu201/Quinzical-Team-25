@@ -1,11 +1,20 @@
 package model;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  * MainModel is a singleton providing a shared model for the jeopardy game. It
@@ -16,10 +25,12 @@ public class MainModel {
 
 	// Constants
 	private static File STATE_FILE = new File("./state");
+	private static File LEADERBOARD_FILE = new File("./leaderboard.json");
 	private static File CATEGORIES_DIRECTORY = new File("./categories");
 
 	private static MainModel mainModel;
 	private ArrayList<JeopardyTuple> questions;
+	private HashMap<String, Integer> leaderboard;
 	private JeopardyTuple currentQuestion;
 	private int winnings;
 
@@ -27,6 +38,7 @@ public class MainModel {
 		this.questions = new ArrayList<JeopardyTuple>();
 		this.winnings = 0;
 		this.currentQuestion = null;
+		this.leaderboard = new HashMap<String, Integer>();
 		getState();
 	}
 
@@ -117,6 +129,44 @@ public class MainModel {
 		this.winnings = 0;
 		this.getState();
 		this.putState();
+
+	}
+
+	/**
+	 * Retrieve leaderboard from file
+	 */
+	public void getLeaderboard() {
+		JSONParser parser = new JSONParser();
+
+		try (Reader reader = new FileReader(LEADERBOARD_FILE)) {
+
+			JSONObject obj = (JSONObject) parser.parse(reader);
+
+			obj.forEach((key,value) -> {
+				// TODO: this is kinda backwards man
+				this.leaderboard.put((String)key, Integer.valueOf(value.toString()));
+			});
+			System.out.println(obj.keySet().toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Write leaderboard to file
+	 */
+	public void putLeaderboard() {
+		JSONObject obj = new JSONObject();
+		this.leaderboard.forEach((key, value) -> {
+			obj.put(key, value);
+		});
+		try (FileWriter file = new FileWriter(LEADERBOARD_FILE)) {
+			file.write(obj.toJSONString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
