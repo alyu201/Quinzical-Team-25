@@ -62,6 +62,8 @@ public class Settings implements JSONable {
 
 	}
 
+	// Breaks type safety
+	@SuppressWarnings("unchecked")
 	@Override
 	public void toJSONFile() {
 		JSONObject obj = new JSONObject();

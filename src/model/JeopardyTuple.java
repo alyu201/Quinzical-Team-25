@@ -5,7 +5,7 @@ package model;
  * question, question worth, question answer, completion status and correctly
  * answered status
  */
-public class JeopardyTuple {
+public class JeopardyTuple implements JSONable {
 	private final String category;
 	private final String question;
 	private final String worth;
@@ -99,5 +99,17 @@ public class JeopardyTuple {
 	public String toString() {
 		return this.category + "," + this.worth + "," + this.question + "," + this.answer + "," + this.completed + ","
 				+ this.correctlyAnswered;
+	}
+
+	@Override
+	public void fromJSONFile() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void toJSONFile() {
+		// TODO Auto-generated method stub
+		
 	}
 }
