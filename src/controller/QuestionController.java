@@ -1,6 +1,11 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -86,8 +91,24 @@ public class QuestionController {
 				try {
 					String command = "echo " + model.getCurrentQuestion().getQuestion() + " | festival --tts";
 					ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
-					pb.start();
+					Process process = pb.start();
+					BufferedWriter stdin = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+					BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
+					BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+
+					int exitCode = process.waitFor();
+					if (exitCode == 0) {
+						System.out.println("passed");
+					} else {
+						System.out.println("failed");
+					}
+					stdin.close();
+					stdout.close();
+					stderr.close();
+
 				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}

@@ -32,8 +32,7 @@ public class MainModel {
 	private ArrayList<JeopardyTuple> questions;
 	private HashMap<String, Integer> leaderboard;
 	private JeopardyTuple currentQuestion;
-	private int volume;
-	private String voiceType;
+	private Settings settings;
 	private int winnings;
 
 	private MainModel() {
@@ -42,8 +41,7 @@ public class MainModel {
 		this.currentQuestion = null;
 		this.leaderboard = new HashMap<String, Integer>();
 		this.getLeaderboardState();
-		this.volume = 0;
-		this.voiceType = null; 
+		this.settings = new Settings();
 	}
 
 	// Singleton
@@ -105,12 +103,12 @@ public class MainModel {
 
 	}
 	
-	public void setVolume(int volume) {
-		this.volume = volume;
+	public Settings getSettings() {
+		return settings;
 	}
-	
-	public int getVolume() {
-		return this.volume;
+
+	public void setSettings(Settings settings) {
+		this.settings = settings;
 	}
 
 	/**

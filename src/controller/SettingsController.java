@@ -22,18 +22,19 @@ public class SettingsController {
 	public void initialize() {
 		this.model = model.getMainModel();
 
-		textVolume.setText("" + model.getVolume());
-		sliderVolume.setValue(new Double(model.getVolume()));
+		textVolume.setText("" + model.getSettings().getVolume());
+		sliderVolume.setValue(new Double(model.getSettings().getVolume()));
 		sliderVolume.valueProperty().addListener((observable, oldValue, newValue) -> {
 			textVolume.setText("" + newValue.intValue());
-			this.model.setVolume(newValue.intValue());
-			System.out.println("" + this.model.getVolume());
+			this.model.getSettings().setVolume(newValue.intValue());
+			System.out.println("" + this.model.getSettings().getVolume());
 		});
 
 	}
 
 	@FXML
 	private void onClickButtonBack(Event e) {
+		model.getSettings().toJSONFile();
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 
