@@ -1,6 +1,5 @@
 package controller;
 
-import org.json.simple.JSONObject;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -26,4 +25,5 @@ public class LeaderboardController {
 	public void onClickButtonBack(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
+
 }

@@ -9,13 +9,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class Settings implements JSONable {
+public class Settings implements JSONString<Settings>, JSONFile{
 	public static String SETTINGS_FILENAME = "./settings.json";
 	private String voiceType;
 	private int speed;
 	private int volume;
 
-	Settings() {
+	private Settings(String voiceType, int speed, int volume) {
+		this.voiceType = voiceType;
+		this.speed = speed;
+		this.volume = volume;
+	}
+
+	public Settings() {
 		this.fromJSONFile();
 	}
 
@@ -44,37 +50,53 @@ public class Settings implements JSONable {
 	}
 
 	@Override
-	public void fromJSONFile() {
+	public Settings fromJSONString(String xs) {
+			try {
+				JSONParser parser = new JSONParser();
+				JSONObject obj = (JSONObject) parser.parse(xs);
+				return new Settings(
+					(String) obj.get("voiceType"),
+					Math.toIntExact(((Long) obj.get("speed"))),
+					Math.toIntExact(((Long) obj.get("volume")))
+					);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public String toJSONString() {
+		JSONObject obj = new JSONObject();
+		obj.put("voiceType", this.getVoiceType());
+		obj.put("speed", this.getSpeed());
+		obj.put("volume", this.getVolume());
+		return obj.toJSONString();
+	}
+
+	@Override
+	public Settings fromJSONFile() {
 		JSONParser parser = new JSONParser();
-
 		try (Reader reader = new FileReader(SETTINGS_FILENAME)) {
-
 			JSONObject obj = (JSONObject) parser.parse(reader);
-			this.setVoiceType((String) obj.get("voiceType"));
-			this.setSpeed((Math.toIntExact(((Long) obj.get("speed")))));
-			this.setVolume((Math.toIntExact(((Long) obj.get("volume")))));
-
+			return this.fromJSONString(obj.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
+		return null;
+
 	}
 
-	// Breaks type safety
-	@SuppressWarnings("unchecked")
 	@Override
 	public void toJSONFile() {
-		JSONObject obj = new JSONObject();
-		obj.put("voiceType", this.getVoiceType());
-		obj.put("speed", this.getSpeed());
-		obj.put("volume", this.getVolume());
 		try (FileWriter file = new FileWriter(SETTINGS_FILENAME)) {
-			file.write(obj.toJSONString());
+			file.write(this.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
 }

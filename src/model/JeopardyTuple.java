@@ -1,11 +1,19 @@
 package model;
 
+import java.io.FileReader;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 /**
  * jeopardyTuple represents a mutable tuple of the a jeopardy category,
  * question, question worth, question answer, completion status and correctly
  * answered status
  */
-public class JeopardyTuple implements JSONable {
+public class JeopardyTuple implements JSONString<JeopardyTuple> {
+	
 	private final String category;
 	private final String question;
 	private final String worth;
@@ -13,6 +21,14 @@ public class JeopardyTuple implements JSONable {
 	private Boolean completed;
 	private Boolean correctlyAnswered;
 
+	public JeopardyTuple(String category, String question, String worth, String answer, Boolean completed, Boolean correctlyAnswered) {
+		this.category = category;
+		this.worth = worth;
+		this.question = question;
+		this.answer = answer;
+		this.completed = completed;
+		this.correctlyAnswered = correctlyAnswered;
+	}
 	public JeopardyTuple(String name, String[] xs, Boolean fifth, Boolean sixth) {
 		this.category = name;
 		this.worth = xs[0];
@@ -31,36 +47,36 @@ public class JeopardyTuple implements JSONable {
 		this.correctlyAnswered = Boolean.parseBoolean(xs[5]);
 	}
 
-	public String getCategory() {
-		return this.category;
+	public Boolean getCompleted() {
+		return completed;
 	}
 
-	public String getQuestion() {
-		return this.question;
-	}
-
-	public String getWorth() {
-		return this.worth;
-	}
-
-	public String getAnswer() {
-		return this.answer;
-	}
-
-	public Boolean getCompeted() {
-		return this.completed;
-	}
-
-	public void setCompeted(Boolean c) {
-		this.completed = c;
+	public void setCompleted(Boolean completed) {
+		this.completed = completed;
 	}
 
 	public Boolean getCorrectlyAnswered() {
-		return this.correctlyAnswered;
+		return correctlyAnswered;
 	}
 
-	public void setCorrectlyAnswered(Boolean c) {
-		this.correctlyAnswered = c;
+	public void setCorrectlyAnswered(Boolean correctlyAnswered) {
+		this.correctlyAnswered = correctlyAnswered;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public String getQuestion() {
+		return question;
+	}
+
+	public String getWorth() {
+		return worth;
+	}
+
+	public String getAnswer() {
+		return answer;
 	}
 
 	@Override
@@ -102,14 +118,33 @@ public class JeopardyTuple implements JSONable {
 	}
 
 	@Override
-	public void fromJSONFile() {
-		// TODO Auto-generated method stub
-		
+	public JeopardyTuple fromJSONString(String xs) {
+			try {
+				JSONParser parser = new JSONParser();
+				JSONObject obj = (JSONObject) parser.parse(xs);
+				return new JeopardyTuple(
+					(String) obj.get("category"),
+					(String) obj.get("question"),
+					(String) obj.get("worth"),
+					(String) obj.get("answer"),
+					(Boolean) obj.get("completed"),
+					(Boolean) obj.get("correctlyAnswered")
+					);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void toJSONFile() {
-		// TODO Auto-generated method stub
-		
+	public String toJSONString() {
+		JSONObject obj = new JSONObject();
+		obj.put("category", this.getCategory());
+		obj.put("question", this.getQuestion());
+		obj.put("worth", this.getWorth());
+		obj.put("answer", this.getAnswer());
+		obj.put("completed", this.getCorrectlyAnswered());
+		return obj.toJSONString();
 	}
 }

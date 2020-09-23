@@ -54,8 +54,6 @@ public class MainModel {
 		}
 	}
 
-	
-
 	public HashMap<String, Integer> getLeaderboard() {
 		return this.leaderboard;
 	}
@@ -65,8 +63,7 @@ public class MainModel {
 	}
 
 	/**
-	 * Retrieve leaderboard from file
-	 * TODO: file existence check
+	 * Retrieve leaderboard from file TODO: file existence check
 	 */
 	public void getLeaderboardState() {
 		JSONParser parser = new JSONParser();
@@ -75,9 +72,9 @@ public class MainModel {
 
 			JSONObject obj = (JSONObject) parser.parse(reader);
 
-			obj.forEach((key,value) -> {
+			obj.forEach((key, value) -> {
 				// TODO: this is kinda backwards man
-				this.leaderboard.put((String)key, Integer.valueOf(value.toString()));
+				this.leaderboard.put((String) key, Integer.valueOf(value.toString()));
 			});
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -87,8 +84,7 @@ public class MainModel {
 	}
 
 	/**
-	 * Write leaderboard to file
-	 * TODO: existence
+	 * Write leaderboard to file TODO: existence
 	 */
 	public void putLeaderboardState() {
 		JSONObject obj = new JSONObject();
@@ -102,7 +98,7 @@ public class MainModel {
 		}
 
 	}
-	
+
 	public Settings getSettings() {
 		return settings;
 	}
@@ -118,8 +114,8 @@ public class MainModel {
 	 */
 	public void setCompleted(JeopardyTuple question) {
 		for (JeopardyTuple q : this.questions) {
-			if (q.equals(question) && q.getCompeted().equals(false)) {
-				q.setCompeted(true);
+			if (q.equals(question) && q.getCompleted().equals(false)) {
+				q.setCompleted(true);
 				int index = this.questions.indexOf(q);
 				this.questions.set(index, q);
 				break;

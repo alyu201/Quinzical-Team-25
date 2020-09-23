@@ -2,10 +2,8 @@ package model;
 
 /**
  * A type that supports conversion from and to JSON format
- * @author wqsz7xn
- *
  */
-public interface JSONable {
-	public void fromJSONFile();
+public interface JSONFile<T> {
+	public T fromJSONFile();
 	public void toJSONFile();
 }

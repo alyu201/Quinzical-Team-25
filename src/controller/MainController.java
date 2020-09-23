@@ -92,7 +92,7 @@ public class MainController {
 				buttonQuestion.setAlignment(Pos.CENTER);
 
 				// Disable button if question has been answered
-				if (question.getCompeted() == true) {
+				if (question.getCompleted() == true) {
 					buttonQuestion.setDisable(true);
 				}
 
@@ -130,7 +130,7 @@ public class MainController {
 			@Override
 			public void run() {
 				int completedQuestions = (int) model.getQuestions().stream()
-						.filter(question -> question.getCompeted() == true).count();
+						.filter(question -> question.getCompleted() == true).count();
 				if (completedQuestions == model.getQuestions().size()) {
 					Alert alert = new Alert(AlertType.INFORMATION, "", ButtonType.OK);
 					alert.setTitle("jeopardy");
