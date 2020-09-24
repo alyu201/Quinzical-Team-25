@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ThingController">
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #daffe3;" BorderPane.alignment="CENTER">
          <children>
@@ -20,7 +19,7 @@
                </font>
             </Label>
             <Separator prefHeight="20.0" prefWidth="200.0" />
-            <Button mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: #00b9a8;" text="PLAY" textFill="#f2fff3">
+            <Button fx:id="buttonPlay" mnemonicParsing="false" onMouseClicked="#onClickButtonPlay" prefWidth="300.0" style="-fx-background-color: #00b9a8;" text="PLAY" textFill="#f2fff3">
                <font>
                   <Font size="22.0" />
                </font>
