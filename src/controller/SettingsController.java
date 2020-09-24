@@ -28,6 +28,7 @@ public class SettingsController {
 	public void initialize() {
 		this.model = model.getMainModel();
 
+		// Resotre position of slider and state of labels
 		textVolume.setText("" + model.getSettings().getVolume());
 		textSpeed.setText("" + model.getSettings().getSpeed());
 		sliderVolume.setValue(new Double(model.getSettings().getVolume()));

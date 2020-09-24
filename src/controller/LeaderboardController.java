@@ -1,6 +1,5 @@
 package controller;
 
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
@@ -10,15 +9,12 @@ import utilities.SceneManager;
 public class LeaderboardController {
 
 	private MainModel model;
-	
+
 	@FXML
 	TableView<String> tableViewLeaderboard;
 
 	public void initialize() {
 		this.model = model.getMainModel();
-		this.model.getLeaderboard().forEach((key, value) -> {
-		});
-		
 	}
 
 	@FXML

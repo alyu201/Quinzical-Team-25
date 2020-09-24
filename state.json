@@ -1,0 +1,6 @@
+{
+  "categories": ["Places","Symbols","Geography","History","Famous People","NZ Life","Flora","Fauna","Oddities"],
+  "questions": [{"category": "Places", "question": "This is the capital of New Zealand", "worth": 500, "answer": "Wellington", "completed": 0, "completedCorrectly": 0}],
+  "name": "Andreas",
+  "winnings": 1000
+}
