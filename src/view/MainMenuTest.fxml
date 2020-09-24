@@ -14,66 +14,6 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="900.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #daffe3;" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="QUINZICAL" textAlignment="CENTER" textFill="#004a43">
-               <font>
-                  <Font size="72.0" />
-               </font>
-            </Label>
-            <Separator prefHeight="10.0" prefWidth="200.0" />
-            <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="PLAY" textFill="#f2fff3">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </Button>
-            <Button layoutX="563.0" layoutY="345.0" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="START OVER" textFill="#f2fff3">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </Button>
-            <Button layoutX="563.0" layoutY="312.0" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="TRAINING" textFill="#f2fff3">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </Button>
-            <Button layoutX="563.0" layoutY="279.0" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="LEADERBOARD" textFill="#f2fff3">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </Button>
-            <Button layoutX="460.0" layoutY="363.0" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </Button>
-            <Button layoutX="563.0" layoutY="246.0" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="RESET" textFill="#f2fff3">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </Button>
-         </children>
-      </VBox>
-   </center>
    <top>
       <HBox prefHeight="80.0" prefWidth="1200.0" style="-fx-background-color: #00b9a8;" BorderPane.alignment="CENTER">
          <children>
@@ -83,7 +23,7 @@
                      <children>
                         <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#004a43">
                            <font>
-                              <Font size="25.0" />
+                              <Font size="20.0" />
                            </font>
                         </Button>
                         <StackPane prefHeight="0.0" prefWidth="0.0">
@@ -110,11 +50,17 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label text="username" textAlignment="CENTER" textFill="#004a43" />
+                        <Label text="username" textAlignment="CENTER" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></Label>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
                               <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#f2fff3" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0" />
-                              <Label text="\$0" textAlignment="CENTER" textFill="#004a43" />
+                              <Label text="\$0" textAlignment="CENTER" textFill="#004a43">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
                            </children>
                         </StackPane>
                      </children>
@@ -145,7 +91,10 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Label text="RETURN" textAlignment="CENTER" textFill="#004a43" />
+                        <Label text="RETURN" textAlignment="CENTER" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></Label>
                      </children>
                   </HBox>
                </children>
@@ -154,7 +103,10 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label text="RETURN" textAlignment="CENTER" textFill="#004a43" />
+                        <Label text="RETURN" textAlignment="CENTER" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></Label>
                         <Button mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 10;" text="→" textFill="#004a43">
                            <font>
                               <Font size="20.0" />
@@ -173,4 +125,73 @@
          </children>
       </HBox>
    </bottom>
+   <center>
+      <StackPane prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: #daffe3;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="640.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/images/main-bg.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" StackPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="QUINZICAL" textAlignment="CENTER" textFill="#004a43">
+                     <font>
+                        <Font size="72.0" />
+                     </font>
+                  </Label>
+                  <Separator prefHeight="10.0" prefWidth="200.0" />
+                  <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="PLAY" textFill="#f2fff3">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="START OVER" textFill="#f2fff3">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="TRAINING" textFill="#f2fff3">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="LEADERBOARD" textFill="#f2fff3">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="RESET" textFill="#f2fff3">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </center>
 </BorderPane>
