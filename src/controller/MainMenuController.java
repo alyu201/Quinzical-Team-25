@@ -4,10 +4,12 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.MainModel;
 import utilities.SceneManager;
 
 public class MainMenuController {
 
+	private MainModel model;
 	@FXML
 	private Button buttonPlay;
 
@@ -27,7 +29,8 @@ public class MainMenuController {
 	private Button buttonQuit;
 
 	public void initialize() {
-		System.out.println("init");
+		model = model.getMainModel();
+		System.out.println(model.toJSONString());
 	}
 
 	@FXML

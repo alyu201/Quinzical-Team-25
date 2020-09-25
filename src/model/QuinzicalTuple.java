@@ -12,7 +12,7 @@ import org.json.simple.parser.ParseException;
  * question, question worth, question answer, completion status and correctly
  * answered status
  */
-public class JeopardyTuple implements JSONString<JeopardyTuple> {
+public class QuinzicalTuple implements JSONString<QuinzicalTuple> {
 	
 	private final String category;
 	private final String question;
@@ -21,7 +21,7 @@ public class JeopardyTuple implements JSONString<JeopardyTuple> {
 	private Boolean completed;
 	private Boolean correctlyAnswered;
 
-	public JeopardyTuple(String category, String question, String worth, String answer, Boolean completed, Boolean correctlyAnswered) {
+	public QuinzicalTuple(String category, String question, String worth, String answer, Boolean completed, Boolean correctlyAnswered) {
 		this.category = category;
 		this.worth = worth;
 		this.question = question;
@@ -29,7 +29,7 @@ public class JeopardyTuple implements JSONString<JeopardyTuple> {
 		this.completed = completed;
 		this.correctlyAnswered = correctlyAnswered;
 	}
-	public JeopardyTuple(String name, String[] xs, Boolean fifth, Boolean sixth) {
+	public QuinzicalTuple(String name, String[] xs, Boolean fifth, Boolean sixth) {
 		this.category = name;
 		this.worth = xs[0];
 		this.question = xs[1];
@@ -38,7 +38,7 @@ public class JeopardyTuple implements JSONString<JeopardyTuple> {
 		this.correctlyAnswered = sixth;
 	}
 
-	public JeopardyTuple(String[] xs) {
+	public QuinzicalTuple(String[] xs) {
 		this.category = xs[0];
 		this.worth = xs[1];
 		this.question = xs[2];
@@ -89,7 +89,7 @@ public class JeopardyTuple implements JSONString<JeopardyTuple> {
 			return false;
 		}
 
-		JeopardyTuple tuple = (JeopardyTuple) obj;
+		QuinzicalTuple tuple = (QuinzicalTuple) obj;
 
 		if (!category.equals(tuple.category) || !worth.equals(tuple.worth) || !question.equals(tuple.question)
 				|| !answer.equals(tuple.answer) || !completed.equals(tuple.completed)
@@ -118,11 +118,11 @@ public class JeopardyTuple implements JSONString<JeopardyTuple> {
 	}
 
 	@Override
-	public JeopardyTuple fromJSONString(String xs) {
+	public QuinzicalTuple fromJSONString(String xs) {
 			try {
 				JSONParser parser = new JSONParser();
 				JSONObject obj = (JSONObject) parser.parse(xs);
-				return new JeopardyTuple(
+				return new QuinzicalTuple(
 					(String) obj.get("category"),
 					(String) obj.get("question"),
 					(String) obj.get("worth"),

@@ -18,7 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.JeopardyTuple;
+import model.QuinzicalTuple;
 import model.MainModel;
 
 /**
@@ -78,13 +78,13 @@ public class MainController {
 			this.gridQuestions.add(categoryLabel, col, 0);
 
 			// Filter questions by current category
-			ArrayList<JeopardyTuple> filteredQuestions = new ArrayList<JeopardyTuple>();
-			for (JeopardyTuple question : model.getQuestions()) {
+			ArrayList<QuinzicalTuple> filteredQuestions = new ArrayList<QuinzicalTuple>();
+			for (QuinzicalTuple question : model.getQuestions()) {
 				if (question.getCategory().equals(category)) {
 					filteredQuestions.add(question);
 				}
 			}
-			for (JeopardyTuple question : filteredQuestions) {
+			for (QuinzicalTuple question : filteredQuestions) {
 				// Add question button to grid
 				Button buttonQuestion = new Button(question.getWorth());
 				buttonQuestion.setPrefSize(300, 50);

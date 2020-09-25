@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -21,25 +22,30 @@ import org.json.simple.parser.ParseException;
  * contains the state of all jeopardy tuples, currently selected question and
  * the games current winnings.
  */
-public class MainModel {
+public class MainModel implements JSONString<MainModel>, JSONFile<MainModel> {
 
-	// Constants
-	private static File STATE_FILE = new File("./state");
-	private static File CATEGORIES_DIRECTORY = new File("./categories");
+	private static final String STATE_FILENAME = "state.json";
 
 	private static MainModel mainModel;
-	private ArrayList<JeopardyTuple> questions;
+	private ArrayList<QuinzicalTuple> questions;
 	private Leaderboard leaderboard;
-	private JeopardyTuple currentQuestion;
+	private QuinzicalTuple currentQuestion;
 	private Settings settings;
 	private int winnings;
 
-	private MainModel() {
-		this.questions = new ArrayList<JeopardyTuple>();
-		this.winnings = 0;
-		this.currentQuestion = null;
-		this.leaderboard = new Leaderboard();
-		this.settings = new Settings();
+	MainModel() {
+		this.fromJSONFile();
+	}
+
+	private MainModel(ArrayList<QuinzicalTuple> questions, Leaderboard leaderboard, QuinzicalTuple currentQuestion,
+			Settings settings, int winnings) {
+		super();
+		this.mainModel = this;
+		this.questions = questions;
+		this.leaderboard = leaderboard;
+		this.currentQuestion = currentQuestion;
+		this.settings = settings;
+		this.winnings = winnings;
 	}
 
 	// Singleton
@@ -68,11 +74,11 @@ public class MainModel {
 		this.settings = settings;
 	}
 
-	public ArrayList<JeopardyTuple> getQuestions() {
+	public ArrayList<QuinzicalTuple> getQuestions() {
 		return this.questions;
 	}
 
-	public void setQuestions(ArrayList<JeopardyTuple> xs) {
+	public void setQuestions(ArrayList<QuinzicalTuple> xs) {
 		this.questions = xs;
 	}
 
@@ -88,11 +94,11 @@ public class MainModel {
 		this.winnings += w;
 	}
 
-	public void setCurrentQuestion(JeopardyTuple q) {
+	public void setCurrentQuestion(QuinzicalTuple q) {
 		this.currentQuestion = q;
 	}
 
-	public JeopardyTuple getCurrentQuestion() {
+	public QuinzicalTuple getCurrentQuestion() {
 		return this.currentQuestion;
 	}
 
@@ -101,8 +107,8 @@ public class MainModel {
 	 * 
 	 * @param question
 	 */
-	public void setCompleted(JeopardyTuple question) {
-		for (JeopardyTuple q : this.questions) {
+	public void setCompleted(QuinzicalTuple question) {
+		for (QuinzicalTuple q : this.questions) {
 			if (q.equals(question) && q.getCompleted().equals(false)) {
 				q.setCompleted(true);
 				int index = this.questions.indexOf(q);
@@ -110,6 +116,58 @@ public class MainModel {
 				break;
 			}
 		}
+	}
+
+	@Override
+	public MainModel fromJSONFile() {
+		JSONParser parser = new JSONParser();
+		try (Reader reader = new FileReader(STATE_FILENAME)) {
+			JSONObject obj = (JSONObject) parser.parse(reader);
+			return this.fromJSONString(obj.toJSONString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	@Override
+	public void toJSONFile() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public MainModel fromJSONString(String xs) {
+			try {
+				JSONParser parser = new JSONParser();
+				JSONObject obj = (JSONObject) parser.parse(xs);
+				Object precast = obj.get("categories");
+				//////////asdfasdfasd
+				System.out.println(obj.get("categories"));
+				return null;
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		return null;
+	}
+
+	@Override
+	public String toJSONString() {
+		JSONObject obj = new JSONObject();
+		
+		//filter for unique categories
+		ArrayList<String> unique = new ArrayList<String>();
+		this.getQuestions().forEach(tuple -> {
+			if(!unique.contains(tuple.getCategory())) {
+				unique.add(tuple.getCategory());
+			}
+		});
+
+		obj.put("categories", JSONValue.toJSONString(unique));
+		return obj.toJSONString();
 	}
 
 }
