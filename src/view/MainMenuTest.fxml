@@ -13,7 +13,68 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="900.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ThingController">
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #daffe3;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="QUINZICAL" textAlignment="CENTER" textFill="#004a43">
+               <font>
+                  <Font size="72.0" />
+               </font>
+            </Label>
+            <Separator prefHeight="20.0" prefWidth="200.0" />
+            <Button fx:id="buttonPlay" mnemonicParsing="false" onMouseClicked="#onClickButtonPlay" prefWidth="300.0" style="-fx-background-color: #00b9a8;" text="PLAY" textFill="#f2fff3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </Button>
+            <Button layoutX="563.0" layoutY="345.0" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="START OVER" textFill="#f2fff3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </Button>
+            <Button layoutX="563.0" layoutY="312.0" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="TRAINING" textFill="#f2fff3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </Button>
+            <Button layoutX="563.0" layoutY="279.0" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="LEADERBOARD" textFill="#f2fff3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </Button>
+            <Button layoutX="460.0" layoutY="363.0" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </Button>
+            <Button layoutX="563.0" layoutY="246.0" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="RESET" textFill="#f2fff3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+   </center>
+>>>>>>> 34455d258c86796c99df394d386ef390f53d7bc2
    <top>
       <HBox prefHeight="80.0" prefWidth="1200.0" style="-fx-background-color: #00b9a8;" BorderPane.alignment="CENTER">
          <children>
