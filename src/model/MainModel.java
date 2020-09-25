@@ -160,11 +160,11 @@ public class MainModel implements JSONString<MainModel>, JSONFile<MainModel> {
 		
 		//filter for unique categories
 		ArrayList<String> unique = new ArrayList<String>();
-		this.getQuestions().forEach(tuple -> {
-			if(!unique.contains(tuple.getCategory())) {
-				unique.add(tuple.getCategory());
-			}
-		});
+//		this.getQuestions().forEach(tuple -> {
+//			if(!unique.contains(tuple.getCategory())) {
+//				unique.add(tuple.getCategory());
+//			}
+//		});
 
 		obj.put("categories", JSONValue.toJSONString(unique));
 		return obj.toJSONString();
