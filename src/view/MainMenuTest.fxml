@@ -159,7 +159,7 @@
                   </Label>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="PLAY" textFill="#f2fff3">
+                        <Button fx:id="buttonPlay" mnemonicParsing="false" onAction="#onClickButtonPlay" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="PLAY" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
