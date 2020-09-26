@@ -160,7 +160,7 @@
                            <children>
                               <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <TextField fx:id="textFieldName" onKeyTyped="#onInputTextFieldName" prefHeight="65.0" prefWidth="731.0">
+                                    <TextField fx:id="textFieldName" onKeyPressed="#onInputTextFieldName" prefHeight="65.0" prefWidth="731.0">
                                        <font>
                                           <Font size="22.0" />
                                        </font>

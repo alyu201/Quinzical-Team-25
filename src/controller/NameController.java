@@ -1,10 +1,13 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import model.MainModel;
 import utilities.SceneManager;
 
@@ -59,9 +62,10 @@ public class NameController {
 	}
 
 	@FXML
-	private void onInputTextFieldName(Event e) {
+	private void onInputTextFieldName(KeyEvent ke) {
 		this.model.setName(this.textFieldName.getText());
+		if(ke.getCode().equals(KeyCode.ENTER)) {
+			this.onClickButtonContinue(ke);
+		}
 	}
-
-
 }

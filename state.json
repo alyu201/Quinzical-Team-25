@@ -1,1 +1,44 @@
-{"settings":{"volume":64,"voiceType":"english","speed":53},"leaderboard":[{"score":100,"name":"Andreas"}],"questions":[{"correctlyAnswered":false,"question":"This is the capital of New Zealand","completed":false,"category":"Places","worth":500}],"name":"asdfsadfas","categories":["Places"],"winnings":1000}
+{
+  "categories": [
+    "Places",
+    "Symbols",
+    "Geography",
+    "History",
+    "Famous People",
+    "NZ Life",
+    "Flora",
+    "Fauna",
+    "Oddities"
+  ],
+  "questions": [
+    {
+      "category": "Places",
+      "question": "This is the capital of New Zealand",
+      "worth": 500,
+      "answer": "Wellington",
+      "completed": 0,
+      "completedCorrectly": 0
+    },
+    {
+      "category": "Things",
+      "question": "This is the capital of New Zealand",
+      "worth": 500,
+      "answer": "Wellington",
+      "completed": 0,
+      "completedCorrectly": 0
+    }
+  ],
+  "name": "Andreas",
+  "winnings": 1000,
+  "loaderboard": [
+    {
+      "name": "Andreas",
+      "score": 100
+    }
+  ],
+  "settings": {
+    "volume": 50,
+    "voiceType": "english",
+    "speed": 50
+  }
+}

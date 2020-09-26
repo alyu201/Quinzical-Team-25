@@ -54,7 +54,7 @@ public class MainMenuController {
 
 	@FXML
 	private void onClickButtonTraining(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/PlayView.fxml"), e);
+		SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
 	}
 
 	@FXML
