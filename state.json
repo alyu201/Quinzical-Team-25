@@ -1,6 +1,8 @@
 {
   "categories": ["Places","Symbols","Geography","History","Famous People","NZ Life","Flora","Fauna","Oddities"],
-  "questions": [{"category": "Places", "question": "This is the capital of New Zealand", "worth": 500, "answer": "Wellington", "completed": 0, "completedCorrectly": 0}],
+  "questions": [{"category": "Places", "question": "This is the capital of New Zealand", "worth": 500, "answer": "Wellington", "completed": 0, "correctlyAnswered": 0}],
   "name": "Andreas",
-  "winnings": 1000
+  "winnings": 1000,
+  "leaderboard": [{"name": "Andreas", "score": 100 }],
+  "settings": {"volume": 50, "voiceType": "english", "speed": 50 }
 }

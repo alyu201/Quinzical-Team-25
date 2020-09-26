@@ -231,8 +231,11 @@ public class MainModel {
 	}
 
 	public void toJSONFile() {
-
-
+		try (FileWriter file = new FileWriter(STATE_FILENAME)) {
+			file.write(this.toJSONString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static MainModel fromJSONFile() {

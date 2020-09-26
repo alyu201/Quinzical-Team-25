@@ -29,7 +29,7 @@ public class MainMenuController {
 	private Button buttonQuit;
 
 	public void initialize() {
-		model = model.getMainModel();
+		this.model = model.getMainModel();
 	}
 
 	@FXML

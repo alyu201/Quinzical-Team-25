@@ -49,7 +49,7 @@ public class SettingsController {
 
 	@FXML
 	private void onClickButtonBack(Event e) {
-		model.getSettings().toJSONFile();
+		model.toJSONFile();
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 
