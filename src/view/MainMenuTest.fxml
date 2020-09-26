@@ -50,7 +50,7 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label text="username" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label onMouseClicked="#onClickLabelName" text="username" textAlignment="CENTER" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Label>

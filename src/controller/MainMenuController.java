@@ -3,6 +3,7 @@ package controller;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.MainModel;
 import utilities.SceneManager;
@@ -28,14 +29,27 @@ public class MainMenuController {
 	@FXML
 	private Button buttonQuit;
 
+	@FXML
+	private Label labelName;
+
+	@FXML
+	private Label labelWinnings;
+
 	public void initialize() {
 		this.model = model.getMainModel();
-		System.out.println(this.model.toJSONString());
+		this.labelName.setText(this.model.getName());
+		this.labelWinnings.setText("$" + this.model.getWinnings());
+
 	}
 
 	@FXML
 	private void onClickButtonPlay(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/PlayView.fxml"), e);
+		// name is empty and needs to be set
+		if(this.model.getName().equals("")) {
+			SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
+		} else {
+			SceneManager.changeScene(getClass().getResource("/view/PlayView.fxml"), e);
+		}
 	}
 
 	@FXML
@@ -65,6 +79,11 @@ public class MainMenuController {
 		Stage stage = (Stage) buttonQuit.getScene().getWindow();
 		stage.close();
 		System.exit(0);
+	}
+
+	@FXML
+	private void onClickLabelName(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
 }
