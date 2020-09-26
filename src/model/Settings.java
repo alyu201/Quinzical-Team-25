@@ -9,20 +9,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class Settings implements JSONString<Settings>, JSONFile{
+public class Settings {
 	public static String SETTINGS_FILENAME = "./settings.json";
 	private String voiceType;
 	private int speed;
 	private int volume;
 
-	private Settings(String voiceType, int speed, int volume) {
+	public Settings(String voiceType, int speed, int volume) {
 		this.voiceType = voiceType;
 		this.speed = speed;
 		this.volume = volume;
-	}
-
-	public Settings() {
-		this.fromJSONFile();
 	}
 
 	public String getVoiceType() {
@@ -49,7 +45,6 @@ public class Settings implements JSONString<Settings>, JSONFile{
 		this.volume = volume;
 	}
 
-	@Override
 	public Settings fromJSONString(String xs) {
 			try {
 				JSONParser parser = new JSONParser();
@@ -65,8 +60,6 @@ public class Settings implements JSONString<Settings>, JSONFile{
 			return null;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
 	public String toJSONString() {
 		JSONObject obj = new JSONObject();
 		obj.put("voiceType", this.getVoiceType());
@@ -75,7 +68,6 @@ public class Settings implements JSONString<Settings>, JSONFile{
 		return obj.toJSONString();
 	}
 
-	@Override
 	public Settings fromJSONFile() {
 		JSONParser parser = new JSONParser();
 		try (Reader reader = new FileReader(SETTINGS_FILENAME)) {
@@ -90,7 +82,6 @@ public class Settings implements JSONString<Settings>, JSONFile{
 		return null;
 	}
 
-	@Override
 	public void toJSONFile() {
 		try (FileWriter file = new FileWriter(SETTINGS_FILENAME)) {
 			file.write(this.toJSONString());

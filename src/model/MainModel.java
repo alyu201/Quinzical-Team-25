@@ -22,7 +22,7 @@ import org.json.simple.parser.ParseException;
  * contains the state of all jeopardy tuples, currently selected question and
  * the games current winnings.
  */
-public class MainModel implements JSONString<MainModel>, JSONFile<MainModel> {
+public class MainModel {
 
 	private static final String STATE_FILENAME = "state.json";
 
@@ -31,31 +31,35 @@ public class MainModel implements JSONString<MainModel>, JSONFile<MainModel> {
 	private Leaderboard leaderboard;
 	private QuinzicalTuple currentQuestion;
 	private Settings settings;
+	private String name;
 	private int winnings;
 
-	MainModel() {
-		this.fromJSONFile();
-	}
-
-	private MainModel(ArrayList<QuinzicalTuple> questions, Leaderboard leaderboard, QuinzicalTuple currentQuestion,
-			Settings settings, int winnings) {
+	public MainModel(ArrayList<QuinzicalTuple> questions, Leaderboard leaderboard, QuinzicalTuple currentQuestion,
+			Settings settings, String name, int winnings) {
 		super();
-		this.mainModel = this;
 		this.questions = questions;
 		this.leaderboard = leaderboard;
 		this.currentQuestion = currentQuestion;
 		this.settings = settings;
+		this.name = name;
 		this.winnings = winnings;
 	}
 
-	// Singleton
 	public static MainModel getMainModel() {
 		if (mainModel == null) {
-			mainModel = new MainModel();
+			mainModel = fromJSONFile();
 			return mainModel;
 		} else {
 			return mainModel;
 		}
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Settings getSettings() {
@@ -118,12 +122,124 @@ public class MainModel implements JSONString<MainModel>, JSONFile<MainModel> {
 		}
 	}
 
-	@Override
-	public MainModel fromJSONFile() {
+	@SuppressWarnings("unchecked")
+	public String toJSONString() {
+		JSONObject obj = new JSONObject();
+
+		// categories
+		ArrayList<String> unique = new ArrayList<String>();
+		this.getQuestions().forEach(tuple -> {
+			if (!unique.contains(tuple.getCategory())) {
+				unique.add(tuple.getCategory());
+			}
+		});
+		JSONArray categories = new JSONArray();
+		unique.forEach(x -> {
+			categories.add(x);
+		});
+
+		obj.put("categories", categories);
+
+		// questions
+		JSONArray questions = new JSONArray();
+		this.getQuestions().forEach(tuple -> {
+			JSONObject question = new JSONObject();
+			question.put("category", tuple.getCategory());
+			question.put("question", tuple.getQuestion());
+			question.put("worth", tuple.getWorth());
+			question.put("completed", tuple.getCompleted());
+			question.put("correctlyAnswered", tuple.getCorrectlyAnswered());
+
+			questions.add(question);
+
+		});
+		obj.put("questions", questions);
+
+		// leaderboard
+		JSONArray leaderboard = new JSONArray();
+		this.getLeaderboard().getMap().forEach((key, value) -> {
+			JSONObject map = new JSONObject();
+			map.put("name", key);
+			map.put("score", value);
+			leaderboard.add(map);
+		});
+		obj.put("leaderboard", leaderboard);
+
+		// settings
+		JSONObject settings = new JSONObject();
+		settings.put("volume", this.getSettings().getVolume());
+		settings.put("voiceType", this.getSettings().getVoiceType());
+		settings.put("speed", this.getSettings().getSpeed());
+
+		obj.put("settings", settings);
+
+		// name
+		obj.put("name", this.getName());
+
+		// winnings
+		obj.put("winnings", this.getWinnings());
+
+		return obj.toJSONString();
+	}
+
+	public static MainModel fromJSONString(String xs) {
+			try {
+				JSONParser parser = new JSONParser();
+				JSONObject obj = (JSONObject) parser.parse(xs);
+				// questions
+				JSONArray JSONquestions = (JSONArray) obj.get("questions");
+				ArrayList<QuinzicalTuple> questions = new ArrayList<QuinzicalTuple>();
+				JSONquestions.forEach(question -> {
+					questions.add(new QuinzicalTuple(
+						(String)((JSONObject) question).get("category"),
+						(String)((JSONObject) question).get("question"),
+						((Long)((JSONObject) question).get("worth")).intValue(),
+						(String)((JSONObject) question).get("answer"),
+						(Long)((JSONObject) question).get("completed") != 0,
+						(Long)((JSONObject) question).get("correctlyAnswered") != 0));
+				});
+				
+				// name
+				String name = (String) obj.get("name");
+				
+				// winnings
+				int winnings = ((Long) obj.get("winnings")).intValue();
+				
+				// leaderboard
+				JSONArray JSONleaderboard = (JSONArray) obj.get("leaderboard");
+				HashMap<String, Integer> map = new HashMap<String, Integer>();
+				JSONleaderboard.forEach(store -> {
+					map.put(
+							(String)((JSONObject) store).get("name"), 
+							((Long)((JSONObject) store).get("score")).intValue());
+				});
+				Leaderboard leaderboard = new Leaderboard(map);
+				
+				// settings
+				JSONObject JSONsettings = (JSONObject)obj.get("settings");
+				Settings settings = new Settings(
+						(String)JSONsettings.get("voiceType"),
+						((Long)JSONsettings.get("speed")).intValue(),
+						((Long)JSONsettings.get("volume")).intValue());
+
+				return new MainModel(questions, leaderboard, null, settings, name, winnings);
+
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		return null;
+	}
+
+	public void toJSONFile() {
+
+
+	}
+
+	public static MainModel fromJSONFile() {
 		JSONParser parser = new JSONParser();
 		try (Reader reader = new FileReader(STATE_FILENAME)) {
 			JSONObject obj = (JSONObject) parser.parse(reader);
-			return this.fromJSONString(obj.toJSONString());
+			return fromJSONString(obj.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
@@ -131,43 +247,6 @@ public class MainModel implements JSONString<MainModel>, JSONFile<MainModel> {
 		}
 
 		return null;
-	}
-
-	@Override
-	public void toJSONFile() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public MainModel fromJSONString(String xs) {
-			try {
-				JSONParser parser = new JSONParser();
-				JSONObject obj = (JSONObject) parser.parse(xs);
-				Object precast = obj.get("categories");
-				//////////asdfasdfasd
-				System.out.println(obj.get("categories"));
-				return null;
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-		return null;
-	}
-
-	@Override
-	public String toJSONString() {
-		JSONObject obj = new JSONObject();
-		
-		//filter for unique categories
-		ArrayList<String> unique = new ArrayList<String>();
-//		this.getQuestions().forEach(tuple -> {
-//			if(!unique.contains(tuple.getCategory())) {
-//				unique.add(tuple.getCategory());
-//			}
-//		});
-
-		obj.put("categories", JSONValue.toJSONString(unique));
-		return obj.toJSONString();
 	}
 
 }

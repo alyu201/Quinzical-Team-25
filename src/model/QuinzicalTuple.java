@@ -12,39 +12,22 @@ import org.json.simple.parser.ParseException;
  * question, question worth, question answer, completion status and correctly
  * answered status
  */
-public class QuinzicalTuple implements JSONString<QuinzicalTuple> {
+public class QuinzicalTuple {
 	
 	private final String category;
 	private final String question;
-	private final String worth;
+	private final int worth;
 	private final String answer;
 	private Boolean completed;
 	private Boolean correctlyAnswered;
 
-	public QuinzicalTuple(String category, String question, String worth, String answer, Boolean completed, Boolean correctlyAnswered) {
+	public QuinzicalTuple(String category, String question, int worth, String answer, Boolean completed, Boolean correctlyAnswered) {
 		this.category = category;
 		this.worth = worth;
 		this.question = question;
 		this.answer = answer;
 		this.completed = completed;
 		this.correctlyAnswered = correctlyAnswered;
-	}
-	public QuinzicalTuple(String name, String[] xs, Boolean fifth, Boolean sixth) {
-		this.category = name;
-		this.worth = xs[0];
-		this.question = xs[1];
-		this.answer = xs[2];
-		this.completed = fifth;
-		this.correctlyAnswered = sixth;
-	}
-
-	public QuinzicalTuple(String[] xs) {
-		this.category = xs[0];
-		this.worth = xs[1];
-		this.question = xs[2];
-		this.answer = xs[3];
-		this.completed = Boolean.parseBoolean(xs[4]);
-		this.correctlyAnswered = Boolean.parseBoolean(xs[5]);
 	}
 
 	public Boolean getCompleted() {
@@ -71,7 +54,7 @@ public class QuinzicalTuple implements JSONString<QuinzicalTuple> {
 		return question;
 	}
 
-	public String getWorth() {
+	public int getWorth() {
 		return worth;
 	}
 
@@ -91,7 +74,7 @@ public class QuinzicalTuple implements JSONString<QuinzicalTuple> {
 
 		QuinzicalTuple tuple = (QuinzicalTuple) obj;
 
-		if (!category.equals(tuple.category) || !worth.equals(tuple.worth) || !question.equals(tuple.question)
+		if (!category.equals(tuple.category) || !question.equals(tuple.question)
 				|| !answer.equals(tuple.answer) || !completed.equals(tuple.completed)
 				|| !correctlyAnswered.equals(tuple.correctlyAnswered)) {
 			return false;
@@ -103,7 +86,6 @@ public class QuinzicalTuple implements JSONString<QuinzicalTuple> {
 	@Override
 	public int hashCode() {
 		int result = category.hashCode();
-		result = 31 * result + this.worth.hashCode();
 		result = 31 * result + this.question.hashCode();
 		result = 31 * result + this.answer.hashCode();
 		result = 31 * result + this.completed.hashCode();
@@ -117,7 +99,6 @@ public class QuinzicalTuple implements JSONString<QuinzicalTuple> {
 				+ this.correctlyAnswered;
 	}
 
-	@Override
 	public QuinzicalTuple fromJSONString(String xs) {
 			try {
 				JSONParser parser = new JSONParser();
@@ -125,7 +106,7 @@ public class QuinzicalTuple implements JSONString<QuinzicalTuple> {
 				return new QuinzicalTuple(
 					(String) obj.get("category"),
 					(String) obj.get("question"),
-					(String) obj.get("worth"),
+					((Long) obj.get("worth")).intValue(),
 					(String) obj.get("answer"),
 					(Boolean) obj.get("completed"),
 					(Boolean) obj.get("correctlyAnswered")
@@ -136,8 +117,6 @@ public class QuinzicalTuple implements JSONString<QuinzicalTuple> {
 			return null;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
 	public String toJSONString() {
 		JSONObject obj = new JSONObject();
 		obj.put("category", this.getCategory());

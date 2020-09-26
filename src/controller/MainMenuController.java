@@ -30,7 +30,6 @@ public class MainMenuController {
 
 	public void initialize() {
 		model = model.getMainModel();
-		System.out.println(model.toJSONString());
 	}
 
 	@FXML
@@ -60,6 +59,8 @@ public class MainMenuController {
 
 	@FXML
 	private void onClickButtonQuit(Event e) {
+		// save and quit
+		this.model.toJSONFile();
 		Stage stage = (Stage) buttonQuit.getScene().getWindow();
 		stage.close();
 		System.exit(0);

@@ -14,27 +14,26 @@ import org.json.simple.parser.ParseException;
 /**
  * Wrapper type
  */
-public class Leaderboard implements JSONString<Leaderboard>, JSONFile<Leaderboard> {
+public class Leaderboard {
 	private static final File LEADERBOARD_FILE = new File("./leaderboard.json");
-	private HashMap<String, Integer> leaderboard;
+	private HashMap<String, Integer> map;
 
 	public Leaderboard() {
 		this.fromJSONFile();
 	}
 
 	public Leaderboard(HashMap<String, Integer> map) {
-		leaderboard = map;
+		this.map = map;
 	}
 
-	public HashMap<String, Integer> getLeaderboard() {
-		return leaderboard;
+	public HashMap<String, Integer> getMap() {
+		return map;
 	}
 
 	public void setLeaderboard(HashMap<String, Integer> leaderboard) {
-		this.leaderboard = leaderboard;
+		this.map= leaderboard;
 	}
 
-	@Override
 	public Leaderboard fromJSONFile() {
 		JSONParser parser = new JSONParser();
 
@@ -50,7 +49,6 @@ public class Leaderboard implements JSONString<Leaderboard>, JSONFile<Leaderboar
 		return null;
 	}
 
-	@Override
 	public void toJSONFile() {
 		try (FileWriter file = new FileWriter(LEADERBOARD_FILE)) {
 			file.write(this.toJSONString());
@@ -60,7 +58,6 @@ public class Leaderboard implements JSONString<Leaderboard>, JSONFile<Leaderboar
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public Leaderboard fromJSONString(String xs) {
 		try {
 			JSONParser parser = new JSONParser();
@@ -78,11 +75,10 @@ public class Leaderboard implements JSONString<Leaderboard>, JSONFile<Leaderboar
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public String toJSONString() {
 		// TODO Auto-generated method stub
 		JSONObject obj = new JSONObject();
-		leaderboard.forEach((key, value) -> {
+		map.forEach((key, value) -> {
 			obj.put(key, value);
 		});
 		return obj.toJSONString();

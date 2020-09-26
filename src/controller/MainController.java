@@ -86,7 +86,7 @@ public class MainController {
 			}
 			for (QuinzicalTuple question : filteredQuestions) {
 				// Add question button to grid
-				Button buttonQuestion = new Button(question.getWorth());
+				Button buttonQuestion = new Button("0");
 				buttonQuestion.setPrefSize(300, 50);
 				buttonQuestion.setStyle("-fx-font-size:20");
 				buttonQuestion.setAlignment(Pos.CENTER);
