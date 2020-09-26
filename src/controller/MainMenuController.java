@@ -30,6 +30,7 @@ public class MainMenuController {
 
 	public void initialize() {
 		this.model = model.getMainModel();
+		System.out.println(this.model.toJSONString());
 	}
 
 	@FXML
