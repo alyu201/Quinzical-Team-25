@@ -213,7 +213,7 @@ public class MainModel {
 						((Long)((JSONObject) question).get("worth")).intValue(),
 						(String)((JSONObject) question).get("answer"),
 						(Boolean)((JSONObject) question).get("completed"),
-						(Boolean)((JSONObject) question).get("correctlyAnswered")));
+						(Boolean)((JSONObject) question).get("completedCorrectly")));
 				});
 				
 				// name
