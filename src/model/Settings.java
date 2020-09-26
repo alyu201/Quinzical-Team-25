@@ -88,7 +88,6 @@ public class Settings implements JSONString<Settings>, JSONFile{
 		}
 
 		return null;
-
 	}
 
 	@Override

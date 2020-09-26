@@ -207,6 +207,22 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </Button>
+                        <Button fx:id="buttonSettings" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="SETTINGS" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </Button>
+                        <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="QUIT" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </Button>
                      </children>
                   </VBox>
                </children>
