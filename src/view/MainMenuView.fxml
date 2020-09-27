@@ -10,11 +10,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
    <top>
-      <HBox prefHeight="80.0" prefWidth="1200.0" style="-fx-background-color: #00b9a8;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="80.0" prefWidth="1200.0" style="-fx-background-color: #00c3b1;" BorderPane.alignment="CENTER">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
@@ -27,7 +28,7 @@
                         </Button>
                         <StackPane prefHeight="0.0" prefWidth="0.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 100;" textFill="#004a43">
+                              <Button fx:id="buttonSettings" mnemonicParsing="false" onMouseClicked="#onClickButtonSettings" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 100;" textFill="#004a43">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -45,11 +46,62 @@
                   </HBox>
                </children>
             </StackPane>
+            <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="labelName" onMouseClicked="#onClickLabelName" text="name" textAlignment="CENTER" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></Label>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#f2fff3" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0" />
+                              <Label fx:id="labelWinnings" text="\$0" textAlignment="CENTER" textFill="#0b2247">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
+                           </children>
+                        </StackPane>
+                     </children>
+                     <padding>
+                        <Insets right="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </StackPane>
          </children>
       </HBox>
    </top>
    <bottom>
-      <HBox prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #00B9a8;" BorderPane.alignment="CENTER" />
+      <HBox prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #00c3b1;" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <padding>
+                        <Insets left="30.0" right="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </StackPane>
+            <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <padding>
+                        <Insets left="30.0" right="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </StackPane>
+         </children>
+      </HBox>
    </bottom>
    <center>
       <StackPane prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: #daffe3;" BorderPane.alignment="CENTER">
@@ -76,16 +128,16 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" StackPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" StackPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="QUINZICAL" textAlignment="CENTER" textFill="#004a43">
+                  <Label fx:id="labelQuinzicalTitle" alignment="CENTER" contentDisplay="CENTER" text="QUINZICAL" textAlignment="CENTER" textFill="#0b2247">
                      <font>
                         <Font size="72.0" />
                      </font>
                   </Label>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                      <children>
-                        <Button fx:id="buttonPlay" mnemonicParsing="false" onAction="#onClickButtonPlay" onMouseClicked="#onClickButtonPlay" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="PLAY" textFill="#f2fff3">
+                        <Button fx:id="buttonPlay" mnemonicParsing="false" onAction="#onClickButtonPlay" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="PLAY" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -93,7 +145,7 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="buttonStartOver" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="START OVER" textFill="#f2fff3">
+                        <Button fx:id="butonStartOver" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="START OVER" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold Italic" size="14.0" />
                            </font>
@@ -101,7 +153,7 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="buttonTraining" mnemonicParsing="false" onMouseClicked="#onClickButtonTraining" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="TRAINING" textFill="#f2fff3">
+                        <Button fx:id="buttonTraining" mnemonicParsing="false" onMouseClicked="#onClickButtonTraining" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="TRAINING" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -109,7 +161,7 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="butotnLeaderboard" mnemonicParsing="false" onMouseClicked="#onClickButtonLeaderboard" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="LEADERBOARD" textFill="#f2fff3">
+                        <Button fx:id="buttonLeaderboard" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="LEADERBOARD" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -117,7 +169,7 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="buttonCreateQuestions" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
+                        <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -125,7 +177,7 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="buttonReset" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="RESET" textFill="#f2fff3">
+                        <Button fx:id="buttonReset" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="RESET" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>

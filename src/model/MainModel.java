@@ -28,16 +28,18 @@ public class MainModel {
 
 	private static MainModel mainModel;
 	private ArrayList<QuinzicalTuple> questions;
+	private ArrayList<String> categories;
 	private Leaderboard leaderboard;
 	private QuinzicalTuple currentQuestion;
 	private Settings settings;
 	private String name;
 	private int winnings;
 
-	public MainModel(ArrayList<QuinzicalTuple> questions, Leaderboard leaderboard, QuinzicalTuple currentQuestion,
-			Settings settings, String name, int winnings) {
+	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<String> categories, Leaderboard leaderboard,
+			QuinzicalTuple currentQuestion, Settings settings, String name, int winnings) {
 		super();
 		this.questions = questions;
+		this.categories = categories;
 		this.leaderboard = leaderboard;
 		this.currentQuestion = currentQuestion;
 		this.settings = settings;
@@ -104,6 +106,14 @@ public class MainModel {
 
 	public QuinzicalTuple getCurrentQuestion() {
 		return this.currentQuestion;
+	}
+
+	public ArrayList<String> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(ArrayList<String> categories) {
+		this.categories = categories;
 	}
 
 	/**
@@ -186,6 +196,13 @@ public class MainModel {
 			try {
 				JSONParser parser = new JSONParser();
 				JSONObject obj = (JSONObject) parser.parse(xs);
+				// categories
+				JSONArray JSONcategories = (JSONArray) obj.get("categories");
+				ArrayList<String> categories = new ArrayList<String>();
+				JSONcategories.forEach(question -> {
+					categories.add((String)question);
+				});
+
 				// questions
 				JSONArray JSONquestions = (JSONArray) obj.get("questions");
 				ArrayList<QuinzicalTuple> questions = new ArrayList<QuinzicalTuple>();
@@ -195,8 +212,8 @@ public class MainModel {
 						(String)((JSONObject) question).get("question"),
 						((Long)((JSONObject) question).get("worth")).intValue(),
 						(String)((JSONObject) question).get("answer"),
-						(Long)((JSONObject) question).get("completed") != 0,
-						(Long)((JSONObject) question).get("correctlyAnswered") != 0));
+						(Boolean)((JSONObject) question).get("completed"),
+						(Boolean)((JSONObject) question).get("completedCorrectly")));
 				});
 				
 				// name
@@ -222,7 +239,7 @@ public class MainModel {
 						((Long)JSONsettings.get("speed")).intValue(),
 						((Long)JSONsettings.get("volume")).intValue());
 
-				return new MainModel(questions, leaderboard, null, settings, name, winnings);
+				return new MainModel(questions, categories, leaderboard, null, settings, name, winnings);
 
 			} catch (ParseException e) {
 				e.printStackTrace();

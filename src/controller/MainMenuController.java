@@ -10,10 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+<<<<<<< HEAD
 import javafx.scene.control.Dialog;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.paint.Color;
+=======
+import javafx.scene.control.Label;
+>>>>>>> origin/master
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.MainModel;
@@ -43,8 +47,17 @@ public class MainMenuController {
 	@FXML
 	private Button buttonQuit;
 
+	@FXML
+	private Label labelName;
+
+	@FXML
+	private Label labelWinnings;
+
 	public void initialize() {
 		this.model = model.getMainModel();
+		this.labelName.setText(this.model.getName());
+		this.labelWinnings.setText("$" + this.model.getWinnings());
+
 	}
 
 	@FXML
@@ -69,7 +82,12 @@ public class MainMenuController {
 	
 	@FXML
 	private void onClickButtonPlay(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/PlayView.fxml"), e);
+		// name is empty and needs to be set
+		if(this.model.getName().equals("")) {
+			SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
+		} else {
+			SceneManager.changeScene(getClass().getResource("/view/PlayView.fxml"), e);
+		}
 	}
 	
 	/*@FXML
@@ -81,7 +99,7 @@ public class MainMenuController {
 
 	@FXML
 	private void onClickButtonTraining(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/PlayView.fxml"), e);
+		SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
 	}
 
 	@FXML
@@ -106,6 +124,11 @@ public class MainMenuController {
 		Stage stage = (Stage) buttonQuit.getScene().getWindow();
 		stage.close();
 		System.exit(0);
+	}
+
+	@FXML
+	private void onClickLabelName(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
 }
