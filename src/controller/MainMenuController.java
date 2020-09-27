@@ -10,14 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-<<<<<<< HEAD
-import javafx.scene.control.Dialog;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.paint.Color;
-=======
 import javafx.scene.control.Label;
->>>>>>> origin/master
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.MainModel;
