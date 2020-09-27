@@ -193,57 +193,53 @@ public class MainModel {
 	}
 
 	public static MainModel fromJSONString(String xs) {
-			try {
-				JSONParser parser = new JSONParser();
-				JSONObject obj = (JSONObject) parser.parse(xs);
-				// categories
-				JSONArray JSONcategories = (JSONArray) obj.get("categories");
-				ArrayList<String> categories = new ArrayList<String>();
-				JSONcategories.forEach(question -> {
-					categories.add((String)question);
-				});
+		try {
+			JSONParser parser = new JSONParser();
+			JSONObject obj = (JSONObject) parser.parse(xs);
+			// categories
+			JSONArray JSONcategories = (JSONArray) obj.get("categories");
+			ArrayList<String> categories = new ArrayList<String>();
+			JSONcategories.forEach(category -> {
+				categories.add((String) category);
+			});
 
-				// questions
-				JSONArray JSONquestions = (JSONArray) obj.get("questions");
-				ArrayList<QuinzicalTuple> questions = new ArrayList<QuinzicalTuple>();
-				JSONquestions.forEach(question -> {
-					questions.add(new QuinzicalTuple(
-						(String)((JSONObject) question).get("category"),
-						(String)((JSONObject) question).get("question"),
-						((Long)((JSONObject) question).get("worth")).intValue(),
-						(String)((JSONObject) question).get("answer"),
-						(Boolean)((JSONObject) question).get("completed"),
-						(Boolean)((JSONObject) question).get("completedCorrectly")));
-				});
-				
-				// name
-				String name = (String) obj.get("name");
-				
-				// winnings
-				int winnings = ((Long) obj.get("winnings")).intValue();
-				
-				// leaderboard
-				JSONArray JSONleaderboard = (JSONArray) obj.get("leaderboard");
-				HashMap<String, Integer> map = new HashMap<String, Integer>();
-				JSONleaderboard.forEach(store -> {
-					map.put(
-							(String)((JSONObject) store).get("name"), 
-							((Long)((JSONObject) store).get("score")).intValue());
-				});
-				Leaderboard leaderboard = new Leaderboard(map);
-				
-				// settings
-				JSONObject JSONsettings = (JSONObject)obj.get("settings");
-				Settings settings = new Settings(
-						(String)JSONsettings.get("voiceType"),
-						((Long)JSONsettings.get("speed")).intValue(),
-						((Long)JSONsettings.get("volume")).intValue());
+			// questions
+			JSONArray JSONquestions = (JSONArray) obj.get("questions");
+			ArrayList<QuinzicalTuple> questions = new ArrayList<QuinzicalTuple>();
+			JSONquestions.forEach(question -> {
+				questions.add(new QuinzicalTuple((String) ((JSONObject) question).get("category"),
+						(String) ((JSONObject) question).get("question"),
+						((Long) ((JSONObject) question).get("worth")).intValue(),
+						(String) ((JSONObject) question).get("answer"),
+						(Boolean) ((JSONObject) question).get("completed"),
+						(Boolean) ((JSONObject) question).get("correctlyAnswered")));
+			});
 
-				return new MainModel(questions, categories, leaderboard, null, settings, name, winnings);
+			// name
+			String name = (String) obj.get("name");
 
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			// winnings
+			int winnings = ((Long) obj.get("winnings")).intValue();
+
+			// leaderboard
+			JSONArray JSONleaderboard = (JSONArray) obj.get("leaderboard");
+			HashMap<String, Integer> map = new HashMap<String, Integer>();
+			JSONleaderboard.forEach(store -> {
+				map.put((String) ((JSONObject) store).get("name"),
+						((Long) ((JSONObject) store).get("score")).intValue());
+			});
+			Leaderboard leaderboard = new Leaderboard(map);
+
+			// settings
+			JSONObject JSONsettings = (JSONObject) obj.get("settings");
+			Settings settings = new Settings((String) JSONsettings.get("voiceType"),
+					((Long) JSONsettings.get("speed")).intValue(), ((Long) JSONsettings.get("volume")).intValue());
+
+			return new MainModel(questions, categories, leaderboard, null, settings, name, winnings);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

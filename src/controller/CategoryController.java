@@ -65,8 +65,10 @@ public class CategoryController {
 
 	@FXML
 	private void onClickButtonLeft(Event e) {
-		if(!(this.position < 0)) {
+		if(!(this.position <= 0)) {
 			this.position -= 1;
+		} else {
+			this.position = this.model.getCategories().size()-1;
 		}
 		this.buttonCategory.setText(this.model.getCategories().get(position));
 	}
@@ -75,6 +77,8 @@ public class CategoryController {
 	private void onClickButtonRight(Event e) {
 		if(!(this.position >= this.model.getCategories().size()-1)) {
 			this.position += 1;
+		} else {
+			this.position = 0;
 		}
 		this.buttonCategory.setText(this.model.getCategories().get(position));
 	}
