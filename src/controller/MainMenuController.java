@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.MainModel;
@@ -63,10 +64,7 @@ public class MainMenuController {
 			infoDialog.setScene(new Scene(root));
 			infoDialog.initOwner(stage);
 			infoDialog.initStyle(StageStyle.TRANSPARENT);
-			/*stageRoot.setEffect(new GaussianBlur(5));
-			infoDialog.setOnCloseRequest(event -> {
-				stageRoot.setEffect(null);
-			});*/
+
 			infoDialog.showAndWait();
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -82,13 +80,6 @@ public class MainMenuController {
 			SceneManager.changeScene(getClass().getResource("/view/PlayView.fxml"), e);
 		}
 	}
-	
-	/*@FXML
-	private void onHoverButtonPlay(Event e) {
-		Double newWidth = buttonPlay.getWidth() + 5;
-		Double newHeight = buttonPlay.getHeight() + 2;
-		buttonPlay.setPrefSize(newWidth, newHeight);
-	}*/
 
 	@FXML
 	private void onClickButtonTraining(Event e) {

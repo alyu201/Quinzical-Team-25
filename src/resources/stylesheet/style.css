@@ -1,4 +1,11 @@
-.root {
-	-fx-background-color: #daffe3;
-	-fx-font-family: "Century Gothic";
+.button {
+	-fx-skin: 'resources.skins.QuinzicalButtonSkin';
+}
+
+#buttonSettings {
+	-fx-background-color: #9edbce;
+}
+
+#buttonInfo {
+	-fx-background-color: #9edbce;
 }

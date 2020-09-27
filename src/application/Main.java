@@ -20,7 +20,10 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/MainMenuView.fxml"));
-			primaryStage.setScene(new Scene(root, 1000, 800));
+			Scene scene = new Scene(root, 1000, 800);
+			// load in the css stylesheet for the button highlights for the current scene
+			scene.getStylesheets().add(getClass().getResource("/resources/stylesheet/style.css").toExternalForm());
+			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
