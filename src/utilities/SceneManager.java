@@ -16,7 +16,21 @@ public class SceneManager {
 		try {
 			FXMLLoader loader = new FXMLLoader(resource);
 			Parent parent = loader.load();
-			Scene scene = new Scene(parent, 800, 800);
+			Scene scene = new Scene(parent, 1000, 800);
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			window.setScene(scene);
+			window.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void changeSceneCustomController(URL resource, Object controller, Event event) {
+		try {
+			FXMLLoader loader = new FXMLLoader(resource);
+			loader.setController(controller);
+			Parent parent = loader.load();
+			Scene scene = new Scene(parent, 1000, 800);
 			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			window.setScene(scene);
 			window.show();

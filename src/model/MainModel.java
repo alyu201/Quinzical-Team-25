@@ -31,17 +31,19 @@ public class MainModel {
 	private ArrayList<String> categories;
 	private Leaderboard leaderboard;
 	private QuinzicalTuple currentQuestion;
+	private String currentCategory;
 	private Settings settings;
 	private String name;
 	private int winnings;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<String> categories, Leaderboard leaderboard,
-			QuinzicalTuple currentQuestion, Settings settings, String name, int winnings) {
+			QuinzicalTuple currentQuestion, String currentCategory, Settings settings, String name, int winnings) {
 		super();
 		this.questions = questions;
 		this.categories = categories;
 		this.leaderboard = leaderboard;
 		this.currentQuestion = currentQuestion;
+		this.currentCategory = currentCategory;
 		this.settings = settings;
 		this.name = name;
 		this.winnings = winnings;
@@ -116,6 +118,14 @@ public class MainModel {
 		this.categories = categories;
 	}
 
+	public String getCurrentCategory() {
+		return currentCategory;
+	}
+
+	public void setCurrentCategory(String currentCategory) {
+		this.currentCategory = currentCategory;
+	}
+
 	/**
 	 * Search for a question in the model and mark it completed
 	 * 
@@ -188,6 +198,9 @@ public class MainModel {
 
 		// winnings
 		obj.put("winnings", this.getWinnings());
+		
+		//currentCategory
+		obj.put("currentCategory", this.getCurrentCategory());
 
 		return obj.toJSONString();
 	}
@@ -235,7 +248,10 @@ public class MainModel {
 			Settings settings = new Settings((String) JSONsettings.get("voiceType"),
 					((Long) JSONsettings.get("speed")).intValue(), ((Long) JSONsettings.get("volume")).intValue());
 
-			return new MainModel(questions, categories, leaderboard, null, settings, name, winnings);
+			// currentCategory
+			String currentCategory = (String) obj.get("name");
+
+			return new MainModel(questions, categories, leaderboard, null, currentCategory, settings, name, winnings);
 
 		} catch (ParseException e) {
 			e.printStackTrace();

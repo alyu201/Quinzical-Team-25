@@ -44,13 +44,19 @@ public class CategoryController {
 
 	@FXML
 	private void onClickButtonContinue(Event e) {
-		System.out.println("continue");
-		//SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+		this.model.setCurrentCategory(this.buttonCategory.getText());
+		SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);
 	}
 
 	@FXML
 	private void onClickButtonReturn(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+	}
+
+	@FXML
+	private void onClickButtonCategory(Event e) {
+		this.model.setCurrentCategory(this.buttonCategory.getText());
+		SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);
 	}
 
 	@FXML
@@ -65,26 +71,22 @@ public class CategoryController {
 
 	@FXML
 	private void onClickButtonLeft(Event e) {
-		if(!(this.position <= 0)) {
+		if (!(this.position <= 0)) {
 			this.position -= 1;
 		} else {
-			this.position = this.model.getCategories().size()-1;
+			this.position = this.model.getCategories().size() - 1;
 		}
 		this.buttonCategory.setText(this.model.getCategories().get(position));
 	}
 
 	@FXML
 	private void onClickButtonRight(Event e) {
-		if(!(this.position >= this.model.getCategories().size()-1)) {
+		if (!(this.position >= this.model.getCategories().size() - 1)) {
 			this.position += 1;
 		} else {
 			this.position = 0;
 		}
 		this.buttonCategory.setText(this.model.getCategories().get(position));
 	}
-	
-	@FXML
-	private void onClickButtonCategory(Event e) {
-	}
-	
+
 }
