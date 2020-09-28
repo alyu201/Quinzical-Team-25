@@ -43,7 +43,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#onClickButtonOk" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #0b2247;" text="OK" textFill="#f2fff3">
+                  <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#onClickButtonOk" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #0b2247; -fx-background-radius: 30;" text="OK" textFill="#f2fff3">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

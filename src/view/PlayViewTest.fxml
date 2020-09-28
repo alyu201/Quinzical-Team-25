@@ -52,14 +52,14 @@
                      <children>
                         <Label onMouseClicked="#onClickLabelName" text="username" textAlignment="CENTER" textFill="#f2fff3">
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font></Label>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
                               <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#f2fff3" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0" />
                               <Label text="\$0" textAlignment="CENTER" textFill="#0b2247">
                                  <font>
-                                    <Font name="System Bold" size="13.0" />
+                                    <Font name="System Bold" size="16.0" />
                                  </font></Label>
                            </children>
                         </StackPane>
@@ -86,14 +86,14 @@
                         <Insets left="30.0" right="30.0" />
                      </padding>
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 10;" text="←" textFill="#0b2247">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="←" textFill="#0b2247">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
                         <Label text="RETURN" textAlignment="CENTER" textFill="#f2fff3">
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font></Label>
                      </children>
                   </HBox>
@@ -103,11 +103,11 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label text="RETURN" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label text="CONTINUE" textAlignment="CENTER" textFill="#f2fff3">
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font></Label>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 10;" text="→" textFill="#0b2247">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="→" textFill="#0b2247">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -156,7 +156,7 @@
                      <children>
                         <Button fx:id="buttonPlay" mnemonicParsing="false" onAction="#onClickButtonPlay" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="PLAY SOUND" textFill="#f2fff3">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

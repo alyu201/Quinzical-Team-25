@@ -23,7 +23,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#004a43">
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#0b2247">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -54,15 +54,15 @@
                      <children>
                         <Label text="username" textAlignment="CENTER" textFill="#f2fff3">
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
                               <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#f2fff3" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0" />
-                              <Label text="\$0" textAlignment="CENTER" textFill="#004a43">
+                              <Label text="\$0" textAlignment="CENTER" textFill="#0b2247">
                                  <font>
-                                    <Font name="System Bold" size="13.0" />
+                                    <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
                            </children>
@@ -90,7 +90,7 @@
                         <Insets left="30.0" right="30.0" />
                      </padding>
                      <children>
-                        <Button fx:id="buttonBack" mnemonicParsing="false" onMouseClicked="#onClickButtonBack" style="-fx-background-color: #daffe3; -fx-background-radius: 10;" text="←" textFill="#004a43">
+                        <Button fx:id="buttonBack" mnemonicParsing="false" onMouseClicked="#onClickButtonBack" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="←" textFill="#0b2247">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -146,41 +146,47 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" StackPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="SETTINGS" textAlignment="CENTER" textFill="#004a43">
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="SETTINGS" textAlignment="CENTER" textFill="#0b2247">
                      <font>
                         <Font size="72.0" />
                      </font>
                   </Label>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VOICE VOLUME">
+                              <Text fill="#0b2247" strokeType="OUTSIDE" strokeWidth="0.0" text="VOICE VOLUME">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="25.0" />
                                  </font>
                               </Text>
                               <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="1001.0">
                                  <children>
-                                    <Slider fx:id="sliderVolume" prefHeight="16.0" prefWidth="483.0" />
+                                    <Slider fx:id="sliderVolume" prefHeight="16.0" prefWidth="483.0" showTickLabels="true" showTickMarks="true" />
                                  </children>
                               </HBox>
-                              <Text fx:id="textVolume" strokeType="OUTSIDE" strokeWidth="0.0" text="value" />
+                              <Text fx:id="textVolume" fill="#0b2247" strokeType="OUTSIDE" strokeWidth="0.0" text="value">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Text>
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="VOICE SPEED">
+                              <Text fill="#0b2247" strokeType="OUTSIDE" strokeWidth="0.0" text="VOICE SPEED">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="25.0" />
                                  </font>
                               </Text>
                               <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="1001.0">
                                  <children>
-                                    <Slider fx:id="sliderSpeed" prefHeight="16.0" prefWidth="483.0" />
+                                    <Slider fx:id="sliderSpeed" prefHeight="16.0" prefWidth="483.0" showTickLabels="true" showTickMarks="true" />
                                  </children>
                               </HBox>
-                              <Text fx:id="textSpeed" strokeType="OUTSIDE" strokeWidth="0.0" text="value" />
+                              <Text fx:id="textSpeed" fill="#0b2247" strokeType="OUTSIDE" strokeWidth="0.0" text="value">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Text>
                            </children>
                         </VBox>
                      </children>

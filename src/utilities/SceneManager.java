@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class SceneManager {
 
@@ -37,6 +38,21 @@ public class SceneManager {
 			window.show();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public static void addStage(URL resource, Event event) {
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		try {
+			Parent root = FXMLLoader.load(resource);
+			root.getStylesheets().add(SceneManager.class.getResource("/resources/stylesheet/style.css").toExternalForm());
+			Stage infoDialog = new Stage();
+			infoDialog.setScene(new Scene(root));
+			infoDialog.initOwner(window);
+			infoDialog.initStyle(StageStyle.TRANSPARENT);
+			infoDialog.showAndWait();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
 }

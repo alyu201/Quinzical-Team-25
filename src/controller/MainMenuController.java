@@ -56,18 +56,7 @@ public class MainMenuController {
 
 	@FXML
 	private void onClickButtonInfo(Event e) {
-		Stage stage = (Stage) buttonInfo.getScene().getWindow();
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/InfoView.fxml"));
-			Stage infoDialog = new Stage();
-			infoDialog.setScene(new Scene(root));
-			infoDialog.initOwner(stage);
-			infoDialog.initStyle(StageStyle.TRANSPARENT);
-
-			infoDialog.showAndWait();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 	
 	@FXML
