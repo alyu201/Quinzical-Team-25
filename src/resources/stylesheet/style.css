@@ -2,10 +2,3 @@
 	-fx-skin: 'resources.skins.QuinzicalButtonSkin';
 }
 
-#buttonSettings {
-	-fx-background-color: #9edbce;
-}
-
-#buttonInfo {
-	-fx-background-color: #9edbce;
-}

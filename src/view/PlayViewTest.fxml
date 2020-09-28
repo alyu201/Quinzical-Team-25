@@ -7,16 +7,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PointsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
    <top>
       <HBox prefHeight="80.0" prefWidth="1200.0" style="-fx-background-color: #00c3b1;" BorderPane.alignment="CENTER">
          <children>
@@ -24,14 +21,14 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button fx:id="buttonInfo" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#0b2247">
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#0b2247">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
                         <StackPane prefHeight="0.0" prefWidth="0.0">
                            <children>
-                              <Button fx:id="buttonSettings" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 100;" textFill="#004a43">
+                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 100;" textFill="#004a43">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -53,14 +50,14 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label fx:id="labelName" onMouseClicked="#onClickLabelName" text="username" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label onMouseClicked="#onClickLabelName" text="username" textAlignment="CENTER" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Label>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
                               <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#f2fff3" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0" />
-                              <Label fx:id="labelWinnings" text="\$0" textAlignment="CENTER" textFill="#0b2247">
+                              <Label text="\$0" textAlignment="CENTER" textFill="#0b2247">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
@@ -89,12 +86,12 @@
                         <Insets left="30.0" right="30.0" />
                      </padding>
                      <children>
-                        <Button fx:id="buttonBack" mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 10;" text="←" textFill="#0b2247">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 10;" text="←" textFill="#0b2247">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Label text="RETURN TO CATEGORY PICKER" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label text="RETURN" textAlignment="CENTER" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Label>
@@ -103,6 +100,24 @@
                </children>
             </StackPane>
             <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Label text="RETURN" textAlignment="CENTER" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></Label>
+                        <Button mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 10;" text="→" textFill="#0b2247">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="30.0" right="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -113,7 +128,7 @@
    <center>
       <StackPane prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: #daffe3;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -137,57 +152,23 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" StackPane.alignment="CENTER">
                <children>
-                  <StackPane prefHeight="200.0" prefWidth="200.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                      <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <HBox prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #0e6f78; -fx-opacity: 0.3;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <GridPane fx:id="gridPanePoints" alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="1000.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0b2247; -fx-background-radius: 30;" text="\$100" textAlignment="CENTER" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font size="35.0" />
-                                 </font>
-                              </Button>
-                              <Button alignment="CENTER" disable="true" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0b2247; -fx-background-radius: 30;" text="\$200" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font size="35.0" />
-                                 </font>
-                              </Button>
-                              <Button alignment="CENTER" disable="true" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0b2247; -fx-background-radius: 30;" text="\$300" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2">
-                                 <font>
-                                    <Font size="35.0" />
-                                 </font>
-                              </Button>
-                              <Button alignment="CENTER" disable="true" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0b2247; -fx-background-radius: 30;" text="\$400" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3">
-                                 <font>
-                                    <Font size="35.0" />
-                                 </font>
-                              </Button>
-                              <Button alignment="CENTER" disable="true" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0b2247; -fx-background-radius: 30;" text="\$500" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4">
-                                 <font>
-                                    <Font size="35.0" />
-                                 </font>
-                              </Button>
-                           </children>
+                        <Button fx:id="buttonPlay" mnemonicParsing="false" onAction="#onClickButtonPlay" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="PLAY SOUND" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
-                        </GridPane>
+                        </Button>
+                        <Label alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER" textFill="#0b2247">
+                           <font>
+                              <Font size="72.0" />
+                           </font>
+                        </Label>
                      </children>
-                  </StackPane>
+                  </VBox>
                </children>
             </VBox>
          </children>

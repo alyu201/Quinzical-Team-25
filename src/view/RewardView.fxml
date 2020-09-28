@@ -148,7 +148,11 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0e6f78" height="3.0" layoutX="75.0" layoutY="498.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="870.0" />
                   <StackPane prefHeight="200.0" prefWidth="640.0">
                      <children>
-                        <Rectangle fill="#0e6f78" height="200.0" layoutX="285.0" layoutY="30.0" opacity="0.3" stroke="#f2fff3" strokeType="INSIDE" strokeWidth="0.0" width="1000.0" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <HBox prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #0e6f78; -fx-opacity: 0.3;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
                         <Rectangle arcHeight="110.0" arcWidth="110.0" fill="#f2fff3" height="110.0" stroke="#f2fff3" strokeType="INSIDE" width="450.0" />
                         <Label fx:id="labelWinnings1" text="\$0" textAlignment="CENTER" textFill="#0b2247">
                            <font>
