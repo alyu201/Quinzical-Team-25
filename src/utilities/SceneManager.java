@@ -17,6 +17,7 @@ public class SceneManager {
 			FXMLLoader loader = new FXMLLoader(resource);
 			Parent parent = loader.load();
 			Scene scene = new Scene(parent, 1000, 800);
+			scene.getStylesheets().add(SceneManager.class.getResource("/resources/stylesheet/style.css").toExternalForm());
 			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			window.setScene(scene);
 			window.show();

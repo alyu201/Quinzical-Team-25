@@ -187,7 +187,7 @@
                                  </padding>
                               </Button>
                               <Separator prefHeight="4.0" prefWidth="61.0" />
-                              <Button fx:id="buttonCategory" mnemonicParsing="false" onMouseClicked="#onClickButtonCategory" prefHeight="221.0" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="category" textFill="#f2fff3">
+                              <Button fx:id="buttonCategory" mnemonicParsing="false" onMouseClicked="#onClickButtonCategory" prefHeight="221.0" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="category" textFill="#f2fff3" textOverrun="LEADING_ELLIPSIS">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>

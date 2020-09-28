@@ -24,7 +24,8 @@ public class PointsController {
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
-		// scope to tuples for currentCategory
+
+		// Scope to tuples for currentCategory
 		String currentCategory = this.model.getCurrentCategory();
 		ArrayList<QuinzicalTuple> xs = new ArrayList<QuinzicalTuple>();
 		for(QuinzicalTuple question: this.model.getQuestions()) {
@@ -37,10 +38,11 @@ public class PointsController {
 		ArrayList<QuinzicalTuple> questionSet = new ArrayList<QuinzicalTuple>();
 		Random rand = new Random();
 		int limit = (xs.size() < 5) ? xs.size() : 5;
-		System.out.println("limit: " + limit);
+
+		// FIXME: brute add random question to bank
 		int i = 0;
 		while (i < limit) {
-			int nextRand = (rand.nextInt() % (limit- 1));
+			int nextRand = Math.abs((rand.nextInt() % (xs.size()-1)));
 			QuinzicalTuple current = xs.get(nextRand);
 			if (!questionSet.contains(current)) {
 				questionSet.add(current);
@@ -48,12 +50,25 @@ public class PointsController {
 			}
 		}
 		
-		for(QuinzicalTuple a : questionSet) {
-			System.out.println(a.toString());
-		}
+		// Sort questions by lowest worth first
+		questionSet.sort((x,y) -> {
+			if(x.getWorth() < y.getWorth()) {
+				return -1;
+			}
+			else if(x.getWorth() > y.getWorth()) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
 
+		// Add questions to screen
 		for (int col = 0; col< limit; col++) {
-			Button button = new Button(questionSet.get(col).getQuestion());
+			Button button = new Button("$" + questionSet.get(col).getWorth());
+			button.setPrefWidth(150);
+			button.setPrefHeight(150);
+			button.setStyle("-fx-background-color: #00C3B1; -fx-background-radius: 30px;");
+			//button.setStyle();
 			this.gridPanePoints.add(button, col, 0);
 		}
 	}
