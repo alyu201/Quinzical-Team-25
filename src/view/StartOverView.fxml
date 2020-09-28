@@ -13,7 +13,7 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #074e66;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Game Info" textFill="#f2fff3">
+            <Label text="Winnings will be reset" textFill="#f2fff3">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
@@ -30,7 +30,7 @@
             <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
          </padding>
          <children>
-            <Label text="Quinzical is a fun quiz game letting you learn about New Zealand or just simply test your knowledge about the country." textFill="#f9fff2" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label text="All questions and current winnings will be reset. &#10;Are you sure?" textFill="#f9fff2" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -41,9 +41,14 @@
    <bottom>
       <VBox prefHeight="110.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#onClickButtonOk" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #0b2247;" text="OK" textFill="#f2fff3">
+                  <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#onClickButtonOk" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #0b2247;" text="Yes" textFill="#f2fff3">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="buttonOk1" layoutX="480.0" layoutY="20.0" mnemonicParsing="false" onAction="#onClickButtonOk" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #0b2247;" text="No" textFill="#f2fff3">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
