@@ -16,6 +16,7 @@ import model.QuinzicalTuple;
 
 public class Main extends Application {
 
+	private static Stage primary;
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -23,6 +24,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root, 1000, 800);
 			// load in the css stylesheet for the button highlights for the current scene
 			scene.getStylesheets().add(getClass().getResource("/resources/stylesheet/style.css").toExternalForm());
+			this.primary = primaryStage;
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (IOException e) {
@@ -32,5 +34,9 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public static Stage getPrimaryStage() {
+		return primary;
 	}
 }

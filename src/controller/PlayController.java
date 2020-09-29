@@ -32,7 +32,6 @@ public class PlayController {
 
 	@FXML
 	private void onClickButtonPlay(Event e) {
-		System.out.println("play");
 		new Thread() {
 
 			@Override

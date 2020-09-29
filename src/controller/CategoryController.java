@@ -1,11 +1,14 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.MainModel;
+import model.QuinzicalTuple;
 import utilities.SceneManager;
 
 public class CategoryController {
@@ -58,7 +61,9 @@ public class CategoryController {
 
 	@FXML
 	private void onClickButtonCategory(Event e) {
+		// Reset current category and create a question set
 		this.model.setCurrentCategory(this.buttonCategory.getText());
+		this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
 		SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);
 	}
 

@@ -140,7 +140,7 @@
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelHint" text="hint" textFill="#0b2247">
+                        <Label fx:id="labelHint" text="hint" textFill="#0b2247" wrapText="true">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -150,7 +150,7 @@
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0e6f78" height="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="870.0" />
                               <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                                  <children>
-                                    <TextField fx:id="textFieldAnswer" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" promptText="Enter an answer" style="-fx-background-radius: 30;">
+                                    <TextField fx:id="textFieldAnswer" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onPressEnterTextFieldAnswer" prefHeight="50.0" prefWidth="600.0" promptText="Enter an answer" style="-fx-background-radius: 30;">
                                        <font>
                                           <Font size="20.0" />
                                        </font>

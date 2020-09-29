@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RewardController">
    <top>
       <HBox prefHeight="80.0" prefWidth="1200.0" style="-fx-background-color: #00c3b1;" BorderPane.alignment="CENTER">
          <children>
@@ -50,7 +50,7 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label fx:id="labelName" onMouseClicked="#onClickLabelName" text="username" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label fx:id="labelName" onMouseClicked="#onClickLabelName" text="name" textAlignment="CENTER" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font></Label>
@@ -97,7 +97,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="→" textFill="#0b2247">
+                        <Button fx:id="buttonContinue" mnemonicParsing="false" onMouseClicked="#onClickButtonContinue" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="→" textFill="#0b2247">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -142,19 +142,14 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" StackPane.alignment="CENTER">
                <children>
-                  <Label fx:id="labelQuinzicalTitle" alignment="CENTER" contentDisplay="CENTER" text="CORRECT!" textAlignment="CENTER" textFill="#0b2247">
+                  <Label fx:id="labelCorrect" alignment="CENTER" contentDisplay="CENTER" text="CORRECT!" textAlignment="CENTER" textFill="#0b2247">
                      <font>
                         <Font size="80.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelQuinzicalTitle1" alignment="CENTER" contentDisplay="CENTER" text="Answer: answer" textAlignment="CENTER" textFill="#0b2247">
+                  <Label fx:id="labelAnswer" alignment="CENTER" contentDisplay="CENTER" text="Answer: answer" textAlignment="CENTER" textFill="#0b2247">
                      <font>
                         <Font size="35.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelQuinzicalTitle2" alignment="CENTER" contentDisplay="CENTER" text="username" textAlignment="CENTER" textFill="#0b2247">
-                     <font>
-                        <Font size="25.0" />
                      </font>
                   </Label>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0e6f78" height="3.0" layoutX="75.0" layoutY="498.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="870.0" />
@@ -166,7 +161,7 @@
                            </children>
                         </AnchorPane>
                         <Rectangle arcHeight="110.0" arcWidth="110.0" fill="#f2fff3" height="110.0" stroke="#f2fff3" strokeType="INSIDE" width="450.0" />
-                        <Label fx:id="labelWinnings1" text="\$0" textAlignment="CENTER" textFill="#0b2247">
+                        <Label fx:id="labelQuestionWinnings" text="\$0" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font name="System Bold" size="72.0" />
                            </font>

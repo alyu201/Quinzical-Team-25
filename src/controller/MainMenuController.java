@@ -58,6 +58,15 @@ public class MainMenuController {
 		this.labelName.setText(this.model.getName());
 		this.labelWinnings.setText("$" + this.model.getWinnings());
 
+		// User has practice question set
+//		if(this.model.getPracticeQuestions().size() != 0) {
+//			this.buttonPractice.setText("CONTINUE PRACTICING");
+//		}
+		
+		// user has saved game
+//		if(this.model.getGameQuestions().size() != 0) {
+//			this.buttonPlay.setText("CONTINUE PLAYING");
+//		}
 	}
 
 	@FXML
@@ -82,7 +91,11 @@ public class MainMenuController {
 	
 	@FXML
 	private void onClickButtonPractice(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
+		if(this.model.getPracticeQuestions().size() != 0) {
+			SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);
+		} else {
+			SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
+		}
 	}
 
 	@FXML

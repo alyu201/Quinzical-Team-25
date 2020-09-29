@@ -145,7 +145,7 @@ public class MainModel {
 		return this.practiceQuestions;
 	}
 
-	public void setTrainingQuestions(ArrayList<QuinzicalTuple> practiceQuestions) {
+	public void setPracticeQuestions(ArrayList<QuinzicalTuple> practiceQuestions) {
 		this.practiceQuestions = practiceQuestions;
 	}
 
@@ -159,8 +159,8 @@ public class MainModel {
 			for (QuinzicalTuple q : this.gameQuestions) {
 				if (q.equals(question) && q.getCompleted().equals(false)) {
 					q.setCompleted(true);
-					int index = this.questions.indexOf(q);
-					this.questions.set(index, q);
+					int index = this.gameQuestions.indexOf(q);
+					this.gameQuestions.set(index, q);
 					break;
 				}
 			}
@@ -168,8 +168,8 @@ public class MainModel {
 			for (QuinzicalTuple q : this.practiceQuestions) {
 				if (q.equals(question) && q.getCompleted().equals(false)) {
 					q.setCompleted(true);
-					int index = this.questions.indexOf(q);
-					this.questions.set(index, q);
+					int index = this.practiceQuestions.indexOf(q);
+					this.practiceQuestions.set(index, q);
 					break;
 				}
 			}
@@ -222,7 +222,7 @@ public class MainModel {
 		
 		// gameQuestions
 		JSONArray gameQuestions = new JSONArray();
-		for(QuinzicalTuple tuple : this.getQuestions()) {
+		for(QuinzicalTuple tuple : this.getGameQuestions()) {
 			JSONObject question = new JSONObject();
 			JSONArray answers = new JSONArray();
 
@@ -245,7 +245,7 @@ public class MainModel {
 		
 		// practiceQuestions
 		JSONArray practiceQuestions = new JSONArray();
-		for(QuinzicalTuple tuple : this.getQuestions()) {
+		for(QuinzicalTuple tuple : this.getPracticeQuestions()) {
 			JSONObject question = new JSONObject();
 			JSONArray answers = new JSONArray();
 

@@ -98,10 +98,11 @@ public class QuinzicalTuple {
 	@Override
 	public String toString() {
 		String monoid = "";
-		for(String answer : this.answers) {
-			monoid += answer + ", ";
+		for(int i = 0; i< this.answers.size()-1; ++i) {
+			monoid += this.answers.get(i) + ", ";
 		}
-		return this.category + "," + this.worth + "," + this.question + "," + monoid + "," + this.completed + ","
+		monoid += this.answers.get(this.answers.size()-1);
+		return this.category + ", " + this.worth + ", " + this.question + ", " + monoid + ", " + this.completed + ", "
 				+ this.correctlyAnswered + "\n";
 	}
 }
