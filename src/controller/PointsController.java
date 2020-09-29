@@ -20,6 +20,9 @@ public class PointsController {
 
 	@FXML
 	private GridPane gridPanePoints;
+	
+	@FXML
+	private Button buttonInfo;
 
 	@FXML
 	public void initialize() {
@@ -88,5 +91,10 @@ public class PointsController {
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
+	}
+	
+	@FXML
+	private void onClickButtonInfo(Event e) {
+		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 }

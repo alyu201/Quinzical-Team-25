@@ -23,7 +23,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#0b2247">
+                        <Button fx:id="buttonInfo" mnemonicParsing="false" onAction="#onClickButtonInfo" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#0b2247">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -97,7 +97,7 @@
                         </Button>
                         <Label text="RETURN" textAlignment="CENTER" textFill="#f2fff3">
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
                      </children>

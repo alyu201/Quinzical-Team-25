@@ -18,6 +18,9 @@ public class CategoryController {
 
 	@FXML
 	private Button buttonContinue;
+	
+	@FXML
+	private Button buttonInfo;
 
 	@FXML
 	private Label labelName;
@@ -62,6 +65,11 @@ public class CategoryController {
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
+	}
+	
+	@FXML
+	private void onClickButtonInfo(Event e) {
+		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 
 	@FXML

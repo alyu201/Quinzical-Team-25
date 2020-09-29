@@ -17,11 +17,14 @@ public class SceneManager {
 
 	public static void changeScene(URL resource, Event event) {
 		try {
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			// Get the width and height of current scene so next scene scales to current size
+			Double width = ((Node) event.getSource()).getScene().getWidth();
+			Double height = ((Node) event.getSource()).getScene().getHeight();
 			FXMLLoader loader = new FXMLLoader(resource);
 			Parent parent = loader.load();
-			Scene scene = new Scene(parent, 1000, 800);
+			Scene scene = new Scene(parent, width, height);
 			scene.getStylesheets().add(SceneManager.class.getResource("/resources/stylesheet/style.css").toExternalForm());
-			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			window.setScene(scene);
 			window.show();
 		} catch (IOException e) {
@@ -31,11 +34,14 @@ public class SceneManager {
 
 	public static void changeSceneCustomController(URL resource, Object controller, Event event) {
 		try {
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			// Get the width and height of current scene so next scene scales to current size
+			Double width = ((Node) event.getSource()).getScene().getWidth();
+			Double height = ((Node) event.getSource()).getScene().getHeight();
 			FXMLLoader loader = new FXMLLoader(resource);
 			loader.setController(controller);
 			Parent parent = loader.load();
-			Scene scene = new Scene(parent, 1000, 800);
-			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(parent, width, height);
 			window.setScene(scene);
 			window.show();
 		} catch (IOException e) {

@@ -33,6 +33,9 @@ public class NameController {
 
 	@FXML
 	private Button buttonContinue;
+	
+	@FXML
+	private Button buttonInfo;
 
 	public void initialize() {
 		this.model = model.getMainModel();
@@ -41,8 +44,8 @@ public class NameController {
 	}
 
 	@FXML
-	private void onClickButtonHelp(Event e) {
-		System.out.println("help");
+	private void onClickButtonInfo(Event e) {
+		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 
 	@FXML

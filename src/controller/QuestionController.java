@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import model.MainModel;
+import utilities.SceneManager;
 
 /**
  * Controller for QuestionView. Handles a single question in the jeopardy
@@ -52,6 +54,9 @@ public class QuestionController {
 
 	@FXML
 	private Button buttonReturnBoard;
+	
+	@FXML
+	private Button buttonInfo;
 
 	public void initialize() {
 
@@ -154,5 +159,10 @@ public class QuestionController {
 		labelAnswer.setVisible(true);
 		labelAddedWinnings.setVisible(true);
 		textfieldAnswer.setDisable(true);
+	}
+	
+	@FXML
+	private void onClickButtonInfo(Event e) {
+		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 }

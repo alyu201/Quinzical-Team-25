@@ -17,6 +17,12 @@ public class InfoController {
 	private MainModel model;
 	@FXML
 	private Button buttonOk;
+	
+	@FXML
+	private static Label header;
+	
+	@FXML
+	private static Label content;
 
 	public void initialize() {
 		this.model = model.getMainModel();
@@ -27,5 +33,4 @@ public class InfoController {
 		Stage stage = (Stage) buttonOk.getScene().getWindow();
 		stage.close();
 	}
-
 }
