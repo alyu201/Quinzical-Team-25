@@ -65,9 +65,10 @@ public class PointsController {
 		// Add questions to screen
 		for (int col = 0; col< limit; col++) {
 			Button button = new Button("$" + questionSet.get(col).getWorth());
-			button.setPrefWidth(150);
-			button.setPrefHeight(150);
-			button.setStyle("-fx-background-color: #00C3B1; -fx-background-radius: 30px;");
+			button.setPrefWidth(200);
+			button.setPrefHeight(200);
+			button.setStyle("-fx-background-color: #00C3B1; -fx-background-radius: 30px; -fx-font-size: 25px;"
+					+ "-fx-text-fill: #f2fff3; -fx-font-weight: bold;");
 			//button.setStyle();
 			this.gridPanePoints.add(button, col, 0);
 		}
