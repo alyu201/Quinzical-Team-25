@@ -4,6 +4,7 @@ import javafx.beans.binding.Bindings;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.text.Text;
 import model.MainModel;
@@ -13,6 +14,9 @@ public class SettingsController {
 
 	private MainModel model;
 
+	@FXML
+	private Button buttoninfo;
+	
 	@FXML
 	private Slider sliderVolume;
 
@@ -62,6 +66,11 @@ public class SettingsController {
 	private void onClickButtonBack(Event e) {
 		model.toJSONFile();
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+	}
+	
+	@FXML
+	private void onClickButtonInfo(Event e) {
+		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 
 }

@@ -23,6 +23,9 @@ public class PointsController {
 
 	@FXML
 	private GridPane gridPanePoints;
+	
+	@FXML
+	private Button buttonInfo;
 
 	@FXML
 	public void initialize() {
@@ -70,7 +73,7 @@ public class PointsController {
 			Button button = new Button("$" + question.getWorth());
 			button.setPrefWidth(150);
 			button.setPrefHeight(150);
-			button.setStyle("-fx-background-color: #00C3B1; -fx-background-radius: 30px;");
+			button.setStyle("-fx-background-color: #00C3B1; -fx-background-radius: 30px; -fx-font-size: 25px;");
 			button.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent me) {
@@ -81,7 +84,6 @@ public class PointsController {
 					SceneManager.changeScene(getClass().getResource("/view/QuestionView.fxml"), me);
 				}
 			});
-			// button.setStyle();
 			this.gridPanePoints.add(button, col, 0);
 			col++;
 		}
@@ -101,5 +103,10 @@ public class PointsController {
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
+	}
+	
+	@FXML
+	private void onClickButtonInfo(Event e) {
+		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 }

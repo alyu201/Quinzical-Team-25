@@ -24,7 +24,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button fx:id="buttonInfo" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#0b2247">
+                        <Button fx:id="buttonInfo" mnemonicParsing="false" onAction="#onClickButtonInfo" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#0b2247">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -89,7 +89,7 @@
                         <Insets left="30.0" right="30.0" />
                      </padding>
                      <children>
-                        <Button fx:id="buttonBack" mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="←" textFill="#0b2247">
+                        <Button fx:id="buttonBack" mnemonicParsing="false" onAction="#onClickButtonBack" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="←" textFill="#0b2247">
                            <font>
                               <Font size="20.0" />
                            </font>

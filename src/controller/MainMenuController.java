@@ -71,7 +71,7 @@ public class MainMenuController {
 		if(this.model.getName().equals("")) {
 			SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 		} else {
-			SceneManager.changeScene(getClass().getResource("/view/PlayView.fxml"), e);
+			SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);
 		}
 	}
 

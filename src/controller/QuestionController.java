@@ -41,6 +41,12 @@ public class QuestionController {
 	private Button buttonHint;
 
 	@FXML
+	private Button buttonReturnBoard;
+	
+	@FXML
+	private Button buttonInfo;
+
+	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
 		
@@ -60,11 +66,6 @@ public class QuestionController {
 	@FXML
 	private void onClickLabelName(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
-	}
-
-	@FXML
-	private void onClickButtonInfo(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
 	@FXML
@@ -88,5 +89,10 @@ public class QuestionController {
 
 	@FXML
 	private void onClickButtonEnter(Event e) {
+	}
+	
+	@FXML
+	private void onClickButtonInfo(Event e) {
+		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 }
