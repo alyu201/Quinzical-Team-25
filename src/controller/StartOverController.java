@@ -27,7 +27,8 @@ public class StartOverController {
 
 	@FXML
 	private void onClickButtonNo(Event e) {
-		
+		Stage stage = (Stage) buttonNo.getScene().getWindow();
+		stage.close();
 	}
 
 	@FXML

@@ -3,6 +3,7 @@ package utilities;
 import java.io.IOException;
 import java.net.URL;
 
+import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -50,28 +51,27 @@ public class SceneManager {
 	}
 	
 	public static void addStage(URL resource, Event event) {
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		Stage window = Main.getPrimaryStage();
 		try {
 			Parent root = FXMLLoader.load(resource);
 			root.getStylesheets().add(SceneManager.class.getResource("/resources/stylesheet/style.css").toExternalForm());
-			Stage infoDialog = new Stage();
-			infoDialog.initOwner(window);
-			infoDialog.setScene(new Scene(root));
-			infoDialog.initStyle(StageStyle.TRANSPARENT);
+			Stage dialog = new Stage();
+			dialog.setScene(new Scene(root));
+			dialog.initStyle(StageStyle.TRANSPARENT);
 			// Calculate the center position of the parent Stage
             double centerXPosition = window.getX() + window.getWidth()/2d;
             double centerYPosition = window.getY() + window.getHeight()/2d;
             // Hide the pop-up stage before being shown and relocate pop-up
-            infoDialog.setOnShowing(ev -> infoDialog.hide());
+            dialog.setOnShowing(e -> dialog.hide());
             // Relocate the pop-up Stage
-            infoDialog.setOnShown(ev -> {
-                infoDialog.setX(centerXPosition - infoDialog.getWidth()/2d);
-                infoDialog.setY(centerYPosition - infoDialog.getHeight()/2d);
-                infoDialog.show();
+            dialog.setOnShown(e -> {
+                dialog.setX(centerXPosition - dialog.getWidth()/2d);
+                dialog.setY(centerYPosition - dialog.getHeight()/2d);
+                dialog.show();
             });
-			infoDialog.showAndWait();
-		} catch (IOException e1) {
-			e1.printStackTrace();
+			dialog.show();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
