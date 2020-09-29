@@ -17,6 +17,8 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import model.GameMode.GameType;
+
 /**
  * MainModel is a singleton providing a shared model for the jeopardy game. It
  * contains the state of all jeopardy tuples, currently selected question and
@@ -28,6 +30,8 @@ public class MainModel {
 
 	private static MainModel mainModel;
 	private ArrayList<QuinzicalTuple> questions;
+	private ArrayList<QuinzicalTuple> gameQuestions;
+	private ArrayList<QuinzicalTuple> practiceQuestions;
 	private ArrayList<String> categories;
 	private Leaderboard leaderboard;
 	private QuinzicalTuple currentQuestion;
@@ -36,10 +40,13 @@ public class MainModel {
 	private String name;
 	private int winnings;
 
-	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<String> categories, Leaderboard leaderboard,
+	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
+			ArrayList<QuinzicalTuple> trainingQuestions, ArrayList<String> categories, Leaderboard leaderboard,
 			QuinzicalTuple currentQuestion, String currentCategory, Settings settings, String name, int winnings) {
 		super();
 		this.questions = questions;
+		this.gameQuestions = gameQuestions;
+		this.practiceQuestions = trainingQuestions;
 		this.categories = categories;
 		this.leaderboard = leaderboard;
 		this.currentQuestion = currentQuestion;
@@ -126,19 +133,49 @@ public class MainModel {
 		this.currentCategory = currentCategory;
 	}
 
+	public ArrayList<QuinzicalTuple> getGameQuestions() {
+		return gameQuestions;
+	}
+
+	public void setGameQuestions(ArrayList<QuinzicalTuple> gameQuestions) {
+		this.gameQuestions = gameQuestions;
+	}
+
+	public ArrayList<QuinzicalTuple> getPracticeQuestions() {
+		return this.practiceQuestions;
+	}
+
+	public void setTrainingQuestions(ArrayList<QuinzicalTuple> practiceQuestions) {
+		this.practiceQuestions = practiceQuestions;
+	}
+
 	/**
 	 * Search for a question in the model and mark it completed
 	 * 
 	 * @param question
 	 */
-	public void setCompleted(QuinzicalTuple question) {
-		for (QuinzicalTuple q : this.questions) {
-			if (q.equals(question) && q.getCompleted().equals(false)) {
-				q.setCompleted(true);
-				int index = this.questions.indexOf(q);
-				this.questions.set(index, q);
-				break;
+	public void setCompleted(GameType type, QuinzicalTuple question) {
+		if (type.equals(GameType.GAMESMODULE)) {
+			for (QuinzicalTuple q : this.gameQuestions) {
+				if (q.equals(question) && q.getCompleted().equals(false)) {
+					q.setCompleted(true);
+					int index = this.questions.indexOf(q);
+					this.questions.set(index, q);
+					break;
+				}
 			}
+		} else if (type.equals(GameType.PRACTICEMODULE)) {
+			for (QuinzicalTuple q : this.practiceQuestions) {
+				if (q.equals(question) && q.getCompleted().equals(false)) {
+					q.setCompleted(true);
+					int index = this.questions.indexOf(q);
+					this.questions.set(index, q);
+					break;
+				}
+			}
+
+		} else {
+			System.err.println("Illegal GameType (undefined): " + type.toString());
 		}
 	}
 
@@ -162,18 +199,72 @@ public class MainModel {
 
 		// questions
 		JSONArray questions = new JSONArray();
-		this.getQuestions().forEach(tuple -> {
+		for(QuinzicalTuple tuple : this.getQuestions()) {
 			JSONObject question = new JSONObject();
+			JSONArray answers = new JSONArray();
+
 			question.put("category", tuple.getCategory());
 			question.put("question", tuple.getQuestion());
 			question.put("worth", tuple.getWorth());
+
+			tuple.getAnswers().forEach(xs -> {
+				answers.add((String)xs);
+			});
+			question.put("answers", answers);
+
 			question.put("completed", tuple.getCompleted());
 			question.put("correctlyAnswered", tuple.getCorrectlyAnswered());
 
 			questions.add(question);
 
-		});
+		}
 		obj.put("questions", questions);
+		
+		// gameQuestions
+		JSONArray gameQuestions = new JSONArray();
+		for(QuinzicalTuple tuple : this.getQuestions()) {
+			JSONObject question = new JSONObject();
+			JSONArray answers = new JSONArray();
+
+			question.put("category", tuple.getCategory());
+			question.put("question", tuple.getQuestion());
+			question.put("worth", tuple.getWorth());
+
+			tuple.getAnswers().forEach(xs -> {
+				answers.add(xs);
+			});
+			question.put("answers", answers);
+
+			question.put("completed", tuple.getCompleted());
+			question.put("correctlyAnswered", tuple.getCorrectlyAnswered());
+
+			gameQuestions.add(question);
+
+		}
+		obj.put("gameQuestions", gameQuestions);
+		
+		// practiceQuestions
+		JSONArray practiceQuestions = new JSONArray();
+		for(QuinzicalTuple tuple : this.getQuestions()) {
+			JSONObject question = new JSONObject();
+			JSONArray answers = new JSONArray();
+
+			question.put("category", tuple.getCategory());
+			question.put("question", tuple.getQuestion());
+			question.put("worth", tuple.getWorth());
+
+			tuple.getAnswers().forEach(xs -> {
+				answers.add((String)xs);
+			});
+			question.put("answers", answers);
+
+			question.put("completed", tuple.getCompleted());
+			question.put("correctlyAnswered", tuple.getCorrectlyAnswered());
+
+			practiceQuestions.add(question);
+
+		}
+		obj.put("practiceQuestions", practiceQuestions);
 
 		// leaderboard
 		JSONArray leaderboard = new JSONArray();
@@ -198,8 +289,8 @@ public class MainModel {
 
 		// winnings
 		obj.put("winnings", this.getWinnings());
-		
-		//currentCategory
+
+		// currentCategory
 		obj.put("currentCategory", this.getCurrentCategory());
 
 		return obj.toJSONString();
@@ -217,13 +308,49 @@ public class MainModel {
 			});
 
 			// questions
-			JSONArray JSONquestions = (JSONArray) obj.get("questions");
+			JSONArray JSONQuestions = (JSONArray) obj.get("questions");
 			ArrayList<QuinzicalTuple> questions = new ArrayList<QuinzicalTuple>();
-			JSONquestions.forEach(question -> {
+
+			JSONQuestions.forEach(question -> {
+				ArrayList<String> answers = new ArrayList<String>();
+				((JSONArray)((JSONObject)question).get("answers")).forEach(answer -> {
+					answers.add((String)answer);
+				});
 				questions.add(new QuinzicalTuple((String) ((JSONObject) question).get("category"),
 						(String) ((JSONObject) question).get("question"),
 						((Long) ((JSONObject) question).get("worth")).intValue(),
-						(String) ((JSONObject) question).get("answer"),
+						answers,
+						(Boolean) ((JSONObject) question).get("completed"),
+						(Boolean) ((JSONObject) question).get("correctlyAnswered")));
+			});
+			// gameQuestions
+			JSONArray JSONGameQuestions = (JSONArray) obj.get("gameQuestions");
+			ArrayList<QuinzicalTuple> gameQuestions = new ArrayList<QuinzicalTuple>();
+			JSONGameQuestions.forEach(question -> {
+				ArrayList<String> answers = new ArrayList<String>();
+				((JSONArray)((JSONObject)question).get("answers")).forEach(answer -> {
+					answers.add((String)answer);
+				});
+				gameQuestions.add(new QuinzicalTuple((String) ((JSONObject) question).get("category"),
+						(String) ((JSONObject) question).get("question"),
+						((Long) ((JSONObject) question).get("worth")).intValue(),
+						answers,
+						(Boolean) ((JSONObject) question).get("completed"),
+						(Boolean) ((JSONObject) question).get("correctlyAnswered")));
+			});
+
+			// practiceQuestions
+			JSONArray JSONPracticeQuestions = (JSONArray) obj.get("practiceQuestions");
+			ArrayList<QuinzicalTuple> practiceQuestions = new ArrayList<QuinzicalTuple>();
+			JSONPracticeQuestions.forEach(question -> {
+				ArrayList<String> answers = new ArrayList<String>();
+				((JSONArray)((JSONObject)question).get("answers")).forEach(answer -> {
+					answers.add((String)answer);
+				});
+				practiceQuestions.add(new QuinzicalTuple((String) ((JSONObject) question).get("category"),
+						(String) ((JSONObject) question).get("question"),
+						((Long) ((JSONObject) question).get("worth")).intValue(),
+						answers,
 						(Boolean) ((JSONObject) question).get("completed"),
 						(Boolean) ((JSONObject) question).get("correctlyAnswered")));
 			});
@@ -251,7 +378,7 @@ public class MainModel {
 			// currentCategory
 			String currentCategory = (String) obj.get("name");
 
-			return new MainModel(questions, categories, leaderboard, null, currentCategory, settings, name, winnings);
+			return new MainModel(questions, practiceQuestions, practiceQuestions, categories, leaderboard, null, currentCategory, settings, name, winnings);
 
 		} catch (ParseException e) {
 			e.printStackTrace();

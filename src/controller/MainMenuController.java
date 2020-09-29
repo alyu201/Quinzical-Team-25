@@ -81,7 +81,7 @@ public class MainMenuController {
 	}
 	
 	@FXML
-	private void onClickButtonTraining(Event e) {
+	private void onClickButtonPractice(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
 	}
 

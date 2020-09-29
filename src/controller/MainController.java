@@ -100,7 +100,7 @@ public class MainController {
 				buttonQuestion.setOnAction(event -> {
 					// Set this question to be completed
 					model.setCurrentQuestion(question);
-					model.setCompleted(model.getCurrentQuestion());
+					//model.setCompleted(model.getCurrentQuestion());
 
 					// Change to question scene
 					try {

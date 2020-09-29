@@ -1,6 +1,7 @@
 package model;
 
 import java.io.FileReader;
+import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -16,16 +17,18 @@ public class QuinzicalTuple {
 	private final String category;
 	private final String question;
 	private final int worth;
-	private final String answer;
+	private final ArrayList<String> answers;
 	private Boolean completed;
 	private Boolean correctlyAnswered;
 
-	public QuinzicalTuple(String category, String question, int worth, String answer, Boolean completed,
+	
+	public QuinzicalTuple(String category, String question, int worth, ArrayList<String> answers, Boolean completed,
 			Boolean correctlyAnswered) {
+		super();
 		this.category = category;
-		this.worth = worth;
 		this.question = question;
-		this.answer = answer;
+		this.worth = worth;
+		this.answers = answers;
 		this.completed = completed;
 		this.correctlyAnswered = correctlyAnswered;
 	}
@@ -58,8 +61,8 @@ public class QuinzicalTuple {
 		return worth;
 	}
 
-	public String getAnswer() {
-		return answer;
+	public ArrayList<String> getAnswers() {
+		return answers;
 	}
 
 	@Override
@@ -74,7 +77,7 @@ public class QuinzicalTuple {
 
 		QuinzicalTuple tuple = (QuinzicalTuple) obj;
 
-		if (!category.equals(tuple.category) || !question.equals(tuple.question) || !answer.equals(tuple.answer)
+		if (!category.equals(tuple.category) || !question.equals(tuple.question) || !answers.equals(tuple.answers)
 				|| !completed.equals(tuple.completed) || !correctlyAnswered.equals(tuple.correctlyAnswered)) {
 			return false;
 		}
@@ -86,7 +89,7 @@ public class QuinzicalTuple {
 	public int hashCode() {
 		int result = category.hashCode();
 		result = 31 * result + this.question.hashCode();
-		result = 31 * result + this.answer.hashCode();
+		result = 31 * result + this.answers.hashCode();
 		result = 31 * result + this.completed.hashCode();
 		result = 31 * result + this.correctlyAnswered.hashCode();
 		return result;
@@ -94,7 +97,11 @@ public class QuinzicalTuple {
 
 	@Override
 	public String toString() {
-		return this.category + "," + this.worth + "," + this.question + "," + this.answer + "," + this.completed + ","
-				+ this.correctlyAnswered;
+		String monoid = "";
+		for(String answer : this.answers) {
+			monoid += answer + ", ";
+		}
+		return this.category + "," + this.worth + "," + this.question + "," + monoid + "," + this.completed + ","
+				+ this.correctlyAnswered + "\n";
 	}
 }

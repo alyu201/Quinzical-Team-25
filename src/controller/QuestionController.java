@@ -1,158 +1,92 @@
 package controller;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Random;
 
+import javafx.beans.binding.Bindings;
+import model.QuinzicalTuple;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import model.MainModel;
+import utilities.SceneManager;
 
-/**
- * Controller for QuestionView. Handles a single question in the jeopardy
- * question set. The user must type an answer to the question hint and the GUI
- * will display if the user has input correct answer. If the user's input answer
- * is incorrect then the correct answer will be displayed
- */
 public class QuestionController {
 
 	private MainModel model;
+	
+	@FXML
+	private Label labelQuestion;
 
 	@FXML
-	private Text labelQuestionTitle;
+	private Label labelHint;
+	
+	@FXML
+	private TextField textFieldAnswer;
 
 	@FXML
-	private Text labelQuestion;
+	private Button buttonRepeat;
 
 	@FXML
-	private TextField textfieldAnswer;
+	private Button buttonDontKnow;
 
 	@FXML
-	private Button buttonAnswerSubmit;
+	private Button buttonHint;
 
 	@FXML
-	private Text labelAnswer;
-
-	@FXML
-	private Text labelAddedWinnings;
-
-	@FXML
-	private Button buttonReturnBoard;
-
 	public void initialize() {
-
-		// Wrap text and set question to GUI
-		this.labelQuestion.setWrappingWidth(780);
-		this.labelAddedWinnings.setWrappingWidth(780);
+		this.model = model.getMainModel();
+		
+		// TODO: Decide how to handle the hints for things with multiple answers
+		String hint = "_ ".repeat(this.model.getCurrentQuestion().getAnswers().get(0).length()-1);
+		hint += "_";
+		this.labelHint.setText(hint);
 		this.labelQuestion.setText(this.model.getCurrentQuestion().getQuestion());
-
-		// Key event detect on press 'Enter' key. Show on GUI if question answered
-		// correctly and winnings
-		EventHandler<KeyEvent> answerHandlerKeyEvent = new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent ke) {
-				if (ke.getCode().equals(KeyCode.ENTER)) {
-					answerQuestion();
-				}
-			}
-		};
-
-		// Mouse event show on GUI if question answered correctly and winnings
-		EventHandler<MouseEvent> answerHandlerMouseEvent = new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent me) {
-				answerQuestion();
-			}
-		};
-
-		// Set handlers
-		this.textfieldAnswer.setOnKeyPressed(answerHandlerKeyEvent);
-		this.buttonAnswerSubmit.setOnMouseClicked(answerHandlerMouseEvent);
-
-		// Text to speech the model question
-		new Thread() {
-
-			@Override
-			public void run() {
-				try {
-					String command = "echo " + model.getCurrentQuestion().getQuestion() + " | festival --tts";
-					ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
-					Process process = pb.start();
-					BufferedWriter stdin = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
-					BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
-					BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-
-					int exitCode = process.waitFor();
-					if (exitCode == 0) {
-						System.out.println("passed");
-					} else {
-						System.out.println("failed");
-					}
-					stdin.close();
-					stdout.close();
-					stderr.close();
-
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		}.start();
-
-		// Return to main scene
-		buttonReturnBoard.setOnAction(event -> {
-			try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainView.fxml"));
-				Parent sParent = loader.load();
-				Scene sScene = new Scene(sParent, 800, 800);
-				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				window.setScene(sScene);
-				window.show();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		});
 	}
 
-	QuestionController() {
-		this.model = MainModel.getMainModel();
+	@FXML
+	private void onClickButtonBack(Event e) {
+		model.toJSONFile();
+		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 
-	/**
-	 * Check if the question has been answered correctly and display the result of
-	 * the answer to the GUI
-	 */
-	public void answerQuestion() {
-		String answer = textfieldAnswer.getText();
-		if (answer.toLowerCase().contains(model.getCurrentQuestion().getAnswer().toLowerCase().replaceAll(" ", ""))) {
-			labelAnswer.setFill(Color.GREEN);
-			labelAnswer.setText("Correct!");
-			labelAddedWinnings
-					.setText("$" + model.getCurrentQuestion().getWorth() + " have been added to your winnings");
-			labelAddedWinnings.setVisible(true);
-			model.addWinnings(Integer.valueOf(model.getCurrentQuestion().getWorth()));
-		} else {
-			labelAnswer.setFill(Color.RED);
-			labelAnswer.setText("Incorrect!");
-			labelAddedWinnings.setText("The correct answer was \"" + model.getCurrentQuestion().getAnswer() + "\"");
-		}
-		labelAnswer.setVisible(true);
-		labelAddedWinnings.setVisible(true);
-		textfieldAnswer.setDisable(true);
+	@FXML
+	private void onClickLabelName(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
+	}
+
+	@FXML
+	private void onClickButtonInfo(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
+	}
+
+	@FXML
+	private void onClickButtonSettings(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
+	}
+
+	@FXML
+	private void onClickButtonHint(Event e) {
+		
+	}
+
+	@FXML
+	private void onClickButtonRepeat(Event e) {
+	}
+
+	@FXML
+	private void onClickButtonDontKnow(Event e) {
+		
+	}
+
+	@FXML
+	private void onClickButtonEnter(Event e) {
 	}
 }

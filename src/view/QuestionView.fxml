@@ -1,53 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Separator orientation="VERTICAL" prefHeight="32.0" prefWidth="0.0" visible="false" />
-      <Text fx:id="labelQuestionTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Question:">
-         <font>
-            <Font size="52.0" />
-         </font>
-      </Text>
-      <Text fx:id="labelQuestion" strokeType="OUTSIDE" strokeWidth="0.0" text="QuestionHolder" textAlignment="CENTER">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Text>
-      <Separator orientation="VERTICAL" prefHeight="32.0" prefWidth="0.0" visible="false" />
-      <HBox alignment="TOP_CENTER" prefHeight="68.0" prefWidth="800.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.QuestionController">
+   <top>
+      <HBox prefHeight="80.0" prefWidth="1200.0" style="-fx-background-color: #00c3b1;" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="textfieldAnswer" prefHeight="56.0" prefWidth="518.0" promptText="Enter an answer here" />
-            <Separator prefHeight="11.0" prefWidth="2.0" visible="false" />
-            <Button fx:id="buttonAnswerSubmit" mnemonicParsing="false" prefHeight="59.0" prefWidth="144.0" text="Submit Answer" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="buttonInfo" mnemonicParsing="false" onAction="#onClickButtonInfo" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#0b2247">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <StackPane prefHeight="0.0" prefWidth="0.0">
+                           <children>
+                              <Button fx:id="buttonSettings" mnemonicParsing="false" onMouseClicked="#onClickButtonSettings" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 100;" textFill="#004a43">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/images/settings-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </StackPane>
+                     </children>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </StackPane>
+            <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="labelName" onMouseClicked="#onClickLabelName" text="name" textAlignment="CENTER" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#f2fff3" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0" />
+                              <Label fx:id="labelWinnings" text="\$0" textAlignment="CENTER" textFill="#0b2247">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font></Label>
+                           </children>
+                        </StackPane>
+                     </children>
+                     <padding>
+                        <Insets right="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </StackPane>
          </children>
       </HBox>
-      <VBox alignment="CENTER" prefHeight="352.0" prefWidth="924.0">
+   </top>
+   <bottom>
+      <HBox prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #00c3b1;" BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="labelAnswer" fill="LIME" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct!" textAlignment="CENTER" visible="false" wrappingWidth="258.697265625">
-               <font>
-                  <Font size="44.0" />
-               </font>
-            </Text>
-            <Text fx:id="labelAddedWinnings" strokeType="OUTSIDE" strokeWidth="0.0" text="have been added to your winnings!" textAlignment="CENTER" visible="false">
-               <font>
-                  <Font size="44.0" />
-               </font>
-            </Text>
+            <StackPane prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <padding>
+                        <Insets left="30.0" right="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </StackPane>
+            <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <padding>
+                        <Insets left="30.0" right="30.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </StackPane>
          </children>
-      </VBox>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      </HBox>
+   </bottom>
+   <center>
+      <StackPane prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: #daffe3;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonReturnBoard" alignment="CENTER" layoutX="310.0" layoutY="32.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="157.0" text="Return to board" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="640.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                           <image>
+                              <Image url="@../resources/images/main-bg-left.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="640.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <image>
+                              <Image url="@../resources/images/main-bg-right.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #daffe3; -fx-opacity: 0.7;" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="60.0">
+                     <children>
+                        <Label fx:id="labelQuestion" text="question" textFill="#0b2247" wrapText="true">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelHint" text="hint" textFill="#0b2247">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="80.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0e6f78" height="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="870.0" />
+                              <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="textFieldAnswer" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" promptText="Enter an answer" style="-fx-background-radius: 30;">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button fx:id="buttonEnter" mnemonicParsing="false" onKeyPressed="#onClickButtonEnter" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #0E6F78; -fx-background-radius: 30;" text="ENTER" textFill="#f2fff3">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0e6f78" height="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="870.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="buttonDontKnow" mnemonicParsing="false" onMouseClicked="#onClickButtonDontKnow" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #0e6f78; -fx-background-radius: 30;" text="DON'T KNOW" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Separator prefHeight="7.0" prefWidth="18.0" />
+                        <Button fx:id="buttonRepeat1" mnemonicParsing="false" onMouseClicked="#onClickButtonRepeat" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #0e6f78; -fx-background-radius: 30;" text="REPEAT" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Separator prefHeight="7.0" prefWidth="18.0" />
+                        <Button fx:id="buttonHint" mnemonicParsing="false" onMouseClicked="#onClickButtonHint" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #0e6f78; -fx-background-radius: 30;" text="HINT" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
-      </AnchorPane>
-   </children>
-</VBox>
+      </StackPane>
+   </center>
+</BorderPane>

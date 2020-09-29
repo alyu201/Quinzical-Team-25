@@ -185,7 +185,7 @@
                                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                  </padding>
                               </Button>
-                              <Button fx:id="buttonCategory" mnemonicParsing="false" onMouseClicked="#onClickButtonCategory" prefHeight="220.0" prefWidth="350.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="category" textFill="#f2fff3" textOverrun="LEADING_ELLIPSIS">
+                              <Button fx:id="buttonCategory" mnemonicParsing="false" onMouseClicked="#onClickButtonCategory" prefHeight="220.0" prefWidth="350.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="category" textFill="#f2fff3" textOverrun="LEADING_ELLIPSIS" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
