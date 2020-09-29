@@ -27,6 +27,9 @@ public class MainMenuController {
 	private Button buttonPlay;
 
 	@FXML
+	private Button buttonStartOver;
+	
+	@FXML
 	private Button buttonPractice;
 
 	@FXML
@@ -37,6 +40,9 @@ public class MainMenuController {
 
 	@FXML
 	private Button buttonSettings;
+	
+	@FXML
+	private Button buttonReset;
 
 	@FXML
 	private Button buttonQuit;
@@ -70,6 +76,11 @@ public class MainMenuController {
 	}
 
 	@FXML
+	private void onClickButtonStartOver(Event e) {
+		SceneManager.addStage(getClass().getResource("/view/StartOverView.fxml"), e);
+	}
+	
+	@FXML
 	private void onClickButtonTraining(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
 	}
@@ -87,6 +98,11 @@ public class MainMenuController {
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
+	}
+	
+	@FXML
+	private void onClickButtonReset(Event e) {
+		SceneManager.addStage(getClass().getResource("/view/ResetView.fxml"), e);
 	}
 
 	@FXML
