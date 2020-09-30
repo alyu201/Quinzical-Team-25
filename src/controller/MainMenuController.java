@@ -18,6 +18,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.MainModel;
+import model.GameMode.GameType;
 import utilities.SceneManager;
 
 public class MainMenuController {
@@ -25,13 +26,13 @@ public class MainMenuController {
 	private MainModel model;
 	@FXML
 	private Button buttonInfo;
-	
+
 	@FXML
 	private Button buttonPlay;
 
 	@FXML
 	private Button buttonStartOver;
-	
+
 	@FXML
 	private Button buttonPractice;
 
@@ -43,7 +44,7 @@ public class MainMenuController {
 
 	@FXML
 	private Button buttonSettings;
-	
+
 	@FXML
 	private Button buttonReset;
 
@@ -55,25 +56,25 @@ public class MainMenuController {
 
 	@FXML
 	private Label labelWinnings;
-	
+
 	@FXML
 	private HBox userDetails;
 
 	public void initialize() {
 		this.model = model.getMainModel();
-		if(this.model.getName().getValue() != null) {
+		if (this.model.getName().getValue() != null) {
 			this.labelName.textProperty().bind(this.model.getName());
 			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
 			this.userDetails.setVisible(true);
 		} else {
 			this.userDetails.setVisible(false);
 		}
-		
+
 		// User has practice question set
 //		if(this.model.getPracticeQuestions().size() != 0) {
 //			this.buttonPractice.setText("CONTINUE PRACTICING");
 //		}
-		
+
 		// user has saved game
 //		if(this.model.getGameQuestions().size() != 0) {
 //			this.buttonPlay.setText("CONTINUE PLAYING");
@@ -84,14 +85,17 @@ public class MainMenuController {
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
-	
+
 	@FXML
 	private void onClickButtonPlay(Event e) {
-		// name is empty and needs to be set
-		if(this.model.getName().getValue() == null) {
-			SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
-		} else {
-			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
+		this.model.setCurrentGameType(GameType.GAMESMODULE);
+		if (this.model.getPracticeQuestions().size() != 0) {
+			// name is empty and needs to be set
+			if (this.model.getName().getValue() == null) {
+				SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
+			} else {
+				SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
+			}
 		}
 	}
 
@@ -99,10 +103,11 @@ public class MainMenuController {
 	private void onClickButtonStartOver(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/StartOverView.fxml"), e);
 	}
-	
+
 	@FXML
 	private void onClickButtonPractice(Event e) {
-		if(this.model.getPracticeQuestions().size() != 0) {
+		this.model.setCurrentGameType(GameType.PRACTICEMODULE);
+		if (this.model.getPracticeQuestions().size() != 0) {
 			SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
 		} else {
 			SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
@@ -123,7 +128,7 @@ public class MainMenuController {
 	private void onClickButtonSettings(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
-	
+
 	@FXML
 	private void onClickButtonReset(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/ResetView.fxml"), e);

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import model.GameMode.GameType;
 import model.MainModel;
 import utilities.SceneManager;
 
@@ -70,6 +71,13 @@ public class RewardController {
 
 	@FXML
 	private void onClickButtonContinue(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);
+		// Practice Mode
+		if(this.model.getCurrentGameType().equals(GameType.PRACTICEMODULE)) {
+			SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
+		} else {
+			// Play Mode
+			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
+			
+		}
 	}
 }

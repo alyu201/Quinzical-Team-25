@@ -23,14 +23,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import model.Leaderboard;
 import model.MainModel;
-import model.User;
 import utilities.SceneManager;
 
 public class LeaderboardController {
 
 	private MainModel model;
-	@FXML
-	TableView<User> tableViewLeaderboard;
 
 	@FXML
 	ListView<String> rankList;
