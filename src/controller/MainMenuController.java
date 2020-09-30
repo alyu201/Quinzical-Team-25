@@ -91,7 +91,7 @@ public class MainMenuController {
 		if(this.model.getName().getValue() == null) {
 			SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 		} else {
-			SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);
+			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
 		}
 	}
 
@@ -103,7 +103,7 @@ public class MainMenuController {
 	@FXML
 	private void onClickButtonPractice(Event e) {
 		if(this.model.getPracticeQuestions().size() != 0) {
-			SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);
+			SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
 		} else {
 			SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
 		}

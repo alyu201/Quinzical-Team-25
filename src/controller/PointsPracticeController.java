@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
 import model.MainModel;
 import utilities.SceneManager;
 
-public class PointsController {
+public class PointsPracticeController {
 
 	private MainModel model;
 

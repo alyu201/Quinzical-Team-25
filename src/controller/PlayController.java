@@ -32,34 +32,6 @@ public class PlayController {
 
 	@FXML
 	private void onClickButtonPlay(Event e) {
-		new Thread() {
 
-			@Override
-			public void run() {
-				try {
-					String command = "festival";
-					ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
-					Process process = pb.start();
-					BufferedWriter stdin = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
-					BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
-					BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-
-					stdin.write("(SayText \"hello there\")");
-					stdin.flush();
-
-					int exitCode = process.waitFor();
-					if (exitCode == 0) {
-						System.out.println("passed");
-					} else {
-						System.out.println("failed");
-					}
-					stdin.close();
-					stdout.close();
-					stderr.close();
-				} catch (IOException | InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		}.start();
 	}
 }

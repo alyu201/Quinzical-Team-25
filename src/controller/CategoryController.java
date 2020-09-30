@@ -63,7 +63,7 @@ public class CategoryController {
 	@FXML
 	private void onClickButtonContinue(Event e) {
 		this.model.setCurrentCategory(this.buttonCategory.getText());
-		SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);
+		SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
 	}
 
 	@FXML
@@ -76,7 +76,7 @@ public class CategoryController {
 		// Reset current category and create a question set
 		this.model.setCurrentCategory(this.buttonCategory.getText());
 		this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
-		SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);
+		SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
 	}
 
 	@FXML

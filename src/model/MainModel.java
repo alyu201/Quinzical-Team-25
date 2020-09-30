@@ -45,21 +45,24 @@ public class MainModel {
 	private Settings settings;
 	private StringProperty name = new SimpleStringProperty();
 	private IntegerProperty winnings = new SimpleIntegerProperty();
+	private GameType currentGameType;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
-			ArrayList<QuinzicalTuple> trainingQuestions, ArrayList<String> categories, Leaderboard leaderboard,
-			QuinzicalTuple currentQuestion, String currentCategory, Settings settings, String name, int winnings) {
+			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<String> categories, Leaderboard leaderboard,
+			QuinzicalTuple currentQuestion, String currentCategory, Settings settings, StringProperty name,
+			IntegerProperty winnings, GameType currentGameMode) {
 		super();
 		this.questions = questions;
 		this.gameQuestions = gameQuestions;
-		this.practiceQuestions = trainingQuestions;
+		this.practiceQuestions = practiceQuestions;
 		this.categories = categories;
 		this.leaderboard = leaderboard;
 		this.currentQuestion = currentQuestion;
 		this.currentCategory = currentCategory;
 		this.settings = settings;
-		this.name.set(name);
-		this.winnings.set(winnings);
+		this.name = name;
+		this.winnings = winnings;
+		this.currentGameType = currentGameMode;
 	}
 
 	public static MainModel getMainModel() {
@@ -112,7 +115,7 @@ public class MainModel {
 	}
 
 	public void addWinnings(int w) {
-		this.winnings.set(winnings.get()+w);
+		this.winnings.set(winnings.get() + w);
 	}
 
 	public void setCurrentQuestion(QuinzicalTuple q) {
@@ -153,6 +156,14 @@ public class MainModel {
 
 	public void setPracticeQuestions(ArrayList<QuinzicalTuple> practiceQuestions) {
 		this.practiceQuestions = practiceQuestions;
+	}
+
+	public GameType getCurrentGameType() {
+		return currentGameType;
+	}
+
+	public void setCurrentGameType(GameType currentGameType) {
+		this.currentGameType = currentGameType;
 	}
 
 	/**
@@ -205,7 +216,7 @@ public class MainModel {
 
 		// questions
 		JSONArray questions = new JSONArray();
-		for(QuinzicalTuple tuple : this.getQuestions()) {
+		for (QuinzicalTuple tuple : this.getQuestions()) {
 			JSONObject question = new JSONObject();
 			JSONArray answers = new JSONArray();
 
@@ -214,7 +225,7 @@ public class MainModel {
 			question.put("worth", tuple.getWorth());
 
 			tuple.getAnswers().forEach(xs -> {
-				answers.add((String)xs);
+				answers.add((String) xs);
 			});
 			question.put("answers", answers);
 
@@ -225,10 +236,10 @@ public class MainModel {
 
 		}
 		obj.put("questions", questions);
-		
+
 		// gameQuestions
 		JSONArray gameQuestions = new JSONArray();
-		for(QuinzicalTuple tuple : this.getGameQuestions()) {
+		for (QuinzicalTuple tuple : this.getGameQuestions()) {
 			JSONObject question = new JSONObject();
 			JSONArray answers = new JSONArray();
 
@@ -248,10 +259,10 @@ public class MainModel {
 
 		}
 		obj.put("gameQuestions", gameQuestions);
-		
+
 		// practiceQuestions
 		JSONArray practiceQuestions = new JSONArray();
-		for(QuinzicalTuple tuple : this.getPracticeQuestions()) {
+		for (QuinzicalTuple tuple : this.getPracticeQuestions()) {
 			JSONObject question = new JSONObject();
 			JSONArray answers = new JSONArray();
 
@@ -260,7 +271,7 @@ public class MainModel {
 			question.put("worth", tuple.getWorth());
 
 			tuple.getAnswers().forEach(xs -> {
-				answers.add((String)xs);
+				answers.add((String) xs);
 			});
 			question.put("answers", answers);
 
@@ -299,6 +310,8 @@ public class MainModel {
 		// currentCategory
 		obj.put("currentCategory", this.getCurrentCategory());
 
+		// currentGameType
+		obj.put("currentGameType", this.getCurrentGameType().toString());
 		return obj.toJSONString();
 	}
 
@@ -319,13 +332,12 @@ public class MainModel {
 
 			JSONQuestions.forEach(question -> {
 				ArrayList<String> answers = new ArrayList<String>();
-				((JSONArray)((JSONObject)question).get("answers")).forEach(answer -> {
-					answers.add((String)answer);
+				((JSONArray) ((JSONObject) question).get("answers")).forEach(answer -> {
+					answers.add((String) answer);
 				});
 				questions.add(new QuinzicalTuple((String) ((JSONObject) question).get("category"),
 						(String) ((JSONObject) question).get("question"),
-						((Long) ((JSONObject) question).get("worth")).intValue(),
-						answers,
+						((Long) ((JSONObject) question).get("worth")).intValue(), answers,
 						(Boolean) ((JSONObject) question).get("completed"),
 						(Boolean) ((JSONObject) question).get("correctlyAnswered")));
 			});
@@ -334,13 +346,12 @@ public class MainModel {
 			ArrayList<QuinzicalTuple> gameQuestions = new ArrayList<QuinzicalTuple>();
 			JSONGameQuestions.forEach(question -> {
 				ArrayList<String> answers = new ArrayList<String>();
-				((JSONArray)((JSONObject)question).get("answers")).forEach(answer -> {
-					answers.add((String)answer);
+				((JSONArray) ((JSONObject) question).get("answers")).forEach(answer -> {
+					answers.add((String) answer);
 				});
 				gameQuestions.add(new QuinzicalTuple((String) ((JSONObject) question).get("category"),
 						(String) ((JSONObject) question).get("question"),
-						((Long) ((JSONObject) question).get("worth")).intValue(),
-						answers,
+						((Long) ((JSONObject) question).get("worth")).intValue(), answers,
 						(Boolean) ((JSONObject) question).get("completed"),
 						(Boolean) ((JSONObject) question).get("correctlyAnswered")));
 			});
@@ -350,22 +361,21 @@ public class MainModel {
 			ArrayList<QuinzicalTuple> practiceQuestions = new ArrayList<QuinzicalTuple>();
 			JSONPracticeQuestions.forEach(question -> {
 				ArrayList<String> answers = new ArrayList<String>();
-				((JSONArray)((JSONObject)question).get("answers")).forEach(answer -> {
-					answers.add((String)answer);
+				((JSONArray) ((JSONObject) question).get("answers")).forEach(answer -> {
+					answers.add((String) answer);
 				});
 				practiceQuestions.add(new QuinzicalTuple((String) ((JSONObject) question).get("category"),
 						(String) ((JSONObject) question).get("question"),
-						((Long) ((JSONObject) question).get("worth")).intValue(),
-						answers,
+						((Long) ((JSONObject) question).get("worth")).intValue(), answers,
 						(Boolean) ((JSONObject) question).get("completed"),
 						(Boolean) ((JSONObject) question).get("correctlyAnswered")));
 			});
 
 			// name
-			String name = (String) obj.get("name");
+			StringProperty name = new SimpleStringProperty((String)obj.get("name"));
 
 			// winnings
-			int winnings = ((Long) obj.get("winnings")).intValue();
+			IntegerProperty winnings = new SimpleIntegerProperty(((Long) obj.get("winnings")).intValue());
 
 			// leaderboard
 			JSONArray JSONleaderboard = (JSONArray) obj.get("leaderboard");
@@ -384,7 +394,10 @@ public class MainModel {
 			// currentCategory
 			String currentCategory = (String) obj.get("currentCategory");
 
-			return new MainModel(questions, practiceQuestions, practiceQuestions, categories, leaderboard, null, currentCategory, settings, name, winnings);
+			// currentGameMode
+			GameType currentGameType = GameType.valueOf((String) obj.get("currentGameType"));
+			return new MainModel(questions, practiceQuestions, practiceQuestions, categories, leaderboard, null,
+					currentCategory, settings, name, winnings, currentGameType);
 
 		} catch (ParseException e) {
 			e.printStackTrace();

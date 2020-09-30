@@ -160,7 +160,7 @@ public class QuestionController {
 
 	@FXML
 	private void onClickButtonDontKnow(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);
+		SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
 	}
 
 	@FXML

@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.GameMode.GameType;
 import model.QuinzicalTuple;
 
 public class Main extends Application {
