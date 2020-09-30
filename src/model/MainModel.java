@@ -391,7 +391,7 @@ public class MainModel {
 					((Long) JSONsettings.get("speed")).intValue(), ((Long) JSONsettings.get("volume")).intValue());
 
 			// currentCategory
-			String currentCategory = (String) obj.get("name");
+			String currentCategory = (String) obj.get("currentCategory");
 
 			return new MainModel(questions, practiceQuestions, practiceQuestions, categories, leaderboard, null, currentCategory, settings, name, winnings);
 

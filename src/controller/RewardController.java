@@ -38,7 +38,7 @@ public class RewardController {
 
 	public void initialize() {
 		this.model = model.getMainModel();
-		if(this.model.getName().getValue() == null) {
+		if(!(this.model.getName().getValue() == null)) {
 			this.labelName.textProperty().bind(this.model.getName());
 			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
 			userDetails.setVisible(true);
@@ -46,8 +46,9 @@ public class RewardController {
 			userDetails.setVisible(false);
 		}
 		this.labelAnswer.setText(this.model.getCurrentQuestion().getAnswers().get(0));
-		this.labelQuestionWinnings.setText("$" + this.model.getCurrentQuestion().getWorth());
+		this.labelQuestionWinnings.setText("" + this.model.getCurrentQuestion().getWorth());
 		if(!this.model.getCurrentQuestion().getCorrectlyAnswered()) {
+			this.labelAnswer.setText("The correct answer was \"" + this.model.getCurrentQuestion().getAnswers().get(0) + "\"");
 			this.labelCorrect.setText("INCORRECT");
 		}
 	}

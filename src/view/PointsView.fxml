@@ -147,6 +147,15 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" StackPane.alignment="CENTER">
                <children>
+                  <VBox alignment="CENTER" prefHeight="0.0" prefWidth="1000.0">
+                     <children>
+                        <Label fx:id="labelCategory" alignment="TOP_CENTER" text="category" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="55.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                   <StackPane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">

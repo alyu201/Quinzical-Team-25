@@ -39,11 +39,15 @@ public class PointsController {
 	private HBox userDetails;
 
 	@FXML
+	private Label labelCategory;
+
+	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
 		if(this.model.getName().getValue() != null) {
 			this.labelName.textProperty().bind(this.model.getName());
 			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			this.labelCategory.setText(this.model.getCurrentCategory());
 			userDetails.setVisible(true);
 		} else {
 			userDetails.setVisible(false);

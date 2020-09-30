@@ -61,14 +61,14 @@ public class QuestionController {
 
 	@FXML
 	private Label labelWinnings;
-	
+
 	@FXML
 	private HBox userDetails;
 
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
-		if(this.model.getName().getValue() != null) {
+		if (this.model.getName().getValue() != null) {
 			this.labelName.textProperty().bind(this.model.getName());
 			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
 			userDetails.setVisible(true);
@@ -142,9 +142,9 @@ public class QuestionController {
 	private void onClickButtonHint(Event e) {
 		Random rand = new Random();
 		int nextRand = Math
-				.abs((rand.nextInt() % 2 * this.model.getCurrentQuestion().getAnswers().get(0).length() - 2));
+				.abs((rand.nextInt() % 2 * (this.model.getCurrentQuestion().getAnswers().get(0).length() - 1) - 2));
 		// underscores only take place at even indexes. we want to replace
-		if ((nextRand % 2) == 0) {
+		if ((nextRand % 2) != 0) {
 			nextRand += 1;
 		}
 		String currentHint = this.labelHint.getText();
@@ -165,8 +165,13 @@ public class QuestionController {
 
 	@FXML
 	private void onPressEnterTextFieldAnswer(KeyEvent ke) {
-		if(ke.getCode().equals(KeyCode.ENTER)) {
+		if (ke.getCode().equals(KeyCode.ENTER)) {
 			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), ke);
+			if (isAnswerCorrect()) {
+				this.model.getCurrentQuestion().setCorrectlyAnswered(true);
+			} else {
+				this.model.getCurrentQuestion().setCorrectlyAnswered(false);
+			}
 		}
 	}
 
