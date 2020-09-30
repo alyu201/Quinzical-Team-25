@@ -12,6 +12,7 @@ import java.util.Random;
 
 import javafx.beans.binding.Bindings;
 import model.QuinzicalTuple;
+import model.GameMode.GameType;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -56,6 +57,9 @@ public class QuestionController {
 	@FXML
 	private Button buttonInfo;
 
+	@FXML
+	private Button buttonEnter;
+	
 	@FXML
 	private Label labelName;
 
@@ -166,18 +170,33 @@ public class QuestionController {
 	@FXML
 	private void onPressEnterTextFieldAnswer(KeyEvent ke) {
 		if (ke.getCode().equals(KeyCode.ENTER)) {
-			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), ke);
 			if (isAnswerCorrect()) {
 				this.model.getCurrentQuestion().setCorrectlyAnswered(true);
 			} else {
 				this.model.getCurrentQuestion().setCorrectlyAnswered(false);
+			}
+			
+			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+				SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), ke);
+			} else {
+				SceneManager.changeScene(getClass().getResource("/view/AnswerView.fxml"), ke);
 			}
 		}
 	}
 
 	@FXML
 	private void onClickButtonEnter(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
+		if (isAnswerCorrect()) {
+			this.model.getCurrentQuestion().setCorrectlyAnswered(true);
+		} else {
+			this.model.getCurrentQuestion().setCorrectlyAnswered(false);
+		}
+		
+		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
+		} else {
+			SceneManager.changeScene(getClass().getResource("/view/AnswerView.fxml"), e);
+		}
 	}
 
 	@FXML

@@ -28,7 +28,6 @@ import utilities.SceneManager;
 public class LeaderboardController {
 
 	private MainModel model;
-
 	@FXML
 	ListView<String> rankList;
 

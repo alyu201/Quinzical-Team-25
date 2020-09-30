@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.GameMode.GameType;
 import model.MainModel;
 import model.GameMode.GameType;
 import utilities.SceneManager;

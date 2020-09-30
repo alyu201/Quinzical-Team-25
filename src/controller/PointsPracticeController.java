@@ -30,6 +30,9 @@ public class PointsPracticeController {
 	private Button buttonInfo;
 	
 	@FXML
+	private Button buttonEnter;
+	
+	@FXML
 	private Label labelName;
 
 	@FXML
