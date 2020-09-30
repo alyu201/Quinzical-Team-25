@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import model.MainModel;
 import utilities.SceneManager;
 
@@ -30,6 +31,9 @@ public class NameController {
 
 	@FXML
 	private Label labelWinnings;
+	
+	@FXML
+	private HBox userDetails;
 
 	@FXML
 	private Button buttonContinue;
@@ -39,10 +43,13 @@ public class NameController {
 
 	public void initialize() {
 		this.model = model.getMainModel();
-		//this.labelName.setText(this.model.getName());
-		//this.labelWinnings.setText("$" + this.model.getWinnings());
-		this.labelName.textProperty().bind(this.model.getName());
-		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+		if(this.model.getName().getValue() != null) {
+			this.labelName.textProperty().bind(this.model.getName());
+			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			this.userDetails.setVisible(true);
+		} else {
+			this.userDetails.setVisible(false);
+		}
 	}
 
 	@FXML

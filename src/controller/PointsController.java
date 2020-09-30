@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import model.MainModel;
 import utilities.SceneManager;
@@ -33,12 +34,20 @@ public class PointsController {
 
 	@FXML
 	private Label labelWinnings;
+	
+	@FXML
+	private HBox userDetails;
 
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
-		this.labelName.textProperty().bind(this.model.getName());
-		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+		if(this.model.getName().getValue() != null) {
+			this.labelName.textProperty().bind(this.model.getName());
+			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			userDetails.setVisible(true);
+		} else {
+			userDetails.setVisible(false);
+		}
 		
 		// There is no existing practice question set yet
 		if (!(this.model.getPracticeQuestions().size() == 0)) {
@@ -91,8 +100,11 @@ public class PointsController {
 			Button button = new Button("$" + question.getWorth());
 			button.setPrefWidth(150);
 			button.setPrefHeight(150);
-			button.setStyle("-fx-background-color: #00C3B1; -fx-background-radius: 30px; -fx-font-size: 25px;");
+			button.setStyle("-fx-background-color: #00C3B1; -fx-background-radius: 30px; -fx-font-size: 25px;"
+					+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
 			if (question.getCompleted() == true) {
+				button.setStyle("-fx-background-color: #0b2247; -fx-background-radius: 30px; -fx-font-size: 25px;"
+						+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
 				button.setDisable(true);
 			}
 			button.setOnMouseClicked(new EventHandler<MouseEvent>() {

@@ -17,6 +17,7 @@ import model.QuinzicalTuple;
 public class Main extends Application {
 
 	private static Stage primary;
+	private static Object controller;
 	@Override
 	public void start(Stage primaryStage) {
 		try {

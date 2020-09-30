@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import model.MainModel;
 import utilities.SceneManager;
@@ -16,7 +17,7 @@ public class SettingsController {
 
 	@FXML
 	private Button buttoninfo;
-	
+
 	@FXML
 	private Slider sliderVolume;
 
@@ -36,15 +37,21 @@ public class SettingsController {
 	private Label labelName;
 
 	@FXML
+	private HBox userDetails;
+
+	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
-		
-		// Display name and winnings
-//		labelWinnings.setText("$" + this.model.getWinnings());
-//		labelName.setText(this.model.getName());
-		this.labelName.textProperty().bind(this.model.getName());
-		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
 
+		// Display name and winnings
+		if(this.model.getName().getValue() != null) {
+			this.labelName.textProperty().bind(this.model.getName());
+			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			userDetails.setVisible(true);
+		} else {
+			userDetails.setVisible(false);
+		}
+		
 		// Display position of slider and state of labels
 		textVolume.setText("" + model.getSettings().getVolume());
 		textSpeed.setText("" + model.getSettings().getSpeed());
@@ -69,7 +76,7 @@ public class SettingsController {
 		model.toJSONFile();
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
-	
+
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);

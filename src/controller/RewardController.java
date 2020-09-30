@@ -4,6 +4,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import model.MainModel;
 import utilities.SceneManager;
 
@@ -13,6 +14,15 @@ public class RewardController {
 
 	@FXML
 	private Button buttonInfo;
+	
+	@FXML
+	private Label labelName;
+	
+	@FXML
+	private Label labelWinnings;
+	
+	@FXML
+	private HBox userDetails;
 
 	@FXML
 	private Label labelCorrect;
@@ -28,6 +38,13 @@ public class RewardController {
 
 	public void initialize() {
 		this.model = model.getMainModel();
+		if(this.model.getName().getValue() == null) {
+			this.labelName.textProperty().bind(this.model.getName());
+			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			userDetails.setVisible(true);
+		} else {
+			userDetails.setVisible(false);
+		}
 		this.labelAnswer.setText(this.model.getCurrentQuestion().getAnswers().get(0));
 		this.labelQuestionWinnings.setText("$" + this.model.getCurrentQuestion().getWorth());
 		if(!this.model.getCurrentQuestion().getCorrectlyAnswered()) {

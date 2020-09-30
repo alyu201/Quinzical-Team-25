@@ -12,6 +12,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.MainModel;
@@ -52,20 +55,20 @@ public class MainMenuController {
 
 	@FXML
 	private Label labelWinnings;
+	
+	@FXML
+	private HBox userDetails;
 
 	public void initialize() {
 		this.model = model.getMainModel();
-//		this.labelName.setText(this.model.getName());
-//		this.labelWinnings.setText("$" + this.model.getWinnings());
-		try {
-			this.labelName.textProperty().bind(this.model.getName());			
-		} catch(NullPointerException e) {
-			this.labelName.setText("");
+		if(this.model.getName().getValue() != null) {
+			this.labelName.textProperty().bind(this.model.getName());
+			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			this.userDetails.setVisible(true);
+		} else {
+			this.userDetails.setVisible(false);
 		}
-		// TODO: fix binding of winnings
-		// Gives NullPointerException after resetting, quitting and reopening app
-		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
-
+		
 		// User has practice question set
 //		if(this.model.getPracticeQuestions().size() != 0) {
 //			this.buttonPractice.setText("CONTINUE PRACTICING");
@@ -139,5 +142,8 @@ public class MainMenuController {
 	private void onClickLabelName(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
-
+	
+	public HBox getUserDetails() {
+		return this.userDetails;
+	}
 }

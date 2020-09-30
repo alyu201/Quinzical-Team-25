@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.MainModel;
 import model.QuinzicalTuple;
@@ -30,6 +31,9 @@ public class CategoryController {
 
 	@FXML
 	private Label labelWinnings;
+	
+	@FXML
+	private HBox userDetails;
 
 	@FXML
 	private Button buttonLeft;
@@ -42,10 +46,13 @@ public class CategoryController {
 
 	public void initialize() {
 		this.model = model.getMainModel();
-		//this.labelName.setText(this.model.getName());
-		//this.labelWinnings.setText("$" + this.model.getWinnings());
-		this.labelName.textProperty().bind(this.model.getName());
-		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+		if(this.model.getName().getValue() != null) {
+			this.labelName.textProperty().bind(this.model.getName());
+			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			userDetails.setVisible(true);
+		} else {
+			userDetails.setVisible(false);
+		}
 		this.position = 0;
 		this.buttonCategory.setText(this.model.getCategories().get(0));
 	}

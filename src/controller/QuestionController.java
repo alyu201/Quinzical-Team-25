@@ -23,6 +23,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import model.MainModel;
 import utilities.SceneManager;
@@ -60,12 +61,20 @@ public class QuestionController {
 
 	@FXML
 	private Label labelWinnings;
+	
+	@FXML
+	private HBox userDetails;
 
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
-		this.labelName.textProperty().bind(this.model.getName());
-		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+		if(this.model.getName().getValue() != null) {
+			this.labelName.textProperty().bind(this.model.getName());
+			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			userDetails.setVisible(true);
+		} else {
+			userDetails.setVisible(false);
+		}
 
 		// TODO: Decide how to handle the hints for things with multiple answers
 		String hint = "_ ".repeat(this.model.getCurrentQuestion().getAnswers().get(0).length() - 1);

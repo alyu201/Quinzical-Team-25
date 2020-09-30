@@ -17,7 +17,9 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -41,8 +43,7 @@ public class MainModel {
 	private QuinzicalTuple currentQuestion;
 	private String currentCategory;
 	private Settings settings;
-//	private String name;
-//	private int winnings;
+	//private BooleanProperty gameReset = new SimpleBooleanProperty(false);
 	private StringProperty name = new SimpleStringProperty();
 	private IntegerProperty winnings = new SimpleIntegerProperty();
 
@@ -58,8 +59,6 @@ public class MainModel {
 		this.currentQuestion = currentQuestion;
 		this.currentCategory = currentCategory;
 		this.settings = settings;
-		//this.name = name;
-		//this.winnings = winnings;
 		this.name.set(name);
 		this.winnings.set(winnings);
 	}
@@ -73,12 +72,11 @@ public class MainModel {
 		}
 	}
 
-	public /*String*/StringProperty getName() {
+	public StringProperty getName() {
 		return name;
 	}
 
 	public void setName(String name) {
-		//this.name = name;
 		this.name.set(name);
 	}
 
@@ -106,20 +104,25 @@ public class MainModel {
 		this.questions = xs;
 	}
 
-	public /*int*/IntegerProperty getWinnings() {
-		//return this.winnings;
+	public IntegerProperty getWinnings() {
 		return this.winnings;
 	}
 
 	public void setWinnings(int w) {
-		//this.winnings = w;
 		this.winnings.set(w);
 	}
 
 	public void addWinnings(int w) {
-		//this.winnings += w;
 		this.winnings.set(winnings.get()+w);
 	}
+	
+	/*public BooleanProperty getGameReset() {
+		return this.gameReset;
+	}
+
+	public void setGameReset(boolean state) {
+		this.gameReset.set(state);
+	}*/
 
 	public void setCurrentQuestion(QuinzicalTuple q) {
 		this.currentQuestion = q;
@@ -297,10 +300,10 @@ public class MainModel {
 		obj.put("settings", settings);
 
 		// name
-		obj.put("name", this.getName());
+		obj.put("name", this.getName().getValue());
 
 		// winnings
-		obj.put("winnings", this.getWinnings());
+		obj.put("winnings", this.getWinnings().get());
 
 		// currentCategory
 		obj.put("currentCategory", this.getCurrentCategory());
