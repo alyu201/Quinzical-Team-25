@@ -33,6 +33,7 @@ public class StartOverController {
 
 	@FXML
 	private void onClickButtonYes(Event e) {
+		this.model.setWinnings(0);
 		this.model.setCurrentQuestion(null);
 		this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());

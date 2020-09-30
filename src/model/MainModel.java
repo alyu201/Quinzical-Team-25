@@ -17,6 +17,10 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import model.GameMode.GameType;
 
 /**
@@ -37,8 +41,10 @@ public class MainModel {
 	private QuinzicalTuple currentQuestion;
 	private String currentCategory;
 	private Settings settings;
-	private String name;
-	private int winnings;
+//	private String name;
+//	private int winnings;
+	private StringProperty name = new SimpleStringProperty();
+	private IntegerProperty winnings = new SimpleIntegerProperty();
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
 			ArrayList<QuinzicalTuple> trainingQuestions, ArrayList<String> categories, Leaderboard leaderboard,
@@ -52,8 +58,10 @@ public class MainModel {
 		this.currentQuestion = currentQuestion;
 		this.currentCategory = currentCategory;
 		this.settings = settings;
-		this.name = name;
-		this.winnings = winnings;
+		//this.name = name;
+		//this.winnings = winnings;
+		this.name.set(name);
+		this.winnings.set(winnings);
 	}
 
 	public static MainModel getMainModel() {
@@ -65,12 +73,13 @@ public class MainModel {
 		}
 	}
 
-	public String getName() {
+	public /*String*/StringProperty getName() {
 		return name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		//this.name = name;
+		this.name.set(name);
 	}
 
 	public Settings getSettings() {
@@ -97,16 +106,19 @@ public class MainModel {
 		this.questions = xs;
 	}
 
-	public int getWinnings() {
+	public /*int*/IntegerProperty getWinnings() {
+		//return this.winnings;
 		return this.winnings;
 	}
 
 	public void setWinnings(int w) {
-		this.winnings = w;
+		//this.winnings = w;
+		this.winnings.set(w);
 	}
 
 	public void addWinnings(int w) {
-		this.winnings += w;
+		//this.winnings += w;
+		this.winnings.set(winnings.get()+w);
 	}
 
 	public void setCurrentQuestion(QuinzicalTuple q) {

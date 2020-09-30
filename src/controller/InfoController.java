@@ -14,7 +14,6 @@ import model.MainModel;
  */
 public class InfoController {
 
-	private MainModel model;
 	@FXML
 	private Button buttonOk;
 	
@@ -23,10 +22,6 @@ public class InfoController {
 	
 	@FXML
 	private static Label content;
-
-	public void initialize() {
-		this.model = model.getMainModel();
-	}
 
 	@FXML
 	private void onClickButtonOk(Event e) {

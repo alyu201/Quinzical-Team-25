@@ -40,8 +40,10 @@ public class SettingsController {
 		this.model = model.getMainModel();
 		
 		// Display name and winnings
-		labelWinnings.setText("$" + this.model.getWinnings());
-		labelName.setText(this.model.getName());
+//		labelWinnings.setText("$" + this.model.getWinnings());
+//		labelName.setText(this.model.getName());
+		this.labelName.textProperty().bind(this.model.getName());
+		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
 
 		// Display position of slider and state of labels
 		textVolume.setText("" + model.getSettings().getVolume());

@@ -10,6 +10,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -26,11 +27,19 @@ public class PointsController {
 
 	@FXML
 	private Button buttonInfo;
+	
+	@FXML
+	private Label labelName;
+
+	@FXML
+	private Label labelWinnings;
 
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
-
+		this.labelName.textProperty().bind(this.model.getName());
+		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+		
 		// There is no existing practice question set yet
 		if (!(this.model.getPracticeQuestions().size() == 0)) {
 

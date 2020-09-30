@@ -57,10 +57,20 @@
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
                               <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#f2fff3" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0" />
-                              <Label fx:id="labelWinnings" text="\$0" textAlignment="CENTER" textFill="#0b2247">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font></Label>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="\$" textAlignment="CENTER" textFill="#0b2247">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="labelWinnings" layoutX="124.0" layoutY="40.0" text="0" textAlignment="CENTER" textFill="#0b2247">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
                            </children>
                         </StackPane>
                      </children>
@@ -161,11 +171,20 @@
                            </children>
                         </AnchorPane>
                         <Rectangle arcHeight="110.0" arcWidth="110.0" fill="#f2fff3" height="110.0" stroke="#f2fff3" strokeType="INSIDE" width="450.0" />
-                        <Label fx:id="labelQuestionWinnings" text="\$0" textAlignment="CENTER" textFill="#0b2247">
-                           <font>
-                              <Font name="System Bold" size="72.0" />
-                           </font>
-                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="\$" textAlignment="CENTER" textFill="#0b2247">
+                                 <font>
+                                    <Font name="System Bold" size="72.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelQuestionWinnings" layoutX="460.0" layoutY="67.0" text="0" textAlignment="CENTER" textFill="#0b2247">
+                                 <font>
+                                    <Font name="System Bold" size="72.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
                   </StackPane>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0e6f78" height="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="870.0" />

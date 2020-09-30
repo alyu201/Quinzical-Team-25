@@ -17,7 +17,7 @@ import utilities.SceneManager;
  */
 public class NameController {
 
-	public static MainModel model;
+	public MainModel model;
 
 	@FXML
 	private Label labelTitleName;
@@ -39,8 +39,10 @@ public class NameController {
 
 	public void initialize() {
 		this.model = model.getMainModel();
-		this.labelName.setText(this.model.getName());
-		this.labelWinnings.setText("$" + this.model.getWinnings());
+		//this.labelName.setText(this.model.getName());
+		//this.labelWinnings.setText("$" + this.model.getWinnings());
+		this.labelName.textProperty().bind(this.model.getName());
+		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
 	}
 
 	@FXML

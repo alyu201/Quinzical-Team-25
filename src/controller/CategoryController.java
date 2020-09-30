@@ -42,8 +42,10 @@ public class CategoryController {
 
 	public void initialize() {
 		this.model = model.getMainModel();
-		this.labelName.setText(this.model.getName());
-		this.labelWinnings.setText("$" + this.model.getWinnings());
+		//this.labelName.setText(this.model.getName());
+		//this.labelWinnings.setText("$" + this.model.getWinnings());
+		this.labelName.textProperty().bind(this.model.getName());
+		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
 		this.position = 0;
 		this.buttonCategory.setText(this.model.getCategories().get(0));
 	}

@@ -55,8 +55,16 @@ public class MainMenuController {
 
 	public void initialize() {
 		this.model = model.getMainModel();
-		this.labelName.setText(this.model.getName());
-		this.labelWinnings.setText("$" + this.model.getWinnings());
+//		this.labelName.setText(this.model.getName());
+//		this.labelWinnings.setText("$" + this.model.getWinnings());
+		try {
+			this.labelName.textProperty().bind(this.model.getName());			
+		} catch(NullPointerException e) {
+			this.labelName.setText("");
+		}
+		// TODO: fix binding of winnings
+		// Gives NullPointerException after resetting, quitting and reopening app
+		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
 
 		// User has practice question set
 //		if(this.model.getPracticeQuestions().size() != 0) {
@@ -77,7 +85,7 @@ public class MainMenuController {
 	@FXML
 	private void onClickButtonPlay(Event e) {
 		// name is empty and needs to be set
-		if(this.model.getName().equals("")) {
+		if(this.model.getName().getValue() == null) {
 			SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 		} else {
 			SceneManager.changeScene(getClass().getResource("/view/PointsView.fxml"), e);

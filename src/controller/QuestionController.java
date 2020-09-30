@@ -64,6 +64,8 @@ public class QuestionController {
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
+		this.labelName.textProperty().bind(this.model.getName());
+		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
 
 		// TODO: Decide how to handle the hints for things with multiple answers
 		String hint = "_ ".repeat(this.model.getCurrentQuestion().getAnswers().get(0).length() - 1);
