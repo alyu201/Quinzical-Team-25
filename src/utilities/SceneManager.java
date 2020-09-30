@@ -43,6 +43,7 @@ public class SceneManager {
 			loader.setController(controller);
 			Parent parent = loader.load();
 			Scene scene = new Scene(parent, width, height);
+			scene.getStylesheets().add(SceneManager.class.getResource("/resources/stylesheet/style.css").toExternalForm());
 			window.setScene(scene);
 			window.show();
 		} catch (IOException e) {

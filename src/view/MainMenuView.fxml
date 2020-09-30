@@ -171,7 +171,7 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="buttonLeaderboard" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="LEADERBOARD" textFill="#f2fff3">
+                        <Button fx:id="buttonLeaderboard" mnemonicParsing="false" onAction="#onClickButtonLeaderboard" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="LEADERBOARD" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
