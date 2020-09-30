@@ -43,15 +43,18 @@ public class CategoryController {
 
 	@FXML
 	private Button buttonCategory;
+	
+	@FXML
+	private Button buttonSettings;
 
 	public void initialize() {
 		this.model = model.getMainModel();
 		if(this.model.getName().getValue() != null) {
 			this.labelName.textProperty().bind(this.model.getName());
 			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
-			userDetails.setVisible(true);
+			this.userDetails.setVisible(true);
 		} else {
-			userDetails.setVisible(false);
+			this.userDetails.setVisible(false);
 		}
 		this.position = 0;
 		this.buttonCategory.setText(this.model.getCategories().get(0));

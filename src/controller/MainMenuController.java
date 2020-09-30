@@ -142,8 +142,4 @@ public class MainMenuController {
 	private void onClickLabelName(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
-	
-	public HBox getUserDetails() {
-		return this.userDetails;
-	}
 }

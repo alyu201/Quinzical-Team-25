@@ -43,7 +43,6 @@ public class MainModel {
 	private QuinzicalTuple currentQuestion;
 	private String currentCategory;
 	private Settings settings;
-	//private BooleanProperty gameReset = new SimpleBooleanProperty(false);
 	private StringProperty name = new SimpleStringProperty();
 	private IntegerProperty winnings = new SimpleIntegerProperty();
 
@@ -115,14 +114,6 @@ public class MainModel {
 	public void addWinnings(int w) {
 		this.winnings.set(winnings.get()+w);
 	}
-	
-	/*public BooleanProperty getGameReset() {
-		return this.gameReset;
-	}
-
-	public void setGameReset(boolean state) {
-		this.gameReset.set(state);
-	}*/
 
 	public void setCurrentQuestion(QuinzicalTuple q) {
 		this.currentQuestion = q;

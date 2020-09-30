@@ -25,9 +25,9 @@ public class ResetConfirmController {
 
 	@FXML
 	private void onClickButtonOk(Event e) {
-		// TODO: change primary stage to reflect changes
 		Stage stage = (Stage) buttonOk.getScene().getWindow();
 		stage.close();
+		// Load a new MainMenuView to hide the user details
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainMenuView.fxml"));
 			Parent root = loader.load();
