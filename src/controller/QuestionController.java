@@ -195,6 +195,9 @@ public class QuestionController {
 
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 				SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), ke);
+				if (isAnswerCorrect()) {
+					this.model.addWinnings(this.model.getCurrentQuestion().getWorth());
+				}
 			} else {
 				SceneManager.changeScene(getClass().getResource("/view/AnswerView.fxml"), ke);
 			}
@@ -211,6 +214,9 @@ public class QuestionController {
 
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
+			if (isAnswerCorrect()) {
+				this.model.addWinnings(this.model.getCurrentQuestion().getWorth());
+			}
 		} else {
 			SceneManager.changeScene(getClass().getResource("/view/AnswerView.fxml"), e);
 		}
