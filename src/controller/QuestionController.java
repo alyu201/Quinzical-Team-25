@@ -85,6 +85,7 @@ public class QuestionController {
 		hint += "_";
 		this.labelHint.setText(hint);
 		this.labelQuestion.setText(this.model.getCurrentQuestion().getQuestion());
+		this.labelQuestion.setWrapText(true);
 		sayQuestion();
 	}
 
@@ -164,7 +165,12 @@ public class QuestionController {
 
 	@FXML
 	private void onClickButtonDontKnow(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
+		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
+		} else {
+			this.model.getCurrentQuestion().setCorrectlyAnswered(false);
+			SceneManager.changeScene(getClass().getResource("/view/AnswerView.fxml"), e);
+		}
 	}
 
 	@FXML

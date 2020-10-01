@@ -150,20 +150,25 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" StackPane.alignment="CENTER">
+            <StackPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="labelCorrect" alignment="CENTER" contentDisplay="CENTER" text="CORRECT!" textAlignment="CENTER" textFill="#0b2247">
-                     <font>
-                        <Font size="80.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="labelAnswer" alignment="CENTER" contentDisplay="CENTER" text="Answer: answer" textAlignment="CENTER" textFill="#0b2247">
-                     <font>
-                        <Font size="35.0" />
-                     </font>
-                  </Label>
+                  <AnchorPane style="-fx-background-color: #bff2cd; -fx-opacity: 1;" />
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" StackPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="labelCorrect" alignment="CENTER" contentDisplay="CENTER" text="CORRECT!" textAlignment="CENTER" textFill="#0b2247">
+                           <font>
+                              <Font size="80.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelAnswer" alignment="CENTER" contentDisplay="CENTER" text="Answer: answer" textAlignment="CENTER" textFill="#0b2247">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
+            </StackPane>
          </children>
       </StackPane>
    </center>
