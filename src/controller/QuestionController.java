@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 import javafx.beans.binding.Bindings;
@@ -32,7 +34,9 @@ import utilities.SceneManager;
 public class QuestionController {
 
 	private MainModel model;
-
+	private int counter = 0;
+	private Integer[] hintIndices;
+	
 	@FXML
 	private Label labelQuestion;
 
@@ -59,7 +63,7 @@ public class QuestionController {
 
 	@FXML
 	private Button buttonEnter;
-	
+
 	@FXML
 	private Label labelName;
 
@@ -80,6 +84,13 @@ public class QuestionController {
 			userDetails.setVisible(false);
 		}
 
+		// creates the shuffled indices for hints
+		hintIndices = new Integer[this.model.getCurrentQuestion().getAnswers().get(0).length()];
+		for (int i = 0; i < hintIndices.length; i++) {
+			hintIndices[i] = i;
+		}
+		Collections.shuffle(Arrays.asList(hintIndices));
+		
 		// TODO: Decide how to handle the hints for things with multiple answers
 		String hint = "_ ".repeat(this.model.getCurrentQuestion().getAnswers().get(0).length() - 1);
 		hint += "_";
@@ -145,17 +156,17 @@ public class QuestionController {
 
 	@FXML
 	private void onClickButtonHint(Event e) {
-		Random rand = new Random();
-		int nextRand = Math
-				.abs((rand.nextInt() % 2 * (this.model.getCurrentQuestion().getAnswers().get(0).length() - 1) - 2));
-		// underscores only take place at even indexes. we want to replace
-		if ((nextRand % 2) != 0) {
-			nextRand += 1;
+		if (counter < 3) {
+			int remaining = 3 - (counter + 1);
+			buttonHint.setText("HINT " + "(" + remaining + ")");
+			String currentHint = this.labelHint.getText();
+			StringBuilder newHint = new StringBuilder(currentHint);
+			int nextRand = hintIndices[counter];
+			int hintIndex = nextRand*2;
+			newHint.setCharAt(hintIndex, this.model.getCurrentQuestion().getAnswers().get(0).charAt(nextRand));
+			this.labelHint.setText(newHint.toString());
+			counter += 1;
 		}
-		String currentHint = this.labelHint.getText();
-		StringBuilder newHint = new StringBuilder(currentHint);
-		newHint.setCharAt(nextRand, this.model.getCurrentQuestion().getAnswers().get(0).charAt(nextRand));
-		this.labelHint.setText(newHint.toString());
 	}
 
 	@FXML
@@ -181,7 +192,7 @@ public class QuestionController {
 			} else {
 				this.model.getCurrentQuestion().setCorrectlyAnswered(false);
 			}
-			
+
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 				SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), ke);
 			} else {
@@ -197,7 +208,7 @@ public class QuestionController {
 		} else {
 			this.model.getCurrentQuestion().setCorrectlyAnswered(false);
 		}
-		
+
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
 		} else {

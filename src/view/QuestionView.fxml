@@ -188,7 +188,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Button>
-                        <Button fx:id="buttonHint" mnemonicParsing="false" onMouseClicked="#onClickButtonHint" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #0e6f78; -fx-background-radius: 30;" text="HINT" textFill="#f2fff3">
+                        <Button fx:id="buttonHint" mnemonicParsing="false" onMouseClicked="#onClickButtonHint" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #0e6f78; -fx-background-radius: 30;" text="HINT (3)" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
