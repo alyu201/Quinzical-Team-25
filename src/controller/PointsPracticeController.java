@@ -107,10 +107,10 @@ public class PointsPracticeController {
 			Button button = new Button("$" + question.getWorth());
 			button.setPrefWidth(150);
 			button.setPrefHeight(150);
-			button.setStyle("-fx-background-color: #00C3B1; -fx-background-radius: 30px; -fx-font-size: 25px;"
+			button.setStyle("-fx-background-color: #00C3B1; -fx-background-radius: 30; -fx-font-size: 25px;"
 					+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
 			if (question.getCompleted() == true) {
-				button.setStyle("-fx-background-color: #0b2247; -fx-background-radius: 30px; -fx-font-size: 25px;"
+				button.setStyle("-fx-background-color: #0b2247; -fx-background-radius: 30; -fx-font-size: 25px;"
 						+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
 				button.setDisable(true);
 			}

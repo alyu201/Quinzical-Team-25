@@ -9,12 +9,16 @@ import model.GameMode.GameType;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import model.MainModel;
@@ -101,7 +105,8 @@ public class PointsPlayController {
 		for (String category : questionCategories) {
 			boolean flag = false;
 			Label label = new Label(category);
-			label.setTextFill(Color.web("#FF0000"));
+			label.setPrefWidth(200);
+			label.setStyle("-fx-font-weight: bold; -fx-text-fill: #f2fff3; -fx-font-size: 16px;");
 			label.setAlignment(Pos.CENTER);
 			this.gridPanePoints.add(label, c, r);
 			r++;
@@ -119,7 +124,11 @@ public class PointsPlayController {
 
 			for (QuinzicalTuple question : filteredQuestions) {
 				Button button = new Button("$" + question.getWorth());
+				button.setStyle("-fx-background-color: #00c3b1; -fx-background-radius: 30; -fx-text-fill: #f2fff3;"
+						+ " -fx-font-weight: bold; -fx-font-size: 16px;");
 				if (question.getCompleted() == true || flag == true) {
+					button.setStyle("-fx-background-color: #0b2247; -fx-background-radius: 30; -fx-font-size: 16px;"
+							+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
 					button.setDisable(true);
 				}
 
