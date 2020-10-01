@@ -90,13 +90,10 @@ public class MainMenuController {
 	@FXML
 	private void onClickButtonPlay(Event e) {
 		this.model.setCurrentGameType(GameType.GAMESMODULE);
-		if (this.model.getPracticeQuestions().size() != 0) {
-			// name is empty and needs to be set
-			if (this.model.getName().getValue() == null) {
-				SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
-			} else {
-				SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
-			}
+		if (this.model.getName().getValue() == null) {
+			SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
+		} else {
+			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
 		}
 	}
 
