@@ -41,6 +41,11 @@ public class ResetController {
 		this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setLeaderboard(new Leaderboard(new HashMap<String, Integer>()));
+		ArrayList<QuinzicalTuple> questionList = this.model.getQuestions();
+		for (QuinzicalTuple question : questionList) {
+			question.setCompleted(false);
+		}
+		
 		SceneManager.changeScene(getClass().getResource("/view/ResetConfirmView.fxml"), e);
 	}
 }
