@@ -1,12 +1,14 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.Leaderboard;
 import model.MainModel;
 import model.QuinzicalTuple;
 import utilities.SceneManager;
@@ -35,8 +37,10 @@ public class ResetController {
 		this.model.setName(null);
 		this.model.setWinnings(0);
 		this.model.setCurrentQuestion(null);
+		this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
+		this.model.setLeaderboard(new Leaderboard(new HashMap<String, Integer>()));
 		SceneManager.changeScene(getClass().getResource("/view/ResetConfirmView.fxml"), e);
 	}
 }

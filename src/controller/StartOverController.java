@@ -36,10 +36,11 @@ public class StartOverController {
 	private void onClickButtonYes(Event e) {
 		this.model.setWinnings(0);
 		this.model.setCurrentQuestion(null);
+		this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
-		Stage stage = (Stage) buttonYes.getScene().getWindow();
 
+		Stage stage = (Stage) buttonYes.getScene().getWindow();
 		stage.close();
 	}
 }

@@ -9,12 +9,14 @@ import model.GameMode.GameType;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import model.MainModel;
 import utilities.SceneManager;
 
@@ -53,7 +55,6 @@ public class PointsPlayController {
 
 			while (categoriesSet.size() < 5) {
 				int nextRandBounded = Math.abs(rand.nextInt() % (this.model.getCategories().size() - 1));
-				// System.out.println(nextRandBounded);
 				String currentCategory = this.model.getCategories().get(nextRandBounded);
 				if (!categoriesSet.contains(currentCategory)) {
 					categoriesSet.add(currentCategory);
@@ -74,21 +75,16 @@ public class PointsPlayController {
 				int i = 0;
 				while (i < 5) {
 					int nextRandBounded = Math.abs(rand.nextInt() % (filteredQuestions.size() - 1));
-					// System.out.println(nextRandBounded);
 					QuinzicalTuple currentQuestion = filteredQuestions.get(nextRandBounded);
 					if (!questionSetCurrentCategory.contains(currentQuestion)) {
 						questionSetCurrentCategory.add(currentQuestion);
 						++i;
 					}
-					System.out.println("" + i);
 					questionSet.addAll(questionSetCurrentCategory);
 				}
 
 				// Finally add those questions
 				this.model.setGameQuestions(questionSet);
-				for (QuinzicalTuple q : this.model.getGameQuestions()) {
-					System.out.println(q.toString());
-				}
 			}
 		}
 
@@ -99,12 +95,14 @@ public class PointsPlayController {
 			}
 		}
 
+		this.gridPanePoints.setAlignment(Pos.CENTER);
 		int r = 0;
 		int c = 0;
 		for (String category : questionCategories) {
 			boolean flag = false;
 			Label label = new Label(category);
 			label.setTextFill(Color.web("#FF0000"));
+			label.setAlignment(Pos.CENTER);
 			this.gridPanePoints.add(label, c, r);
 			r++;
 			ArrayList<QuinzicalTuple> filteredQuestions = new ArrayList<QuinzicalTuple>();
