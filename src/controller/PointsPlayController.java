@@ -97,41 +97,6 @@ public class PointsPlayController {
 				this.model.setGameQuestions(questionSet);
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		//TOOOOOODOOOOO
-		// set allCompleted when all possible questions completed
-		ArrayList<Boolean> allCompleted = new ArrayList<Boolean>();
-		for (QuinzicalTuple question : this.model.getGameQuestions()) {
-			allCompleted.add(question.getCompleted());
-		}
-
-		
-		
-		for(boolean thing : allCompleted) {
-			System.out.println(thing);
-		}
-
-		if (!allCompleted.contains(false)) {
-			this.model.setAllCompletedGame(true);
-			System.out.println("all completed!!!");
-			//SceneManager.changeScene(getClass().getResource("/view/EndView.fxml"));
-		} else {
-			this.model.setAllCompletedPractice(false);
-		}
-
-		//TOOOOOODOOOOO
-		
-		
-		
-		
-		
-		
 
 		// Fetch the names of the question cateogories
 		ArrayList<String> questionCategories = new ArrayList<String>();
@@ -139,12 +104,6 @@ public class PointsPlayController {
 			if (!questionCategories.contains(question.getCategory())) {
 				questionCategories.add(question.getCategory());
 			}
-		}
-
-		for (QuinzicalTuple question : this.model.getGameQuestions()) {
-			System.out.println(question.toString());
-			System.out.println(this.model.getGameQuestions().size());
-
 		}
 
 		this.gridPanePoints.setAlignment(Pos.CENTER);

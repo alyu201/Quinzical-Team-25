@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
 import model.MainModel;
+import model.QuinzicalTuple;
 import model.GameMode.GameType;
 import utilities.SceneManager;
 
@@ -30,7 +33,10 @@ public class EndController {
 	private Label labelCorrect;
 
 	@FXML
-	private Label labelAnswer;
+	private Label labelWinningsBig;
+
+	@FXML
+	private Label labelBiline;
 
 	@FXML
 	private Label labelQuestionWinnings;
@@ -40,6 +46,22 @@ public class EndController {
 
 	public void initialize() {
 		this.model = model.getMainModel();
+
+		// Add to leaderboard
+		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+		}
+		else {
+			this.labelBiline.setText("DUE TO PRACTICE MODE SCORE HAS NOT BEEN ADDED TO THE LEADERBOARD");
+
+		}
+		
+		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
+			this.labelWinningsBig.textProperty().bind(this.model.getGameWinnings().asString());
+		} else {
+			this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
+			this.labelWinningsBig.textProperty().bind(this.model.getPracticeWinnings().asString());
+		}
 	}
 
 	@FXML
@@ -59,16 +81,21 @@ public class EndController {
 
 	@FXML
 	private void onClickButtonContinue(Event e) {
-		// Practice Mode
-		/*if(this.model.getCurrentGameType().equals(GameType.PRACTICEMODULE)) {
-			SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
-		} else {
-			// Play Mode
-			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
-			
-		}*/
+		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+	}
 
-		// after added answerView
-		SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);			
+	@FXML
+	private void onClickButtonStartOver(Event e) {
+		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			this.model.setGameWinnings(0);
+			this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
+			this.model.setAllCompletedGame(false);
+		} else {
+			this.model.setPracticeWinnings(0);
+			this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
+			this.model.setAllCompletedPractice(false);
+		}
+		this.model.setCurrentQuestion(null);
+		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 }

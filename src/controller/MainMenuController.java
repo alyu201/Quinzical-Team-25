@@ -95,9 +95,13 @@ public class MainMenuController {
 	@FXML
 	private void onClickButtonPlay(Event e) {
 		this.model.setCurrentGameType(GameType.GAMESMODULE);
-		if (this.model.getName().getValue() == null) {
+		if(this.model.getAllCompletedGame()) {
+			SceneManager.changeScene(getClass().getResource("/view/EndView.fxml"), e);
+		}
+		else if (this.model.getName().getValue() == null) {
 			SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
-		} else {
+		} 
+		else {
 			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
 		}
 	}
@@ -110,9 +114,13 @@ public class MainMenuController {
 	@FXML
 	private void onClickButtonPractice(Event e) {
 		this.model.setCurrentGameType(GameType.PRACTICEMODULE);
-		if (this.model.getPracticeQuestions().size() != 0) {
+		if(this.model.getAllCompletedPractice()) {
+			SceneManager.changeScene(getClass().getResource("/view/EndView.fxml"), e);
+		}
+		else if (this.model.getPracticeQuestions().size() != 0) {
 			SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
-		} else {
+		}
+		 else {
 			SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
 		}
 	}

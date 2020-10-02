@@ -102,12 +102,22 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
+                        <Label text="START OVER" textAlignment="CENTER" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="buttonContinue" mnemonicParsing="false" onMouseClicked="#onClickButtonStartOver" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="🗘" textFill="#0b2247">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
                         <Label text="CONTINUE" textAlignment="CENTER" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="buttonContinue" mnemonicParsing="false" onMouseClicked="#onClickButtonContinue" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="→" textFill="#0b2247">
+                        <Button fx:id="buttonContinue1" mnemonicParsing="false" onMouseClicked="#onClickButtonContinue" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="→" textFill="#0b2247">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -157,6 +167,11 @@
                         <Font size="80.0" />
                      </font>
                   </Label>
+                  <Label fx:id="labelBiline" alignment="CENTER" contentDisplay="CENTER" prefWidth="1000.0" text="YOUR SCORE HAS BEEN ADDED TO THE LEADERBOARD" textAlignment="CENTER" textFill="#0b2247" wrapText="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
                   <Label fx:id="labelAnswer" alignment="CENTER" contentDisplay="CENTER" text="YOUR TOTAL WINNINGS ARE:" textAlignment="CENTER" textFill="#0b2247">
                      <font>
                         <Font size="35.0" />
@@ -178,7 +193,7 @@
                                     <Font name="System Bold" size="72.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="labelQuestionWinnings" layoutX="460.0" layoutY="67.0" text="0" textAlignment="CENTER" textFill="#0b2247">
+                              <Label fx:id="labelWinningsBig" layoutX="460.0" layoutY="67.0" text="0" textAlignment="CENTER" textFill="#0b2247">
                                  <font>
                                     <Font name="System Bold" size="72.0" />
                                  </font>
@@ -188,11 +203,6 @@
                      </children>
                   </StackPane>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0e6f78" height="3.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="870.0" />
-                  <Label fx:id="labelAnswer1" alignment="CENTER" contentDisplay="CENTER" prefWidth="1000.0" text="YOUR SCORE HAS BEEN ADDED TO THE LEADERBOARD AND THE GAME WILL BE RESET" textAlignment="CENTER" textFill="#0b2247" wrapText="true">
-                     <font>
-                        <Font size="35.0" />
-                     </font>
-                  </Label>
                </children>
             </VBox>
          </children>

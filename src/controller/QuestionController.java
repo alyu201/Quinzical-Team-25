@@ -187,11 +187,7 @@ public class QuestionController {
 	@FXML
 	private void onClickButtonDontKnow(Event e) {
 		this.model.getCurrentQuestion().setCorrectlyAnswered(false);
-		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
-			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
-		} else {
-			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
-		}
+		SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
 	}
 
 	@FXML

@@ -50,7 +50,7 @@ public class PointsPracticeController {
 	private Button buttonSettings;
 
 	private Event event;
-	
+
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
@@ -113,42 +113,7 @@ public class PointsPracticeController {
 			this.model.setPracticeQuestions(questionSet);
 
 		}
-		
-		
-		
-		
 
-
-
-		//TOOOOOODOOOOO
-		// set allCompleted when all possible questions completed
-		ArrayList<Boolean> allCompleted = new ArrayList<Boolean>();
-		for (QuinzicalTuple question : this.model.getPracticeQuestions()) {
-			allCompleted.add(question.getCompleted());
-		}
-
-		
-		
-		for(boolean thing : allCompleted) {
-			System.out.println(thing);
-		}
-
-		if (!allCompleted.contains(false)) {
-			this.model.setAllCompletedPractice(true);
-			System.out.println("all completed!!!");
-			//SceneManager.changeScene(getClass().getResource("/view/EndView.fxml"));
-		} else {
-			this.model.setAllCompletedPractice(false);
-		}
-
-		//TOOOOOODOOOOO
-		
-		
-		
-		
-		
-		
-		
 		// Add questions to screen
 		int col = 0;
 		for (QuinzicalTuple question : this.model.getPracticeQuestions()) {
