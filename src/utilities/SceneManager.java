@@ -32,6 +32,23 @@ public class SceneManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void changeScene(URL resource) {
+		try {
+			Stage window = Main.getPrimaryStage();
+			// Get the width and height of current scene so next scene scales to current size
+			Double width = window.getScene().getWidth();
+			Double height = window.getScene().getHeight();
+			FXMLLoader loader = new FXMLLoader(resource);
+			Parent parent = loader.load();
+			Scene scene = new Scene(parent, width, height);
+			scene.getStylesheets().add(SceneManager.class.getResource("/resources/stylesheet/style.css").toExternalForm());
+			window.setScene(scene);
+			window.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static void changeSceneCustomController(URL resource, Object controller, Event event) {
 		try {

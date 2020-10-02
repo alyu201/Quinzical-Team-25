@@ -46,12 +46,13 @@ public class MainModel {
 	private StringProperty name = new SimpleStringProperty();
 	private IntegerProperty winnings = new SimpleIntegerProperty();
 	private GameType currentGameType;
+	private boolean allCompleted;
 	//private GameState currentGameState;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
 			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<String> categories, Leaderboard leaderboard,
 			QuinzicalTuple currentQuestion, String currentCategory, Settings settings, StringProperty name,
-			IntegerProperty winnings, GameType currentGameMode) {
+			IntegerProperty winnings, GameType currentGameMode, boolean allCompleted) {
 		super();
 		this.questions = questions;
 		this.gameQuestions = gameQuestions;
@@ -64,6 +65,7 @@ public class MainModel {
 		this.name = name;
 		this.winnings = winnings;
 		this.currentGameType = currentGameMode;
+		this.allCompleted = allCompleted;
 	}
 
 	public static MainModel getMainModel() {
@@ -166,7 +168,15 @@ public class MainModel {
 	public void setCurrentGameType(GameType currentGameType) {
 		this.currentGameType = currentGameType;
 	}
-	
+
+	public boolean getAllCompleted() {
+		return allCompleted;
+	}
+
+	public void setAllCompleted(boolean allCompleted) {
+		this.allCompleted = allCompleted;
+	}
+
 	/*public GameState getCurrentGameState() {
 		return currentGameState;
 	}
@@ -321,6 +331,9 @@ public class MainModel {
 
 		// currentGameType
 		obj.put("currentGameType", this.getCurrentGameType().toString());
+
+		// allCompleted
+		obj.put("allCompleted", this.getAllCompleted());
 		return obj.toJSONString();
 	}
 
@@ -405,8 +418,11 @@ public class MainModel {
 
 			// currentGameMode
 			GameType currentGameType = GameType.valueOf((String) obj.get("currentGameType"));
+			
+			// allCompleted
+			boolean allCompleted = (boolean) obj.get("allCompleted");
 			return new MainModel(questions, practiceQuestions, practiceQuestions, categories, leaderboard, null,
-					currentCategory, settings, name, winnings, currentGameType);
+					currentCategory, settings, name, winnings, currentGameType, allCompleted);
 
 		} catch (ParseException e) {
 			e.printStackTrace();

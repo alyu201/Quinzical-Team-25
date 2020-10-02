@@ -39,6 +39,7 @@ public class StartOverController {
 		this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
+		this.model.setAllCompleted(false);
 		ArrayList<QuinzicalTuple> questionList = this.model.getQuestions();
 		for (QuinzicalTuple question : questionList) {
 			question.setCompleted(false);

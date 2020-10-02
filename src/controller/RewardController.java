@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
 import model.MainModel;
+import model.QuinzicalTuple;
 import model.GameMode.GameType;
 import utilities.SceneManager;
 
@@ -56,6 +60,16 @@ public class RewardController {
 			this.labelAnswer.setText("The correct answer was \"" + this.model.getCurrentQuestion().getAnswers().get(0) + "\"");
 			this.labelCorrect.setText("INCORRECT");
 		}
+		// set allCompleted when all possible questions completed
+		List<Boolean> allCompleted = new ArrayList<Boolean>();
+		for (QuinzicalTuple question : this.model.getQuestions()) {
+			allCompleted.add(question.getCompleted());
+		}
+		if (!allCompleted.contains(false)) {
+			this.model.setAllCompleted(true);
+		} else {
+			this.model.setAllCompleted(false);
+		}
 	}
 
 	@FXML
@@ -75,16 +89,10 @@ public class RewardController {
 
 	@FXML
 	private void onClickButtonContinue(Event e) {
-		// Practice Mode
-		/*if(this.model.getCurrentGameType().equals(GameType.PRACTICEMODULE)) {
-			SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
-		} else {
-			// Play Mode
-			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
-			
-		}*/
-
-		// after added answerView
+		if (this.model.getAllCompleted()) {
+			// change to EndView after fixing it (not done yet)
+			SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+		}
 		SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);			
 	}
 }

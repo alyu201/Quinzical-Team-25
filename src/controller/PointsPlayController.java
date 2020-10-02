@@ -1,17 +1,24 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
+import application.Main;
 import model.QuinzicalTuple;
 import model.GameMode.GameType;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -55,8 +62,19 @@ public class PointsPlayController {
 		this.labelName.textProperty().bind(this.model.getName());
 		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
 
-		// New questions
-		if (this.model.getGameQuestions().size() == 0) {
+		// lists whether game questions are completed
+		List<Boolean> allCompleted = new ArrayList<Boolean>();
+		for (QuinzicalTuple question : this.model.getGameQuestions()) {
+			allCompleted.add(question.getCompleted());
+		}
+		if (!allCompleted.contains(false)) {
+			this.model.setAllCompleted(true);
+		} else {
+			this.model.setAllCompleted(false);
+		}
+		
+		// New questions (no game questions or game questions all completed)
+		if (this.model.getGameQuestions().size() == 0 || !allCompleted.contains(false)) {
 			ArrayList<String> categoriesSet = new ArrayList<String>();
 			Random rand = new Random();
 
@@ -108,9 +126,11 @@ public class PointsPlayController {
 		for (String category : questionCategories) {
 			boolean flag = false;
 			Label label = new Label(category);
+			label.setWrapText(true);
 			label.setPrefWidth(200);
 			label.setStyle("-fx-font-weight: bold; -fx-text-fill: #f2fff3; -fx-font-size: 18px;");
 			label.setAlignment(Pos.CENTER);
+			label.setTextAlignment(TextAlignment.CENTER);
 			this.gridPanePoints.add(label, c, r);
 			r++;
 			ArrayList<QuinzicalTuple> filteredQuestions = new ArrayList<QuinzicalTuple>();
@@ -120,6 +140,7 @@ public class PointsPlayController {
 				}
 			}
 
+			// TODO: if possible make the question not completed at the top or make gameQuestions only those that are not completed
 			// sort questions by worth lowest worth first
 			Collections.sort(filteredQuestions, ((x, y) -> {
 				return Integer.compare(((QuinzicalTuple) x).getWorth(), ((QuinzicalTuple) y).getWorth());
