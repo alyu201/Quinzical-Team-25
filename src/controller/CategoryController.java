@@ -12,9 +12,17 @@ import model.QuinzicalTuple;
 import model.GameMode.GameType;
 import utilities.SceneManager;
 
+/**
+ * Category controller acts as the controller for CategoryView. Category
+ * controller provides a list of categories in the form of a 'carresol' selector
+ * of the available categories for the user to pick from. When the user selects
+ * the category it will me marked on the main model.
+ */
 public class CategoryController {
 
 	private MainModel model;
+
+	// Position of the 'carresol' selector
 	private int position;
 
 	@FXML
@@ -47,6 +55,10 @@ public class CategoryController {
 	@FXML
 	private Button buttonSettings;
 
+	/**
+	 * Initialize the controller and populate the name, winnings and functions of
+	 * user details within the menu
+	 */
 	public void initialize() {
 		this.model = MainModel.getMainModel();
 		if (this.model.getName().getValue() != null) {
@@ -64,6 +76,12 @@ public class CategoryController {
 		this.buttonCategory.setText(this.model.getCategories().get(0));
 	}
 
+	/**
+	 * Continue to the next stage of practicing and display the questions in a new
+	 * view. Save the selected category to main model.
+	 * 
+	 * @param e
+	 */
 	@FXML
 	private void onClickButtonContinue(Event e) {
 		this.model.setCurrentCategory(this.buttonCategory.getText());
@@ -75,9 +93,15 @@ public class CategoryController {
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 
+	/**
+	 * Continue to the next stage of practicing and display the questions in a new
+	 * view. Save the selected category to main model.
+	 * 
+	 * @param e
+	 */
 	@FXML
 	private void onClickButtonCategory(Event e) {
-		// Reset current category and create a question set
+		// Reset current category and create a question set of size five
 		this.model.setCurrentCategory(this.buttonCategory.getText());
 		this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
 		SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
@@ -98,23 +122,39 @@ public class CategoryController {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
+	/**
+	 * Navigate the carresol on clicking left and right
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonLeft(Event e) {
+		// Wrap around the index of the carresol
 		if (!(this.position <= 0)) {
 			this.position -= 1;
 		} else {
 			this.position = this.model.getCategories().size() - 1;
 		}
+
+		// Update the new selected category
 		this.buttonCategory.setText(this.model.getCategories().get(position));
 	}
 
+	/**
+	 * Navigate the carresol on clicking left and right
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonRight(Event e) {
+		// Wrap around the index of the carresol
 		if (!(this.position >= this.model.getCategories().size() - 1)) {
 			this.position += 1;
 		} else {
 			this.position = 0;
 		}
+
+		// Update the new selected category
 		this.buttonCategory.setText(this.model.getCategories().get(position));
 	}
 
