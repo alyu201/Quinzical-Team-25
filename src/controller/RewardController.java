@@ -41,35 +41,32 @@ public class RewardController {
 
 	@FXML
 	private Button buttonContinue;
-	
+
 	@FXML
 	private Button buttonSettings;
 
 	public void initialize() {
+		System.out.println("hellllllooo");
 		this.model = model.getMainModel();
-		if(!(this.model.getName().getValue() == null)) {
+		if (!(this.model.getName().getValue() == null)) {
 			this.labelName.textProperty().bind(this.model.getName());
-			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+				this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
+			} else {
+				this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
+			}
 			userDetails.setVisible(true);
 		} else {
 			userDetails.setVisible(false);
 		}
 		this.labelAnswer.setText(this.model.getCurrentQuestion().getAnswers().get(0));
 		this.labelQuestionWinnings.setText("" + this.model.getCurrentQuestion().getWorth());
-		if(!this.model.getCurrentQuestion().getCorrectlyAnswered()) {
-			this.labelAnswer.setText("The correct answer was \"" + this.model.getCurrentQuestion().getAnswers().get(0) + "\"");
+		if (!this.model.getCurrentQuestion().getCorrectlyAnswered()) {
+			this.labelAnswer
+					.setText("The correct answer was \"" + this.model.getCurrentQuestion().getAnswers().get(0) + "\"");
 			this.labelCorrect.setText("INCORRECT");
 		}
-		// set allCompleted when all possible questions completed
-		List<Boolean> allCompleted = new ArrayList<Boolean>();
-		for (QuinzicalTuple question : this.model.getQuestions()) {
-			allCompleted.add(question.getCompleted());
-		}
-		if (!allCompleted.contains(false)) {
-			this.model.setAllCompleted(true);
-		} else {
-			this.model.setAllCompleted(false);
-		}
+
 	}
 
 	@FXML
@@ -89,10 +86,10 @@ public class RewardController {
 
 	@FXML
 	private void onClickButtonContinue(Event e) {
-		if (this.model.getAllCompleted()) {
-			// change to EndView after fixing it (not done yet)
-			SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
+		} else {
+			SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
 		}
-		SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);			
 	}
 }

@@ -35,13 +35,15 @@ public class ResetController {
 	@FXML
 	private void onClickButtonYes(Event e) {
 		this.model.setName(null);
-		this.model.setWinnings(0);
+		this.model.setGameWinnings(0);
+		this.model.setPracticeWinnings(0);
 		this.model.setCurrentQuestion(null);
 		this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setLeaderboard(new Leaderboard(new HashMap<String, Integer>()));
-		this.model.setAllCompleted(false);
+		this.model.setAllCompletedGame(false);
+		this.model.setAllCompletedPractice(false);
 		ArrayList<QuinzicalTuple> questionList = this.model.getQuestions();
 		for (QuinzicalTuple question : questionList) {
 			question.setCompleted(false);

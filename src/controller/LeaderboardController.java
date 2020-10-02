@@ -23,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import model.Leaderboard;
 import model.MainModel;
+import model.GameMode.GameType;
 import utilities.SceneManager;
 
 public class LeaderboardController {
@@ -57,9 +58,13 @@ public class LeaderboardController {
 
 	public void initialize() {
 		this.model = model.getMainModel();
-		if(this.model.getName().getValue() != null) {
+		if (this.model.getName().getValue() != null) {
 			this.labelName.textProperty().bind(this.model.getName());
-			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+				this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
+			} else {
+				this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
+			}
 			this.userDetails.setVisible(true);
 		} else {
 			this.userDetails.setVisible(false);
@@ -69,10 +74,10 @@ public class LeaderboardController {
 		ObservableList<String> userRank = FXCollections.observableArrayList();
 		ObservableList<String> userName = FXCollections.observableArrayList();
 		ObservableList<String> userScore = FXCollections.observableArrayList();
-		HashMap<String,Integer> map = this.model.getLeaderboard().getMap();
+		HashMap<String, Integer> map = this.model.getLeaderboard().getMap();
 		List<String> keys = new ArrayList<String>(map.keySet());
 		for (int i = 0; i < keys.size(); i++) {
-			userRank.add(Integer.toString(i+1));
+			userRank.add(Integer.toString(i + 1));
 			userName.add(keys.get(i));
 			userScore.add("$" + map.get(keys.get(i)).toString());
 		}

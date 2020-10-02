@@ -79,13 +79,7 @@ public class QuestionController {
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
-		if (this.model.getName().getValue() != null) {
-			this.labelName.textProperty().bind(this.model.getName());
-			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
-			userDetails.setVisible(true);
-		} else {
-			userDetails.setVisible(false);
-		}
+
 
 		// creates the shuffled indices for hints
 		hintIndices = new Integer[this.model.getCurrentQuestion().getAnswers().get(0).length()];
@@ -100,10 +94,25 @@ public class QuestionController {
 		this.labelHint.setText(hint);
 		this.labelQuestion.setText(this.model.getCurrentQuestion().getQuestion());
 		this.labelQuestion.setWrapText(true);
+
+		// Set name
+		if (this.model.getName().getValue() != null) {
+			this.labelName.textProperty().bind(this.model.getName());
+			userDetails.setVisible(true);
+		} else {
+			userDetails.setVisible(false);
+		}
+
+		// Set the question controller to play view type or practice view type
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
 			this.buttonHint.setDisable(true);
 			this.buttonHint.setText("HINTS UNAVAILABLE");
+			this.labelHint.setText("");
+		} else {
+			this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
 		}
+
 		sayQuestion();
 	}
 
@@ -181,7 +190,7 @@ public class QuestionController {
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
 		} else {
-			SceneManager.changeScene(getClass().getResource("/view/AnswerView.fxml"), e);
+			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
 		}
 	}
 
@@ -193,15 +202,14 @@ public class QuestionController {
 			} else {
 				this.model.getCurrentQuestion().setCorrectlyAnswered(false);
 			}
-
-			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
-				SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), ke);
-				if (isAnswerCorrect()) {
-					this.model.addWinnings(this.model.getCurrentQuestion().getWorth());
+			if (isAnswerCorrect()) {
+				if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+					this.model.addGameWinnings(this.model.getCurrentQuestion().getWorth());
+				} else {
+					this.model.addPracticeWinnings(this.model.getCurrentQuestion().getWorth());
 				}
-			} else {
-				SceneManager.changeScene(getClass().getResource("/view/AnswerView.fxml"), ke);
 			}
+			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), ke);
 		}
 	}
 
@@ -212,15 +220,14 @@ public class QuestionController {
 		} else {
 			this.model.getCurrentQuestion().setCorrectlyAnswered(false);
 		}
-
-		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
-			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
-			if (isAnswerCorrect()) {
-				this.model.addWinnings(this.model.getCurrentQuestion().getWorth());
+		if (isAnswerCorrect()) {
+			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+				this.model.addGameWinnings(this.model.getCurrentQuestion().getWorth());
+			} else {
+				this.model.addPracticeWinnings(this.model.getCurrentQuestion().getWorth());
 			}
-		} else {
-			SceneManager.changeScene(getClass().getResource("/view/AnswerView.fxml"), e);
 		}
+		SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
 	}
 
 	@FXML

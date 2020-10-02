@@ -44,17 +44,18 @@ public class MainModel {
 	private String currentCategory;
 	private Settings settings;
 	private StringProperty name = new SimpleStringProperty();
-	private IntegerProperty winnings = new SimpleIntegerProperty();
-	// private IntegerProperty practiceWinnings = new SimpleIntegerProperty();
-	// private IntegerProperty gameWinnings = new SimpleIntegerProperty();
+	private IntegerProperty practiceWinnings = new SimpleIntegerProperty();
+	private IntegerProperty gameWinnings = new SimpleIntegerProperty();
 	private GameType currentGameType;
-	private boolean allCompleted;
+	private boolean allCompletedGame;
+	private boolean allCompletedPractice;
 	// private GameState currentGameState;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
 			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<String> categories, Leaderboard leaderboard,
 			QuinzicalTuple currentQuestion, String currentCategory, Settings settings, StringProperty name,
-			IntegerProperty winnings, GameType currentGameMode, boolean allCompleted) {
+			IntegerProperty gameWinnings, IntegerProperty practiceWinnings, GameType currentGameMode,
+			boolean allCompletedGame, boolean allCompletedPractice) {
 		super();
 		this.questions = questions;
 		this.gameQuestions = gameQuestions;
@@ -65,9 +66,11 @@ public class MainModel {
 		this.currentCategory = currentCategory;
 		this.settings = settings;
 		this.name = name;
-		this.winnings = winnings;
+		this.gameWinnings = gameWinnings;
+		this.practiceWinnings = practiceWinnings;
 		this.currentGameType = currentGameMode;
-		this.allCompleted = allCompleted;
+		this.allCompletedGame = allCompletedGame;
+		this.allCompletedPractice = allCompletedPractice;
 	}
 
 	public static MainModel getMainModel() {
@@ -111,16 +114,28 @@ public class MainModel {
 		this.questions = xs;
 	}
 
-	public IntegerProperty getWinnings() {
-		return this.winnings;
+	public IntegerProperty getGameWinnings() {
+		return this.gameWinnings;
 	}
 
-	public void setWinnings(int w) {
-		this.winnings.set(w);
+	public void setGameWinnings(int w) {
+		this.gameWinnings.set(w);
 	}
 
-	public void addWinnings(int w) {
-		this.winnings.set(winnings.get() + w);
+	public void addGameWinnings(int w) {
+		this.gameWinnings.set(gameWinnings.get() + w);
+	}
+
+	public IntegerProperty getPracticeWinnings() {
+		return this.practiceWinnings;
+	}
+
+	public void setPracticeWinnings(int w) {
+		this.practiceWinnings.set(w);
+	}
+
+	public void addPracticeWinnings(int w) {
+		this.practiceWinnings.set(practiceWinnings.get() + w);
 	}
 
 	public void setCurrentQuestion(QuinzicalTuple q) {
@@ -171,20 +186,21 @@ public class MainModel {
 		this.currentGameType = currentGameType;
 	}
 
-	public boolean getAllCompleted() {
-		return allCompleted;
+	public boolean getAllCompletedGame() {
+		return this.allCompletedGame;
 	}
 
-	public void setAllCompleted(boolean allCompleted) {
-		this.allCompleted = allCompleted;
+	public void setAllCompletedGame(boolean allCompletedGame) {
+		this.allCompletedGame = allCompletedGame;
 	}
 
-	/*
-	 * public GameState getCurrentGameState() { return currentGameState; }
-	 * 
-	 * public void setCurrentGameState(GameState currentGameState) {
-	 * this.currentGameState = currentGameState; }
-	 */
+	public boolean getAllCompletedPractice() {
+		return this.allCompletedPractice;
+	}
+
+	public void setAllCompletedPractice(boolean allCompletedPractice) {
+		this.allCompletedPractice = allCompletedPractice;
+	}
 
 	/**
 	 * Search for a question in the model and mark it completed
@@ -324,8 +340,11 @@ public class MainModel {
 		// name
 		obj.put("name", this.getName().getValue());
 
-		// winnings
-		obj.put("winnings", this.getWinnings().get());
+		// gameWinnings
+		obj.put("gameWinnings", this.gameWinnings.get());
+
+		// practiceWinnings
+		obj.put("practiceWinnings", this.practiceWinnings.get());
 
 		// currentCategory
 		obj.put("currentCategory", this.getCurrentCategory());
@@ -333,8 +352,12 @@ public class MainModel {
 		// currentGameType
 		obj.put("currentGameType", this.getCurrentGameType().toString());
 
-		// allCompleted
-		obj.put("allCompleted", this.getAllCompleted());
+		// allCompletedGame
+		obj.put("allCompletedGame", this.getAllCompletedGame());
+
+		// allCompletedPractice
+		obj.put("allCompletedPractice", this.getAllCompletedPractice());
+
 		return obj.toJSONString();
 	}
 
@@ -398,8 +421,12 @@ public class MainModel {
 			// name
 			StringProperty name = new SimpleStringProperty((String) obj.get("name"));
 
-			// winnings
-			IntegerProperty winnings = new SimpleIntegerProperty(((Long) obj.get("winnings")).intValue());
+			// gameWinnings
+			IntegerProperty gameWinnings = new SimpleIntegerProperty(((Long) obj.get("gameWinnings")).intValue());
+
+			// practiceWinnings
+			IntegerProperty practiceWinnings = new SimpleIntegerProperty(
+					((Long) obj.get("practiceWinnings")).intValue());
 
 			// leaderboard
 			JSONArray JSONleaderboard = (JSONArray) obj.get("leaderboard");
@@ -421,10 +448,15 @@ public class MainModel {
 			// currentGameMode
 			GameType currentGameType = GameType.valueOf((String) obj.get("currentGameType"));
 
-			// allCompleted
-			boolean allCompleted = (boolean) obj.get("allCompleted");
+			// allCompletedGame
+			boolean allCompletedGame = (boolean) obj.get("allCompletedGame");
+
+			// allCompletedPractice
+			boolean allCompletedPractice = (boolean) obj.get("allCompletedPractice");
+
 			return new MainModel(questions, gameQuestions, practiceQuestions, categories, leaderboard, null,
-					currentCategory, settings, name, winnings, currentGameType, allCompleted);
+					currentCategory, settings, name, gameWinnings, practiceWinnings, currentGameType, allCompletedGame,
+					allCompletedPractice);
 
 		} catch (ParseException e) {
 			e.printStackTrace();

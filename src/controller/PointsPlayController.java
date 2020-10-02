@@ -17,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import model.MainModel;
 import utilities.SceneManager;
 
@@ -50,9 +49,12 @@ public class PointsPlayController {
 	public void initialize() {
 		this.model = model.getMainModel();
 		this.labelName.textProperty().bind(this.model.getName());
-		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
+		} else {
+			this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
+		}
 
-		
 		// New questions (no game questions or game questions all completed)
 		if (this.model.getGameQuestions().size() == 0) {
 			ArrayList<String> categoriesSet = new ArrayList<String>();
@@ -85,7 +87,7 @@ public class PointsPlayController {
 						questionSetCurrentCategory.add(currentQuestion);
 
 						// Loop ticks over to next category an size 5.
-						if(questionSetCurrentCategory.size() == 5) {
+						if (questionSetCurrentCategory.size() == 5) {
 							questionSet.addAll(questionSetCurrentCategory);
 						}
 					}
@@ -95,6 +97,41 @@ public class PointsPlayController {
 				this.model.setGameQuestions(questionSet);
 			}
 		}
+		
+		
+		
+		
+		
+		
+		
+		//TOOOOOODOOOOO
+		// set allCompleted when all possible questions completed
+		ArrayList<Boolean> allCompleted = new ArrayList<Boolean>();
+		for (QuinzicalTuple question : this.model.getGameQuestions()) {
+			allCompleted.add(question.getCompleted());
+		}
+
+		
+		
+		for(boolean thing : allCompleted) {
+			System.out.println(thing);
+		}
+
+		if (!allCompleted.contains(false)) {
+			this.model.setAllCompletedGame(true);
+			System.out.println("all completed!!!");
+			//SceneManager.changeScene(getClass().getResource("/view/EndView.fxml"));
+		} else {
+			this.model.setAllCompletedPractice(false);
+		}
+
+		//TOOOOOODOOOOO
+		
+		
+		
+		
+		
+		
 
 		// Fetch the names of the question cateogories
 		ArrayList<String> questionCategories = new ArrayList<String>();

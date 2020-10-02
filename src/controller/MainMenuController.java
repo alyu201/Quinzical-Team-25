@@ -66,7 +66,11 @@ public class MainMenuController {
 		this.model = model.getMainModel();
 		if (this.model.getName().getValue() != null) {
 			this.labelName.textProperty().bind(this.model.getName());
-			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			if(this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+				this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
+			} else {
+				this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
+			}
 			this.userDetails.setVisible(true);
 		} else {
 			this.userDetails.setVisible(false);

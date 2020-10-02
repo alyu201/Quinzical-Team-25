@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.Random;
 
+import application.Main;
 import javafx.beans.binding.Bindings;
 import model.QuinzicalTuple;
 import model.GameMode.GameType;
@@ -16,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.MainModel;
 import utilities.SceneManager;
 
@@ -28,37 +30,45 @@ public class PointsPracticeController {
 
 	@FXML
 	private Button buttonInfo;
-	
+
 	@FXML
 	private Button buttonEnter;
-	
+
 	@FXML
 	private Label labelName;
 
 	@FXML
 	private Label labelWinnings;
-	
+
 	@FXML
 	private HBox userDetails;
 
 	@FXML
 	private Label labelCategory;
-	
+
 	@FXML
 	private Button buttonSettings;
 
+	private Event event;
+	
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
-		if(this.model.getName().getValue() != null) {
+		if (this.model.getName().getValue() != null)
+
+		{
 			this.labelName.textProperty().bind(this.model.getName());
-			this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
+			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+				this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
+			} else {
+				this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
+			}
 			this.labelCategory.setText(this.model.getCurrentCategory());
 			userDetails.setVisible(true);
 		} else {
 			userDetails.setVisible(false);
 		}
-		
+
 		// There is no existing practice question set yet
 		if (!(this.model.getPracticeQuestions().size() == 0)) {
 
@@ -103,6 +113,42 @@ public class PointsPracticeController {
 			this.model.setPracticeQuestions(questionSet);
 
 		}
+		
+		
+		
+		
+
+
+
+		//TOOOOOODOOOOO
+		// set allCompleted when all possible questions completed
+		ArrayList<Boolean> allCompleted = new ArrayList<Boolean>();
+		for (QuinzicalTuple question : this.model.getPracticeQuestions()) {
+			allCompleted.add(question.getCompleted());
+		}
+
+		
+		
+		for(boolean thing : allCompleted) {
+			System.out.println(thing);
+		}
+
+		if (!allCompleted.contains(false)) {
+			this.model.setAllCompletedPractice(true);
+			System.out.println("all completed!!!");
+			//SceneManager.changeScene(getClass().getResource("/view/EndView.fxml"));
+		} else {
+			this.model.setAllCompletedPractice(false);
+		}
+
+		//TOOOOOODOOOOO
+		
+		
+		
+		
+		
+		
+		
 		// Add questions to screen
 		int col = 0;
 		for (QuinzicalTuple question : this.model.getPracticeQuestions()) {

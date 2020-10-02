@@ -46,4 +46,10 @@ public class Main extends Application {
 	public static Stage getPrimaryStage() {
 		return primary;
 	}
+
+	public static void setPrimary(Stage primary) {
+		Main.primary = primary;
+	}
+	
+	
 }
