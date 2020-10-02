@@ -45,9 +45,11 @@ public class MainModel {
 	private Settings settings;
 	private StringProperty name = new SimpleStringProperty();
 	private IntegerProperty winnings = new SimpleIntegerProperty();
+	// private IntegerProperty practiceWinnings = new SimpleIntegerProperty();
+	// private IntegerProperty gameWinnings = new SimpleIntegerProperty();
 	private GameType currentGameType;
 	private boolean allCompleted;
-	//private GameState currentGameState;
+	// private GameState currentGameState;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
 			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<String> categories, Leaderboard leaderboard,
@@ -177,13 +179,12 @@ public class MainModel {
 		this.allCompleted = allCompleted;
 	}
 
-	/*public GameState getCurrentGameState() {
-		return currentGameState;
-	}
-
-	public void setCurrentGameState(GameState currentGameState) {
-		this.currentGameState = currentGameState;
-	}*/
+	/*
+	 * public GameState getCurrentGameState() { return currentGameState; }
+	 * 
+	 * public void setCurrentGameState(GameState currentGameState) {
+	 * this.currentGameState = currentGameState; }
+	 */
 
 	/**
 	 * Search for a question in the model and mark it completed
@@ -337,6 +338,7 @@ public class MainModel {
 		return obj.toJSONString();
 	}
 
+	@SuppressWarnings("unchecked")
 	public static MainModel fromJSONString(String xs) {
 		try {
 			JSONParser parser = new JSONParser();
@@ -394,7 +396,7 @@ public class MainModel {
 			});
 
 			// name
-			StringProperty name = new SimpleStringProperty((String)obj.get("name"));
+			StringProperty name = new SimpleStringProperty((String) obj.get("name"));
 
 			// winnings
 			IntegerProperty winnings = new SimpleIntegerProperty(((Long) obj.get("winnings")).intValue());
@@ -418,10 +420,10 @@ public class MainModel {
 
 			// currentGameMode
 			GameType currentGameType = GameType.valueOf((String) obj.get("currentGameType"));
-			
+
 			// allCompleted
 			boolean allCompleted = (boolean) obj.get("allCompleted");
-			return new MainModel(questions, practiceQuestions, practiceQuestions, categories, leaderboard, null,
+			return new MainModel(questions, gameQuestions, practiceQuestions, categories, leaderboard, null,
 					currentCategory, settings, name, winnings, currentGameType, allCompleted);
 
 		} catch (ParseException e) {

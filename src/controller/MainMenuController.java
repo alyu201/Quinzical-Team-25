@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.GameMode.GameType;
 import model.MainModel;
+import model.QuinzicalTuple;
 import model.GameMode.GameType;
 import utilities.SceneManager;
 

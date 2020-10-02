@@ -1,33 +1,23 @@
 package controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import application.Main;
 import model.QuinzicalTuple;
 import model.GameMode.GameType;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import model.MainModel;
 import utilities.SceneManager;
 
@@ -55,26 +45,16 @@ public class PointsPlayController {
 
 	@FXML
 	private Button buttonSettings;
-	
+
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
 		this.labelName.textProperty().bind(this.model.getName());
 		this.labelWinnings.textProperty().bind(this.model.getWinnings().asString());
 
-		// lists whether game questions are completed
-		List<Boolean> allCompleted = new ArrayList<Boolean>();
-		for (QuinzicalTuple question : this.model.getGameQuestions()) {
-			allCompleted.add(question.getCompleted());
-		}
-		if (!allCompleted.contains(false)) {
-			this.model.setAllCompleted(true);
-		} else {
-			this.model.setAllCompleted(false);
-		}
 		
 		// New questions (no game questions or game questions all completed)
-		if (this.model.getGameQuestions().size() == 0 || !allCompleted.contains(false)) {
+		if (this.model.getGameQuestions().size() == 0) {
 			ArrayList<String> categoriesSet = new ArrayList<String>();
 			Random rand = new Random();
 
@@ -97,15 +77,18 @@ public class PointsPlayController {
 					}
 				}
 
-				int i = 0;
-				while (i < 5) {
+				while (questionSetCurrentCategory.size() < 5) {
 					int nextRandBounded = Math.abs(rand.nextInt() % (filteredQuestions.size() - 1));
 					QuinzicalTuple currentQuestion = filteredQuestions.get(nextRandBounded);
 					if (!questionSetCurrentCategory.contains(currentQuestion)) {
+						// Size increases by one (1) here.
 						questionSetCurrentCategory.add(currentQuestion);
-						++i;
+
+						// Loop ticks over to next category an size 5.
+						if(questionSetCurrentCategory.size() == 5) {
+							questionSet.addAll(questionSetCurrentCategory);
+						}
 					}
-					questionSet.addAll(questionSetCurrentCategory);
 				}
 
 				// Finally add those questions
@@ -113,11 +96,18 @@ public class PointsPlayController {
 			}
 		}
 
+		// Fetch the names of the question cateogories
 		ArrayList<String> questionCategories = new ArrayList<String>();
 		for (QuinzicalTuple question : this.model.getGameQuestions()) {
 			if (!questionCategories.contains(question.getCategory())) {
 				questionCategories.add(question.getCategory());
 			}
+		}
+
+		for (QuinzicalTuple question : this.model.getGameQuestions()) {
+			System.out.println(question.toString());
+			System.out.println(this.model.getGameQuestions().size());
+
 		}
 
 		this.gridPanePoints.setAlignment(Pos.CENTER);
@@ -140,7 +130,8 @@ public class PointsPlayController {
 				}
 			}
 
-			// TODO: if possible make the question not completed at the top or make gameQuestions only those that are not completed
+			// TODO: if possible make the question not completed at the top or make
+			// gameQuestions only those that are not completed
 			// sort questions by worth lowest worth first
 			Collections.sort(filteredQuestions, ((x, y) -> {
 				return Integer.compare(((QuinzicalTuple) x).getWorth(), ((QuinzicalTuple) y).getWorth());
@@ -156,7 +147,6 @@ public class PointsPlayController {
 					button.setDisable(true);
 				}
 
-
 				button.setOnMouseClicked(new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent me) {
@@ -169,7 +159,7 @@ public class PointsPlayController {
 				button.setPrefSize(200, 100);
 				this.gridPanePoints.add(button, c, r);
 
-				if(question.getCompleted() == false) {
+				if (question.getCompleted() == false) {
 					flag = true;
 				}
 

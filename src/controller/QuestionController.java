@@ -36,7 +36,7 @@ public class QuestionController {
 	private MainModel model;
 	private int counter = 0;
 	private Integer[] hintIndices;
-	
+
 	@FXML
 	private Label labelQuestion;
 
@@ -63,7 +63,7 @@ public class QuestionController {
 
 	@FXML
 	private Button buttonEnter;
-	
+
 	@FXML
 	private Button buttonSettings;
 
@@ -93,13 +93,17 @@ public class QuestionController {
 			hintIndices[i] = i;
 		}
 		Collections.shuffle(Arrays.asList(hintIndices));
-		
+
 		// TODO: Decide how to handle the hints for things with multiple answers
 		String hint = "_ ".repeat(this.model.getCurrentQuestion().getAnswers().get(0).length() - 1);
 		hint += "_";
 		this.labelHint.setText(hint);
 		this.labelQuestion.setText(this.model.getCurrentQuestion().getQuestion());
 		this.labelQuestion.setWrapText(true);
+		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			this.buttonHint.setDisable(true);
+			this.buttonHint.setText("HINTS UNAVAILABLE");
+		}
 		sayQuestion();
 	}
 
@@ -116,8 +120,8 @@ public class QuestionController {
 					BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
 					// TODO: Voice volume
-					stdin.write("(Parameter.set 'Duration_Stretch " + (new Double(model.getSettings().getSpeed()) / 100)
-							+ ")");
+					stdin.write("(Parameter.set 'Duration_Stretch "
+							+ (1.0 - (new Double(model.getSettings().getSpeed()) / 100)) + ")");
 					stdin.write("(SayText \"" + model.getCurrentQuestion().getQuestion() + "\")");
 					stdin.flush();
 
@@ -142,12 +146,6 @@ public class QuestionController {
 	}
 
 	@FXML
-	private void onClickButtonBack(Event e) {
-		model.toJSONFile();
-		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
-	}
-
-	@FXML
 	private void onClickLabelName(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
@@ -165,7 +163,7 @@ public class QuestionController {
 			String currentHint = this.labelHint.getText();
 			StringBuilder newHint = new StringBuilder(currentHint);
 			int nextRand = hintIndices[counter];
-			int hintIndex = nextRand*2;
+			int hintIndex = nextRand * 2;
 			newHint.setCharAt(hintIndex, this.model.getCurrentQuestion().getAnswers().get(0).charAt(nextRand));
 			this.labelHint.setText(newHint.toString());
 			counter += 1;
@@ -179,10 +177,10 @@ public class QuestionController {
 
 	@FXML
 	private void onClickButtonDontKnow(Event e) {
+		this.model.getCurrentQuestion().setCorrectlyAnswered(false);
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
 		} else {
-			this.model.getCurrentQuestion().setCorrectlyAnswered(false);
 			SceneManager.changeScene(getClass().getResource("/view/AnswerView.fxml"), e);
 		}
 	}
