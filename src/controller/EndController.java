@@ -12,6 +12,16 @@ import model.MainModel;
 import model.QuinzicalTuple;
 import utilities.SceneManager;
 
+/**
+ * Endcontroller acts as the controller for EndView. EndController handles the
+ * case in which the user has answered all the questions in their question set.
+ * It displays a total winnings of the user, adds the user's score to the
+ * leaderboard and gives the user the option of either 'starting over' which
+ * preserves their name but resets their score and question set, or continuing
+ * in their current state. If the user decides to continue in their current
+ * state they will be softlocked out of the game mode until they either 'start
+ * over' or 'reset'.
+ */
 public class EndController {
 
 	private MainModel model;
@@ -43,6 +53,11 @@ public class EndController {
 	@FXML
 	private Button buttonContinue;
 
+	/**
+	 * Initialize the controller and populate the name, winnings and functions of
+	 * user details within the menu. Does not add the score to the leaderboard if
+	 * the user is in practice mode.
+	 */
 	public void initialize() {
 		this.model = model.getMainModel();
 
@@ -83,11 +98,22 @@ public class EndController {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
+	/**
+	 * Continue to MainModelView. Does not 'start over' the users state
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonContinue(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 
+	/**
+	 * Continue to MainModelView. Gives the user score and question set a reset. The
+	 * rest of the model is preserved.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonStartOver(Event e) {
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {

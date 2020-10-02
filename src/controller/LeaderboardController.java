@@ -16,20 +16,28 @@ import model.MainModel;
 import model.GameMode.GameType;
 import utilities.SceneManager;
 
+/**
+ * LeaderboardController is the controller for LeaderboardView.
+ * LeaderboardController handles and orders a set of leaderboard values for
+ * completed games. LeaderboardController orders the values in the leaderboard
+ * by maximum score first.
+ * 
+ */
 public class LeaderboardController {
 
 	private MainModel model;
+
+	// Rank of score
 	@FXML
 	ListView<String> rankList;
 
+	// Name of score holder
 	@FXML
 	ListView<String> nameList;
 
+	// Score a name has achieved
 	@FXML
 	ListView<String> scoreList;
-
-	@FXML
-	ListView<String> testList;
 
 	@FXML
 	private Label labelName;
@@ -46,6 +54,10 @@ public class LeaderboardController {
 	@FXML
 	private Button buttonSettings;
 
+	/**
+	 * Initialize the controller and populate the name, winnings and functions of
+	 * user details within the menu.
+	 */
 	public void initialize() {
 		this.model = model.getMainModel();
 		if (this.model.getName().getValue() != null) {

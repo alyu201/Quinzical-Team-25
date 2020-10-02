@@ -13,7 +13,7 @@ import model.GameMode.GameType;
 import utilities.SceneManager;
 
 /**
- * Category controller acts as the controller for CategoryView. Category
+ * Categorycontroller acts as the controller for CategoryView. Category
  * controller provides a list of categories in the form of a 'carresol' selector
  * of the available categories for the user to pick from. When the user selects
  * the category it will me marked on the main model.
@@ -57,7 +57,7 @@ public class CategoryController {
 
 	/**
 	 * Initialize the controller and populate the name, winnings and functions of
-	 * user details within the menu
+	 * user details within the menu.
 	 */
 	public void initialize() {
 		this.model = MainModel.getMainModel();
@@ -123,7 +123,7 @@ public class CategoryController {
 	}
 
 	/**
-	 * Navigate the carresol on clicking left and right
+	 * Navigate the carresol on clicking left and right.
 	 * 
 	 * @param e Event that triggered this function
 	 */
@@ -141,7 +141,7 @@ public class CategoryController {
 	}
 
 	/**
-	 * Navigate the carresol on clicking left and right
+	 * Navigate the carresol on clicking left and right.
 	 * 
 	 * @param e Event that triggered this function
 	 */

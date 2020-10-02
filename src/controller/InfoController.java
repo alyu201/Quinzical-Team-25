@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * Controller for MainView. Displays a title, grid of buttons containing each
+ * Controller for MainView. Displays a small, grid of buttons containing each
  * category question and the users total winnings.
  */
 public class InfoController {
