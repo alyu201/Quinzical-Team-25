@@ -29,4 +29,8 @@ public class Leaderboard {
 		this.map = leaderboard;
 	}
 
+	public void addToLeaderboard(String name, int winnings) {
+		this.map.put(name, winnings);
+	}
+
 }

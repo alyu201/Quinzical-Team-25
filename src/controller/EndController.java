@@ -48,13 +48,16 @@ public class EndController {
 		this.model = model.getMainModel();
 
 		// Add to leaderboard
-		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+		if(this.model.isAddedToLeaderboard()) {
+			this.labelBiline.setText("SCORE HAS ALREADY BEEN ADDED TO LEADERBOARD, YOU CAN PRESS \'START OVER\' TO PLAY AGAIN");
 		}
-		else {
+		else if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			this.model.getLeaderboard().addToLeaderboard(this.model.getName().get(), this.model.getGameWinnings().get());
+			this.model.setAddedToLeaderboard(true);
+		} else {
 			this.labelBiline.setText("DUE TO PRACTICE MODE SCORE HAS NOT BEEN ADDED TO THE LEADERBOARD");
-
 		}
-		
+
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 			this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
 			this.labelWinningsBig.textProperty().bind(this.model.getGameWinnings().asString());
@@ -62,6 +65,7 @@ public class EndController {
 			this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
 			this.labelWinningsBig.textProperty().bind(this.model.getPracticeWinnings().asString());
 		}
+		this.labelName.textProperty().bind(this.model.getName());
 	}
 
 	@FXML
@@ -95,7 +99,14 @@ public class EndController {
 			this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
 			this.model.setAllCompletedPractice(false);
 		}
+
+		ArrayList<QuinzicalTuple> questionList = this.model.getQuestions();
+		for (QuinzicalTuple question : questionList) {
+			question.setCompleted(false);
+		}
+
 		this.model.setCurrentQuestion(null);
+		this.model.setAddedToLeaderboard(false);
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 }

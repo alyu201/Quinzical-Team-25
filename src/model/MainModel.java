@@ -49,13 +49,14 @@ public class MainModel {
 	private GameType currentGameType;
 	private boolean allCompletedGame;
 	private boolean allCompletedPractice;
+	private boolean addedToLeaderboard;
 	// private GameState currentGameState;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
 			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<String> categories, Leaderboard leaderboard,
 			QuinzicalTuple currentQuestion, String currentCategory, Settings settings, StringProperty name,
 			IntegerProperty gameWinnings, IntegerProperty practiceWinnings, GameType currentGameMode,
-			boolean allCompletedGame, boolean allCompletedPractice) {
+			boolean allCompletedGame, boolean allCompletedPractice, boolean addedtoLeaderboard) {
 		super();
 		this.questions = questions;
 		this.gameQuestions = gameQuestions;
@@ -71,6 +72,7 @@ public class MainModel {
 		this.currentGameType = currentGameMode;
 		this.allCompletedGame = allCompletedGame;
 		this.allCompletedPractice = allCompletedPractice;
+		this.addedToLeaderboard= addedtoLeaderboard;
 	}
 
 	public static MainModel getMainModel() {
@@ -200,6 +202,14 @@ public class MainModel {
 
 	public void setAllCompletedPractice(boolean allCompletedPractice) {
 		this.allCompletedPractice = allCompletedPractice;
+	}
+
+	public boolean isAddedToLeaderboard() {
+		return addedToLeaderboard;
+	}
+
+	public void setAddedToLeaderboard(boolean addedToLeaderboard) {
+		this.addedToLeaderboard = addedToLeaderboard;
 	}
 
 	/**
@@ -358,6 +368,9 @@ public class MainModel {
 		// allCompletedPractice
 		obj.put("allCompletedPractice", this.getAllCompletedPractice());
 
+		// addedToLeaderboard 
+		obj.put("addedToLeaderboard", this.isAddedToLeaderboard());
+
 		return obj.toJSONString();
 	}
 
@@ -454,9 +467,12 @@ public class MainModel {
 			// allCompletedPractice
 			boolean allCompletedPractice = (boolean) obj.get("allCompletedPractice");
 
+			// addedToLeaderboard 
+			boolean addedToLeaderboard = (boolean) obj.get("addedToLeaderboard");
+
 			return new MainModel(questions, gameQuestions, practiceQuestions, categories, leaderboard, null,
 					currentCategory, settings, name, gameWinnings, practiceWinnings, currentGameType, allCompletedGame,
-					allCompletedPractice);
+					allCompletedPractice, addedToLeaderboard);
 
 		} catch (ParseException e) {
 			e.printStackTrace();

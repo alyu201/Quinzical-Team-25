@@ -44,6 +44,7 @@ public class ResetController {
 		this.model.setLeaderboard(new Leaderboard(new HashMap<String, Integer>()));
 		this.model.setAllCompletedGame(false);
 		this.model.setAllCompletedPractice(false);
+		this.model.setAddedToLeaderboard(false);
 		ArrayList<QuinzicalTuple> questionList = this.model.getQuestions();
 		for (QuinzicalTuple question : questionList) {
 			question.setCompleted(false);

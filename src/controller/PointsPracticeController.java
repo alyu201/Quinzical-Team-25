@@ -54,9 +54,7 @@ public class PointsPracticeController {
 	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
-		if (this.model.getName().getValue() != null)
-
-		{
+		if (this.model.getName().getValue() != null) {
 			this.labelName.textProperty().bind(this.model.getName());
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 				this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
@@ -133,7 +131,6 @@ public class PointsPracticeController {
 				public void handle(MouseEvent me) {
 					model.setCompleted(GameType.PRACTICEMODULE, question);
 					model.setCurrentQuestion(question);
-					System.out.println(model.getCurrentQuestion().toString());
 					model.toJSONFile();
 					SceneManager.changeScene(getClass().getResource("/view/QuestionView.fxml"), me);
 				}

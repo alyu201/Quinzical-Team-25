@@ -46,7 +46,7 @@ public class RewardController {
 	private Button buttonSettings;
 
 	public void initialize() {
-		model = model.getMainModel();
+		this.model = model.getMainModel();
 		if (!(this.model.getName().getValue() == null)) {
 			this.labelName.textProperty().bind(this.model.getName());
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
@@ -86,7 +86,6 @@ public class RewardController {
 	@FXML
 	private void onClickButtonContinue(Event e) {
 
-
 		boolean completeFlag = true;
 		ArrayList<QuinzicalTuple> toIterate = null;
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
@@ -94,28 +93,30 @@ public class RewardController {
 		} else {
 			toIterate = this.model.getPracticeQuestions();
 		}
-		
-		for(QuinzicalTuple question : toIterate) {
-			if(question.getCompleted().equals(false)) {
+
+		for (QuinzicalTuple question : toIterate) {
+			if (question.getCompleted().equals(false)) {
 				completeFlag = false;
 			}
 		}
-		
-		if(completeFlag) {
+
+		if (completeFlag) {
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 				this.model.setAllCompletedGame(true);
 			} else {
-				this.model.setAllCompletedPractice(true);;
+				this.model.setAllCompletedPractice(true);
+				;
 			}
-			
+
 			SceneManager.changeScene(getClass().getResource("/view/EndView.fxml"), e);
 		}
-
-
-		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
-			SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
-		} else {
-			SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
+		else {
+			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+				SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
+			} else {
+				SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
+			}
 		}
+
 	}
 }
