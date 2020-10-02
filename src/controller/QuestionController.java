@@ -63,6 +63,9 @@ public class QuestionController {
 
 	@FXML
 	private Button buttonEnter;
+	
+	@FXML
+	private Button buttonSettings;
 
 	@FXML
 	private Label labelName;
@@ -151,7 +154,7 @@ public class QuestionController {
 
 	@FXML
 	private void onClickButtonSettings(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
+		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
 	@FXML

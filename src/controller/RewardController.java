@@ -37,6 +37,9 @@ public class RewardController {
 
 	@FXML
 	private Button buttonContinue;
+	
+	@FXML
+	private Button buttonSettings;
 
 	public void initialize() {
 		this.model = model.getMainModel();
@@ -62,7 +65,7 @@ public class RewardController {
 
 	@FXML
 	private void onClickButtonSettings(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
+		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
 	@FXML

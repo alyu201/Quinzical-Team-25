@@ -43,6 +43,9 @@ public class PointsPracticeController {
 
 	@FXML
 	private Label labelCategory;
+	
+	@FXML
+	private Button buttonSettings;
 
 	@FXML
 	public void initialize() {
@@ -142,7 +145,7 @@ public class PointsPracticeController {
 
 	@FXML
 	private void onClickButtonSettings(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
+		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
 	@FXML

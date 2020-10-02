@@ -34,12 +34,21 @@ public class NameController {
 	
 	@FXML
 	private HBox userDetails;
+	
+	@FXML
+	private Label labelWarning;
 
 	@FXML
 	private Button buttonContinue;
 	
 	@FXML
 	private Button buttonInfo;
+	
+	@FXML
+	private Button buttonEnter;
+	
+	@FXML
+	private Button buttonSettings;
 
 	public void initialize() {
 		this.model = model.getMainModel();
@@ -64,18 +73,29 @@ public class NameController {
 
 	@FXML
 	private void onClickButtonSettings(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
+		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
 	@FXML
 	private void onClickButtonContinue(Event e) {
 		this.model.toJSONFile();
-		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+		// checks for whitespace names
+		if (this.model.getName().getValue().length() != 0) {
+			SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+		} else {
+			this.labelWarning.setVisible(true);
+		}
+	}
+	
+	@FXML
+	private void onClickButtonEnter(Event e) {
+		this.model.setName(this.textFieldName.getText().trim());
+		this.onClickButtonContinue(e);
 	}
 
 	@FXML
 	private void onInputTextFieldName(KeyEvent ke) {
-		this.model.setName(this.textFieldName.getText());
+		this.model.setName(this.textFieldName.getText().trim());
 		if(ke.getCode().equals(KeyCode.ENTER)) {
 			this.onClickButtonContinue(ke);
 		}

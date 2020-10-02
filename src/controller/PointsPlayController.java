@@ -47,6 +47,9 @@ public class PointsPlayController {
 	private Label labelCategory;
 
 	@FXML
+	private Button buttonSettings;
+	
+	@FXML
 	public void initialize() {
 		this.model = model.getMainModel();
 		this.labelName.textProperty().bind(this.model.getName());
@@ -106,7 +109,7 @@ public class PointsPlayController {
 			boolean flag = false;
 			Label label = new Label(category);
 			label.setPrefWidth(200);
-			label.setStyle("-fx-font-weight: bold; -fx-text-fill: #f2fff3; -fx-font-size: 16px;");
+			label.setStyle("-fx-font-weight: bold; -fx-text-fill: #f2fff3; -fx-font-size: 18px;");
 			label.setAlignment(Pos.CENTER);
 			this.gridPanePoints.add(label, c, r);
 			r++;
@@ -170,7 +173,7 @@ public class PointsPlayController {
 
 	@FXML
 	private void onClickButtonSettings(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
+		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
 	@FXML

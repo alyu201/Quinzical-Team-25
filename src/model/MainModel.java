@@ -46,6 +46,7 @@ public class MainModel {
 	private StringProperty name = new SimpleStringProperty();
 	private IntegerProperty winnings = new SimpleIntegerProperty();
 	private GameType currentGameType;
+	//private GameState currentGameState;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
 			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<String> categories, Leaderboard leaderboard,
@@ -165,6 +166,14 @@ public class MainModel {
 	public void setCurrentGameType(GameType currentGameType) {
 		this.currentGameType = currentGameType;
 	}
+	
+	/*public GameState getCurrentGameState() {
+		return currentGameState;
+	}
+
+	public void setCurrentGameState(GameState currentGameState) {
+		this.currentGameState = currentGameState;
+	}*/
 
 	/**
 	 * Search for a question in the model and mark it completed

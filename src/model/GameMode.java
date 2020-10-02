@@ -5,4 +5,16 @@ public class GameMode {
 		GAMESMODULE,
 		PRACTICEMODULE;
 	}
+	
+	/*public enum GameState {
+		CATEGORY,
+		POINTSPLAY,
+		POINTSPRACTICE,
+		LEADERBOARD,
+		MAINMENU,
+		NAME,
+		QUESTION,
+		REWARD,
+		ANSWER;
+	}*/
 }

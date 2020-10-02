@@ -31,7 +31,7 @@
                         </Button>
                         <StackPane prefHeight="0.0" prefWidth="0.0">
                            <children>
-                              <Button fx:id="buttonSettings" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 100;" textFill="#004a43">
+                              <Button fx:id="buttonSettings" mnemonicParsing="false" onAction="#onClickButtonSettings" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 100;" textFill="#004a43">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -145,13 +145,14 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <StackPane prefHeight="150.0" prefWidth="200.0" StackPane.alignment="CENTER">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #daffe3; -fx-opacity: 0.8; -fx-blend-mode: src_over;" />
+            <StackPane alignment="TOP_CENTER" prefHeight="150.0" prefWidth="200.0" StackPane.alignment="CENTER">
                <children>
-                  <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" style="-fx-background-color: #bff2cd; -fx-opacity: 0.7;">
-                     <children>
-                        <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" style="-fx-background-color: #0e6f78; -fx-opacity: 0.7;" AnchorPane.bottomAnchor="510.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children></AnchorPane>
+                  <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" style="-fx-background-color: #0e6f78;" />
                </children>
+               <StackPane.margin>
+                  <Insets top="35.0" />
+               </StackPane.margin>
             </StackPane>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" StackPane.alignment="CENTER">
                <children>
