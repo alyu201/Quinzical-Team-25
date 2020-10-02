@@ -104,7 +104,7 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Label text="RETURN TO MAIN MENU" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label text="RETURN TO CATEGORY PICKER" textAlignment="CENTER" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font></Label>

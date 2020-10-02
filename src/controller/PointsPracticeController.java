@@ -135,7 +135,7 @@ public class PointsPracticeController {
 	@FXML
 	private void onClickButtonBack(Event e) {
 		model.toJSONFile();
-		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+		SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
 	}
 
 	@FXML
