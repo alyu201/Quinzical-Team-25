@@ -10,7 +10,6 @@ import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
 import model.MainModel;
 import model.QuinzicalTuple;
-import model.GameMode.GameType;
 import utilities.SceneManager;
 
 public class EndController {
@@ -48,11 +47,12 @@ public class EndController {
 		this.model = model.getMainModel();
 
 		// Add to leaderboard
-		if(this.model.isAddedToLeaderboard()) {
-			this.labelBiline.setText("SCORE HAS ALREADY BEEN ADDED TO LEADERBOARD, YOU CAN PRESS \'START OVER\' TO PLAY AGAIN");
-		}
-		else if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
-			this.model.getLeaderboard().addToLeaderboard(this.model.getName().get(), this.model.getGameWinnings().get());
+		if (this.model.isAddedToLeaderboard()) {
+			this.labelBiline
+					.setText("SCORE HAS ALREADY BEEN ADDED TO LEADERBOARD, YOU CAN PRESS \'START OVER\' TO PLAY AGAIN");
+		} else if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			this.model.getLeaderboard().addToLeaderboard(this.model.getName().get(),
+					this.model.getGameWinnings().get());
 			this.model.setAddedToLeaderboard(true);
 		} else {
 			this.labelBiline.setText("DUE TO PRACTICE MODE SCORE HAS NOT BEEN ADDED TO THE LEADERBOARD");

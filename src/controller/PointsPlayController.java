@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import model.QuinzicalTuple;
@@ -47,7 +46,7 @@ public class PointsPlayController {
 
 	@FXML
 	public void initialize() {
-		this.model = model.getMainModel();
+		this.model = MainModel.getMainModel();
 		this.labelName.textProperty().bind(this.model.getName());
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 			this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());

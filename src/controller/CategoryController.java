@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import model.MainModel;
 import model.QuinzicalTuple;
 import model.GameMode.GameType;
@@ -23,7 +22,7 @@ public class CategoryController {
 
 	@FXML
 	private Button buttonContinue;
-	
+
 	@FXML
 	private Button buttonInfo;
 
@@ -32,7 +31,7 @@ public class CategoryController {
 
 	@FXML
 	private Label labelWinnings;
-	
+
 	@FXML
 	private HBox userDetails;
 
@@ -44,15 +43,15 @@ public class CategoryController {
 
 	@FXML
 	private Button buttonCategory;
-	
+
 	@FXML
 	private Button buttonSettings;
 
 	public void initialize() {
-		this.model = model.getMainModel();
-		if(this.model.getName().getValue() != null) {
+		this.model = MainModel.getMainModel();
+		if (this.model.getName().getValue() != null) {
 			this.labelName.textProperty().bind(this.model.getName());
-			if(this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 				this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
 			} else {
 				this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
@@ -88,7 +87,7 @@ public class CategoryController {
 	private void onClickButtonSettings(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
-	
+
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);

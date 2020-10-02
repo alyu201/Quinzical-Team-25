@@ -7,11 +7,9 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.MainModel;
-import utilities.SceneManager;
 
 public class ResetConfirmController {
 
@@ -20,7 +18,7 @@ public class ResetConfirmController {
 	private Button buttonOk;
 
 	public void initialize() {
-		this.model = model.getMainModel();
+		this.model = MainModel.getMainModel();
 	}
 
 	@FXML

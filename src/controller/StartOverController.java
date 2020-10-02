@@ -2,14 +2,12 @@ package controller;
 
 import java.util.ArrayList;
 
-import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.MainModel;
 import model.QuinzicalTuple;
-import utilities.SceneManager;
 
 public class StartOverController {
 
@@ -22,7 +20,7 @@ public class StartOverController {
 	private Button buttonNo;
 
 	public void initialize() {
-		this.model = model.getMainModel();
+		this.model = MainModel.getMainModel();
 
 	}
 

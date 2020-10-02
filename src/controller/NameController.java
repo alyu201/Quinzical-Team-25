@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,30 +31,30 @@ public class NameController {
 
 	@FXML
 	private Label labelWinnings;
-	
+
 	@FXML
 	private HBox userDetails;
-	
+
 	@FXML
 	private Label labelWarning;
 
 	@FXML
 	private Button buttonContinue;
-	
+
 	@FXML
 	private Button buttonInfo;
-	
+
 	@FXML
 	private Button buttonEnter;
-	
+
 	@FXML
 	private Button buttonSettings;
 
 	public void initialize() {
-		this.model = model.getMainModel();
-		if(this.model.getName().getValue() != null) {
+		this.model = MainModel.getMainModel();
+		if (this.model.getName().getValue() != null) {
 			this.labelName.textProperty().bind(this.model.getName());
-			if(this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 				this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
 			} else {
 				this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
@@ -91,7 +90,7 @@ public class NameController {
 			this.labelWarning.setVisible(true);
 		}
 	}
-	
+
 	@FXML
 	private void onClickButtonEnter(Event e) {
 		this.model.setName(this.textFieldName.getText().trim());
@@ -101,7 +100,7 @@ public class NameController {
 	@FXML
 	private void onInputTextFieldName(KeyEvent ke) {
 		this.model.setName(this.textFieldName.getText().trim());
-		if(ke.getCode().equals(KeyCode.ENTER)) {
+		if (ke.getCode().equals(KeyCode.ENTER)) {
 			this.onClickButtonContinue(ke);
 		}
 	}

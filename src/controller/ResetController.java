@@ -3,7 +3,6 @@ package controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,24 +13,24 @@ import model.QuinzicalTuple;
 import utilities.SceneManager;
 
 public class ResetController {
-	
+
 	private MainModel model;
 	@FXML
 	private Button buttonYes;
-	
+
 	@FXML
 	private Button buttonNo;
-	
+
 	public void initialize() {
-		this.model = model.getMainModel();
+		this.model = MainModel.getMainModel();
 	}
-	
+
 	@FXML
 	private void onClickButtonNo(Event e) {
 		Stage stage = (Stage) buttonNo.getScene().getWindow();
 		stage.close();
 	}
-	
+
 	@FXML
 	private void onClickButtonYes(Event e) {
 		this.model.setName(null);
@@ -49,7 +48,7 @@ public class ResetController {
 		for (QuinzicalTuple question : questionList) {
 			question.setCompleted(false);
 		}
-		
+
 		SceneManager.changeScene(getClass().getResource("/view/ResetConfirmView.fxml"), e);
 	}
 }

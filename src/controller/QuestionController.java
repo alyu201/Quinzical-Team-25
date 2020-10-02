@@ -1,33 +1,22 @@
 package controller;
 
-import javafx.event.ActionEvent;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Random;
 
-import javafx.beans.binding.Bindings;
-import model.QuinzicalTuple;
 import model.GameMode.GameType;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import model.MainModel;
 import utilities.SceneManager;
 
@@ -78,8 +67,7 @@ public class QuestionController {
 
 	@FXML
 	public void initialize() {
-		this.model = model.getMainModel();
-
+		this.model = MainModel.getMainModel();
 
 		// creates the shuffled indices for hints
 		hintIndices = new Integer[this.model.getCurrentQuestion().getAnswers().get(0).length()];

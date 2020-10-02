@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.beans.binding.Bindings;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -18,7 +17,7 @@ public class SettingsController {
 
 	@FXML
 	private Button buttoninfo;
-	
+
 	@FXML
 	private Button buttonOk;
 
@@ -45,8 +44,8 @@ public class SettingsController {
 
 	@FXML
 	public void initialize() {
-		this.model = model.getMainModel();
-		
+		this.model = MainModel.getMainModel();
+
 		// Display position of slider and state of labels
 		textVolume.setText("" + model.getSettings().getVolume());
 		textSpeed.setText("" + model.getSettings().getSpeed());

@@ -1,8 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,7 +9,6 @@ import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
 import model.MainModel;
 import model.QuinzicalTuple;
-import model.GameMode.GameType;
 import utilities.SceneManager;
 
 public class RewardController {
@@ -109,8 +106,7 @@ public class RewardController {
 			}
 
 			SceneManager.changeScene(getClass().getResource("/view/EndView.fxml"), e);
-		}
-		else {
+		} else {
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 				SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
 			} else {

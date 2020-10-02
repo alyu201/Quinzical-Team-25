@@ -2,9 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import application.Main;
-import javafx.beans.binding.Bindings;
 import model.QuinzicalTuple;
 import model.GameMode.GameType;
 import javafx.event.Event;
@@ -12,12 +9,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import model.MainModel;
 import utilities.SceneManager;
 
@@ -49,11 +43,9 @@ public class PointsPracticeController {
 	@FXML
 	private Button buttonSettings;
 
-	private Event event;
-
 	@FXML
 	public void initialize() {
-		this.model = model.getMainModel();
+		this.model = MainModel.getMainModel();
 		if (this.model.getName().getValue() != null) {
 			this.labelName.textProperty().bind(this.model.getName());
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
