@@ -179,7 +179,7 @@
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
                         </Button>
-                        <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
+                        <Button disable="true" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
