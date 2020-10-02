@@ -180,7 +180,28 @@ public class QuestionController {
 
 	@FXML
 	private void onPressEnterTextFieldAnswer(KeyEvent ke) {
-		if (ke.getCode().equals(KeyCode.ENTER)) {
+		if (this.textFieldAnswer.getText().trim().length() > 0) {
+			if (ke.getCode().equals(KeyCode.ENTER)) {
+				if (isAnswerCorrect()) {
+					this.model.getCurrentQuestion().setCorrectlyAnswered(true);
+				} else {
+					this.model.getCurrentQuestion().setCorrectlyAnswered(false);
+				}
+				if (isAnswerCorrect()) {
+					if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+						this.model.addGameWinnings(this.model.getCurrentQuestion().getWorth());
+					} else {
+						this.model.addPracticeWinnings(this.model.getCurrentQuestion().getWorth());
+					}
+				}
+				SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), ke);
+			}	
+		}
+	}
+
+	@FXML
+	private void onClickButtonEnter(Event e) {
+		if (this.textFieldAnswer.getText().trim().length() > 0) {
 			if (isAnswerCorrect()) {
 				this.model.getCurrentQuestion().setCorrectlyAnswered(true);
 			} else {
@@ -193,25 +214,8 @@ public class QuestionController {
 					this.model.addPracticeWinnings(this.model.getCurrentQuestion().getWorth());
 				}
 			}
-			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), ke);
+			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);	
 		}
-	}
-
-	@FXML
-	private void onClickButtonEnter(Event e) {
-		if (isAnswerCorrect()) {
-			this.model.getCurrentQuestion().setCorrectlyAnswered(true);
-		} else {
-			this.model.getCurrentQuestion().setCorrectlyAnswered(false);
-		}
-		if (isAnswerCorrect()) {
-			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
-				this.model.addGameWinnings(this.model.getCurrentQuestion().getWorth());
-			} else {
-				this.model.addPracticeWinnings(this.model.getCurrentQuestion().getWorth());
-			}
-		}
-		SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
 	}
 
 	@FXML

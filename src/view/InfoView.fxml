@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #00c3b1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InfoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #00c3b1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InfoController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #074e66;" BorderPane.alignment="CENTER">
          <children>
@@ -30,7 +30,7 @@
             <Insets bottom="10.0" left="30.0" right="30.0" top="20.0" />
          </padding>
          <children>
-            <VBox prefWidth="100.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox prefWidth="100.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="content" text="Quinzical is a fun quiz game letting you learn about New Zealand or just simply test your knowledge about the country.&#10;" textFill="#f9fff2" wrapText="true">
                      <font>
@@ -44,17 +44,17 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="content11" layoutX="10.0" layoutY="325.0" text="Five random clues are given in increasing order by the amount the clue is worth. The player starts with answering the least amount and advances by answering the difficult clue." textFill="#f9fff2" wrapText="true">
+                        <Label fx:id="content11" layoutX="10.0" layoutY="325.0" text="This is the Games Module where five random clues are given for each category in increasing order by the amount the clue is worth. The player starts with answering the least amount and advances by answering clues with higher worth." textAlignment="JUSTIFY" textFill="#f9fff2" wrapText="true">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="content12" layoutX="10.0" layoutY="241.0" text="TRAINING" textFill="#f9fff2" wrapText="true">
+                        <Label fx:id="content12" layoutX="10.0" layoutY="241.0" text="PRACTICE" textFill="#f9fff2" wrapText="true">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="content111" layoutX="10.0" layoutY="262.0" text="Player can choose the topic they wish to practice and the level of difficulty of the clues before attempting the real game." textFill="#f9fff2" wrapText="true">
+                        <Label fx:id="content111" layoutX="10.0" layoutY="262.0" text="Player can choose the topic they wish to practice and the level of difficulty of the clues before attempting the real game in Games Module. In this Practice Module, a winnings will be calculated but does not contribute to the actual game." textAlignment="JUSTIFY" textFill="#f9fff2" wrapText="true">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -64,7 +64,17 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="content11111" layoutX="10.0" layoutY="262.0" text="The leaderboard allows players to view their score alongside other past players and lets them improve their score." textFill="#f9fff2" wrapText="true">
+                        <Label fx:id="content11111" layoutX="10.0" layoutY="262.0" text="The leaderboard allows players to view their score alongside other past players and lets them improve their score." textAlignment="JUSTIFY" textFill="#f9fff2" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="content12111" layoutX="305.0" layoutY="238.0" text="CREATE QUESTIONS (NOT AVAILABLE) " textFill="#f9fff2" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="content111111" layoutX="10.0" layoutY="274.0" text="This option allows players to come up with their own New Zealand trivia questions to test other players." textAlignment="JUSTIFY" textFill="#f9fff2" wrapText="true">
                            <font>
                               <Font size="18.0" />
                            </font>
