@@ -12,6 +12,10 @@ import model.MainModel;
 import model.QuinzicalTuple;
 import utilities.SceneManager;
 
+/**
+ * ResetController acts as the controller for the ResetView. ResetController provides 
+ * the options 'yes' or 'no' on whether the user confirms to reseting all game data
+ */
 public class ResetController {
 
 	private MainModel model;
@@ -21,16 +25,27 @@ public class ResetController {
 	@FXML
 	private Button buttonNo;
 
+	/**
+	 * Initialize the controller and get the main model of the game
+	 */
 	public void initialize() {
 		this.model = MainModel.getMainModel();
 	}
 
+	/**
+	 * Exits the ResetView pop-up window by selecting the 'no' option
+	 * @param e
+	 */
 	@FXML
 	private void onClickButtonNo(Event e) {
 		Stage stage = (Stage) buttonNo.getScene().getWindow();
 		stage.close();
 	}
 
+	/**
+	 * Resets all game data from selecting 'yes' option 
+	 * @param e
+	 */
 	@FXML
 	private void onClickButtonYes(Event e) {
 		this.model.setName(null);

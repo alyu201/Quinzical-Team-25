@@ -11,16 +11,28 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.MainModel;
 
+/**
+ * ResetConfirmController acts as the controller for the ResetConfirmView. ResetConfirmController 
+ * allows the user to confirm the reset was done by selecting the 'ok' option
+ */
 public class ResetConfirmController {
 
 	private MainModel model;
 	@FXML
 	private Button buttonOk;
 
+	/**
+	 * Initialize the controller and get the main model of the game
+	 */
 	public void initialize() {
 		this.model = MainModel.getMainModel();
 	}
 
+	/**
+	 * Exits the ResetConfirm pop-up window by selecting the 'ok' option and reloads the main menu view again 
+	 * to remove the user winning details
+	 * @param e
+	 */
 	@FXML
 	private void onClickButtonOk(Event e) {
 		Stage stage = (Stage) buttonOk.getScene().getWindow();
