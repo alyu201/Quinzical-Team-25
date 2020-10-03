@@ -65,6 +65,9 @@ public class QuinzicalTuple {
 		return answers;
 	}
 
+	/**
+	 * Compares if object given is same as this QuizincalTuple object
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -85,6 +88,10 @@ public class QuinzicalTuple {
 		return true;
 	}
 
+	/**
+	 * Returns the hashcode of this QuinzicalTuple object
+	 * @return result The hashcode of this QuinzicalTuple object
+	 */
 	@Override
 	public int hashCode() {
 		int result = category.hashCode();
@@ -95,6 +102,10 @@ public class QuinzicalTuple {
 		return result;
 	}
 
+	/**
+	 * Returns the string of the data stored in QuinzicalTuple
+	 * @return monoid The string of the data in QuinzicalTuple
+	 */
 	@Override
 	public String toString() {
 		String monoid = "";
