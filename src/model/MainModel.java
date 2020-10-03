@@ -50,7 +50,6 @@ public class MainModel {
 	private boolean allCompletedGame;
 	private boolean allCompletedPractice;
 	private boolean addedToLeaderboard;
-	// private GameState currentGameState;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
 			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<String> categories, Leaderboard leaderboard,
@@ -75,6 +74,12 @@ public class MainModel {
 		this.addedToLeaderboard= addedtoLeaderboard;
 	}
 
+	/**
+	 * Returns the main model containing the state of all jeopardy tuples and current 
+	 * states of the game. If main model is empty then data will be read from state.json 
+	 * and returns the updated main model.
+	 * @return mainModel The main model with the state of the game
+	 */
 	public static MainModel getMainModel() {
 		if (mainModel == null) {
 			mainModel = fromJSONFile();
@@ -213,9 +218,8 @@ public class MainModel {
 	}
 
 	/**
-	 * Search for a question in the model and mark it completed
-	 * 
-	 * @param question
+	 * Search for a question in the model and mark it as completed
+	 * @param question The question to be searched for
 	 */
 	public void setCompleted(GameType type, QuinzicalTuple question) {
 		if (type.equals(GameType.GAMESMODULE)) {
@@ -242,6 +246,10 @@ public class MainModel {
 		}
 	}
 
+	/**
+	 * Parses the main model variable data to JSON string for writing to JSON files
+	 * @return String The JSON string
+	 */
 	@SuppressWarnings("unchecked")
 	public String toJSONString() {
 		JSONObject obj = new JSONObject();
@@ -374,6 +382,11 @@ public class MainModel {
 		return obj.toJSONString();
 	}
 
+	/**
+	 * Parses the JSON string given to java objects stored in main model
+	 * @param xs The JSON string to be parsed
+	 * @return null
+	 */
 	@SuppressWarnings("unchecked")
 	public static MainModel fromJSONString(String xs) {
 		try {
@@ -480,6 +493,9 @@ public class MainModel {
 		return null;
 	}
 
+	/**
+	 * Writes to the JSON file by parsing java objects stored in main model
+	 */
 	public void toJSONFile() {
 		try (FileWriter file = new FileWriter(STATE_FILENAME)) {
 			file.write(this.toJSONString());
@@ -488,6 +504,10 @@ public class MainModel {
 		}
 	}
 
+	/**
+	 * Reads from the JSON file by parsing the JSON strings to java objects stored in main model
+	 * @return null
+	 */
 	public static MainModel fromJSONFile() {
 		JSONParser parser = new JSONParser();
 		try (Reader reader = new FileReader(STATE_FILENAME)) {
