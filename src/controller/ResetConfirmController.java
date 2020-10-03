@@ -12,11 +12,8 @@ import javafx.stage.Stage;
 import model.MainModel;
 
 /**
- * Confirm with the user if they would like to reset the state of the main model
- * for Quinzical.
- * 
- * @author wqsz7xn
- *
+ * ResetConfirmController acts as the controller for the ResetConfirmView. ResetConfirmController 
+ * allows the user to confirm the reset was done by selecting the 'ok' option
  */
 public class ResetConfirmController {
 
@@ -24,14 +21,17 @@ public class ResetConfirmController {
 	@FXML
 	private Button buttonOk;
 
+	/**
+	 * Initialize the controller and get the main model of the game
+	 */
 	public void initialize() {
 		this.model = MainModel.getMainModel();
 	}
 
 	/**
-	 * Reloads the MainView
-	 * 
-	 * @param e Event that triggered this function
+	 * Exits the ResetConfirm pop-up window by selecting the 'ok' option and reloads the main menu view again 
+	 * to remove the user winning details
+	 * @param e
 	 */
 	@FXML
 	private void onClickButtonOk(Event e) {

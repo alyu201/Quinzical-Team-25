@@ -11,6 +11,11 @@ import model.MainModel;
 import model.QuinzicalTuple;
 import utilities.SceneManager;
 
+/**
+ * RewardController acts as a controller for the RewardView. RewardController 
+ * provides the option 'continue' to return to either the PointsPlayView and 
+ * PointsPracticeView depending on the current game type
+ */
 public class RewardController {
 
 	private MainModel model;
@@ -42,6 +47,10 @@ public class RewardController {
 	@FXML
 	private Button buttonSettings;
 
+	/**
+	 * Initializes the controller and populate the name, winnings, question worth and 
+	 * answer on screen.
+	 */
 	public void initialize() {
 		this.model = model.getMainModel();
 		if (!(this.model.getName().getValue() == null)) {
@@ -80,6 +89,12 @@ public class RewardController {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
+	/**
+	 * Checks whether all questions available are completed and changes screen to the corresponding 
+	 * PointsPlayView, PointsPracticeView or EndView depending on game type after
+	 * selecting 'continue' option
+	 * @param e
+	 */
 	@FXML
 	private void onClickButtonContinue(Event e) {
 

@@ -9,6 +9,11 @@ import javafx.stage.Stage;
 import model.MainModel;
 import model.QuinzicalTuple;
 
+/**
+ * StartOverController acts as the controller for the StartOverView. StartOverController 
+ * provides the options 'yes' for resetting all game data except for user name and 'no' 
+ * for exiting the popup window StartOverView.
+ */
 public class StartOverController {
 
 	private MainModel model;
@@ -19,17 +24,28 @@ public class StartOverController {
 	@FXML
 	private Button buttonNo;
 
+	/**
+	 * Initialize the controller and get the main model of the game
+	 */
 	public void initialize() {
 		this.model = MainModel.getMainModel();
 
 	}
 
+	/**
+	 * Exits the StartOverView pop-up window by selecting the 'no' option
+	 * @param e
+	 */
 	@FXML
 	private void onClickButtonNo(Event e) {
 		Stage stage = (Stage) buttonNo.getScene().getWindow();
 		stage.close();
 	}
 
+	/**
+	 * Resets all game data except for user name from selecting 'yes' option 
+	 * @param e
+	 */
 	@FXML
 	private void onClickButtonYes(Event e) {
 		this.model.setGameWinnings(0);

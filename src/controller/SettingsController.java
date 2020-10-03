@@ -11,12 +11,14 @@ import javafx.stage.Stage;
 import model.MainModel;
 import utilities.SceneManager;
 
+/**
+ * SettingsController acts as the controller for SettingsView. SettingsController 
+ * provides the option to choose the desired volume and voice speed and displays them 
+ * to the user as well as storing them in the model
+ */
 public class SettingsController {
 
 	private MainModel model;
-
-	@FXML
-	private Button buttoninfo;
 
 	@FXML
 	private Button buttonOk;
@@ -42,6 +44,10 @@ public class SettingsController {
 	@FXML
 	private HBox userDetails;
 
+	/**
+	 * Initializes the controller and populates the volume and voice speed within the settings 
+	 * pop-up window and stores the state of these values from the game into the main model.
+	 */
 	@FXML
 	public void initialize() {
 		this.model = MainModel.getMainModel();
@@ -65,16 +71,14 @@ public class SettingsController {
 		});
 	}
 
+	/**
+	 * Exits the pop-up settings window by selecting the 'OK' option
+	 * @param e
+	 */
 	@FXML
 	private void onClickButtonOk(Event e) {
 		model.toJSONFile();
 		Stage stage = (Stage) buttonOk.getScene().getWindow();
 		stage.close();
 	}
-
-	@FXML
-	private void onClickButtonInfo(Event e) {
-		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
-	}
-
 }
