@@ -15,6 +15,13 @@ import javafx.scene.layout.HBox;
 import model.MainModel;
 import utilities.SceneManager;
 
+/**
+ * PointsPracticeController is the controller for PointsPracticeView. It is the secondary  
+ * game mode of Quinzical. PointsPracticeController loads an existing
+ * question set if one exists or creates a new set of questions from randomly
+ * selected categories. PointsPlayController displays a grid of questions that
+ * are neatly organized for the user to answer.
+ */
 public class PointsPracticeController {
 
 	private MainModel model;
@@ -43,6 +50,12 @@ public class PointsPracticeController {
 	@FXML
 	private Button buttonSettings;
 
+	/**
+	 * Initialize the controller and populate the name, winnings and functions of
+	 * user details within the menu. If a set of questions has not been generated
+	 * then it will generate a set. Otherwise it loads an existing question set from
+	 * the main model.
+	 */
 	@FXML
 	public void initialize() {
 		this.model = MainModel.getMainModel();

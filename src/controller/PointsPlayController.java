@@ -19,6 +19,13 @@ import javafx.scene.text.TextAlignment;
 import model.MainModel;
 import utilities.SceneManager;
 
+/**
+ * PointsPlayController is the controller for PointsPlayView. It is the main
+ * official game mode of Quinzical. PointsPlayController loads an existing
+ * question set if one exists or creates a new set of questions from randomly
+ * selected categories. PointsPlayController displays a grid of questions that
+ * are neatly organized for the user to answer.
+ */
 public class PointsPlayController {
 
 	private MainModel model;
@@ -44,8 +51,15 @@ public class PointsPlayController {
 	@FXML
 	private Button buttonSettings;
 
+	/**
+	 * Initialize the controller and populate the name, winnings and functions of
+	 * user details within the menu. If a set of questions has not been generated
+	 * then it will generate a set. Otherwise it loads an existing question set from
+	 * the main model.
+	 */
 	@FXML
 	public void initialize() {
+		// Restore and set on screen elements
 		this.model = MainModel.getMainModel();
 		this.labelName.textProperty().bind(this.model.getName());
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
@@ -67,6 +81,7 @@ public class PointsPlayController {
 				}
 			}
 
+			// Create a new question set
 			ArrayList<QuinzicalTuple> questionSet = new ArrayList<QuinzicalTuple>();
 			for (String category : categoriesSet) {
 				ArrayList<QuinzicalTuple> questionSetCurrentCategory = new ArrayList<QuinzicalTuple>();
@@ -105,6 +120,8 @@ public class PointsPlayController {
 			}
 		}
 
+		// Add the questions to the grid. Only mark the lowest unanswered question as a
+		// 'active' question to answer.
 		this.gridPanePoints.setAlignment(Pos.CENTER);
 		int r = 0;
 		int c = 0;
@@ -125,7 +142,6 @@ public class PointsPlayController {
 				}
 			}
 
-			// TODO: if possible make the question not completed at the top or make
 			// gameQuestions only those that are not completed
 			// sort questions by worth lowest worth first
 			Collections.sort(filteredQuestions, ((x, y) -> {

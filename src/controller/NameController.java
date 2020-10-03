@@ -50,6 +50,10 @@ public class NameController {
 	@FXML
 	private Button buttonSettings;
 
+	/**
+	 * Initialize the controller and populate the name, winnings and functions of
+	 * user details within the menu.
+	 */
 	public void initialize() {
 		this.model = MainModel.getMainModel();
 		if (this.model.getName().getValue() != null) {
@@ -80,6 +84,10 @@ public class NameController {
 		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
+	/**
+	 * Save the current name. Return to MainMenuView.
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonContinue(Event e) {
 		this.model.toJSONFile();
@@ -91,12 +99,20 @@ public class NameController {
 		}
 	}
 
+	/**
+	 * Save the current name. Return to MainMenuView.
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonEnter(Event e) {
 		this.model.setName(this.textFieldName.getText().trim());
 		this.onClickButtonContinue(e);
 	}
 
+	/**
+	 * Update the name every time the user types
+	 * @param ke Event that triggered this function
+	 */
 	@FXML
 	private void onInputTextFieldName(KeyEvent ke) {
 		this.model.setName(this.textFieldName.getText().trim());

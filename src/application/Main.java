@@ -14,6 +14,9 @@ public class Main extends Application {
 	private static Stage primary;
 	private static MainModel model = MainModel.getMainModel();
 
+	/**
+	 * Entry point for Quinzical.
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {

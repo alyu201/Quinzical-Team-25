@@ -20,6 +20,11 @@ import javafx.scene.layout.HBox;
 import model.MainModel;
 import utilities.SceneManager;
 
+/**
+ * QuestionController is the controller for QuestionView. It displays the
+ * question that the user has selected, allows for hints in a 'hangman' styled
+ * fashion and allows the user to pass the question.
+ */
 public class QuestionController {
 
 	private MainModel model;
@@ -65,6 +70,10 @@ public class QuestionController {
 	@FXML
 	private HBox userDetails;
 
+	/**
+	 * Initialize the controller and populate the name, winnings and functions of
+	 * user details within the menu. Load the current question into the scene.
+	 */
 	@FXML
 	public void initialize() {
 		this.model = MainModel.getMainModel();
@@ -104,6 +113,10 @@ public class QuestionController {
 		sayQuestion();
 	}
 
+	/**
+	 * Use the program festival to speak the currently selected question. Voice is
+	 * adjusted to the users settings.
+	 */
 	private void sayQuestion() {
 		new Thread() {
 			@Override
@@ -132,6 +145,12 @@ public class QuestionController {
 		}.start();
 	}
 
+	/**
+	 * Check if the currently selected question was correctly answered for the
+	 * currently active question set.
+	 * 
+	 * @return boolean If the question was correctly answered.
+	 */
 	private boolean isAnswerCorrect() {
 		String userAnswer = this.textFieldAnswer.getText();
 		for (String x : this.model.getCurrentQuestion().getAnswers()) {
@@ -152,6 +171,12 @@ public class QuestionController {
 		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
+	/**
+	 * Provide a hint for the user in 'hangman' style. The user is given 3 hints
+	 * maximum.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonHint(Event e) {
 		if (counter < 3) {
@@ -167,6 +192,11 @@ public class QuestionController {
 		}
 	}
 
+	/**
+	 * Repeat the question using festival
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonRepeat(Event e) {
 		sayQuestion();
@@ -178,6 +208,12 @@ public class QuestionController {
 		SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
 	}
 
+	/**
+	 * Check if the question is correctly answered and mark it answered in the main
+	 * model. Add the value of the question to the users winnings
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onPressEnterTextFieldAnswer(KeyEvent ke) {
 		if (this.textFieldAnswer.getText().trim().length() > 0) {
@@ -195,10 +231,16 @@ public class QuestionController {
 					}
 				}
 				SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), ke);
-			}	
+			}
 		}
 	}
 
+	/**
+	 * Check if the question is correctly answered and mark it answered in the main
+	 * model. Add the value of the question to the users winnings
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonEnter(Event e) {
 		if (this.textFieldAnswer.getText().trim().length() > 0) {
@@ -214,7 +256,7 @@ public class QuestionController {
 					this.model.addPracticeWinnings(this.model.getCurrentQuestion().getWorth());
 				}
 			}
-			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);	
+			SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
 		}
 	}
 
