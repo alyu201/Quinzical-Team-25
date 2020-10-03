@@ -11,6 +11,13 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.MainModel;
 
+/**
+ * Confirm with the user if they would like to reset the state of the main model
+ * for Quinzical.
+ * 
+ * @author wqsz7xn
+ *
+ */
 public class ResetConfirmController {
 
 	private MainModel model;
@@ -21,6 +28,11 @@ public class ResetConfirmController {
 		this.model = MainModel.getMainModel();
 	}
 
+	/**
+	 * Reloads the MainView
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonOk(Event e) {
 		Stage stage = (Stage) buttonOk.getScene().getWindow();
