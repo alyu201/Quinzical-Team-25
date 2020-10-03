@@ -27,6 +27,8 @@ public class Main extends Application {
 			// Load in the CSS stylesheet for the button highlights for the current scene
 			scene.getStylesheets().add(getClass().getResource("/resources/stylesheet/style.css").toExternalForm());
 			primary = primaryStage;
+			primaryStage.setMinWidth(1000);
+			primaryStage.setMinHeight(837);
 			primaryStage.setScene(scene);
 
 			// Save on quit

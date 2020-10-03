@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #00c3b1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InfoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #00c3b1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InfoController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #074e66;" BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +32,7 @@
          <children>
             <VBox prefWidth="100.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="content" text="Quinzical is a fun quiz game letting you learn about New Zealand or just simply test your knowledge about the country.&#10;" textFill="#f9fff2" wrapText="true">
+                  <Label fx:id="content" text="Quinzical is a fun quiz game with speech synthesis function to let you learn about New Zealand or just simply test your knowledge about the country!&#10;" textFill="#f9fff2" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -74,7 +74,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="content111111" layoutX="10.0" layoutY="274.0" text="This option allows players to come up with their own New Zealand trivia questions to test other players." textAlignment="JUSTIFY" textFill="#f9fff2" wrapText="true">
+                        <Label fx:id="content111111" layoutX="10.0" layoutY="274.0" text="This option allows players to come up with their own New Zealand trivia questions to test other players or just put your New Zealand knowledge to the test!" textAlignment="JUSTIFY" textFill="#f9fff2" wrapText="true">
                            <font>
                               <Font size="18.0" />
                            </font>
