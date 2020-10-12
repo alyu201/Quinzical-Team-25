@@ -10,6 +10,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.DropShadow;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -43,6 +45,8 @@ public class SceneManager {
 					.add(SceneManager.class.getResource("/resources/stylesheet/style.css").toExternalForm());
 			Stage dialog = new Stage();
 			dialog.setScene(new Scene(root));
+			dialog.initModality(Modality.WINDOW_MODAL);
+			dialog.initOwner(window);
 			dialog.initStyle(StageStyle.TRANSPARENT);
 			// Calculate the center position of the parent Stage
 			double centerXPosition = window.getX() + window.getWidth() / 2d;

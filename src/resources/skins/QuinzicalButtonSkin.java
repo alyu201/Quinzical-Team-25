@@ -2,7 +2,6 @@ package resources.skins;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.skin.ButtonSkin;
-import javafx.scene.text.Font;
 
 public class QuinzicalButtonSkin extends ButtonSkin {
 

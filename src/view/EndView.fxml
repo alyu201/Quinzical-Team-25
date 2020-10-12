@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,29 +15,38 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EndController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1300.0" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EndController">
    <top>
-      <HBox prefHeight="80.0" prefWidth="1200.0" style="-fx-background-color: #00c3b1;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: #f2fff3;" BorderPane.alignment="CENTER">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button fx:id="buttonInfo" mnemonicParsing="false" onAction="#onClickButtonInfo" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#0b2247">
+                        <Button fx:id="buttonInfo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickButtonInfo" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" text="?" textFill="#f2fff3">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="25.0" />
                            </font>
+                           <effect>
+                              <DropShadow color="#00000033" />
+                           </effect>
                         </Button>
                         <StackPane prefHeight="0.0" prefWidth="0.0">
                            <children>
-                              <Button fx:id="buttonSettings" mnemonicParsing="false" onMouseClicked="#onClickButtonSettings" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 100;" textFill="#004a43">
+                              <Button fx:id="buttonSettings" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClickButtonSettings" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" textFill="#f2fff3">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../resources/images/settings-icon.png" />
+                                          <Image url="@../resources/images/settings-icon-hover.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#00000033" />
+                                 </effect>
                               </Button>
                            </children>
                         </StackPane>
@@ -50,13 +61,16 @@
                <children>
                   <HBox fx:id="userDetails" alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label fx:id="labelName" onMouseClicked="#onClickLabelName" text="name" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label fx:id="labelName" onMouseClicked="#onClickLabelName" text="name" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font></Label>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
-                              <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#f2fff3" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0" />
+                              <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0">
+                                 <effect>
+                                    <InnerShadow color="#00000033" />
+                                 </effect></Rectangle>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="\$" textAlignment="CENTER" textFill="#0b2247">
@@ -87,7 +101,7 @@
       </HBox>
    </top>
    <bottom>
-      <HBox prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #00c3b1;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #f2fff3;" BorderPane.alignment="CENTER">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
@@ -102,25 +116,31 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label text="START OVER" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label text="START OVER" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="buttonContinue" mnemonicParsing="false" onMouseClicked="#onClickButtonStartOver" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="⟲" textFill="#0b2247">
+                        <Button fx:id="buttonContinue" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClickButtonStartOver" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" text="⟲" textFill="#f2fff3">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="25.0" />
                            </font>
+                           <effect>
+                              <DropShadow color="#00000033" />
+                           </effect>
                         </Button>
-                        <Label text="MAIN MENU" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label text="MAIN MENU" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="buttonContinue1" mnemonicParsing="false" onMouseClicked="#onClickButtonContinue" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="→" textFill="#0b2247">
+                        <Button fx:id="buttonContinue1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClickButtonContinue" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" text="→" textFill="#f2fff3">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="25.0" />
                            </font>
+                           <effect>
+                              <DropShadow color="#00000033" />
+                           </effect>
                         </Button>
                      </children>
                      <padding>
@@ -136,25 +156,47 @@
       </HBox>
    </bottom>
    <center>
-      <StackPane prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: #daffe3;" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: #f2fff3;" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox>
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <AnchorPane HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="640.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                        <ImageView fitHeight="530.0" fitWidth="500.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/main-bg-left.png" />
+                              <Image url="@../resources/images/waves.png" />
                            </image>
+                           <effect>
+                              <InnerShadow color="#00000033" />
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="600.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                           <image>
+                              <Image url="@../../../../../../../../../../media/sf_Shared/206/Quinzical/revamp-images/main-left.png" />
+                           </image>
+                           <effect>
+                              <DropShadow color="#0000001a" offsetX="-10.0" />
+                           </effect>
                         </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="640.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <ImageView fitHeight="600.0" fitWidth="400.0" pickOnBounds="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/main-bg-right.png" />
+                              <Image url="@../resources/images/waves-2.png" />
                            </image>
+                           <effect>
+                              <InnerShadow color="#00000033" />
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="600.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <image>
+                              <Image url="@../../../../../../../../../../media/sf_Shared/206/Quinzical/revamp-images/main-right.png" />
+                           </image>
+                           <effect>
+                              <DropShadow color="#0000001a" offsetX="10.0" />
+                           </effect>
                         </ImageView>
                      </children>
                   </AnchorPane>
@@ -169,7 +211,7 @@
                   </Label>
                   <Label fx:id="labelBiline" alignment="CENTER" contentDisplay="CENTER" prefWidth="1000.0" text="YOUR SCORE HAS BEEN ADDED TO THE LEADERBOARD" textAlignment="CENTER" textFill="#0b2247" wrapText="true">
                      <font>
-                        <Font size="17.0" />
+                        <Font size="25.0" />
                      </font>
                   </Label>
                   <Label fx:id="labelAnswer" alignment="CENTER" contentDisplay="CENTER" text="YOUR TOTAL WINNINGS ARE:" textAlignment="CENTER" textFill="#0b2247">
@@ -177,14 +219,12 @@
                         <Font size="35.0" />
                      </font>
                   </Label>
-                  <StackPane prefHeight="200.0" prefWidth="640.0">
+                  <StackPane>
                      <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <HBox prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #0e6f78;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <Rectangle arcHeight="110.0" arcWidth="110.0" fill="#f2fff3" height="110.0" stroke="#f2fff3" strokeType="INSIDE" width="450.0" />
+                        <Rectangle arcHeight="110.0" arcWidth="110.0" fill="WHITE" height="110.0" stroke="#f2fff3" strokeType="INSIDE" width="450.0">
+                           <effect>
+                              <InnerShadow color="#00000033" />
+                           </effect></Rectangle>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="\$" textAlignment="CENTER" textFill="#0b2247">
@@ -204,6 +244,9 @@
                </children>
             </VBox>
          </children>
+         <effect>
+            <InnerShadow color="#00000033" />
+         </effect>
       </StackPane>
    </center>
 </BorderPane>

@@ -23,7 +23,7 @@ public class Main extends Application {
 			primaryStage.getIcons()
 					.add(new Image(Main.class.getResourceAsStream("/resources/images/thumb-icon.png")));
 			Parent root = FXMLLoader.load(getClass().getResource("/view/MainMenuView.fxml"));
-			Scene scene = new Scene(root, 1000, 800);
+			Scene scene = new Scene(root, 1300, 800);
 			// Load in the CSS stylesheet for the button highlights for the current scene
 			scene.getStylesheets().add(getClass().getResource("/resources/stylesheet/style.css").toExternalForm());
 			primary = primaryStage;

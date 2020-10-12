@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,29 +15,35 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
    <top>
-      <HBox prefHeight="80.0" prefWidth="1200.0" style="-fx-background-color: #00c3b1;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: #f2fff3;" BorderPane.alignment="CENTER">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 50;" text="?" textFill="#0b2247">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 50;" text="?" textFill="#f2fff3">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="25.0" />
                            </font>
+                           <effect>
+                              <DropShadow color="#00000033" />
+                           </effect>
                         </Button>
                         <StackPane prefHeight="0.0" prefWidth="0.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #daffe3; -fx-background-radius: 100;" textFill="#004a43">
+                              <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" textFill="#004a43">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../resources/images/settings-icon.png" />
+                                          <Image url="@../resources/images/settings-icon-hover.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
+                                 <effect>
+                                    <DropShadow color="#00000033" />
+                                 </effect>
                               </Button>
                            </children>
                         </StackPane>
@@ -50,13 +58,16 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label onMouseClicked="#onClickLabelName" text="username" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label onMouseClicked="#onClickLabelName" text="username" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font></Label>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
-                              <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#f2fff3" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0" />
+                              <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0">
+                                 <effect>
+                                    <InnerShadow color="#00000033" height="20.0" radius="9.5" width="20.0" />
+                                 </effect></Rectangle>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="\$" textAlignment="CENTER" textFill="#0b2247">
@@ -87,7 +98,7 @@
       </HBox>
    </top>
    <bottom>
-      <HBox prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #00c3b1;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #f2fff3;" BorderPane.alignment="CENTER">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
@@ -96,12 +107,15 @@
                         <Insets left="30.0" right="30.0" />
                      </padding>
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="←" textFill="#0b2247">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="←" textFill="#f2fff3">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="25.0" />
                            </font>
+                           <effect>
+                              <DropShadow color="#00000033" />
+                           </effect>
                         </Button>
-                        <Label text="RETURN" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label text="RETURN" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font></Label>
@@ -113,14 +127,17 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label text="RETURN" textAlignment="CENTER" textFill="#f2fff3">
+                        <Label text="RETURN" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font></Label>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #daffe3; -fx-background-radius: 30;" text="→" textFill="#0b2247">
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="→" textFill="#f2fff3">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="25.0" />
                            </font>
+                           <effect>
+                              <DropShadow color="#00000033" />
+                           </effect>
                         </Button>
                      </children>
                      <padding>
@@ -136,25 +153,39 @@
       </HBox>
    </bottom>
    <center>
-      <StackPane prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: #daffe3;" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="600.0" prefWidth="1300.0" style="-fx-background-color: #f2fff3;" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" StackPane.alignment="CENTER_LEFT">
+               <image>
+                  <Image url="@../../../../../../../../../../media/sf_Shared/206/Quinzical/waves.png" />
+               </image>
+               <effect>
+                  <InnerShadow color="#00000033" height="50.0" radius="24.5" width="50.0" />
+               </effect>
+            </ImageView>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="640.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                        <ImageView fitHeight="600.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/main-bg-left.png" />
+                              <Image url="@../../../../../../../../../../media/sf_Shared/206/Quinzical/revamp-images/main-left.png" />
                            </image>
+                           <effect>
+                              <DropShadow color="#0000001a" offsetX="-10.0" />
+                           </effect>
                         </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="640.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <ImageView fitHeight="600.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/main-bg-right.png" />
+                              <Image url="@../../../../../../../../../../media/sf_Shared/206/Quinzical/revamp-images/main-right.png" />
                            </image>
+                           <effect>
+                              <DropShadow color="#0000001a" offsetX="10.0" />
+                           </effect>
                         </ImageView>
                      </children>
                   </AnchorPane>
@@ -162,74 +193,115 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" StackPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="QUINZICAL" textAlignment="CENTER" textFill="#0b2247">
-                     <font>
-                        <Font size="72.0" />
-                     </font>
-                  </Label>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="buttonPlay" mnemonicParsing="false" onAction="#onClickButtonPlay" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="PLAY" textFill="#f2fff3">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Q" textAlignment="CENTER" textFill="#0b2247">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font name="System Italic" size="100.0" />
                            </font>
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                        </Button>
-                        <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="START OVER" textFill="#f2fff3">
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" text="UINZICAL" textAlignment="CENTER" textFill="#0b2247">
                            <font>
-                              <Font name="System Bold Italic" size="16.0" />
+                              <Font size="80.0" />
                            </font>
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                        </Button>
-                        <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="TRAINING" textFill="#f2fff3">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                        </Button>
-                        <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="LEADERBOARD" textFill="#f2fff3">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                        </Button>
-                        <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                        </Button>
-                        <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="RESET" textFill="#f2fff3">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                        </Button>
-                        <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="QUIT" textFill="#f2fff3">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                        </Button>
+                        </Label>
                      </children>
-                  </VBox>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <VBox alignment="CENTER" spacing="20.0">
+                           <children>
+                              <Button fx:id="buttonPlay" mnemonicParsing="false" onAction="#onClickButtonPlay" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="PLAY" textFill="#f2fff3">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <effect>
+                                    <DropShadow color="#00000033" />
+                                 </effect>
+                              </Button>
+                              <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="START OVER" textFill="#f2fff3">
+                                 <font>
+                                    <Font name="System Bold Italic" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <effect>
+                                    <DropShadow color="#00000033" />
+                                 </effect>
+                              </Button>
+                              <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="TRAINING" textFill="#f2fff3">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <effect>
+                                    <DropShadow color="#00000033" />
+                                 </effect>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="20.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="LEADERBOARD" textFill="#f2fff3">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <effect>
+                                    <DropShadow color="#00000033" />
+                                 </effect>
+                              </Button>
+                              <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <effect>
+                                    <DropShadow color="#00000033" />
+                                 </effect>
+                              </Button>
+                              <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="RESET" textFill="#f2fff3">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <effect>
+                                    <DropShadow color="#00000033" />
+                                 </effect>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="QUIT" textFill="#f2fff3">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <effect>
+                        <DropShadow color="#00000033" />
+                     </effect>
+                  </Button>
                </children>
             </VBox>
          </children>
+         <effect>
+            <InnerShadow color="#00000033" />
+         </effect>
       </StackPane>
    </center>
 </BorderPane>
