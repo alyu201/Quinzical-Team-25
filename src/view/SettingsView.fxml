@@ -112,4 +112,7 @@
          </children>
       </AnchorPane>
    </center>
+   <effect>
+      <DropShadow color="#000000cc" />
+   </effect>
 </BorderPane>

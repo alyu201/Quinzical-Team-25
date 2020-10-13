@@ -109,7 +109,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <padding>
-                        <Insets left="30.0" right="30.0" />
+                        <Insets left="150.0" right="30.0" />
                      </padding>
                      <children>
                         <Button fx:id="buttonBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickButtonBack" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" text="←" textFill="#f2fff3">

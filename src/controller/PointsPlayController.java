@@ -130,7 +130,7 @@ public class PointsPlayController {
 			Label label = new Label(category);
 			label.setWrapText(true);
 			label.setPrefWidth(200);
-			label.setStyle("-fx-font-weight: bold; -fx-text-fill: #f2fff3; -fx-font-size: 18px;");
+			label.setStyle("-fx-font-weight: bold; -fx-text-fill: #0b2247; -fx-font-size: 18px;");
 			label.setAlignment(Pos.CENTER);
 			label.setTextAlignment(TextAlignment.CENTER);
 			this.gridPanePoints.add(label, c, r);

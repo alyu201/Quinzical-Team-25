@@ -105,14 +105,14 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #f2fff3;" BorderPane.alignment="CENTER">
          <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
+            <StackPane prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <padding>
-                        <Insets left="30.0" right="30.0" />
+                        <Insets left="150.0" />
                      </padding>
                      <children>
-                        <Button fx:id="buttonReturn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClickButtonReturn" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" text="←" textFill="#f2fff3">
+                        <Button fx:id="buttonReturn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClickButtonReturn" prefHeight="53.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" text="←" textFill="#f2fff3">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
@@ -129,40 +129,28 @@
                   </HBox>
                </children>
             </StackPane>
-            <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Label text="CONTINUE" textAlignment="CENTER" textFill="#0b2247">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="buttonContinue" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClickButtonContinue" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" text="→" textFill="#f2fff3">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                           <effect>
+                              <DropShadow color="#00000033" />
+                           </effect>
+                        </Button>
+                     </children>
                      <padding>
-                        <Insets left="30.0" right="30.0" />
+                        <Insets right="150.0" />
                      </padding>
                   </HBox>
-                  <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0">
-                     <children>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                           <children>
-                              <Label text="CONTINUE" textAlignment="CENTER" textFill="#0b2247">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="buttonContinue" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClickButtonContinue" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" text="→" textFill="#f2fff3">
-                                 <font>
-                                    <Font name="System Bold" size="25.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow color="#00000033" />
-                                 </effect>
-                              </Button>
-                           </children>
-                           <padding>
-                              <Insets left="30.0" right="30.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </StackPane>
                </children>
                <opaqueInsets>
                   <Insets />
