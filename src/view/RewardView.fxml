@@ -159,7 +159,7 @@
                         </ImageView>
                         <ImageView fitHeight="600.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <image>
-                              <Image url="@../../../../../../../../../../media/sf_Shared/206/Quinzical/revamp-images/main-left.png" />
+                              <Image url="@../resources/images/main-left.png" />
                            </image>
                            <effect>
                               <DropShadow color="#0000001a" offsetX="-10.0" />
@@ -179,7 +179,7 @@
                         </ImageView>
                         <ImageView fitHeight="600.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <image>
-                              <Image url="@../../../../../../../../../../media/sf_Shared/206/Quinzical/revamp-images/main-right.png" />
+                              <Image url="@../resources/images/main-right.png" />
                            </image>
                            <effect>
                               <DropShadow color="#0000001a" offsetX="10.0" />
