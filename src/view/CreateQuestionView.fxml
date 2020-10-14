@@ -246,13 +246,12 @@
                   <Separator prefHeight="6.0" prefWidth="87.0" />
                   <VBox prefHeight="600.0" prefWidth="1973.0" spacing="20.0">
                      <children>
-                        <Separator orientation="VERTICAL" prefHeight="23.0" prefWidth="10.0" />
                         <Label alignment="TOP_LEFT" text="QUESTION" textFill="#0b2247">
                            <font>
-                              <Font name="System Bold" size="26.0" />
+                              <Font name="System Bold" size="23.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textFieldQuestion" prefHeight="50.0" prefWidth="893.0" promptText="Enter a question" style="-fx-background-radius: 30;">
+                        <TextField fx:id="textFieldQuestion" prefHeight="64.0" prefWidth="1280.0" promptText="Enter a question" style="-fx-background-radius: 30;">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -262,7 +261,7 @@
                         </TextField>
                         <Label alignment="TOP_LEFT" text="CATEGORY" textFill="#0b2247">
                            <font>
-                              <Font name="System Bold" size="26.0" />
+                              <Font name="System Bold" size="23.0" />
                            </font>
                         </Label>
                         <TextField fx:id="textFieldCategory" onKeyTyped="#onInputTextFieldCategory" prefHeight="50.0" prefWidth="850.0" promptText="Enter a category" style="-fx-background-radius: 30;">
@@ -273,13 +272,13 @@
                               <DropShadow color="#00000033" />
                            </effect>
                         </TextField>
-                        <ListView fx:id="listViewCategory" onMouseClicked="#onClickListViewCategory" prefHeight="200.0" prefWidth="857.0" style="-fx-background-radius: 30;" />
+                        <ListView fx:id="listViewCategory" onMouseClicked="#onClickListViewCategory" prefHeight="145.0" prefWidth="1280.0" style="-fx-background-radius: 30;" />
                         <Label alignment="TOP_LEFT" text="ANSWER" textFill="#0b2247">
                            <font>
-                              <Font name="System Bold" size="26.0" />
+                              <Font name="System Bold" size="23.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textFieldAnswer" prefHeight="50.0" prefWidth="850.0" promptText="Enter a category" style="-fx-background-radius: 30;">
+                        <TextField fx:id="textFieldAnswer" prefHeight="50.0" prefWidth="850.0" promptText="Enter an answer" style="-fx-background-radius: 30;">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -289,10 +288,10 @@
                         </TextField>
                         <Label alignment="TOP_LEFT" text="WORTH" textFill="#0b2247">
                            <font>
-                              <Font name="System Bold" size="26.0" />
+                              <Font name="System Bold" size="23.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textFieldWorth" prefHeight="50.0" prefWidth="799.0" promptText="Enter a question" style="-fx-background-radius: 30;">
+                        <TextField fx:id="textFieldWorth" prefHeight="50.0" prefWidth="799.0" promptText="Enter question worth" style="-fx-background-radius: 30;">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -302,11 +301,10 @@
                         </TextField>
                         <Label alignment="TOP_LEFT" text="TYPE OF QUESTION" textFill="#0b2247">
                            <font>
-                              <Font name="System Bold" size="26.0" />
+                              <Font name="System Bold" size="23.0" />
                            </font>
                         </Label>
-                        <ChoiceBox prefHeight="59.0" prefWidth="591.0" />
-                        <Separator orientation="VERTICAL" prefHeight="23.0" prefWidth="10.0" />
+                        <ChoiceBox fx:id="choiceBoxQuestionType" prefHeight="26.0" prefWidth="324.0" />
                      </children>
                   </VBox>
                   <Separator prefHeight="2.0" prefWidth="50.0" />

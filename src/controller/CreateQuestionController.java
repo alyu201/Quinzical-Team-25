@@ -1,7 +1,11 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -10,6 +14,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
 import model.MainModel;
+import model.QuestionTypeEnum.QuestionType;
+import model.QuinzicalTuple;
 import utilities.SceneManager;
 
 public class CreateQuestionController {
@@ -38,6 +44,9 @@ public class CreateQuestionController {
 	@FXML
 	private TextField textFieldWorth;
 
+	@FXML
+	private ChoiceBox<String> choiceBoxQuestionType;
+
 	private MainModel model;
 
 	public void initialize() {
@@ -58,6 +67,9 @@ public class CreateQuestionController {
 		this.model.getCategories().stream().forEach(x -> {
 			listViewCategory.getItems().add(x);
 		});
+
+		choiceBoxQuestionType.getItems().add("New Zealand");
+		choiceBoxQuestionType.getItems().add("International");
 	}
 
 	@FXML
@@ -77,7 +89,22 @@ public class CreateQuestionController {
 
 	@FXML
 	private void onClickButtonAddQuestion(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+		String question = this.textFieldQuestion.getText();
+		String category = this.textFieldCategory.getText();
+		int worth = Integer.valueOf(this.textFieldWorth.getText());
+		QuestionType type = (this.choiceBoxQuestionType.getSelectionModel().getSelectedItem().equals("New Zealand"))
+				? QuestionType.NEWZEALAND
+				: QuestionType.INTERNATIONAL;
+
+		ArrayList<String> answers = new ArrayList<String>();
+		answers.add(this.textFieldAnswer.getText());
+		this.model.getQuestions().add(new QuinzicalTuple(category, question, worth, answers, false, false, type));
+
+		this.textFieldAnswer.clear();
+		this.textFieldCategory.clear();
+		this.textFieldQuestion.clear();
+		this.textFieldWorth.clear();
+		this.choiceBoxQuestionType.getSelectionModel().clearAndSelect(0);
 	}
 
 	@FXML
@@ -93,6 +120,7 @@ public class CreateQuestionController {
 			listViewCategory.getItems().add(x);
 		});
 	}
+
 	@FXML
 	private void onClickListViewCategory(Event e) {
 		this.textFieldCategory.setText(listViewCategory.getSelectionModel().getSelectedItem());

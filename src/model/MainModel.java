@@ -39,6 +39,7 @@ public class MainModel {
 	private ArrayList<QuinzicalTuple> questions;
 	private ArrayList<QuinzicalTuple> gameQuestions;
 	private ArrayList<QuinzicalTuple> practiceQuestions;
+	private ArrayList<QuinzicalTuple> internationalQuestions;
 	private ArrayList<String> categories;
 	private Leaderboard leaderboard;
 	private QuinzicalTuple currentQuestion;
@@ -47,20 +48,25 @@ public class MainModel {
 	private StringProperty name = new SimpleStringProperty();
 	private IntegerProperty practiceWinnings = new SimpleIntegerProperty();
 	private IntegerProperty gameWinnings = new SimpleIntegerProperty();
+	private IntegerProperty internationalWinnings = new SimpleIntegerProperty();
 	private GameType currentGameType;
 	private boolean allCompletedGame;
 	private boolean allCompletedPractice;
+	private boolean allCompletedInternational;
 	private boolean addedToLeaderboard;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
-			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<String> categories, Leaderboard leaderboard,
-			QuinzicalTuple currentQuestion, String currentCategory, Settings settings, StringProperty name,
-			IntegerProperty gameWinnings, IntegerProperty practiceWinnings, GameType currentGameMode,
-			boolean allCompletedGame, boolean allCompletedPractice, boolean addedtoLeaderboard) {
+			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<QuinzicalTuple> internationalQuestions,
+			ArrayList<String> categories, Leaderboard leaderboard, QuinzicalTuple currentQuestion,
+			String currentCategory, Settings settings, StringProperty name, IntegerProperty gameWinnings,
+			IntegerProperty practiceWinnings, IntegerProperty internationalWinnings, GameType currentGameMode,
+			boolean allCompletedGame, boolean allCompletedPractice, boolean allCompletedInternational,
+			boolean addedtoLeaderboard) {
 		super();
 		this.questions = questions;
 		this.gameQuestions = gameQuestions;
 		this.practiceQuestions = practiceQuestions;
+		this.internationalQuestions = internationalQuestions;
 		this.categories = categories;
 		this.leaderboard = leaderboard;
 		this.currentQuestion = currentQuestion;
@@ -69,16 +75,19 @@ public class MainModel {
 		this.name = name;
 		this.gameWinnings = gameWinnings;
 		this.practiceWinnings = practiceWinnings;
+		this.internationalWinnings = internationalWinnings;
 		this.currentGameType = currentGameMode;
 		this.allCompletedGame = allCompletedGame;
 		this.allCompletedPractice = allCompletedPractice;
-		this.addedToLeaderboard= addedtoLeaderboard;
+		this.allCompletedInternational = allCompletedInternational;
+		this.addedToLeaderboard = addedtoLeaderboard;
 	}
 
 	/**
-	 * Returns the main model containing the state of all jeopardy tuples and current 
-	 * states of the game. If main model is empty then data will be read from state.json 
-	 * and returns the updated main model.
+	 * Returns the main model containing the state of all jeopardy tuples and
+	 * current states of the game. If main model is empty then data will be read
+	 * from state.json and returns the updated main model.
+	 * 
 	 * @return mainModel The main model with the state of the game
 	 */
 	public static MainModel getMainModel() {
@@ -218,8 +227,37 @@ public class MainModel {
 		this.addedToLeaderboard = addedToLeaderboard;
 	}
 
+	public ArrayList<QuinzicalTuple> getInternationalQuestions() {
+		return internationalQuestions;
+	}
+
+	public void setInternationalQuestions(ArrayList<QuinzicalTuple> internationalQuestions) {
+		this.internationalQuestions = internationalQuestions;
+	}
+
+	public boolean getAllCompletedInternational() {
+		return allCompletedInternational;
+	}
+
+	public void setAllCompletedInternational(boolean allCompletedInternational) {
+		this.allCompletedInternational = allCompletedInternational;
+	}
+
+	public IntegerProperty getInternationalWinnings() {
+		return this.internationalWinnings;
+	}
+
+	public void setInternationalWinnings(int w) {
+		this.internationalWinnings.set(w);
+	}
+
+	public void addInternationalWinnings(int w) {
+		this.internationalWinnings.set(internationalWinnings.get() + w);
+	}
+
 	/**
 	 * Search for a question in the model and mark it as completed
+	 * 
 	 * @param question The question to be searched for
 	 */
 	public void setCompleted(GameType type, QuinzicalTuple question) {
@@ -241,7 +279,15 @@ public class MainModel {
 					break;
 				}
 			}
-
+		} else if (type.equals(GameType.INTERNATIONALMODULE)) {
+			for (QuinzicalTuple q : this.internationalQuestions) {
+				if (q.equals(question) && q.getCompleted().equals(false)) {
+					q.setCompleted(true);
+					int index = this.internationalQuestions.indexOf(q);
+					this.internationalQuestions.set(index, q);
+					break;
+				}
+			}
 		} else {
 			System.err.println("Illegal GameType (undefined): " + type.toString());
 		}
@@ -249,6 +295,7 @@ public class MainModel {
 
 	/**
 	 * Parses the main model variable data to JSON string for writing to JSON files
+	 * 
 	 * @return String The JSON string
 	 */
 	@SuppressWarnings("unchecked")
@@ -341,6 +388,30 @@ public class MainModel {
 		}
 		obj.put("practiceQuestions", practiceQuestions);
 
+		// internationalQuestions
+		JSONArray internationalQuestions = new JSONArray();
+		for (QuinzicalTuple tuple : this.getInternationalQuestions()) {
+			JSONObject question = new JSONObject();
+			JSONArray answers = new JSONArray();
+
+			question.put("category", tuple.getCategory());
+			question.put("question", tuple.getQuestion());
+			question.put("worth", tuple.getWorth());
+
+			tuple.getAnswers().forEach(xs -> {
+				answers.add((String) xs);
+			});
+			question.put("answers", answers);
+
+			question.put("completed", tuple.getCompleted());
+			question.put("correctlyAnswered", tuple.getCorrectlyAnswered());
+			question.put("type", tuple.getType().toString());
+
+			internationalQuestions.add(question);
+
+		}
+		obj.put("internationalQuestions", internationalQuestions);
+
 		// leaderboard
 		JSONArray leaderboard = new JSONArray();
 		this.getLeaderboard().getMap().forEach((key, value) -> {
@@ -368,6 +439,9 @@ public class MainModel {
 		// practiceWinnings
 		obj.put("practiceWinnings", this.practiceWinnings.get());
 
+		// internationalWinnings
+		obj.put("internationalWinnings", this.internationalWinnings.get());
+
 		// currentCategory
 		obj.put("currentCategory", this.getCurrentCategory());
 
@@ -380,7 +454,10 @@ public class MainModel {
 		// allCompletedPractice
 		obj.put("allCompletedPractice", this.getAllCompletedPractice());
 
-		// addedToLeaderboard 
+		// allCompleteInternational
+		obj.put("allCompletedInternational", this.getAllCompletedInternational());
+
+		// addedToLeaderboard
 		obj.put("addedToLeaderboard", this.isAddedToLeaderboard());
 
 		return obj.toJSONString();
@@ -388,6 +465,7 @@ public class MainModel {
 
 	/**
 	 * Parses the JSON string given to java objects stored in main model
+	 * 
 	 * @param xs The JSON string to be parsed
 	 * @return null
 	 */
@@ -419,6 +497,7 @@ public class MainModel {
 						(Boolean) ((JSONObject) question).get("correctlyAnswered"),
 						QuestionType.valueOf((String) ((JSONObject) question).get("type"))));
 			});
+
 			// gameQuestions
 			JSONArray JSONGameQuestions = (JSONArray) obj.get("gameQuestions");
 			ArrayList<QuinzicalTuple> gameQuestions = new ArrayList<QuinzicalTuple>();
@@ -451,6 +530,22 @@ public class MainModel {
 						QuestionType.valueOf((String) ((JSONObject) question).get("type"))));
 			});
 
+			// internationalQuestions
+			JSONArray JSONInternationalQuestions = (JSONArray) obj.get("internationalQuestions");
+			ArrayList<QuinzicalTuple> internationalQuestions = new ArrayList<QuinzicalTuple>();
+			JSONInternationalQuestions.forEach(question -> {
+				ArrayList<String> answers = new ArrayList<String>();
+				((JSONArray) ((JSONObject) question).get("answers")).forEach(answer -> {
+					answers.add((String) answer);
+				});
+				internationalQuestions.add(new QuinzicalTuple((String) ((JSONObject) question).get("category"),
+						(String) ((JSONObject) question).get("question"),
+						((Long) ((JSONObject) question).get("worth")).intValue(), answers,
+						(Boolean) ((JSONObject) question).get("completed"),
+						(Boolean) ((JSONObject) question).get("correctlyAnswered"),
+						QuestionType.valueOf((String) ((JSONObject) question).get("type"))));
+			});
+
 			// name
 			StringProperty name = new SimpleStringProperty((String) obj.get("name"));
 
@@ -460,6 +555,9 @@ public class MainModel {
 			// practiceWinnings
 			IntegerProperty practiceWinnings = new SimpleIntegerProperty(
 					((Long) obj.get("practiceWinnings")).intValue());
+
+			IntegerProperty internationalWinnings = new SimpleIntegerProperty(
+					((Long) obj.get("internationalWinnings")).intValue());
 
 			// leaderboard
 			JSONArray JSONleaderboard = (JSONArray) obj.get("leaderboard");
@@ -487,12 +585,16 @@ public class MainModel {
 			// allCompletedPractice
 			boolean allCompletedPractice = (boolean) obj.get("allCompletedPractice");
 
-			// addedToLeaderboard 
+			// allCompletedInternational
+			boolean allCompletedInternational = (boolean) obj.get("allCompletedInternational");
+
+			// addedToLeaderboard
 			boolean addedToLeaderboard = (boolean) obj.get("addedToLeaderboard");
 
-			return new MainModel(questions, gameQuestions, practiceQuestions, categories, leaderboard, null,
-					currentCategory, settings, name, gameWinnings, practiceWinnings, currentGameType, allCompletedGame,
-					allCompletedPractice, addedToLeaderboard);
+			return new MainModel(questions, gameQuestions, practiceQuestions, internationalQuestions, categories,
+					leaderboard, null, currentCategory, settings, name, gameWinnings, practiceWinnings,
+					internationalWinnings, currentGameType, allCompletedGame, allCompletedPractice,
+					allCompletedInternational, addedToLeaderboard);
 
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -512,7 +614,9 @@ public class MainModel {
 	}
 
 	/**
-	 * Reads from the JSON file by parsing the JSON strings to java objects stored in main model
+	 * Reads from the JSON file by parsing the JSON strings to java objects stored
+	 * in main model
+	 * 
 	 * @return null
 	 */
 	public static MainModel fromJSONFile() {
