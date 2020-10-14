@@ -49,13 +49,16 @@ public class StartOverController {
 	@FXML
 	private void onClickButtonYes(Event e) {
 		this.model.setGameWinnings(0);
+		this.model.setInternationalWinnings(0);
 		this.model.setPracticeWinnings(0);
 		this.model.setCurrentQuestion(null);
 		this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
+		this.model.setInternationalQuestions(new ArrayList<QuinzicalTuple>());
 		this.model.setAllCompletedGame(false);
 		this.model.setAllCompletedPractice(false);
-		this.model.setAddedToLeaderboard(false);
+		this.model.setAddedToLeaderboardGame(false);
+		this.model.setAddedToLeaderboardInternational(false);
 		ArrayList<QuinzicalTuple> questionList = this.model.getQuestions();
 		for (QuinzicalTuple question : questionList) {
 			question.setCompleted(false);

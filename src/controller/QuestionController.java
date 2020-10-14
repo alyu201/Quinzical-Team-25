@@ -106,6 +106,11 @@ public class QuestionController {
 			this.buttonHint.setDisable(true);
 			this.buttonHint.setText("HINTS UNAVAILABLE");
 			this.labelHint.setText("");
+		} else if (this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+			this.labelWinnings.textProperty().bind(this.model.getInternationalWinnings().asString());
+			this.buttonHint.setDisable(true);
+			this.buttonHint.setText("HINTS UNAVAILABLE");
+			this.labelHint.setText("");
 		} else {
 			this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
 		}
@@ -226,6 +231,8 @@ public class QuestionController {
 				if (isAnswerCorrect()) {
 					if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 						this.model.addGameWinnings(this.model.getCurrentQuestion().getWorth());
+					} else if (this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+						this.model.addInternationalWinnings(this.model.getCurrentQuestion().getWorth());
 					} else {
 						this.model.addPracticeWinnings(this.model.getCurrentQuestion().getWorth());
 					}
@@ -252,6 +259,8 @@ public class QuestionController {
 			if (isAnswerCorrect()) {
 				if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 					this.model.addGameWinnings(this.model.getCurrentQuestion().getWorth());
+				} else if (this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+					this.model.addInternationalWinnings(this.model.getCurrentQuestion().getWorth());
 				} else {
 					this.model.addPracticeWinnings(this.model.getCurrentQuestion().getWorth());
 				}

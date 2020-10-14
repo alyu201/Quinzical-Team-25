@@ -53,7 +53,8 @@ public class MainModel {
 	private boolean allCompletedGame;
 	private boolean allCompletedPractice;
 	private boolean allCompletedInternational;
-	private boolean addedToLeaderboard;
+	private boolean addedToLeaderboardGame;
+	private boolean addedToLeaderboardInternational;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
 			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<QuinzicalTuple> internationalQuestions,
@@ -61,7 +62,7 @@ public class MainModel {
 			String currentCategory, Settings settings, StringProperty name, IntegerProperty gameWinnings,
 			IntegerProperty practiceWinnings, IntegerProperty internationalWinnings, GameType currentGameMode,
 			boolean allCompletedGame, boolean allCompletedPractice, boolean allCompletedInternational,
-			boolean addedtoLeaderboard) {
+			boolean addedtoLeaderboardGame, boolean addedToLeaderboardInternational) {
 		super();
 		this.questions = questions;
 		this.gameQuestions = gameQuestions;
@@ -80,7 +81,8 @@ public class MainModel {
 		this.allCompletedGame = allCompletedGame;
 		this.allCompletedPractice = allCompletedPractice;
 		this.allCompletedInternational = allCompletedInternational;
-		this.addedToLeaderboard = addedtoLeaderboard;
+		this.addedToLeaderboardGame = addedtoLeaderboardGame;
+		this.addedToLeaderboardInternational = addedToLeaderboardInternational;
 	}
 
 	/**
@@ -219,12 +221,20 @@ public class MainModel {
 		this.allCompletedPractice = allCompletedPractice;
 	}
 
-	public boolean isAddedToLeaderboard() {
-		return addedToLeaderboard;
+	public boolean isAddedToLeaderboardGame() {
+		return addedToLeaderboardGame;
 	}
 
-	public void setAddedToLeaderboard(boolean addedToLeaderboard) {
-		this.addedToLeaderboard = addedToLeaderboard;
+	public void setAddedToLeaderboardGame(boolean addedToLeaderboard) {
+		this.addedToLeaderboardGame = addedToLeaderboard;
+	}
+
+	public boolean isAddedToLeaderboardInternational() {
+		return addedToLeaderboardInternational;
+	}
+
+	public void setAddedToLeaderboardInternational(boolean addedToLeaderboard) {
+		this.addedToLeaderboardInternational= addedToLeaderboard;
 	}
 
 	public ArrayList<QuinzicalTuple> getInternationalQuestions() {
@@ -457,8 +467,11 @@ public class MainModel {
 		// allCompleteInternational
 		obj.put("allCompletedInternational", this.getAllCompletedInternational());
 
-		// addedToLeaderboard
-		obj.put("addedToLeaderboard", this.isAddedToLeaderboard());
+		// addedToLeaderboardGame
+		obj.put("addedToLeaderboardGame", this.isAddedToLeaderboardGame());
+
+		// addedToLeaderboardInternational
+		obj.put("addedToLeaderboardInternational", this.isAddedToLeaderboardInternational());
 
 		return obj.toJSONString();
 	}
@@ -589,12 +602,15 @@ public class MainModel {
 			boolean allCompletedInternational = (boolean) obj.get("allCompletedInternational");
 
 			// addedToLeaderboard
-			boolean addedToLeaderboard = (boolean) obj.get("addedToLeaderboard");
+			boolean addedToLeaderboardGame = (boolean) obj.get("addedToLeaderboardGame");
+
+			// addedToLeaderboard
+			boolean addedToLeaderboardInternational = (boolean) obj.get("addedToLeaderboardInternational");
 
 			return new MainModel(questions, gameQuestions, practiceQuestions, internationalQuestions, categories,
 					leaderboard, null, currentCategory, settings, name, gameWinnings, practiceWinnings,
 					internationalWinnings, currentGameType, allCompletedGame, allCompletedPractice,
-					allCompletedInternational, addedToLeaderboard);
+					allCompletedInternational, addedToLeaderboardGame, addedToLeaderboardInternational);
 
 		} catch (ParseException e) {
 			e.printStackTrace();

@@ -12,8 +12,8 @@ import model.QuinzicalTuple;
 import utilities.SceneManager;
 
 /**
- * RewardController acts as a controller for the RewardView. RewardController 
- * provides the option 'continue' to return to either the PointsPlayView and 
+ * RewardController acts as a controller for the RewardView. RewardController
+ * provides the option 'continue' to return to either the PointsPlayView and
  * PointsPracticeView depending on the current game type
  */
 public class RewardController {
@@ -48,8 +48,8 @@ public class RewardController {
 	private Button buttonSettings;
 
 	/**
-	 * Initializes the controller and populate the name, winnings, question worth and 
-	 * answer on screen.
+	 * Initializes the controller and populate the name, winnings, question worth
+	 * and answer on screen.
 	 */
 	public void initialize() {
 		this.model = model.getMainModel();
@@ -57,6 +57,8 @@ public class RewardController {
 			this.labelName.textProperty().bind(this.model.getName());
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 				this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
+			} else if (this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+				this.labelWinnings.textProperty().bind(this.model.getInternationalWinnings().asString());
 			} else {
 				this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
 			}
@@ -90,9 +92,10 @@ public class RewardController {
 	}
 
 	/**
-	 * Checks whether all questions available are completed and changes screen to the corresponding 
-	 * PointsPlayView, PointsPracticeView or EndView depending on game type after
-	 * selecting 'continue' option
+	 * Checks whether all questions available are completed and changes screen to
+	 * the corresponding PointsPlayView, PointsPracticeView or EndView depending on
+	 * game type after selecting 'continue' option
+	 * 
 	 * @param e
 	 */
 	@FXML
@@ -102,6 +105,8 @@ public class RewardController {
 		ArrayList<QuinzicalTuple> toIterate = null;
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 			toIterate = this.model.getGameQuestions();
+		} else if (this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+			toIterate = this.model.getInternationalQuestions();
 		} else {
 			toIterate = this.model.getPracticeQuestions();
 		}
@@ -115,14 +120,16 @@ public class RewardController {
 		if (completeFlag) {
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 				this.model.setAllCompletedGame(true);
+			} else if (this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+				this.model.setAllCompletedInternational(true);
 			} else {
 				this.model.setAllCompletedPractice(true);
-				;
 			}
 
 			SceneManager.changeScene(getClass().getResource("/view/EndView.fxml"), e);
 		} else {
-			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)
+					|| this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
 				SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
 			} else {
 				SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);

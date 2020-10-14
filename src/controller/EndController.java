@@ -61,21 +61,34 @@ public class EndController {
 	public void initialize() {
 		this.model = model.getMainModel();
 
-		// Add to leaderboard
-		if (this.model.isAddedToLeaderboard()) {
+		// Set biline
+		if ((this.model.isAddedToLeaderboardGame() && this.model.getCurrentGameType().equals(GameType.GAMESMODULE))
+				|| (this.model.isAddedToLeaderboardInternational()
+						&& this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE))) {
 			this.labelBiline
 					.setText("SCORE HAS ALREADY BEEN ADDED TO LEADERBOARD, YOU CAN PRESS \'START OVER\' TO PLAY AGAIN");
-		} else if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+		}
+
+		// Add to leaderboard
+		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 			this.model.getLeaderboard().addToLeaderboard(this.model.getName().get(),
 					this.model.getGameWinnings().get());
-			this.model.setAddedToLeaderboard(true);
+			this.model.setAddedToLeaderboardGame(true);
+		} else if (this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+			this.model.getLeaderboard().addToLeaderboard(this.model.getName().get(),
+					this.model.getInternationalWinnings().get());
+			this.model.setAddedToLeaderboardInternational(true);
 		} else {
 			this.labelBiline.setText("DUE TO PRACTICE MODE SCORE HAS NOT BEEN ADDED TO THE LEADERBOARD");
 		}
 
+		// Display winnings
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 			this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
 			this.labelWinningsBig.textProperty().bind(this.model.getGameWinnings().asString());
+		} else if (this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+			this.labelWinnings.textProperty().bind(this.model.getInternationalWinnings().asString());
+			this.labelWinningsBig.textProperty().bind(this.model.getInternationalWinnings().asString());
 		} else {
 			this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
 			this.labelWinningsBig.textProperty().bind(this.model.getPracticeWinnings().asString());
@@ -116,10 +129,17 @@ public class EndController {
 	 */
 	@FXML
 	private void onClickButtonStartOver(Event e) {
+		// Restart
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 			this.model.setGameWinnings(0);
 			this.model.setGameQuestions(new ArrayList<QuinzicalTuple>());
 			this.model.setAllCompletedGame(false);
+			this.model.setAddedToLeaderboardGame(false);
+		} else if (this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+			this.model.setInternationalWinnings(0);
+			this.model.setInternationalQuestions(new ArrayList<QuinzicalTuple>());
+			this.model.setAllCompletedInternational(false);
+			this.model.setAddedToLeaderboardInternational(false);
 		} else {
 			this.model.setPracticeWinnings(0);
 			this.model.setPracticeQuestions(new ArrayList<QuinzicalTuple>());
@@ -132,7 +152,6 @@ public class EndController {
 		}
 
 		this.model.setCurrentQuestion(null);
-		this.model.setAddedToLeaderboard(false);
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 }
