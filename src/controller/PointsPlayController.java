@@ -79,8 +79,8 @@ public class PointsPlayController {
 
 				while (categoriesSet.size() < 5) {
 					int nextRandBounded = Math.abs(rand.nextInt() % (this.model.getCategories().size()));
+					System.out.println(nextRandBounded);
 					String currentCategory = this.model.getCategories().get(nextRandBounded);
-
 					boolean flag = false;
 					for (QuinzicalTuple t : this.model.getQuestions()) {
 						if (t.getCategory().equals(currentCategory)) {
@@ -104,13 +104,14 @@ public class PointsPlayController {
 					ArrayList<QuinzicalTuple> filteredQuestions = new ArrayList<QuinzicalTuple>();
 
 					for (QuinzicalTuple question : this.model.getQuestions()) {
-						if (question.getCategory().equals(category)) {
+						if (question.getCategory().equals(category)
+								&& question.getType().equals(QuestionType.NEWZEALAND)) {
 							filteredQuestions.add(question);
 						}
 					}
 
 					while (questionSetCurrentCategory.size() < 5) {
-						int nextRandBounded = Math.abs(rand.nextInt() % (filteredQuestions.size() - 1));
+						int nextRandBounded = Math.abs(rand.nextInt() % (filteredQuestions.size()));
 						QuinzicalTuple currentQuestion = filteredQuestions.get(nextRandBounded);
 						if (!questionSetCurrentCategory.contains(currentQuestion)) {
 							// Size increases by one (1) here.
@@ -199,13 +200,7 @@ public class PointsPlayController {
 			if (this.model.getInternationalQuestions().size() == 0) {
 				ArrayList<String> categoriesSet = new ArrayList<String>();
 				Random rand = new Random();
-				
-				for(String c : this.model.getCategories()) {
-					System.out.println(c);
-				}
-				
-				
-				
+
 				while (categoriesSet.size() < 5) {
 					int nextRandBounded = Math.abs(rand.nextInt() % (this.model.getCategories().size()));
 					String currentCategory = this.model.getCategories().get(nextRandBounded);
@@ -221,7 +216,6 @@ public class PointsPlayController {
 						}
 					}
 					if (!categoriesSet.contains(currentCategory) && flag) {
-						System.out.println("REACHED");
 						categoriesSet.add(currentCategory);
 					}
 				}
@@ -239,7 +233,7 @@ public class PointsPlayController {
 					}
 
 					while (questionSetCurrentCategory.size() < 5) {
-						int nextRandBounded = Math.abs(rand.nextInt() % (filteredQuestions.size() - 1));
+						int nextRandBounded = Math.abs(rand.nextInt() % (filteredQuestions.size()));
 						QuinzicalTuple currentQuestion = filteredQuestions.get(nextRandBounded);
 						if (!questionSetCurrentCategory.contains(currentQuestion)) {
 							// Size increases by one (1) here.

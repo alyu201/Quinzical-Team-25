@@ -93,7 +93,7 @@ public class PointsPracticeController {
 			// FIXME: brute add random question to bank
 			int i = 0;
 			while (i < limit) {
-				int nextRand = Math.abs((rand.nextInt() % (xs.size() - 1)));
+				int nextRand = Math.abs((rand.nextInt() % (xs.size())));
 				QuinzicalTuple current = xs.get(nextRand);
 				if (!questionSet.contains(current)) {
 					questionSet.add(current);
