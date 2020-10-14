@@ -17,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.TextAlignment;
 import model.MainModel;
+import model.QuestionTypeEnum.QuestionType;
 import utilities.SceneManager;
 
 /**
@@ -64,120 +65,265 @@ public class PointsPlayController {
 		this.labelName.textProperty().bind(this.model.getName());
 		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
 			this.labelWinnings.textProperty().bind(this.model.getGameWinnings().asString());
+		} else if (this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+			this.labelWinnings.textProperty().bind(this.model.getInternationalWinnings().asString());
 		} else {
 			this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
 		}
 
 		// New questions (no game questions or game questions all completed)
-		if (this.model.getGameQuestions().size() == 0) {
-			ArrayList<String> categoriesSet = new ArrayList<String>();
-			Random rand = new Random();
+		if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+			if (this.model.getGameQuestions().size() == 0) {
+				ArrayList<String> categoriesSet = new ArrayList<String>();
+				Random rand = new Random();
 
-			while (categoriesSet.size() < 5) {
-				int nextRandBounded = Math.abs(rand.nextInt() % (this.model.getCategories().size() - 1));
-				String currentCategory = this.model.getCategories().get(nextRandBounded);
-				if (!categoriesSet.contains(currentCategory)) {
-					categoriesSet.add(currentCategory);
+				while (categoriesSet.size() < 5) {
+					int nextRandBounded = Math.abs(rand.nextInt() % (this.model.getCategories().size()));
+					String currentCategory = this.model.getCategories().get(nextRandBounded);
+
+					boolean flag = false;
+					for (QuinzicalTuple t : this.model.getQuestions()) {
+						if (t.getCategory().equals(currentCategory)) {
+							if (t.getType().equals(QuestionType.NEWZEALAND)) {
+								flag = true;
+								break;
+							} else {
+								continue;
+							}
+						}
+					}
+					if (!categoriesSet.contains(currentCategory) && flag) {
+						categoriesSet.add(currentCategory);
+					}
+				}
+
+				// Create a new question set
+				ArrayList<QuinzicalTuple> questionSet = new ArrayList<QuinzicalTuple>();
+				for (String category : categoriesSet) {
+					ArrayList<QuinzicalTuple> questionSetCurrentCategory = new ArrayList<QuinzicalTuple>();
+					ArrayList<QuinzicalTuple> filteredQuestions = new ArrayList<QuinzicalTuple>();
+
+					for (QuinzicalTuple question : this.model.getQuestions()) {
+						if (question.getCategory().equals(category)) {
+							filteredQuestions.add(question);
+						}
+					}
+
+					while (questionSetCurrentCategory.size() < 5) {
+						int nextRandBounded = Math.abs(rand.nextInt() % (filteredQuestions.size() - 1));
+						QuinzicalTuple currentQuestion = filteredQuestions.get(nextRandBounded);
+						if (!questionSetCurrentCategory.contains(currentQuestion)) {
+							// Size increases by one (1) here.
+							questionSetCurrentCategory.add(currentQuestion);
+
+							// Loop ticks over to next category an size 5.
+							if (questionSetCurrentCategory.size() == 5) {
+								questionSet.addAll(questionSetCurrentCategory);
+							}
+						}
+					}
+
+					// Finally add those questions
+					this.model.setGameQuestions(questionSet);
 				}
 			}
 
-			// Create a new question set
-			ArrayList<QuinzicalTuple> questionSet = new ArrayList<QuinzicalTuple>();
-			for (String category : categoriesSet) {
-				ArrayList<QuinzicalTuple> questionSetCurrentCategory = new ArrayList<QuinzicalTuple>();
-				ArrayList<QuinzicalTuple> filteredQuestions = new ArrayList<QuinzicalTuple>();
+			// Fetch the names of the question cateogories
+			ArrayList<String> questionCategories = new ArrayList<String>();
+			for (QuinzicalTuple question : this.model.getGameQuestions()) {
+				if (!questionCategories.contains(question.getCategory())) {
+					questionCategories.add(question.getCategory());
+				}
+			}
 
-				for (QuinzicalTuple question : this.model.getQuestions()) {
-					if (question.getCategory().equals(category)) {
+			// Add the questions to the grid. Only mark the lowest unanswered question as a
+			// 'active' question to answer.
+			this.gridPanePoints.setAlignment(Pos.CENTER);
+			int r = 0;
+			int c = 0;
+			for (String category : questionCategories) {
+				boolean flag = false;
+				Label label = new Label(category);
+				label.setWrapText(true);
+				label.setPrefWidth(200);
+				label.setStyle("-fx-font-weight: bold; -fx-text-fill: #0b2247; -fx-font-size: 18px;");
+				label.setAlignment(Pos.CENTER);
+				label.setTextAlignment(TextAlignment.CENTER);
+				this.gridPanePoints.add(label, c, r);
+				r++;
+				ArrayList<QuinzicalTuple> filteredQuestions = new ArrayList<QuinzicalTuple>();
+				for (QuinzicalTuple question : this.model.getGameQuestions()) {
+					if (!filteredQuestions.contains(question) && category.equals(question.getCategory())) {
 						filteredQuestions.add(question);
 					}
 				}
 
-				while (questionSetCurrentCategory.size() < 5) {
-					int nextRandBounded = Math.abs(rand.nextInt() % (filteredQuestions.size() - 1));
-					QuinzicalTuple currentQuestion = filteredQuestions.get(nextRandBounded);
-					if (!questionSetCurrentCategory.contains(currentQuestion)) {
-						// Size increases by one (1) here.
-						questionSetCurrentCategory.add(currentQuestion);
+				// gameQuestions only those that are not completed
+				// sort questions by worth lowest worth first
+				Collections.sort(filteredQuestions, ((x, y) -> {
+					return Integer.compare(((QuinzicalTuple) x).getWorth(), ((QuinzicalTuple) y).getWorth());
+				}));
 
-						// Loop ticks over to next category an size 5.
-						if (questionSetCurrentCategory.size() == 5) {
-							questionSet.addAll(questionSetCurrentCategory);
+				for (QuinzicalTuple question : filteredQuestions) {
+					Button button = new Button("$" + question.getWorth());
+					button.setStyle("-fx-background-color: #00c3b1; -fx-background-radius: 30; -fx-text-fill: #f2fff3;"
+							+ " -fx-font-weight: bold; -fx-font-size: 16px;");
+					if (question.getCompleted() == true || flag == true) {
+						button.setStyle("-fx-background-color: #0b2247; -fx-background-radius: 30; -fx-font-size: 16px;"
+								+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
+						button.setDisable(true);
+					}
+
+					button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent me) {
+							model.setCompleted(GameType.GAMESMODULE, question);
+							model.setCurrentQuestion(question);
+							model.toJSONFile();
+							SceneManager.changeScene(getClass().getResource("/view/QuestionView.fxml"), me);
+						}
+					});
+					button.setPrefSize(200, 100);
+					this.gridPanePoints.add(button, c, r);
+
+					if (question.getCompleted() == false) {
+						flag = true;
+					}
+
+					++r;
+				}
+				++c;
+				r = 0;
+			}
+		} else {
+			if (this.model.getInternationalQuestions().size() == 0) {
+				ArrayList<String> categoriesSet = new ArrayList<String>();
+				Random rand = new Random();
+				
+				for(String c : this.model.getCategories()) {
+					System.out.println(c);
+				}
+				
+				
+				
+				while (categoriesSet.size() < 5) {
+					int nextRandBounded = Math.abs(rand.nextInt() % (this.model.getCategories().size()));
+					String currentCategory = this.model.getCategories().get(nextRandBounded);
+					boolean flag = false;
+					for (QuinzicalTuple t : this.model.getQuestions()) {
+						if (t.getCategory().equals(currentCategory)) {
+							if (t.getType().equals(QuestionType.INTERNATIONAL)) {
+								flag = true;
+								break;
+							} else {
+								continue;
+							}
 						}
 					}
-				}
-
-				// Finally add those questions
-				this.model.setGameQuestions(questionSet);
-			}
-		}
-
-		// Fetch the names of the question cateogories
-		ArrayList<String> questionCategories = new ArrayList<String>();
-		for (QuinzicalTuple question : this.model.getGameQuestions()) {
-			if (!questionCategories.contains(question.getCategory())) {
-				questionCategories.add(question.getCategory());
-			}
-		}
-
-		// Add the questions to the grid. Only mark the lowest unanswered question as a
-		// 'active' question to answer.
-		this.gridPanePoints.setAlignment(Pos.CENTER);
-		int r = 0;
-		int c = 0;
-		for (String category : questionCategories) {
-			boolean flag = false;
-			Label label = new Label(category);
-			label.setWrapText(true);
-			label.setPrefWidth(200);
-			label.setStyle("-fx-font-weight: bold; -fx-text-fill: #0b2247; -fx-font-size: 18px;");
-			label.setAlignment(Pos.CENTER);
-			label.setTextAlignment(TextAlignment.CENTER);
-			this.gridPanePoints.add(label, c, r);
-			r++;
-			ArrayList<QuinzicalTuple> filteredQuestions = new ArrayList<QuinzicalTuple>();
-			for (QuinzicalTuple question : this.model.getGameQuestions()) {
-				if (!filteredQuestions.contains(question) && category.equals(question.getCategory())) {
-					filteredQuestions.add(question);
-				}
-			}
-
-			// gameQuestions only those that are not completed
-			// sort questions by worth lowest worth first
-			Collections.sort(filteredQuestions, ((x, y) -> {
-				return Integer.compare(((QuinzicalTuple) x).getWorth(), ((QuinzicalTuple) y).getWorth());
-			}));
-
-			for (QuinzicalTuple question : filteredQuestions) {
-				Button button = new Button("$" + question.getWorth());
-				button.setStyle("-fx-background-color: #00c3b1; -fx-background-radius: 30; -fx-text-fill: #f2fff3;"
-						+ " -fx-font-weight: bold; -fx-font-size: 16px;");
-				if (question.getCompleted() == true || flag == true) {
-					button.setStyle("-fx-background-color: #0b2247; -fx-background-radius: 30; -fx-font-size: 16px;"
-							+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
-					button.setDisable(true);
-				}
-
-				button.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent me) {
-						model.setCompleted(GameType.GAMESMODULE, question);
-						model.setCurrentQuestion(question);
-						model.toJSONFile();
-						SceneManager.changeScene(getClass().getResource("/view/QuestionView.fxml"), me);
+					if (!categoriesSet.contains(currentCategory) && flag) {
+						System.out.println("REACHED");
+						categoriesSet.add(currentCategory);
 					}
-				});
-				button.setPrefSize(200, 100);
-				this.gridPanePoints.add(button, c, r);
-
-				if (question.getCompleted() == false) {
-					flag = true;
 				}
 
-				++r;
+				// Create a new question set
+				ArrayList<QuinzicalTuple> questionSet = new ArrayList<QuinzicalTuple>();
+				for (String category : categoriesSet) {
+					ArrayList<QuinzicalTuple> questionSetCurrentCategory = new ArrayList<QuinzicalTuple>();
+					ArrayList<QuinzicalTuple> filteredQuestions = new ArrayList<QuinzicalTuple>();
+
+					for (QuinzicalTuple question : this.model.getQuestions()) {
+						if (question.getCategory().equals(category)) {
+							filteredQuestions.add(question);
+						}
+					}
+
+					while (questionSetCurrentCategory.size() < 5) {
+						int nextRandBounded = Math.abs(rand.nextInt() % (filteredQuestions.size() - 1));
+						QuinzicalTuple currentQuestion = filteredQuestions.get(nextRandBounded);
+						if (!questionSetCurrentCategory.contains(currentQuestion)) {
+							// Size increases by one (1) here.
+							questionSetCurrentCategory.add(currentQuestion);
+
+							// Loop ticks over to next category an size 5.
+							if (questionSetCurrentCategory.size() == 5) {
+								questionSet.addAll(questionSetCurrentCategory);
+							}
+						}
+					}
+
+					// Finally add those questions
+					this.model.setInternationalQuestions(questionSet);
+				}
 			}
-			++c;
-			r = 0;
+
+			// Fetch the names of the question cateogories
+			ArrayList<String> questionCategories = new ArrayList<String>();
+			for (QuinzicalTuple question : this.model.getInternationalQuestions()) {
+				if (!questionCategories.contains(question.getCategory())) {
+					questionCategories.add(question.getCategory());
+				}
+			}
+
+			// Add the questions to the grid. Only mark the lowest unanswered question as a
+			// 'active' question to answer.
+			this.gridPanePoints.setAlignment(Pos.CENTER);
+			int r = 0;
+			int c = 0;
+			for (String category : questionCategories) {
+				boolean flag = false;
+				Label label = new Label(category);
+				label.setWrapText(true);
+				label.setPrefWidth(200);
+				label.setStyle("-fx-font-weight: bold; -fx-text-fill: #0b2247; -fx-font-size: 18px;");
+				label.setAlignment(Pos.CENTER);
+				label.setTextAlignment(TextAlignment.CENTER);
+				this.gridPanePoints.add(label, c, r);
+				r++;
+				ArrayList<QuinzicalTuple> filteredQuestions = new ArrayList<QuinzicalTuple>();
+				for (QuinzicalTuple question : this.model.getInternationalQuestions()) {
+					if (!filteredQuestions.contains(question) && category.equals(question.getCategory())) {
+						filteredQuestions.add(question);
+					}
+				}
+
+				// gameQuestions only those that are not completed
+				// sort questions by worth lowest worth first
+				Collections.sort(filteredQuestions, ((x, y) -> {
+					return Integer.compare(((QuinzicalTuple) x).getWorth(), ((QuinzicalTuple) y).getWorth());
+				}));
+
+				for (QuinzicalTuple question : filteredQuestions) {
+					Button button = new Button("$" + question.getWorth());
+					button.setStyle("-fx-background-color: #00c3b1; -fx-background-radius: 30; -fx-text-fill: #f2fff3;"
+							+ " -fx-font-weight: bold; -fx-font-size: 16px;");
+					if (question.getCompleted() == true || flag == true) {
+						button.setStyle("-fx-background-color: #0b2247; -fx-background-radius: 30; -fx-font-size: 16px;"
+								+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
+						button.setDisable(true);
+					}
+
+					button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent me) {
+							model.setCompleted(GameType.INTERNATIONALMODULE, question);
+							model.setCurrentQuestion(question);
+							model.toJSONFile();
+							SceneManager.changeScene(getClass().getResource("/view/QuestionView.fxml"), me);
+						}
+					});
+					button.setPrefSize(200, 100);
+					this.gridPanePoints.add(button, c, r);
+
+					if (question.getCompleted() == false) {
+						flag = true;
+					}
+
+					++r;
+				}
+				++c;
+				r = 0;
+			}
 		}
 
 	}
