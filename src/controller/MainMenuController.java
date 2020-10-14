@@ -140,7 +140,8 @@ public class MainMenuController {
 	}
 
 	@FXML
-	private void onClickButtonCreateQuestions(Event e) {
+	private void onClickButtonCreateQuestion(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/CreateQuestionView.fxml"), e);
 	}
 
 	/**

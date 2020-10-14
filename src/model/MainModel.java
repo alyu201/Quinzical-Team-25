@@ -24,6 +24,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.GameMode.GameType;
+import model.QuestionTypeEnum.QuestionType;
 
 /**
  * MainModel is a singleton providing a shared model for the jeopardy game. It
@@ -285,6 +286,7 @@ public class MainModel {
 
 			question.put("completed", tuple.getCompleted());
 			question.put("correctlyAnswered", tuple.getCorrectlyAnswered());
+			question.put("type", tuple.getType().toString());
 
 			questions.add(question);
 
@@ -308,6 +310,7 @@ public class MainModel {
 
 			question.put("completed", tuple.getCompleted());
 			question.put("correctlyAnswered", tuple.getCorrectlyAnswered());
+			question.put("type", tuple.getType().toString());
 
 			gameQuestions.add(question);
 
@@ -331,6 +334,7 @@ public class MainModel {
 
 			question.put("completed", tuple.getCompleted());
 			question.put("correctlyAnswered", tuple.getCorrectlyAnswered());
+			question.put("type", tuple.getType().toString());
 
 			practiceQuestions.add(question);
 
@@ -412,7 +416,8 @@ public class MainModel {
 						(String) ((JSONObject) question).get("question"),
 						((Long) ((JSONObject) question).get("worth")).intValue(), answers,
 						(Boolean) ((JSONObject) question).get("completed"),
-						(Boolean) ((JSONObject) question).get("correctlyAnswered")));
+						(Boolean) ((JSONObject) question).get("correctlyAnswered"),
+						QuestionType.valueOf((String) ((JSONObject) question).get("type"))));
 			});
 			// gameQuestions
 			JSONArray JSONGameQuestions = (JSONArray) obj.get("gameQuestions");
@@ -426,7 +431,8 @@ public class MainModel {
 						(String) ((JSONObject) question).get("question"),
 						((Long) ((JSONObject) question).get("worth")).intValue(), answers,
 						(Boolean) ((JSONObject) question).get("completed"),
-						(Boolean) ((JSONObject) question).get("correctlyAnswered")));
+						(Boolean) ((JSONObject) question).get("correctlyAnswered"),
+						QuestionType.valueOf((String) ((JSONObject) question).get("type"))));
 			});
 
 			// practiceQuestions
@@ -441,7 +447,8 @@ public class MainModel {
 						(String) ((JSONObject) question).get("question"),
 						((Long) ((JSONObject) question).get("worth")).intValue(), answers,
 						(Boolean) ((JSONObject) question).get("completed"),
-						(Boolean) ((JSONObject) question).get("correctlyAnswered")));
+						(Boolean) ((JSONObject) question).get("correctlyAnswered"),
+						QuestionType.valueOf((String) ((JSONObject) question).get("type"))));
 			});
 
 			// name

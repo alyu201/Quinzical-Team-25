@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.MainModel;
+import model.QuestionTypeEnum.QuestionType;
 
 public class Main extends Application {
 

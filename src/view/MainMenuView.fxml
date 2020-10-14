@@ -197,7 +197,7 @@
                                     <DropShadow color="#00000033" />
                                  </effect>
                               </Button>
-                              <Button disable="true" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
+                              <Button mnemonicParsing="false" onMouseClicked="#onClickButtonCreateQuestion" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

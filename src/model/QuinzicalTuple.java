@@ -8,6 +8,8 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import model.QuestionTypeEnum.QuestionType;
+
 /**
  * jeopardyTuple represents a mutable tuple of the a jeopardy category,
  * question, question worth, question answer, completion status and correctly
@@ -20,10 +22,11 @@ public class QuinzicalTuple {
 	private final ArrayList<String> answers;
 	private Boolean completed;
 	private Boolean correctlyAnswered;
+	private QuestionType type;
 
 	
 	public QuinzicalTuple(String category, String question, int worth, ArrayList<String> answers, Boolean completed,
-			Boolean correctlyAnswered) {
+			Boolean correctlyAnswered, QuestionType type) {
 		super();
 		this.category = category;
 		this.question = question;
@@ -31,6 +34,7 @@ public class QuinzicalTuple {
 		this.answers = answers;
 		this.completed = completed;
 		this.correctlyAnswered = correctlyAnswered;
+		this.type = type;
 	}
 
 	public Boolean getCompleted() {
@@ -63,6 +67,14 @@ public class QuinzicalTuple {
 
 	public ArrayList<String> getAnswers() {
 		return answers;
+	}
+
+	public QuestionType getType() {
+		return type;
+	}
+
+	public void setType(QuestionType type) {
+		this.type = type;
 	}
 
 	/**
