@@ -84,7 +84,6 @@ public class PointsPlayController {
 
 				while (categoriesSet.size() < 5) {
 					int nextRandBounded = Math.abs(rand.nextInt() % (this.model.getCategories().size()));
-					System.out.println(nextRandBounded);
 					String currentCategory = this.model.getCategories().get(nextRandBounded);
 					boolean flag = false;
 					for (QuinzicalTuple t : this.model.getQuestions()) {

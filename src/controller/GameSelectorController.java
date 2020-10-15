@@ -5,9 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
 import model.MainModel;
+import model.QuinzicalTuple;
 import utilities.SceneManager;
 
 public class GameSelectorController {
@@ -26,7 +28,7 @@ public class GameSelectorController {
 
 	@FXML
 	private HBox userDetails;
-	
+
 	@FXML
 	private ImageView imageLock;
 
@@ -42,6 +44,11 @@ public class GameSelectorController {
 	@FXML
 	private Button buttonPractice;
 
+	@FXML
+	private Label labelUnlock;
+
+	@FXML
+	private HBox hBox;
 	private MainModel model;
 
 	public void initialize() {
@@ -62,6 +69,28 @@ public class GameSelectorController {
 		if (this.model.getInternationalUnlocked()) {
 			this.imageLock.setVisible(false);
 			this.buttonInternational.setDisable(false);
+		}
+
+		// set label to prompt the user to unlock international section
+
+		if (!this.model.getInternationalUnlocked()) {
+			int completedQuestions = 0;
+			if (!this.model.getGameQuestions().isEmpty()) {
+				for (QuinzicalTuple q : this.model.getGameQuestions()) {
+					if (q.getCompleted()) {
+						completedQuestions++;
+					}
+				}
+			}
+			labelUnlock.setText("ANSWER " + (10 - completedQuestions)
+					+ " MORE QUESTIONS FROM THE NEW ZEALAND MODULE TO UNLOCK INTERNATIONAL MODULE");
+		} else {
+			// TODO Some reason this isn't working, user workaround
+			hBox.getChildren().remove(labelUnlock);
+
+			labelUnlock.setVisible(false);
+			labelUnlock.setPrefWidth(0);
+			labelUnlock.setPrefHeight(0);
 		}
 	}
 
