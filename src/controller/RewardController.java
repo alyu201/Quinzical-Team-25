@@ -5,6 +5,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
 import model.MainModel;
@@ -40,6 +41,12 @@ public class RewardController {
 
 	@FXML
 	private Label labelQuestionWinnings;
+	
+	@FXML
+	private ImageView imageConfettiLeft;
+	
+	@FXML
+	private ImageView imageConfettiRight;
 
 	@FXML
 	private Button buttonContinue;
@@ -72,6 +79,8 @@ public class RewardController {
 			this.labelAnswer
 					.setText("The correct answer was \"" + this.model.getCurrentQuestion().getAnswers().get(0) + "\"");
 			this.labelCorrect.setText("INCORRECT");
+			this.imageConfettiLeft.setVisible(false);
+			this.imageConfettiRight.setVisible(false);
 		}
 
 	}
@@ -131,7 +140,8 @@ public class RewardController {
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)
 					|| this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
 				SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
-				if (this.model.getInternationalUnlocked()) {
+				// show the international unlocked reward
+				if (this.model.getShowUnlock()) {
 					SceneManager.addStage(getClass().getResource("/view/InternationalRewardView.fxml"), e);
 				}
 			} else {

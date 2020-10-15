@@ -165,6 +165,14 @@
                               <DropShadow color="#0000001a" offsetX="-10.0" />
                            </effect>
                         </ImageView>
+                        <ImageView fx:id="imageConfettiLeft" fitHeight="600.0" fitWidth="650.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../resources/images/confetti-left.png" />
+                           </image>
+                           <effect>
+                              <DropShadow color="#0000001a" />
+                           </effect>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
@@ -183,6 +191,14 @@
                            </image>
                            <effect>
                               <DropShadow color="#0000001a" offsetX="10.0" />
+                           </effect>
+                        </ImageView>
+                        <ImageView fx:id="imageConfettiRight" fitHeight="600.0" fitWidth="650.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../resources/images/confetti-right.png" />
+                           </image>
+                           <effect>
+                              <DropShadow color="#0000001a" />
                            </effect>
                         </ImageView>
                      </children>

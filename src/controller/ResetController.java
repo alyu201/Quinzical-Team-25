@@ -62,6 +62,7 @@ public class ResetController {
 		this.model.setAddedToLeaderboardGame(false);
 		this.model.setAddedToLeaderboardInternational(false);
 		this.model.setInternationalUnlocked(false);
+		this.model.setShowUnlock(false);
 		ArrayList<QuinzicalTuple> questionList = this.model.getQuestions();
 		for (QuinzicalTuple question : questionList) {
 			question.setCompleted(false);

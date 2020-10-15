@@ -56,6 +56,7 @@ public class MainModel {
 	private boolean addedToLeaderboardGame;
 	private boolean addedToLeaderboardInternational;
 	private boolean internationalUnlocked;
+	private boolean showUnlock = false;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
 			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<QuinzicalTuple> internationalQuestions,
@@ -274,7 +275,16 @@ public class MainModel {
 	public void setInternationalUnlocked(boolean unlocked) {
 		this.internationalUnlocked = unlocked;
 	}
-
+	
+	public boolean getShowUnlock() {
+		return this.showUnlock;
+	}
+	
+	public void setShowUnlock(boolean unlock)
+	{
+		this.showUnlock = unlock;
+	}
+	
 	/**
 	 * Search for a question in the model and mark it as completed
 	 * 

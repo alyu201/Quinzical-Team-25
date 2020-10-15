@@ -68,7 +68,7 @@
                            </font></Label>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
-                              <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#f2fff3" height="45.0" stroke="#f2fff3" strokeType="INSIDE" width="250.0">
+                              <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="45.0" stroke="#f2fff3" strokeType="INSIDE" strokeWidth="0.0" width="250.0">
                                  <effect>
                                     <InnerShadow color="#00000033" />
                                  </effect></Rectangle>

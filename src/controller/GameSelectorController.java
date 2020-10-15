@@ -4,6 +4,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
 import model.MainModel;
@@ -25,6 +26,9 @@ public class GameSelectorController {
 
 	@FXML
 	private HBox userDetails;
+	
+	@FXML
+	private ImageView imageLock;
 
 	@FXML
 	private Button buttonReturn;
@@ -54,6 +58,10 @@ public class GameSelectorController {
 			this.userDetails.setVisible(true);
 		} else {
 			this.userDetails.setVisible(false);
+		}
+		if (this.model.getInternationalUnlocked()) {
+			this.imageLock.setVisible(false);
+			this.buttonInternational.setDisable(false);
 		}
 	}
 

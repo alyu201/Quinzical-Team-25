@@ -162,33 +162,18 @@
    <center>
       <StackPane prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: #f2fff3;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="240.0" fitWidth="1300.0" pickOnBounds="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <image>
-                        <Image url="@../resources/images/waves%20-7.png" />
-                     </image>
-                     <effect>
-                        <InnerShadow color="#00000033">
-                           <input>
-                              <ColorAdjust brightness="0.5" />
-                           </input></InnerShadow>
-                     </effect>
-                  </ImageView>
-                  <ImageView fitHeight="420.0" fitWidth="1300.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <image>
-                        <Image url="@../resources/images/confetti.png" />
-                     </image>
-                     <effect>
-                        <DropShadow color="#0000001a" offsetY="5.0">
-                           <input>
-                              <ColorAdjust brightness="0.3" />
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ImageView>
-               </children>
-            </AnchorPane>
+            <ImageView fitHeight="240.0" fitWidth="1300.0" pickOnBounds="true" StackPane.alignment="TOP_CENTER">
+               <image>
+                  <Image url="@../resources/images/waves-8.png" />
+               </image>
+               <effect>
+                  <InnerShadow color="#00000033">
+                     <input>
+                        <ColorAdjust brightness="0.5" />
+                     </input>
+                  </InnerShadow>
+               </effect>
+            </ImageView>
             <HBox>
                <children>
                   <AnchorPane HBox.hgrow="ALWAYS">
@@ -201,6 +186,14 @@
                               <DropShadow color="#0000001a" offsetX="-10.0" />
                            </effect>
                         </ImageView>
+                        <ImageView fitHeight="420.0" fitWidth="650.0" pickOnBounds="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../resources/images/confetti-2-left.png" />
+                           </image>
+                           <effect>
+                              <DropShadow color="#0000001a" />
+                           </effect>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
@@ -211,6 +204,14 @@
                            </image>
                            <effect>
                               <DropShadow color="#0000001a" offsetX="10.0" />
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="420.0" fitWidth="650.0" pickOnBounds="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../resources/images/confetti-2-right.png" />
+                           </image>
+                           <effect>
+                              <DropShadow color="#0000001a" />
                            </effect>
                         </ImageView>
                      </children>
