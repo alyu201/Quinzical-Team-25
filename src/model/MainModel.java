@@ -55,6 +55,7 @@ public class MainModel {
 	private boolean allCompletedInternational;
 	private boolean addedToLeaderboardGame;
 	private boolean addedToLeaderboardInternational;
+	private boolean internationalUnlocked;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
 			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<QuinzicalTuple> internationalQuestions,
@@ -62,7 +63,7 @@ public class MainModel {
 			String currentCategory, Settings settings, StringProperty name, IntegerProperty gameWinnings,
 			IntegerProperty practiceWinnings, IntegerProperty internationalWinnings, GameType currentGameMode,
 			boolean allCompletedGame, boolean allCompletedPractice, boolean allCompletedInternational,
-			boolean addedtoLeaderboardGame, boolean addedToLeaderboardInternational) {
+			boolean addedtoLeaderboardGame, boolean addedToLeaderboardInternational, boolean internationalUnlocked) {
 		super();
 		this.questions = questions;
 		this.gameQuestions = gameQuestions;
@@ -83,6 +84,7 @@ public class MainModel {
 		this.allCompletedInternational = allCompletedInternational;
 		this.addedToLeaderboardGame = addedtoLeaderboardGame;
 		this.addedToLeaderboardInternational = addedToLeaderboardInternational;
+		this.internationalUnlocked = internationalUnlocked;
 	}
 
 	/**
@@ -263,6 +265,14 @@ public class MainModel {
 
 	public void addInternationalWinnings(int w) {
 		this.internationalWinnings.set(internationalWinnings.get() + w);
+	}
+	
+	public boolean getInternationalUnlocked() {
+		return this.internationalUnlocked;
+	}
+	
+	public void setInternationalUnlocked(boolean unlocked) {
+		this.internationalUnlocked = unlocked;
 	}
 
 	/**
@@ -472,6 +482,9 @@ public class MainModel {
 
 		// addedToLeaderboardInternational
 		obj.put("addedToLeaderboardInternational", this.isAddedToLeaderboardInternational());
+		
+		// internationalUnlocked
+		obj.put("internationalUnlocked", this.getInternationalUnlocked());
 
 		return obj.toJSONString();
 	}
@@ -606,11 +619,15 @@ public class MainModel {
 
 			// addedToLeaderboard
 			boolean addedToLeaderboardInternational = (boolean) obj.get("addedToLeaderboardInternational");
+			
+			// internationalUnlocked
+			boolean internationalUnlocked = (boolean) obj.get("internationalUnlocked");
 
 			return new MainModel(questions, gameQuestions, practiceQuestions, internationalQuestions, categories,
 					leaderboard, null, currentCategory, settings, name, gameWinnings, practiceWinnings,
 					internationalWinnings, currentGameType, allCompletedGame, allCompletedPractice,
-					allCompletedInternational, addedToLeaderboardGame, addedToLeaderboardInternational);
+					allCompletedInternational, addedToLeaderboardGame, addedToLeaderboardInternational, 
+					internationalUnlocked);
 
 		} catch (ParseException e) {
 			e.printStackTrace();

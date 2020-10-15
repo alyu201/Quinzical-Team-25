@@ -90,7 +90,7 @@ public class CategoryController {
 
 	@FXML
 	private void onClickButtonReturn(Event e) {
-		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+		SceneManager.changeScene(getClass().getResource("/view/GameSelectorView.fxml"), e);
 	}
 
 	/**

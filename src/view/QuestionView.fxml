@@ -194,7 +194,10 @@
                      <children>
                         <StackPane maxHeight="-Infinity" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0e6f78;" />
+                              <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0e6f78;">
+                                 <effect>
+                                    <DropShadow color="#00000033" />
+                                 </effect></AnchorPane>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
                                     <Label fx:id="labelQuestion" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="88.0" text="question" textAlignment="CENTER" textFill="#f2fff3" wrapText="true">
@@ -211,9 +214,6 @@
                                  <padding>
                                     <Insets bottom="10.0" left="40.0" right="40.0" />
                                  </padding>
-                                 <effect>
-                                    <DropShadow color="#00000033" />
-                                 </effect>
                               </VBox>
                            </children>
                         </StackPane>

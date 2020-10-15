@@ -131,6 +131,9 @@ public class RewardController {
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)
 					|| this.model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
 				SceneManager.changeScene(getClass().getResource("/view/PointsPlayView.fxml"), e);
+				if (this.model.getInternationalUnlocked()) {
+					SceneManager.addStage(getClass().getResource("/view/InternationalRewardView.fxml"), e);
+				}
 			} else {
 				SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
 			}

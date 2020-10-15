@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import model.QuinzicalTuple;
@@ -12,9 +13,12 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import model.MainModel;
 import model.QuestionTypeEnum.QuestionType;
@@ -29,6 +33,7 @@ import utilities.SceneManager;
  */
 public class PointsPlayController {
 
+	private DropShadow dropshadow = new DropShadow(BlurType.THREE_PASS_BOX, Color.rgb(0, 0, 0, 0.2), 10, 0, 0, 0);
 	private MainModel model;
 
 	@FXML
@@ -129,7 +134,7 @@ public class PointsPlayController {
 				}
 			}
 
-			// Fetch the names of the question cateogories
+			// Fetch the names of the question categories
 			ArrayList<String> questionCategories = new ArrayList<String>();
 			for (QuinzicalTuple question : this.model.getGameQuestions()) {
 				if (!questionCategories.contains(question.getCategory())) {
@@ -142,8 +147,10 @@ public class PointsPlayController {
 			this.gridPanePoints.setAlignment(Pos.CENTER);
 			int r = 0;
 			int c = 0;
+			int completedCategories = 0;
 			for (String category : questionCategories) {
 				boolean flag = false;
+				List<Boolean> completedQuestions = new ArrayList<Boolean>();
 				Label label = new Label(category);
 				label.setWrapText(true);
 				label.setPrefWidth(200);
@@ -156,9 +163,20 @@ public class PointsPlayController {
 				for (QuinzicalTuple question : this.model.getGameQuestions()) {
 					if (!filteredQuestions.contains(question) && category.equals(question.getCategory())) {
 						filteredQuestions.add(question);
+						if (question.getCompleted()) {
+							completedQuestions.add(true);
+						} else {
+							completedQuestions.add(false);
+						}
 					}
 				}
 
+				if (!completedQuestions.contains(false)) {
+					System.out.println("category is completed!");
+					completedCategories += 1;
+					System.out.println(completedCategories);
+				}
+				
 				// gameQuestions only those that are not completed
 				// sort questions by worth lowest worth first
 				Collections.sort(filteredQuestions, ((x, y) -> {
@@ -167,10 +185,17 @@ public class PointsPlayController {
 
 				for (QuinzicalTuple question : filteredQuestions) {
 					Button button = new Button("$" + question.getWorth());
+					button.setEffect(dropshadow);
+					button.setTextAlignment(TextAlignment.CENTER);
 					button.setStyle("-fx-background-color: #00c3b1; -fx-background-radius: 30; -fx-text-fill: #f2fff3;"
 							+ " -fx-font-weight: bold; -fx-font-size: 16px;");
-					if (question.getCompleted() == true || flag == true) {
+					if (question.getCompleted() && !flag) {
+						button.setText(button.getText() + "\n(Completed)");
 						button.setStyle("-fx-background-color: #0b2247; -fx-background-radius: 30; -fx-font-size: 16px;"
+								+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
+						button.setDisable(true);
+					} else if (question.getCompleted() == true || flag == true) {
+						button.setStyle("-fx-background-color: #00c3b1; -fx-background-radius: 30; -fx-font-size: 16px;"
 								+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
 						button.setDisable(true);
 					}
@@ -195,6 +220,11 @@ public class PointsPlayController {
 				}
 				++c;
 				r = 0;
+			}
+			
+			if (completedCategories == 2) {
+				this.model.setInternationalUnlocked(true);
+				System.out.println(this.model.getInternationalUnlocked());
 			}
 		} else {
 			if (this.model.getInternationalQuestions().size() == 0) {
@@ -289,10 +319,17 @@ public class PointsPlayController {
 
 				for (QuinzicalTuple question : filteredQuestions) {
 					Button button = new Button("$" + question.getWorth());
+					button.setEffect(dropshadow);
+					button.setTextAlignment(TextAlignment.CENTER);
 					button.setStyle("-fx-background-color: #00c3b1; -fx-background-radius: 30; -fx-text-fill: #f2fff3;"
 							+ " -fx-font-weight: bold; -fx-font-size: 16px;");
-					if (question.getCompleted() == true || flag == true) {
+					if (question.getCompleted() && !flag) {
+						button.setText(button.getText() + "\n(Completed)");
 						button.setStyle("-fx-background-color: #0b2247; -fx-background-radius: 30; -fx-font-size: 16px;"
+								+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
+						button.setDisable(true);
+					} else if (question.getCompleted() == true || flag == true) {
+						button.setStyle("-fx-background-color: #00c3b1; -fx-background-radius: 30; -fx-font-size: 16px;"
 								+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
 						button.setDisable(true);
 					}
@@ -325,7 +362,7 @@ public class PointsPlayController {
 	@FXML
 	private void onClickButtonBack(Event e) {
 		model.toJSONFile();
-		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+		SceneManager.changeScene(getClass().getResource("/view/GameSelectorView.fxml"), e);
 	}
 
 	@FXML

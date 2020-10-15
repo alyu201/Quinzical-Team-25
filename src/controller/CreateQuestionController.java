@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -45,7 +45,7 @@ public class CreateQuestionController {
 	private TextField textFieldWorth;
 
 	@FXML
-	private ChoiceBox<String> choiceBoxQuestionType;
+	private ComboBox<String> choiceBoxQuestionType;
 
 	private MainModel model;
 

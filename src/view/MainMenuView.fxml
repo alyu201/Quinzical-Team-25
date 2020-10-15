@@ -186,7 +186,7 @@
                      <children>
                         <VBox alignment="CENTER" spacing="20.0">
                            <children>
-                              <Button fx:id="buttonPlay" mnemonicParsing="false" onAction="#onClickButtonPlay" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="PLAY" textFill="#f2fff3">
+                              <Button fx:id="buttonPlay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickButtonPlay" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="PLAY" textFill="#f2fff3">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -197,7 +197,7 @@
                                     <DropShadow color="#00000033" />
                                  </effect>
                               </Button>
-                              <Button mnemonicParsing="false" onMouseClicked="#onClickButtonCreateQuestion" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
+                              <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClickButtonCreateQuestion" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="CREATE QUESTIONS" textFill="#f2fff3">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -208,7 +208,7 @@
                                     <DropShadow color="#00000033" />
                                  </effect>
                               </Button>
-                              <Button fx:id="butonStartOver" mnemonicParsing="false" onAction="#onClickButtonStartOver" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="START OVER" textFill="#f2fff3">
+                              <Button fx:id="butonStartOver" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickButtonStartOver" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="START OVER" textFill="#f2fff3">
                                  <font>
                                     <Font name="System Bold Italic" size="16.0" />
                                  </font>
@@ -223,7 +223,7 @@
                         </VBox>
                         <VBox alignment="CENTER" spacing="20.0">
                            <children>
-                              <Button fx:id="buttonLeaderboard" mnemonicParsing="false" onAction="#onClickButtonLeaderboard" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="LEADERBOARD" textFill="#f2fff3">
+                              <Button fx:id="buttonLeaderboard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickButtonLeaderboard" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="LEADERBOARD" textFill="#f2fff3">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -234,7 +234,7 @@
                                     <DropShadow color="#00000033" />
                                  </effect>
                               </Button>
-                              <Button fx:id="buttonReset" mnemonicParsing="false" onAction="#onClickButtonReset" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="RESET" textFill="#f2fff3">
+                              <Button fx:id="buttonReset" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickButtonReset" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 30;" text="RESET" textFill="#f2fff3">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -245,7 +245,7 @@
                                     <DropShadow color="#00000033" />
                                  </effect>
                               </Button>
-                              <Button fx:id="buttonQuit" mnemonicParsing="false" onMouseClicked="#onClickButtonQuit" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="QUIT" textFill="#f2fff3">
+                              <Button fx:id="buttonQuit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClickButtonQuit" prefHeight="70.0" prefWidth="250.0" style="-fx-background-color: #00b9a8; -fx-background-radius: 30;" text="QUIT" textFill="#f2fff3">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

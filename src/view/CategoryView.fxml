@@ -120,7 +120,7 @@
                               <DropShadow color="#00000033" />
                            </effect>
                         </Button>
-                        <Label text="RETURN" textAlignment="CENTER" textFill="#0b2247">
+                        <Label text="RETURN TO MODULES PICKER" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

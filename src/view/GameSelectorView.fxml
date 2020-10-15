@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -118,7 +119,7 @@
                               <DropShadow color="#00000033" />
                            </effect>
                         </Button>
-                        <Label text="RETURN" textAlignment="CENTER" textFill="#0b2247">
+                        <Label text="RETURN TO MAIN MENU" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -140,34 +141,74 @@
          <children>
             <HBox>
                <children>
-                  <AnchorPane HBox.hgrow="ALWAYS">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="580.0" fitWidth="800.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                        <ImageView fitHeight="530.0" fitWidth="734.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <image>
                               <Image url="@../resources/images/waves.png" />
                            </image>
                            <effect>
-                              <InnerShadow color="#00000033" height="50.0" radius="24.5" width="50.0" />
+                              <InnerShadow color="#00000033" />
                            </effect>
                         </ImageView>
-                        <ImageView fitHeight="600.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                        <ImageView fitHeight="560.0" fitWidth="743.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/main-left.png" />
+                              <Image url="@../resources/images/light-fern-left.png" />
                            </image>
                            <effect>
-                              <DropShadow color="#0000001a" offsetX="-10.0" />
+                              <ColorAdjust brightness="-0.15">
+                                 <input>
+                                    <DropShadow color="#0000001a" offsetX="-10.0" />
+                                 </input>
+                              </ColorAdjust>
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                           <image>
+                              <Image url="@../resources/images/dark-fern-left.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-0.15">
+                                 <input>
+                                    <DropShadow color="#0000001a" offsetX="-10.0" />
+                                 </input>
+                              </ColorAdjust>
                            </effect>
                         </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="600.0" fitWidth="1300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <ImageView fitHeight="280.0" fitWidth="450.0" pickOnBounds="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/main-right.png" />
+                              <Image url="@../resources/images/waves-2.png" />
                            </image>
                            <effect>
-                              <DropShadow color="#0000001a" offsetX="10.0" />
+                              <InnerShadow color="#00000033" />
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="600.0" fitWidth="743.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <image>
+                              <Image url="@../resources/images/light-fern-right.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-0.15">
+                                 <input>
+                                    <DropShadow color="#0000001a" offsetX="10.0" />
+                                 </input>
+                              </ColorAdjust>
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../resources/images/dark-fern-right.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-0.15">
+                                 <input>
+                                    <DropShadow color="#0000001a" offsetX="10.0" />
+                                 </input>
+                              </ColorAdjust>
                            </effect>
                         </ImageView>
                      </children>
@@ -178,7 +219,7 @@
                <children>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" text="SELECT A GAME TYPE" textAlignment="CENTER" textFill="#0b2247">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" text="SELECT A MODULE" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font size="80.0" />
                            </font>

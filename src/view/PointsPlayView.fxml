@@ -120,7 +120,7 @@
                               <DropShadow color="#00000033" />
                            </effect>
                         </Button>
-                        <Label text="RETURN TO MAIN MENU" textAlignment="CENTER" textFill="#0b2247">
+                        <Label text="RETURN TO MODULES PICKER" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font></Label>
@@ -192,8 +192,15 @@
                </children>
             </HBox>
             <StackPane alignment="TOP_CENTER" prefHeight="150.0" prefWidth="200.0" StackPane.alignment="CENTER">
+               <StackPane.margin>
+                  <Insets top="35.0" />
+               </StackPane.margin>
                <children>
-                  <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="108.0" style="-fx-background-color: #daffe3;" />
+                  <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" style="-fx-background-color: #daffe3;">
+                     <effect>
+                        <DropShadow color="#00000033" />
+                     </effect>
+                  </AnchorPane>
                   <HBox alignment="CENTER" prefHeight="610.0" prefWidth="1000.0">
                      <children>
                         <GridPane fx:id="gridPanePoints" alignment="CENTER" hgap="10.0" prefHeight="372.0" prefWidth="1000.0" vgap="10.0">
@@ -219,9 +226,6 @@
                      </children>
                   </HBox>
                </children>
-               <StackPane.margin>
-                  <Insets top="35.0" />
-               </StackPane.margin>
             </StackPane>
          </children>
          <effect>

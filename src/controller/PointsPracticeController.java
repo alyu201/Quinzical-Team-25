@@ -9,9 +9,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import model.MainModel;
 import utilities.SceneManager;
 
@@ -122,12 +126,16 @@ public class PointsPracticeController {
 		for (QuinzicalTuple question : this.model.getPracticeQuestions()) {
 
 			Button button = new Button("$" + question.getWorth());
-			button.setPrefWidth(150);
+			button.setPrefWidth(200);
 			button.setPrefHeight(150);
-			button.setStyle("-fx-background-color: #00C3B1; -fx-background-radius: 30; -fx-font-size: 25px;"
+			DropShadow dropshadow = new DropShadow(BlurType.THREE_PASS_BOX, Color.rgb(0, 0, 0, 0.2), 10, 0, 0, 0);
+			button.setEffect(dropshadow);
+			button.setTextAlignment(TextAlignment.CENTER);
+			button.setStyle("-fx-background-color: #00C3B1; -fx-background-radius: 30; -fx-font-size: 20px;"
 					+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
 			if (question.getCompleted() == true) {
-				button.setStyle("-fx-background-color: #0b2247; -fx-background-radius: 30; -fx-font-size: 25px;"
+				button.setText(button.getText() + "\n(Completed)");
+				button.setStyle("-fx-background-color: #0b2247; -fx-background-radius: 30; -fx-font-size: 20px;"
 						+ " -fx-text-fill: #f2fff3; -fx-font-weight: bold;");
 				button.setDisable(true);
 			}
