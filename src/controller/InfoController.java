@@ -1,5 +1,6 @@
 package controller;
 
+import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,5 +26,6 @@ public class InfoController {
 	private void onClickButtonOk(Event e) {
 		Stage stage = (Stage) buttonOk.getScene().getWindow();
 		stage.close();
+		Main.getPrimaryStage().getScene().getRoot().setEffect(null);
 	}
 }

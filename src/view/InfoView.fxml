@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1100.0" style="-fx-background-color: #daffe3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InfoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1140.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InfoController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #f2fff3;" BorderPane.alignment="CENTER">
          <children>
@@ -29,18 +29,18 @@
       </HBox>
    </top>
    <center>
-      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="200.0" style="-fx-background-color: #daffe3;" BorderPane.alignment="CENTER">
          <children>
             <VBox>
                <children>
                   <AnchorPane>
                      <children>
-                        <ImageView fitHeight="600.0" fitWidth="1100.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ImageView fitHeight="540.0" fitWidth="1100.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
                               <Image url="@../resources/images/waves-6.png" />
                            </image>
                         </ImageView>
-                        <VBox prefWidth="100.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox prefWidth="100.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label fx:id="content" text="Quinzical is a fun quiz game with speech synthesis function to let you learn about New Zealand or just simply test your knowledge about the country!&#10;" textFill="#0b2247" wrapText="true">
                                  <font>
@@ -54,17 +54,12 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="content11" layoutX="10.0" layoutY="325.0" text="This is the Games Module where five random clues are given for each category in increasing order by the amount the clue is worth. The player starts with answering the least amount and advances by answering clues with higher worth." textAlignment="JUSTIFY" textFill="#0b2247" wrapText="true">
+                                    <Label fx:id="content11" layoutX="10.0" layoutY="325.0" text="This is the Games Module where five random clues are given for each category in increasing order by the amount the clue is worth. The player starts with answering the least amount and advances by answering clues with higher worth. There are 3 modules to choose from and to unlock the INTERNATIONAL section, 2 categories must be completed in the NEW ZEALAND module." textAlignment="JUSTIFY" textFill="#0b2247" wrapText="true">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="content12" layoutX="10.0" layoutY="241.0" text="PRACTICE" textFill="#0b2247" wrapText="true">
-                                       <font>
-                                          <Font name="System Bold" size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="content111" layoutX="10.0" layoutY="262.0" text="Player can choose the topic they wish to practice and the level of difficulty of the clues before attempting the real game in Games Module. In this Practice Module, a winnings will be calculated but does not contribute to the actual game." textAlignment="JUSTIFY" textFill="#0b2247" wrapText="true">
+                                    <Label text="In the PRACTICE module, players can choose the topic they wish to practice and the level of difficulty of the clues before attempting the real game in Games Module. In this Practice Module, a winnings will be calculated but does not contribute to the actual game." textAlignment="JUSTIFY" textFill="#0b2247" wrapText="true">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -79,7 +74,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="content12111" layoutX="305.0" layoutY="238.0" text="CREATE QUESTIONS (NOT AVAILABLE) " textFill="#0b2247" wrapText="true">
+                                    <Label fx:id="content12111" layoutX="305.0" layoutY="238.0" text="CREATE QUESTIONS" textFill="#0b2247" wrapText="true">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -102,10 +97,13 @@
                                        </effect>
                                     </Button>
                                  </children>
+                                 <padding>
+                                    <Insets top="20.0" />
+                                 </padding>
                               </HBox>
                            </children>
                            <padding>
-                              <Insets bottom="10.0" left="50.0" right="50.0" top="20.0" />
+                              <Insets left="50.0" right="50.0" top="30.0" />
                            </padding>
                         </VBox>
                      </children>
@@ -119,6 +117,9 @@
       </StackPane>
    </center>
    <effect>
-      <DropShadow color="#000000cc" height="25.0" radius="12.0" width="25.0" />
+      <DropShadow color="#000000cc" height="40.0" radius="19.5" width="40.0" />
    </effect>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
 </BorderPane>

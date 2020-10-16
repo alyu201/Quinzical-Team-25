@@ -1,5 +1,6 @@
 package controller;
 
+import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -80,5 +81,6 @@ public class SettingsController {
 		model.toJSONFile();
 		Stage stage = (Stage) buttonOk.getScene().getWindow();
 		stage.close();
+		Main.getPrimaryStage().getScene().getRoot().setEffect(null);
 	}
 }

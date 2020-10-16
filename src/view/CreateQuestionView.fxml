@@ -253,7 +253,7 @@
                                        <children>
                                           <Label alignment="TOP_LEFT" text="QUESTION" textFill="#0b2247">
                                              <font>
-                                                <Font name="System Bold" size="23.0" />
+                                                <Font name="System Bold" size="25.0" />
                                              </font>
                                           </Label>
                                           <TextField fx:id="textFieldQuestion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" promptText="Enter a question" style="-fx-background-radius: 30;">
@@ -270,7 +270,7 @@
                                        <children>
                                           <Label alignment="TOP_LEFT" text="CATEGORY" textFill="#0b2247">
                                              <font>
-                                                <Font name="System Bold" size="23.0" />
+                                                <Font name="System Bold" size="25.0" />
                                              </font>
                                           </Label>
                                           <TextField fx:id="textFieldCategory" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onInputTextFieldCategory" prefHeight="50.0" prefWidth="1000.0" promptText="Enter a category or select from below" style="-fx-background-radius: 30;">
@@ -291,7 +291,7 @@
                                        <children>
                                           <Label alignment="TOP_LEFT" text="ANSWER" textFill="#0b2247">
                                              <font>
-                                                <Font name="System Bold" size="23.0" />
+                                                <Font name="System Bold" size="25.0" />
                                              </font>
                                           </Label>
                                           <TextField fx:id="textFieldAnswer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" promptText="Enter an answer" style="-fx-background-radius: 30;">
@@ -308,7 +308,7 @@
                                        <children>
                                           <Label alignment="TOP_LEFT" text="WORTH" textFill="#0b2247">
                                              <font>
-                                                <Font name="System Bold" size="23.0" />
+                                                <Font name="System Bold" size="25.0" />
                                              </font>
                                           </Label>
                                           <TextField fx:id="textFieldWorth" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0" promptText="Enter question worth" style="-fx-background-radius: 30;">
@@ -325,7 +325,7 @@
                                        <children>
                                           <Label alignment="TOP_LEFT" text="TYPE OF QUESTION" textFill="#0b2247">
                                              <font>
-                                                <Font name="System Bold" size="23.0" />
+                                                <Font name="System Bold" size="25.0" />
                                              </font>
                                           </Label>
                                           <ComboBox fx:id="choiceBoxQuestionType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" promptText="Select a type" style="-fx-background-color: white; -fx-background-radius: 30;">
@@ -333,6 +333,35 @@
                                                 <DropShadow color="#00000033" />
                                              </effect>
                                           </ComboBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Label fx:id="labelConfirm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" text="Question will be added. &#10;Are you sure?" textFill="#0b2247" visible="false" wrapText="true">
+                                             <font>
+                                                <Font name="System Bold" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                             <children>
+                                                <Button fx:id="buttonYes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickButtonYes" onMouseClicked="#onClickButtonAddQuestion" prefHeight="53.0" prefWidth="120.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" text="YES" textFill="#f2fff3" visible="false">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                   <effect>
+                                                      <DropShadow color="#00000033" />
+                                                   </effect>
+                                                </Button>
+                                                <Button fx:id="buttonNo" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickButtonNo" onMouseClicked="#onClickButtonAddQuestion" prefHeight="53.0" prefWidth="120.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" text="NO" textFill="#f2fff3" visible="false">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                   <effect>
+                                                      <DropShadow color="#00000033" />
+                                                   </effect>
+                                                </Button>
+                                             </children>
+                                          </HBox>
                                        </children>
                                     </VBox>
                                  </children>

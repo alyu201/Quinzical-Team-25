@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -40,6 +41,7 @@ public class ResetController {
 	private void onClickButtonNo(Event e) {
 		Stage stage = (Stage) buttonNo.getScene().getWindow();
 		stage.close();
+		Main.getPrimaryStage().getScene().getRoot().setEffect(null);
 	}
 
 	/**
@@ -68,7 +70,9 @@ public class ResetController {
 		for (QuinzicalTuple question : questionList) {
 			question.setCompleted(false);
 		}
-
-		SceneManager.changeScene(getClass().getResource("/view/ResetConfirmView.fxml"), e);
+		
+		Stage stage = (Stage) buttonYes.getScene().getWindow();
+		stage.close();
+		SceneManager.addStage(getClass().getResource("/view/ResetConfirmView.fxml"), e);
 	}
 }

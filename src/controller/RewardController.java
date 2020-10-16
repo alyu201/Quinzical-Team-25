@@ -29,6 +29,9 @@ public class RewardController {
 
 	@FXML
 	private Label labelWinnings;
+	
+	@FXML
+	private Label labelWinningMessage;
 
 	@FXML
 	private HBox userDetails;
@@ -79,6 +82,7 @@ public class RewardController {
 			this.labelAnswer
 					.setText("The correct answer was \"" + this.model.getCurrentQuestion().getAnswers().get(0) + "\"");
 			this.labelCorrect.setText("INCORRECT");
+			this.labelWinningMessage.setText("YOU MISSED OUT ON:");
 			this.imageConfettiLeft.setVisible(false);
 			this.imageConfettiRight.setVisible(false);
 		}

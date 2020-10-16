@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
+import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -40,6 +41,7 @@ public class StartOverController {
 	private void onClickButtonNo(Event e) {
 		Stage stage = (Stage) buttonNo.getScene().getWindow();
 		stage.close();
+		Main.getPrimaryStage().getScene().getRoot().setEffect(null);
 	}
 
 	/**
@@ -67,5 +69,6 @@ public class StartOverController {
 
 		Stage stage = (Stage) buttonYes.getScene().getWindow();
 		stage.close();
+		Main.getPrimaryStage().getScene().getRoot().setEffect(null);
 	}
 }

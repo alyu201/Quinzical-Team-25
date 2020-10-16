@@ -1,5 +1,6 @@
 package controller;
 
+import application.Main;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -19,6 +20,7 @@ public class InternationalRewardController {
     void onClickButtonOk(Event e) {
     	Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
     	stage.close();
+    	Main.getPrimaryStage().getScene().getRoot().setEffect(null);
     }
 
 }

@@ -217,9 +217,14 @@
                         <Font size="35.0" />
                      </font>
                   </Label>
-                  <StackPane prefHeight="200.0" prefWidth="640.0">
+                  <Label fx:id="labelWinningMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="521.0" layoutY="237.0" text="YOU HAVE EARNED:" textAlignment="CENTER" textFill="#0b2247">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Label>
+                  <StackPane>
                      <children>
-                        <Rectangle arcHeight="110.0" arcWidth="110.0" fill="#f2fff3" height="110.0" stroke="#f2fff3" strokeType="INSIDE" width="450.0">
+                        <Rectangle arcHeight="110.0" arcWidth="110.0" fill="WHITE" height="110.0" stroke="#f2fff3" strokeType="INSIDE" strokeWidth="0.0" width="450.0">
                            <effect>
                               <InnerShadow color="#00000033" />
                            </effect></Rectangle>

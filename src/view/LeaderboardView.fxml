@@ -291,11 +291,11 @@
                                     </StackPane>
                                  </children>
                               </HBox>
-                              <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="370.0" prefWidth="900.0" style="-fx-background-color: transparent;">
+                              <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="900.0" style="-fx-background-color: transparent;">
                                  <content>
                                     <HBox alignment="CENTER_LEFT">
                                        <children>
-                                          <StackPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="80.0">
+                                          <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="80.0">
                                              <children>
                                                 <VBox alignment="TOP_CENTER" style="-fx-border-color: #00c3b1; -fx-border-width: 0.5;">
                                                    <children>
@@ -307,7 +307,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </StackPane>
-                                          <StackPane layoutX="10.0" layoutY="10.0" prefWidth="410.0">
+                                          <StackPane layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="410.0">
                                              <children>
                                                 <VBox alignment="TOP_CENTER" style="-fx-border-color: #00c3b1; -fx-border-width: 0.5;">
                                                    <children>
@@ -316,7 +316,7 @@
                                                 </VBox>
                                              </children>
                                           </StackPane>
-                                          <StackPane layoutX="116.0" layoutY="10.0" prefWidth="390.0">
+                                          <StackPane layoutX="116.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="390.0">
                                              <children>
                                                 <VBox alignment="TOP_CENTER" style="-fx-border-color: #00c3b1; -fx-border-width: 0.5;">
                                                    <children>

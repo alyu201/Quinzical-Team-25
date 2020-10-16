@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -20,11 +21,26 @@ import utilities.SceneManager;
 
 public class CreateQuestionController {
 
+	private String question;
+	private String category;
+	private int worth;
+	private ArrayList<String> answers  = new ArrayList<String>();;
+	private QuestionType type;
+	private boolean confirm = false;
 	@FXML
 	private Label labelName;
 
 	@FXML
 	private Label labelWinnings;
+	
+	@FXML
+	private Label labelConfirm;
+	
+	@FXML
+	private Button buttonYes;
+	
+	@FXML
+	private Button buttonNo;
 
 	@FXML
 	private HBox userDetails;
@@ -89,17 +105,50 @@ public class CreateQuestionController {
 
 	@FXML
 	private void onClickButtonAddQuestion(Event e) {
-		String question = this.textFieldQuestion.getText();
-		String category = this.textFieldCategory.getText();
-		int worth = Integer.valueOf(this.textFieldWorth.getText());
-		QuestionType type = (this.choiceBoxQuestionType.getSelectionModel().getSelectedItem().equals("New Zealand"))
-				? QuestionType.NEWZEALAND
-				: QuestionType.INTERNATIONAL;
+		question = this.textFieldQuestion.getText().trim();
+		category = this.textFieldCategory.getText().trim();
+		String worthGiven = this.textFieldWorth.getText().trim();
+		String answerGiven = this.textFieldAnswer.getText().trim();
+		String typeGiven = this.choiceBoxQuestionType.getSelectionModel().getSelectedItem().trim();
+		
+		System.out.println(this.confirm);
+		if (!this.confirm) {
+			if (question.length() == 0 || category.length() == 0 || worthGiven.length() == 0 ||
+					answerGiven.length() == 0 || typeGiven.length() == 0) {
+				this.labelConfirm.setText("Some required fields may be missing.\nTry again.");
+				this.labelConfirm.setVisible(true);
+			} else {
+				worth = Integer.valueOf(worthGiven);
+				type = (typeGiven.equals("New Zealand"))
+						? QuestionType.NEWZEALAND
+						: QuestionType.INTERNATIONAL;
 
-		ArrayList<String> answers = new ArrayList<String>();
-		answers.add(this.textFieldAnswer.getText());
-		this.model.getQuestions().add(new QuinzicalTuple(category, question, worth, answers, false, false, type));
-
+				answers.add(answerGiven);
+				this.confirm = true;
+				this.labelConfirm.setText("Ouestion will be added.\nAre you sure?");
+				this.labelConfirm.setVisible(true);
+				this.buttonYes.setVisible(true);
+				this.buttonNo.setVisible(true);
+			}
+		} else {
+			this.labelConfirm.setVisible(false);
+			this.buttonNo.setVisible(false);
+			this.buttonYes.setVisible(false);
+		}
+	}
+	
+	@FXML
+	private void onClickButtonNo(Event e) {
+		System.out.println("no pressed");
+		this.confirm = false;
+		this.labelConfirm.setText("");
+	}
+	
+	@FXML
+	private void onClickButtonYes(Event e) {
+		//this.model.getQuestions().add(new QuinzicalTuple(category, question, worth, answers, false, false, type));
+		
+		this.confirm = false;
 		this.textFieldAnswer.clear();
 		this.textFieldCategory.clear();
 		this.textFieldQuestion.clear();

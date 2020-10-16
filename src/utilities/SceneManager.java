@@ -11,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -58,6 +60,7 @@ public class SceneManager {
 
 	public static void addStage(URL resource, Event event) {
 		Stage window = Main.getPrimaryStage();
+		window.getScene().getRoot().setEffect(new GaussianBlur());
 		try {
 			Parent root = FXMLLoader.load(resource);
 			root.getStylesheets()
@@ -67,6 +70,7 @@ public class SceneManager {
 			dialog.initModality(Modality.WINDOW_MODAL);
 			dialog.initOwner(window);
 			dialog.initStyle(StageStyle.TRANSPARENT);
+			dialog.getScene().setFill(Color.TRANSPARENT);
 			// Calculate the center position of the parent Stage
 			double centerXPosition = window.getX() + window.getWidth() / 2d;
 			double centerYPosition = window.getY() + window.getHeight() / 2d;
