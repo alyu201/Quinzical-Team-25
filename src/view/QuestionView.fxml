@@ -221,12 +221,12 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                                  <children>
-                                    <Label text="—" textFill="#0b2247">
+                                    <Label fx:id="labelDash1" text="—" textFill="#0b2247">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="557.0" layoutY="10.0" text="Time left:" textFill="#0b2247">
+                                    <Label fx:id="labelTimeLeft" layoutX="557.0" layoutY="10.0" text="Time left:" textFill="#0b2247">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>
@@ -235,7 +235,7 @@
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font></Label>
-                                    <Label layoutX="567.0" layoutY="10.0" text="—" textFill="#0b2247">
+                                    <Label fx:id="labelDash2" layoutX="567.0" layoutY="10.0" text="—" textFill="#0b2247">
                                        <font>
                                           <Font name="System Bold" size="20.0" />
                                        </font>

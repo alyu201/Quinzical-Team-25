@@ -147,6 +147,7 @@ public class RewardController {
 				// show the international unlocked reward
 				if (this.model.getShowUnlock()) {
 					SceneManager.addStage(getClass().getResource("/view/InternationalRewardView.fxml"), e);
+					this.model.setShowUnlock(false);
 				}
 			} else {
 				SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);

@@ -41,7 +41,7 @@ public class QuestionController {
 
 	@FXML
 	private Label labelHint;
-	
+
 	@FXML
 	private Label labelTimer;
 
@@ -77,6 +77,15 @@ public class QuestionController {
 
 	@FXML
 	private HBox userDetails;
+
+	@FXML
+	private Label labelDash1;
+
+	@FXML
+	private Label labelDash2;
+
+	@FXML
+	private Label labelTimeLeft;
 
 	/**
 	 * Initialize the controller and populate the name, winnings and functions of
@@ -121,46 +130,66 @@ public class QuestionController {
 			this.labelHint.setText("");
 		} else {
 			this.labelWinnings.textProperty().bind(this.model.getPracticeWinnings().asString());
+
+			// Remove timer in practice mode
+			labelDash1.setVisible(false);
+			labelDash1.setPrefWidth(0);
+			labelDash1.setPrefHeight(0);
+
+			labelDash2.setVisible(false);
+			labelDash2.setPrefWidth(0);
+			labelDash2.setPrefHeight(0);
+
+			labelTimeLeft.setVisible(false);
+			labelTimeLeft.setPrefWidth(0);
+			labelTimeLeft.setPrefHeight(0);
+
+			labelTimer.setVisible(false);
+			labelTimer.setPrefWidth(0);
+			labelTimer.setPrefHeight(0);
 		}
 
 		sayQuestion();
-		// show count-down timer
-		this.timer.scheduleAtFixedRate(new TimerTask() {
-			int countDown = 60;
-			@Override
-			public void run() {
-				if (countDown >= 0) {
-					Platform.runLater(() -> {
-						if (countDown < 10) {
-							labelTimer.setText("0:0" + countDown);						
-						} else {
-							labelTimer.setText("0:" + countDown);
-						}
-						countDown--;
-					});
-				} else {
-					timer.cancel();
-					// automatically change to reward screen
-					Platform.runLater(() -> {
-						if (isAnswerCorrect()) {
-							model.getCurrentQuestion().setCorrectlyAnswered(true);
-						} else {
-							model.getCurrentQuestion().setCorrectlyAnswered(false);
-						}
-						if (isAnswerCorrect()) {
-							if (model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
-								model.addGameWinnings(model.getCurrentQuestion().getWorth());
-							} else if (model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
-								model.addInternationalWinnings(model.getCurrentQuestion().getWorth());
+		// show count-down timer if not in practice mode
+		if (this.model.getCurrentGameType().equals(GameType.PRACTICEMODULE)) {
+			this.timer.scheduleAtFixedRate(new TimerTask() {
+				int countDown = 60;
+
+				@Override
+				public void run() {
+					if (countDown >= 0) {
+						Platform.runLater(() -> {
+							if (countDown < 10) {
+								labelTimer.setText("0:0" + countDown);
 							} else {
-								model.addPracticeWinnings(model.getCurrentQuestion().getWorth());
+								labelTimer.setText("0:" + countDown);
 							}
-						}
-						SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"));
-					});
+							countDown--;
+						});
+					} else {
+						timer.cancel();
+						// automatically change to reward screen
+						Platform.runLater(() -> {
+							if (isAnswerCorrect()) {
+								model.getCurrentQuestion().setCorrectlyAnswered(true);
+							} else {
+								model.getCurrentQuestion().setCorrectlyAnswered(false);
+							}
+							if (isAnswerCorrect()) {
+								if (model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+									model.addGameWinnings(model.getCurrentQuestion().getWorth());
+								} else if (model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+									model.addInternationalWinnings(model.getCurrentQuestion().getWorth());
+								} else {
+									model.addPracticeWinnings(model.getCurrentQuestion().getWorth());
+								}
+							}
+							SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"));
+						});
+					}
 				}
-			}
-		}, 0, 1000);
+			}, 0, 1000);
+		}
 	}
 
 	/**
