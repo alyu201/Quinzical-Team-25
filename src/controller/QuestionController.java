@@ -36,6 +36,9 @@ public class QuestionController {
 
 	@FXML
 	private Label labelHint;
+	
+	@FXML
+	private Label labelTimer;
 
 	@FXML
 	private TextField textFieldAnswer;

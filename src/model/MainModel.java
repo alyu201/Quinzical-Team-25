@@ -57,6 +57,7 @@ public class MainModel {
 	private boolean addedToLeaderboardInternational;
 	private boolean internationalUnlocked;
 	private boolean showUnlock = false;
+	private int completedCategories = 0;
 
 	public MainModel(ArrayList<QuinzicalTuple> questions, ArrayList<QuinzicalTuple> gameQuestions,
 			ArrayList<QuinzicalTuple> practiceQuestions, ArrayList<QuinzicalTuple> internationalQuestions,
@@ -283,6 +284,14 @@ public class MainModel {
 	public void setShowUnlock(boolean unlock)
 	{
 		this.showUnlock = unlock;
+	}
+	
+	public int getCompletedCategories() {
+		return this.completedCategories;
+	}
+	
+	public void setCompletedCategories(int count) {
+		this.completedCategories = count;
 	}
 	
 	/**

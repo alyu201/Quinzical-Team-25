@@ -74,16 +74,17 @@ public class GameSelectorController {
 		// set label to prompt the user to unlock international section
 
 		if (!this.model.getInternationalUnlocked()) {
-			int completedQuestions = 0;
+			/*int completedQuestions = 0;
 			if (!this.model.getGameQuestions().isEmpty()) {
 				for (QuinzicalTuple q : this.model.getGameQuestions()) {
 					if (q.getCompleted()) {
 						completedQuestions++;
 					}
 				}
-			}
-			labelUnlock.setText("ANSWER " + (10 - completedQuestions)
-					+ " MORE QUESTIONS FROM THE NEW ZEALAND MODULE TO UNLOCK INTERNATIONAL MODULE");
+			}*/
+			int completedCategories = this.model.getCompletedCategories();
+			labelUnlock.setText("COMPLETE " + (2 - completedCategories)
+					+ " MORE CATEGORIES FROM THE NEW ZEALAND MODULE TO UNLOCK INTERNATIONAL MODULE");
 		} else {
 			// TODO Some reason this isn't working, user workaround
 			hBox.getChildren().remove(labelUnlock);

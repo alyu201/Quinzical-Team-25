@@ -146,7 +146,8 @@ public class PointsPlayController {
 			this.gridPanePoints.setAlignment(Pos.CENTER);
 			int r = 0;
 			int c = 0;
-			int completedQuestions = 0;
+			int completedCategories = 0;
+			List<Boolean> questionCompleted = new ArrayList<Boolean>();
 			for (String category : questionCategories) {
 				boolean flag = false;
 				Label label = new Label(category);
@@ -161,11 +162,19 @@ public class PointsPlayController {
 				for (QuinzicalTuple question : this.model.getGameQuestions()) {
 					if (!filteredQuestions.contains(question) && category.equals(question.getCategory())) {
 						filteredQuestions.add(question);
-						// count number of completed questions over all categories
+						// check for completed questions for current category
 						if (question.getCompleted()) {
-							completedQuestions++;
+							questionCompleted.add(true);
+						} else  {
+							questionCompleted.add(false);
 						}
 					}
+				}
+				
+				// count the number of completed categories
+				if (!questionCompleted.contains(false)) {
+					completedCategories++;
+					this.model.setCompletedCategories(completedCategories);
 				}
 				
 				// gameQuestions only those that are not completed
@@ -214,7 +223,7 @@ public class PointsPlayController {
 			}
 			
 			// set the boolean to unlock the international section
-			if (completedQuestions == 10 && !this.model.getInternationalUnlocked()) {
+			if (!this.model.getInternationalUnlocked() && this.model.getCompletedCategories() == 2) {
 				this.model.setShowUnlock(true);
 				this.model.setInternationalUnlocked(true);
 			} else {

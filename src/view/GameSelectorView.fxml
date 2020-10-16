@@ -215,9 +215,9 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
-                  <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="BOTTOM_CENTER">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" text="SELECT A MODULE" textAlignment="CENTER" textFill="#0b2247">
                            <font>
@@ -226,6 +226,11 @@
                         </Label>
                      </children>
                   </HBox>
+                  <Label fx:id="labelUnlock" alignment="CENTER" contentDisplay="CENTER" prefWidth="695.0" text="COMPLETE X MORE CATEGORIES IN THE NEW ZEALAND MODULE TO UNLOCK THE INTERNATIONAL MODULE" textAlignment="CENTER" textFill="#0b2247" wrapText="true">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
                   <HBox fx:id="hBox" alignment="CENTER" spacing="10.0">
                      <children>
                         <VBox alignment="CENTER" spacing="20.0">
@@ -276,11 +281,6 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Label fx:id="labelUnlock" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="695.0" text="ANSWER X MORE QUESTIONS IN THE NEW ZEALAND MODULE TO UNLOCK THE INTERNATIONAL MODULE" textAlignment="CENTER" textFill="#0b2247" wrapText="true">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Label>
                </children>
             </VBox>
          </children>
