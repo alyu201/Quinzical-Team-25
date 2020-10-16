@@ -7,8 +7,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import model.GameMode.GameType;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,6 +33,7 @@ public class QuestionController {
 
 	private MainModel model;
 	private int counter = 0;
+	private Timer timer = new Timer();
 	private Integer[] hintIndices;
 
 	@FXML
@@ -119,6 +124,43 @@ public class QuestionController {
 		}
 
 		sayQuestion();
+		// show count-down timer
+		this.timer.scheduleAtFixedRate(new TimerTask() {
+			int countDown = 60;
+			@Override
+			public void run() {
+				if (countDown >= 0) {
+					Platform.runLater(() -> {
+						if (countDown < 10) {
+							labelTimer.setText("0:0" + countDown);						
+						} else {
+							labelTimer.setText("0:" + countDown);
+						}
+						countDown--;
+					});
+				} else {
+					timer.cancel();
+					// automatically change to reward screen
+					Platform.runLater(() -> {
+						if (isAnswerCorrect()) {
+							model.getCurrentQuestion().setCorrectlyAnswered(true);
+						} else {
+							model.getCurrentQuestion().setCorrectlyAnswered(false);
+						}
+						if (isAnswerCorrect()) {
+							if (model.getCurrentGameType().equals(GameType.GAMESMODULE)) {
+								model.addGameWinnings(model.getCurrentQuestion().getWorth());
+							} else if (model.getCurrentGameType().equals(GameType.INTERNATIONALMODULE)) {
+								model.addInternationalWinnings(model.getCurrentQuestion().getWorth());
+							} else {
+								model.addPracticeWinnings(model.getCurrentQuestion().getWorth());
+							}
+						}
+						SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"));
+					});
+				}
+			}
+		}, 0, 1000);
 	}
 
 	/**
@@ -212,6 +254,7 @@ public class QuestionController {
 
 	@FXML
 	private void onClickButtonDontKnow(Event e) {
+		this.timer.cancel();
 		this.model.getCurrentQuestion().setCorrectlyAnswered(false);
 		SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
 	}
@@ -226,6 +269,7 @@ public class QuestionController {
 	private void onPressEnterTextFieldAnswer(KeyEvent ke) {
 		if (this.textFieldAnswer.getText().trim().length() > 0) {
 			if (ke.getCode().equals(KeyCode.ENTER)) {
+				this.timer.cancel();
 				if (isAnswerCorrect()) {
 					this.model.getCurrentQuestion().setCorrectlyAnswered(true);
 				} else {
@@ -254,6 +298,7 @@ public class QuestionController {
 	@FXML
 	private void onClickButtonEnter(Event e) {
 		if (this.textFieldAnswer.getText().trim().length() > 0) {
+			this.timer.cancel();
 			if (isAnswerCorrect()) {
 				this.model.getCurrentQuestion().setCorrectlyAnswered(true);
 			} else {

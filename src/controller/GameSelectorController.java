@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
+import model.QuestionTypeEnum.QuestionType;
 import model.MainModel;
 import model.QuinzicalTuple;
 import utilities.SceneManager;
@@ -72,7 +76,6 @@ public class GameSelectorController {
 		}
 
 		// set label to prompt the user to unlock international section
-
 		if (!this.model.getInternationalUnlocked()) {
 			/*int completedQuestions = 0;
 			if (!this.model.getGameQuestions().isEmpty()) {
@@ -82,8 +85,8 @@ public class GameSelectorController {
 					}
 				}
 			}*/
-			int completedCategories = this.model.getCompletedCategories();
-			labelUnlock.setText("COMPLETE " + (2 - completedCategories)
+
+			labelUnlock.setText("COMPLETE " + (2 - this.model.getCompletedCategories())
 					+ " MORE CATEGORIES FROM THE NEW ZEALAND MODULE TO UNLOCK INTERNATIONAL MODULE");
 		} else {
 			// TODO Some reason this isn't working, user workaround
