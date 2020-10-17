@@ -151,7 +151,7 @@ public class QuestionController {
 
 		sayQuestion();
 		// show count-down timer if not in practice mode
-		if (this.model.getCurrentGameType().equals(GameType.PRACTICEMODULE)) {
+		if (!this.model.getCurrentGameType().equals(GameType.PRACTICEMODULE)) {
 			this.timer.scheduleAtFixedRate(new TimerTask() {
 				int countDown = 60;
 
