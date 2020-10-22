@@ -2,7 +2,11 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -77,11 +81,15 @@ public class LeaderboardController {
 		ObservableList<String> userName = FXCollections.observableArrayList();
 		ObservableList<String> userScore = FXCollections.observableArrayList();
 		HashMap<String, Integer> map = this.model.getLeaderboard().getMap();
-		List<String> keys = new ArrayList<String>(map.keySet());
-		for (int i = 0; i < keys.size(); i++) {
-			userRank.add(Integer.toString(i + 1));
+		// Sorted lowest value first
+		HashMap<String, Integer> sorted = map.entrySet().stream().sorted(Map.Entry.comparingByValue())
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+		List<String> keys = new ArrayList<String>(sorted.keySet());
+		// FIXME: Print in reverse order. Should be sorting in proper order.
+		for (int i = keys.size() - 1; i >= 0; i--) {
+			userRank.add(Integer.toString(keys.size() - i));
 			userName.add(keys.get(i));
-			userScore.add("$" + map.get(keys.get(i)).toString());
+			userScore.add("$" + sorted.get(keys.get(i)).toString());
 		}
 		rankList.setItems(userRank);
 		nameList.setItems(userName);
