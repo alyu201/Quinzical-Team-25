@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -10,14 +9,17 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
 import model.MainModel;
 import model.QuestionTypeEnum.QuestionType;
-import model.QuinzicalTuple;
 import utilities.SceneManager;
+
+/**
+ * CreateQuestionController acts as the controller for CreateQuestionView. CreateQuestionController 
+ * provides textfields for the user to enter their question, category, worth, answers, and the game 
+ * type before pressing 'Add Question' to store the question into the state file.
+ */
 
 public class CreateQuestionController {
 

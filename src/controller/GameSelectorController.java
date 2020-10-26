@@ -1,20 +1,21 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
-import model.QuestionTypeEnum.QuestionType;
 import model.MainModel;
-import model.QuinzicalTuple;
 import utilities.SceneManager;
+
+/**
+ * GameSelectorController acts as the controller for the GameSelectorView which 
+ * the allows the user to choose the game module they wish to play in: New Zealand, 
+ * International, or Practice.
+ *
+ */
 
 public class GameSelectorController {
 

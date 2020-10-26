@@ -1,15 +1,6 @@
 package model;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.HashMap;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 /**
  * Leaderboard contains the user name (key) and user score (value) which will be 

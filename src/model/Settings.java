@@ -1,14 +1,5 @@
 package model;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 /**
  * Settings contains all current settings values of the game such as volume, 
  * voice type, and voice speed and allows these values to be changed and obtained

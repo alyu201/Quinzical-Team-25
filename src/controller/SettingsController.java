@@ -10,7 +10,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.MainModel;
-import utilities.SceneManager;
 
 /**
  * SettingsController acts as the controller for SettingsView. SettingsController 
