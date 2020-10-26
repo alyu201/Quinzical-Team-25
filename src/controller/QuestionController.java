@@ -22,6 +22,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import model.MainModel;
 import utilities.SceneManager;
+import utilities.TTSQuestionThread;
 
 /**
  * QuestionController is the controller for QuestionView. It displays the
@@ -85,6 +86,8 @@ public class QuestionController {
 
 	@FXML
 	private Label labelTimeLeft;
+	
+	private TTSQuestionThread thread;
 
 	/**
 	 * Initialize the controller and populate the name, winnings and functions of
@@ -94,6 +97,10 @@ public class QuestionController {
 	public void initialize() {
 		this.model = MainModel.getMainModel();
 
+		
+		//Set thread to run for question
+		this.thread = new TTSQuestionThread();
+		
 		// creates the shuffled indices for hints
 		hintIndices = new Integer[this.model.getCurrentQuestion().getAnswers().get(0).length()];
 		for (int i = 0; i < hintIndices.length; i++) {
@@ -148,7 +155,9 @@ public class QuestionController {
 			labelTimer.setPrefHeight(0);
 		}
 
-		sayQuestion();
+		// TTS the question
+		this.thread.run();
+
 		// show count-down timer if not in practice mode
 		if (!this.model.getCurrentGameType().equals(GameType.PRACTICEMODULE)) {
 			this.timer.scheduleAtFixedRate(new TimerTask() {
@@ -192,38 +201,6 @@ public class QuestionController {
 	}
 
 	/**
-	 * Use the program festival to speak the currently selected question. Voice is
-	 * adjusted to the users settings.
-	 */
-	private void sayQuestion() {
-		new Thread() {
-			@Override
-			public void run() {
-				try {
-					String command = "festival";
-					ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
-					Process process = pb.start();
-					BufferedWriter stdin = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
-					BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
-					BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-
-					// TODO: Voice volume
-					stdin.write("(Parameter.set 'Duration_Stretch "
-							+ (1.0 - (new Double(model.getSettings().getSpeed()) / 100)) + ")");
-					stdin.write("(SayText \"" + model.getCurrentQuestion().getQuestion() + "\")");
-					stdin.flush();
-
-					stdin.close();
-					stdout.close();
-					stderr.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}.start();
-	}
-
-	/**
 	 * Check if the currently selected question was correctly answered for the
 	 * currently active question set.
 	 * 
@@ -241,6 +218,8 @@ public class QuestionController {
 
 	@FXML
 	private void onClickLabelName(Event e) {
+		this.thread.killVoice();
+		this.thread.interrupt();
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
@@ -277,12 +256,13 @@ public class QuestionController {
 	 */
 	@FXML
 	private void onClickButtonRepeat(Event e) {
-		sayQuestion();
+		this.thread.run();
 	}
 
 	@FXML
 	private void onClickButtonDontKnow(Event e) {
-		this.timer.cancel();
+		this.thread.killVoice();
+		this.thread.interrupt();
 		this.model.getCurrentQuestion().setCorrectlyAnswered(false);
 		SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
 	}
@@ -325,6 +305,8 @@ public class QuestionController {
 	 */
 	@FXML
 	private void onClickButtonEnter(Event e) {
+		this.thread.killVoice();
+		this.thread.interrupt();
 		if (this.textFieldAnswer.getText().trim().length() > 0) {
 			this.timer.cancel();
 			if (isAnswerCorrect()) {
