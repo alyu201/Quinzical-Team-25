@@ -54,6 +54,9 @@ public class CategoryController {
 
 	@FXML
 	private Button buttonSettings;
+	
+	@FXML
+	private Button buttonReturnToMain;
 
 	/**
 	 * Initialize the controller and populate the name, winnings and functions of
@@ -156,6 +159,14 @@ public class CategoryController {
 
 		// Update the new selected category
 		this.buttonCategory.setText(this.model.getCategories().get(position));
+	}
+	
+	/**
+	 * Return to the main menu screen.
+	 */
+	@FXML
+	private void onClickButtonReturnToMain(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 
 }

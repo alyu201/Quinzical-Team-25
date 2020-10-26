@@ -56,6 +56,9 @@ public class RewardController {
 
 	@FXML
 	private Button buttonSettings;
+	
+	@FXML
+	private Button buttonReturnToMain;
 
 	/**
 	 * Initializes the controller and populate the name, winnings, question worth
@@ -153,6 +156,13 @@ public class RewardController {
 				SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
 			}
 		}
-
+	}
+	
+	/**
+	 * Return to the main menu screen.
+	 */
+	@FXML
+	private void onClickButtonReturnToMain(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 }

@@ -64,6 +64,9 @@ public class CreateQuestionController {
 
 	@FXML
 	private ComboBox<String> choiceBoxQuestionType;
+	
+	@FXML
+	private Button buttonReturnToMain;
 
 	private MainModel model;
 
@@ -175,5 +178,13 @@ public class CreateQuestionController {
 	@FXML
 	private void onClickListViewCategory(Event e) {
 		this.textFieldCategory.setText(listViewCategory.getSelectionModel().getSelectedItem());
+	}
+	
+	/**
+	 * Return to the main menu screen.
+	 */
+	@FXML
+	private void onClickButtonReturnToMain(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 }

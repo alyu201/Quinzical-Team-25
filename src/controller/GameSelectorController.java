@@ -51,6 +51,9 @@ public class GameSelectorController {
 
 	@FXML
 	private Label labelUnlock;
+	
+	@FXML
+	private Button buttonReturnToMain;
 
 	@FXML
 	private HBox hBox;
@@ -156,5 +159,13 @@ public class GameSelectorController {
 			SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
 		}
 
+	}
+	
+	/**
+	 * Return to the main menu screen.
+	 */
+	@FXML
+	private void onClickButtonReturnToMain(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 }

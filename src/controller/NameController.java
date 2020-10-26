@@ -49,6 +49,9 @@ public class NameController {
 
 	@FXML
 	private Button buttonSettings;
+	
+	@FXML
+	private Button buttonReturnToMain;
 
 	/**
 	 * Initialize the controller and populate the name, winnings and functions of
@@ -119,5 +122,13 @@ public class NameController {
 		if (ke.getCode().equals(KeyCode.ENTER)) {
 			this.onClickButtonContinue(ke);
 		}
+	}
+	
+	/**
+	 * Return to the main menu screen.
+	 */
+	@FXML
+	private void onClickButtonReturnToMain(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 }

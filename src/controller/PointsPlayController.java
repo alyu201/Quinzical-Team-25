@@ -56,6 +56,9 @@ public class PointsPlayController {
 
 	@FXML
 	private Button buttonSettings;
+	
+	@FXML
+	private Button buttonReturnToMain;
 
 	/**
 	 * Initialize the controller and populate the name, winnings and functions of
@@ -381,5 +384,13 @@ public class PointsPlayController {
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
+	}
+	
+	/**
+	 * Return to the main menu screen.
+	 */
+	@FXML
+	private void onClickButtonReturnToMain(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 }

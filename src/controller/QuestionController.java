@@ -87,6 +87,9 @@ public class QuestionController {
 	@FXML
 	private Label labelTimeLeft;
 	
+	@FXML
+	private Button buttonReturnToMain;
+	
 	private TTSQuestionThread thread;
 
 	/**
@@ -330,5 +333,13 @@ public class QuestionController {
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
+	}
+	
+	/**
+	 * Return to the main menu screen.
+	 */
+	@FXML
+	private void onClickButtonReturnToMain(Event e) {
+		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 }

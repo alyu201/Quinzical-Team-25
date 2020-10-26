@@ -52,6 +52,9 @@ public class EndController {
 
 	@FXML
 	private Button buttonContinue;
+	
+	@FXML
+	private Button buttonReturnToMain;
 
 	/**
 	 * Initialize the controller and populate the name, winnings and functions of
@@ -152,6 +155,14 @@ public class EndController {
 		}
 
 		this.model.setCurrentQuestion(null);
+		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+	}
+	
+	/**
+	 * Return to the main menu screen.
+	 */
+	@FXML
+	private void onClickButtonReturnToMain(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 }
