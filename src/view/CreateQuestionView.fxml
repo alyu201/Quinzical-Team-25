@@ -51,7 +51,7 @@
                               <DropShadow color="#00000033" />
                            </effect>
                         </Button>
-                        <Button fx:id="buttonReturnToMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClickButtonSettings" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" textFill="#f2fff3">
+                        <Button fx:id="buttonReturnToMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickButtonReturnToMain" onMouseClicked="#onClickButtonSettings" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #00c3b1; -fx-background-radius: 100;" textFill="#f2fff3">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -134,7 +134,7 @@
                               <DropShadow color="#00000033" />
                            </effect>
                         </Button>
-                        <Label text="RETURN" textAlignment="CENTER" textFill="#0b2247">
+                        <Label text="RETURN TO MAIN MENU" textAlignment="CENTER" textFill="#0b2247">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
