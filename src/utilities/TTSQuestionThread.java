@@ -36,9 +36,10 @@ public class TTSQuestionThread extends Thread {
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
-			// TODO: Voice volume
-			stdin.write("(Parameter.set 'Duration_Stretch " + (1.0 - (new Double(model.getSettings().getSpeed()) / 100))
-					+ ")");
+			// Clamp voice volume to minimum 0.2
+			double volumeRaw = 1.15*(1.0 - (new Double(model.getSettings().getSpeed()) / 100));
+			double volumeClamped = (volumeRaw <= 0.3) ? 0.3 : volumeRaw;
+			stdin.write("(Parameter.set 'Duration_Stretch " + volumeClamped + ")");
 			stdin.write("(SayText \"" + model.getCurrentQuestion().getQuestion() + "\")");
 			stdin.flush();
 
