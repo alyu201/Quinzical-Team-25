@@ -93,7 +93,7 @@ public class NameController {
 	}
 
 	/**
-	 * Open the game settings pop-up windown.
+	 * Open the game settings pop-up window.
 	 * 
 	 * @param e Event that triggered this function
 	 */
@@ -110,11 +110,19 @@ public class NameController {
 	@FXML
 	private void onClickButtonContinue(Event e) {
 		this.model.toJSONFile();
-		// checks for whitespace names
-		if (this.model.getName().getValue().length() != 0) {
-			SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
-		} else {
+		// checks for null names
+		if (this.textFieldName.getText() == null) {
 			this.labelWarning.setVisible(true);
+			this.textFieldName.clear();
+		} else {
+			// check for whitespace names
+			if (this.textFieldName.getText().trim().length() != 0) {
+				this.model.setName(this.textFieldName.getText().trim());
+				SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
+			} else {
+				this.labelWarning.setVisible(true);
+				this.textFieldName.clear();
+			}
 		}
 	}
 
@@ -125,7 +133,6 @@ public class NameController {
 	 */
 	@FXML
 	private void onClickButtonEnter(Event e) {
-		this.model.setName(this.textFieldName.getText().trim());
 		this.onClickButtonContinue(e);
 	}
 
@@ -136,7 +143,6 @@ public class NameController {
 	 */
 	@FXML
 	private void onInputTextFieldName(KeyEvent ke) {
-		this.model.setName(this.textFieldName.getText().trim());
 		if (ke.getCode().equals(KeyCode.ENTER)) {
 			this.onClickButtonContinue(ke);
 		}
