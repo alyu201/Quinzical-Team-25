@@ -70,6 +70,10 @@ public class CreateQuestionController {
 
 	private MainModel model;
 
+	/**
+	 * Initialize the controller and populate the name, winnings and functions of
+	 * user details within the menu.
+	 */
 	public void initialize() {
 		this.model = MainModel.getMainModel();
 		if (this.model.getName().getValue() != null) {
@@ -93,21 +97,42 @@ public class CreateQuestionController {
 		choiceBoxQuestionType.getItems().add("International");
 	}
 
+	/**
+	 * Open the info pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 
+	/**
+	 * Open the game settings pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
+	/**
+	 * Return to the previous screen which is the main menu.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonReturn(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 
+	/**
+	 * Prompts the user to confirm the given question set will be added or indicate the 
+	 * necessary fields are missing.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonAddQuestion(Event e) {
 		question = this.textFieldQuestion.getText().trim();
@@ -142,6 +167,11 @@ public class CreateQuestionController {
 		}
 	}
 	
+	/**
+	 * Removes the confirmation prompt for adding the question given by the user.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonNo(Event e) {
 		System.out.println("no pressed");
@@ -149,6 +179,11 @@ public class CreateQuestionController {
 		this.labelConfirm.setText("");
 	}
 	
+	/**
+	 * Adds the given question to the model after the user confirms the question will be added.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonYes(Event e) {
 		//this.model.getQuestions().add(new QuinzicalTuple(category, question, worth, answers, false, false, type));
@@ -161,6 +196,12 @@ public class CreateQuestionController {
 		this.choiceBoxQuestionType.getSelectionModel().clearAndSelect(0);
 	}
 
+	/**
+	 * Displays the categories available to the user and filters the selection range when 
+	 * the user types in a category in textfield.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onInputTextFieldCategory(Event e) {
 		this.listViewCategory.getItems().clear();
@@ -175,6 +216,11 @@ public class CreateQuestionController {
 		});
 	}
 
+	/**
+	 * Displays the category selected by the user on the textfield.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickListViewCategory(Event e) {
 		this.textFieldCategory.setText(listViewCategory.getSelectionModel().getSelectedItem());
@@ -182,6 +228,8 @@ public class CreateQuestionController {
 	
 	/**
 	 * Return to the main menu screen.
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonReturnToMain(Event e) {

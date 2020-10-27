@@ -99,23 +99,38 @@ public class EndController {
 		this.labelName.textProperty().bind(this.model.getName());
 	}
 
+	/**
+	 * Open the info pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 
+	/**
+	 * Open the game settings pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
+	/**
+	 * Navigate to the screen to prompt the user to enter a user name,
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickLabelName(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
 	/**
-	 * Continue to MainModelView. Does not 'start over' the users state
+	 * Continue to main menu screen. Does not 'start over' the users state.
 	 * 
 	 * @param e Event that triggered this function
 	 */
@@ -125,7 +140,7 @@ public class EndController {
 	}
 
 	/**
-	 * Continue to MainModelView. Gives the user score and question set a reset. The
+	 * Continue to main menu. Gives the user score and question set a reset. The
 	 * rest of the model is preserved.
 	 * 
 	 * @param e Event that triggered this function
@@ -160,6 +175,8 @@ public class EndController {
 	
 	/**
 	 * Return to the main menu screen.
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonReturnToMain(Event e) {

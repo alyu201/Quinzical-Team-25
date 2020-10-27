@@ -72,16 +72,31 @@ public class NameController {
 		}
 	}
 
+	/**
+	 * Open the info pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 
+	/**
+	 * Navigate to the screen to prompt the user to enter a user name.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickLabelName(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
+	/**
+	 * Open the game settings pop-up windown.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
@@ -89,6 +104,7 @@ public class NameController {
 
 	/**
 	 * Save the current name. Return to MainMenuView.
+	 * 
 	 * @param e Event that triggered this function
 	 */
 	@FXML
@@ -104,6 +120,7 @@ public class NameController {
 
 	/**
 	 * Save the current name. Return to MainMenuView.
+	 * 
 	 * @param e Event that triggered this function
 	 */
 	@FXML
@@ -114,6 +131,7 @@ public class NameController {
 
 	/**
 	 * Update the name every time the user types
+	 * 
 	 * @param ke Event that triggered this function
 	 */
 	@FXML
@@ -126,6 +144,8 @@ public class NameController {
 	
 	/**
 	 * Return to the main menu screen.
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonReturnToMain(Event e) {

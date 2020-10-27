@@ -92,16 +92,31 @@ public class RewardController {
 
 	}
 
+	/**
+	 * Open the info pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 
+	/**
+	 * Open the game settings pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
+	/**
+	 * Navigate to the screen to prompt the user to enter a user name.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickLabelName(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
@@ -112,7 +127,7 @@ public class RewardController {
 	 * the corresponding PointsPlayView, PointsPracticeView or EndView depending on
 	 * game type after selecting 'continue' option
 	 * 
-	 * @param e
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonContinue(Event e) {
@@ -160,6 +175,8 @@ public class RewardController {
 	
 	/**
 	 * Return to the main menu screen.
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonReturnToMain(Event e) {

@@ -34,8 +34,9 @@ public class ResetController {
 	}
 
 	/**
-	 * Exits the ResetView pop-up window by selecting the 'no' option
-	 * @param e
+	 * Exits the ResetView pop-up window by selecting the 'no' option.
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonNo(Event e) {
@@ -45,8 +46,9 @@ public class ResetController {
 	}
 
 	/**
-	 * Resets all game data from selecting 'yes' option 
-	 * @param e
+	 * Resets all game data from selecting 'yes' option and show a confirmation prompt.
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonYes(Event e) {

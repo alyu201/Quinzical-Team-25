@@ -80,6 +80,11 @@ public class MainMenuController {
 		}
 	}
 
+	/**
+	 * Open the info pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
@@ -123,6 +128,12 @@ public class MainMenuController {
 		SceneManager.changeScene(getClass().getResource("/view/LeaderboardView.fxml"), e);
 	}
 
+	/**
+	 * Navigate to the CreateQuestionView. A screen in which the user can add new questions 
+	 * to the game.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonCreateQuestion(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/CreateQuestionView.fxml"), e);

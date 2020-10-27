@@ -95,6 +95,7 @@ public class QuinzicalTuple {
 
 	/**
 	 * Returns the hashcode of this QuinzicalTuple object
+	 * 
 	 * @return result The hashcode of this QuinzicalTuple object
 	 */
 	@Override
@@ -109,6 +110,7 @@ public class QuinzicalTuple {
 
 	/**
 	 * Returns the string of the data stored in QuinzicalTuple
+	 * 
 	 * @return monoid The string of the data in QuinzicalTuple
 	 */
 	@Override

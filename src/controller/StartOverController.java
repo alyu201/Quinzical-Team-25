@@ -35,7 +35,8 @@ public class StartOverController {
 
 	/**
 	 * Exits the StartOverView pop-up window by selecting the 'no' option
-	 * @param e
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonNo(Event e) {
@@ -45,8 +46,9 @@ public class StartOverController {
 	}
 
 	/**
-	 * Resets all game data except for user name from selecting 'yes' option 
-	 * @param e
+	 * Resets all game data except for user name from selecting 'yes' option
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonYes(Event e) {

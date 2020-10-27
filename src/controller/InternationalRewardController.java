@@ -16,6 +16,11 @@ public class InternationalRewardController {
     @FXML
     private Label header;
 
+    /**
+	 * Closes the international unlocked dialog window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
     @FXML
     void onClickButtonOk(Event e) {
     	Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

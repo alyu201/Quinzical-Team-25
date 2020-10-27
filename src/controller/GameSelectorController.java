@@ -59,6 +59,11 @@ public class GameSelectorController {
 	private HBox hBox;
 	private MainModel model;
 
+	/**
+	 * Initialize the controller and populate the name, winnings and functions of
+	 * user details within the menu as well as the remaining categories to be completed 
+	 * before unlocking the international section.
+	 */
 	public void initialize() {
 		this.model = MainModel.getMainModel();
 		if (this.model.getName().getValue() != null) {
@@ -81,14 +86,6 @@ public class GameSelectorController {
 
 		// set label to prompt the user to unlock international section
 		if (!this.model.getInternationalUnlocked()) {
-			/*int completedQuestions = 0;
-			if (!this.model.getGameQuestions().isEmpty()) {
-				for (QuinzicalTuple q : this.model.getGameQuestions()) {
-					if (q.getCompleted()) {
-						completedQuestions++;
-					}
-				}
-			}*/
 
 			labelUnlock.setText("COMPLETE " + (2 - this.model.getCompletedCategories())
 					+ " MORE CATEGORIES FROM THE NEW ZEALAND MODULE TO UNLOCK INTERNATIONAL MODULE");
@@ -102,26 +99,52 @@ public class GameSelectorController {
 		}
 	}
 
+	/**
+	 * Open the info pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 
+	/**
+	 * Open the game settings pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
+	/**
+	 * Navigate to the screen to prompt the user to enter a user name.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickLabelName(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
+	/**
+	 * Return to the previous screen which is the main menu.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonReturn(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 
+	/**
+	 * Navigates to the New Zealand mode of the game. If completed, then the end view is shown 
+	 * instead.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonNewZealand(Event e) {
 		this.model.setCurrentGameType(GameType.GAMESMODULE);
@@ -132,6 +155,12 @@ public class GameSelectorController {
 		}
 	}
 
+	/**
+	 * Navigates to the International mode of the game. If completed, then the end view is shown 
+	 * instead.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonInternational(Event e) {
 		this.model.setCurrentGameType(GameType.INTERNATIONALMODULE);
@@ -163,6 +192,8 @@ public class GameSelectorController {
 	
 	/**
 	 * Return to the main menu screen.
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonReturnToMain(Event e) {

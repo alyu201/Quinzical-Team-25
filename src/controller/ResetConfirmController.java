@@ -18,6 +18,7 @@ import model.MainModel;
 public class ResetConfirmController {
 
 	private MainModel model;
+	
 	@FXML
 	private Button buttonOk;
 
@@ -31,7 +32,8 @@ public class ResetConfirmController {
 	/**
 	 * Exits the ResetConfirm pop-up window by selecting the 'ok' option and reloads the main menu view again 
 	 * to remove the user winning details
-	 * @param e
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonOk(Event e) {

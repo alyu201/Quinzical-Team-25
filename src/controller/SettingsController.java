@@ -72,8 +72,9 @@ public class SettingsController {
 	}
 
 	/**
-	 * Exits the pop-up settings window by selecting the 'OK' option
-	 * @param e
+	 * Exits the pop-up settings window by selecting the 'OK' option.
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonOk(Event e) {

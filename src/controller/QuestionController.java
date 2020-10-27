@@ -99,7 +99,6 @@ public class QuestionController {
 	@FXML
 	public void initialize() {
 		this.model = MainModel.getMainModel();
-
 		
 		//Set thread to run for question
 		this.thread = new TTSQuestionThread();
@@ -219,6 +218,11 @@ public class QuestionController {
 		return false;
 	}
 
+	/**
+	 * Navigate to the screen to prompt the user to enter a user name.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickLabelName(Event e) {
 		this.thread.killVoice();
@@ -226,6 +230,11 @@ public class QuestionController {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
+	/**
+	 * Opens the game settings pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
@@ -262,6 +271,11 @@ public class QuestionController {
 		this.thread.run();
 	}
 
+	/**
+	 * Stop speech synthesis and navigate to the RewardView.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonDontKnow(Event e) {
 		this.thread.killVoice();
@@ -330,6 +344,11 @@ public class QuestionController {
 		}
 	}
 
+	/**
+	 * Open the info pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
@@ -337,6 +356,8 @@ public class QuestionController {
 	
 	/**
 	 * Return to the main menu screen.
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonReturnToMain(Event e) {

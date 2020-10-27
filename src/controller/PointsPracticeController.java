@@ -156,22 +156,42 @@ public class PointsPracticeController {
 		}
 	}
 
+	/**
+	 * Return to the previous view which is the CategoryView.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonBack(Event e) {
 		model.toJSONFile();
 		SceneManager.changeScene(getClass().getResource("/view/CategoryView.fxml"), e);
 	}
 
+	/**
+	 * Navigate to the screen to prompt the user to enter a user name.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickLabelName(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
+	/**
+	 * Opens the game settings pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
+	/**
+	 * Opens the info pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
@@ -179,6 +199,8 @@ public class PointsPracticeController {
 	
 	/**
 	 * Return to the main menu screen.
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonReturnToMain(Event e) {

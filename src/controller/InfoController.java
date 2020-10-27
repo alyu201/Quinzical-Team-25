@@ -22,6 +22,11 @@ public class InfoController {
 	@FXML
 	private static Label content;
 
+	/**
+	 * Closes the info dialog window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonOk(Event e) {
 		Stage stage = (Stage) buttonOk.getScene().getWindow();

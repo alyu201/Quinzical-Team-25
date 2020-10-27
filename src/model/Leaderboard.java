@@ -15,6 +15,7 @@ public class Leaderboard {
 
 	/**
 	 * Returns the hash map containing the user name and user score (key and value)
+	 * 
 	 * @return map The hash map of the user scores
 	 */
 	public HashMap<String, Integer> getMap() {
@@ -23,6 +24,7 @@ public class Leaderboard {
 
 	/**
 	 * Allows the leaderboard hash map to be set to another
+	 * 
 	 * @param leaderboard The new leaderboard hash map to be set to
 	 */
 	public void setLeaderboard(HashMap<String, Integer> leaderboard) {
@@ -31,6 +33,7 @@ public class Leaderboard {
 
 	/**
 	 * Add new user name and user score to leaderboard hashmap
+	 * 
 	 * @param name The name given by the user
 	 * @param winnings The total winnings won by the user
 	 */

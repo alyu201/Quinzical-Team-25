@@ -83,7 +83,7 @@ public class CategoryController {
 	 * Continue to the next stage of practicing and display the questions in a new
 	 * view. Save the selected category to main model.
 	 * 
-	 * @param e
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonContinue(Event e) {
@@ -91,6 +91,11 @@ public class CategoryController {
 		SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
 	}
 
+	/**
+	 * Return to the previous scene of selecting the game mode.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonReturn(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/GameSelectorView.fxml"), e);
@@ -100,7 +105,7 @@ public class CategoryController {
 	 * Continue to the next stage of practicing and display the questions in a new
 	 * view. Save the selected category to main model.
 	 * 
-	 * @param e
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonCategory(Event e) {
@@ -110,16 +115,31 @@ public class CategoryController {
 		SceneManager.changeScene(getClass().getResource("/view/PointsPracticeView.fxml"), e);
 	}
 
+	/**
+	 * Open the game settings pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonSettings(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/SettingsView.fxml"), e);
 	}
 
+	/**
+	 * Open the info pop-up window.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickButtonInfo(Event e) {
 		SceneManager.addStage(getClass().getResource("/view/InfoView.fxml"), e);
 	}
 
+	/**
+	 * Navigate to the screen to prompt the user to enter a user name.
+	 * 
+	 * @param e Event that triggered this function
+	 */
 	@FXML
 	private void onClickLabelName(Event e) {
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
@@ -163,6 +183,8 @@ public class CategoryController {
 	
 	/**
 	 * Return to the main menu screen.
+	 * 
+	 * @param e Event that triggered this function
 	 */
 	@FXML
 	private void onClickButtonReturnToMain(Event e) {
