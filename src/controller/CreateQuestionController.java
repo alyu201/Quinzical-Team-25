@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import model.GameMode.GameType;
 import model.MainModel;
 import model.QuestionTypeEnum.QuestionType;
+import model.QuinzicalTuple;
 import utilities.SceneManager;
 
 /**
@@ -28,7 +29,8 @@ public class CreateQuestionController {
 	private int worth;
 	private ArrayList<String> answers  = new ArrayList<String>();;
 	private QuestionType type;
-	private boolean confirm = false;
+	private boolean confirmYes = false;
+	private boolean confirmNo = false;
 	@FXML
 	private Label labelName;
 
@@ -135,36 +137,50 @@ public class CreateQuestionController {
 	 */
 	@FXML
 	private void onClickButtonAddQuestion(Event e) {
-		question = this.textFieldQuestion.getText().trim();
-		category = this.textFieldCategory.getText().trim();
-		String worthGiven = this.textFieldWorth.getText().trim();
-		String answerGiven = this.textFieldAnswer.getText().trim();
-		String typeGiven = this.choiceBoxQuestionType.getSelectionModel().getSelectedItem().trim();
-		
-		System.out.println(this.confirm);
-		if (!this.confirm) {
-			if (question.length() == 0 || category.length() == 0 || worthGiven.length() == 0 ||
-					answerGiven.length() == 0 || typeGiven.length() == 0) {
+		// check if a question had been added before
+		if (this.confirmYes) {
+			this.labelConfirm.setText("Your question has been added!");
+			this.buttonYes.setVisible(false);
+			this.buttonNo.setVisible(false);
+		} else if (this.confirmNo) {
+			this.labelConfirm.setVisible(false);
+			this.buttonYes.setVisible(false);
+			this.buttonNo.setVisible(false);
+		} else {
+			// check for any empty fields
+			if (this.textFieldQuestion.getText() == null || this.textFieldCategory.getText() == null || this.textFieldWorth.getText() == null ||
+					this.textFieldAnswer.getText() == null || this.choiceBoxQuestionType.getSelectionModel().getSelectedItem() == null) {
 				this.labelConfirm.setText("Some required fields may be missing.\nTry again.");
 				this.labelConfirm.setVisible(true);
 			} else {
-				worth = Integer.valueOf(worthGiven);
-				type = (typeGiven.equals("New Zealand"))
-						? QuestionType.NEWZEALAND
-						: QuestionType.INTERNATIONAL;
+				question = this.textFieldQuestion.getText().trim();
+				category = this.textFieldCategory.getText().trim();
+				String worthGiven = this.textFieldWorth.getText().trim();
+				String answerGiven = this.textFieldAnswer.getText().trim();
+				String typeGiven = this.choiceBoxQuestionType.getSelectionModel().getSelectedItem().trim();
+				
+				// check for empty text fields after trimming for whitespaces
+				if (question.length() == 0 || category.length() == 0 || worthGiven.length() == 0 ||
+						answerGiven.length() == 0 || typeGiven.length() == 0) {
+					this.labelConfirm.setText("Some required fields may be missing.\nTry again.");
+					this.labelConfirm.setVisible(true);
+				} else {
+					worth = Integer.valueOf(worthGiven);
+					type = (typeGiven.equals("New Zealand"))
+							? QuestionType.NEWZEALAND
+							: QuestionType.INTERNATIONAL;
 
-				answers.add(answerGiven);
-				this.confirm = true;
-				this.labelConfirm.setText("Ouestion will be added.\nAre you sure?");
-				this.labelConfirm.setVisible(true);
-				this.buttonYes.setVisible(true);
-				this.buttonNo.setVisible(true);
+					answers.add(answerGiven);
+					this.confirmYes = true;
+					this.labelConfirm.setText("Ouestion will be added.\nAre you sure?");
+					this.labelConfirm.setVisible(true);
+					this.buttonYes.setVisible(true);
+					this.buttonNo.setVisible(true);
+				}
 			}
-		} else {
-			this.labelConfirm.setVisible(false);
-			this.buttonNo.setVisible(false);
-			this.buttonYes.setVisible(false);
 		}
+		this.confirmYes = false;
+		this.confirmNo = false;
 	}
 	
 	/**
@@ -174,9 +190,7 @@ public class CreateQuestionController {
 	 */
 	@FXML
 	private void onClickButtonNo(Event e) {
-		System.out.println("no pressed");
-		this.confirm = false;
-		this.labelConfirm.setText("");
+		this.confirmNo = true;
 	}
 	
 	/**
@@ -186,9 +200,8 @@ public class CreateQuestionController {
 	 */
 	@FXML
 	private void onClickButtonYes(Event e) {
-		//this.model.getQuestions().add(new QuinzicalTuple(category, question, worth, answers, false, false, type));
-		
-		this.confirm = false;
+		this.model.getQuestions().add(new QuinzicalTuple(category, question, worth, answers, false, false, type));
+		this.confirmYes = true;
 		this.textFieldAnswer.clear();
 		this.textFieldCategory.clear();
 		this.textFieldQuestion.clear();
