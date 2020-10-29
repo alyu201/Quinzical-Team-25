@@ -37,7 +37,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../resources/images/settings-icon-hover.png" />
+                                    <Image url="/resources/images/settings-icon-hover.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -52,7 +52,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../resources/images/main-icon.png" />
+                                    <Image url="/resources/images/main-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -169,7 +169,7 @@
                      <children>
                         <ImageView fitHeight="530.0" fitWidth="734.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/waves.png" />
+                              <Image url="/resources/images/waves.png" />
                            </image>
                            <effect>
                               <InnerShadow color="#00000033" />
@@ -177,7 +177,7 @@
                         </ImageView>
                         <ImageView fitHeight="560.0" fitWidth="743.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/light-fern-left.png" />
+                              <Image url="/resources/images/light-fern-left.png" />
                            </image>
                            <effect>
                               <ColorAdjust brightness="-0.15">
@@ -189,7 +189,7 @@
                         </ImageView>
                         <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/dark-fern-left.png" />
+                              <Image url="/resources/images/dark-fern-left.png" />
                            </image>
                            <effect>
                               <ColorAdjust brightness="-0.15">
@@ -205,7 +205,7 @@
                      <children>
                         <ImageView fitHeight="280.0" fitWidth="450.0" pickOnBounds="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/waves-2.png" />
+                              <Image url="/resources/images/waves-2.png" />
                            </image>
                            <effect>
                               <InnerShadow color="#00000033" />
@@ -213,7 +213,7 @@
                         </ImageView>
                         <ImageView fitHeight="600.0" fitWidth="743.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/light-fern-right.png" />
+                              <Image url="/resources/images/light-fern-right.png" />
                            </image>
                            <effect>
                               <ColorAdjust brightness="-0.15">
@@ -225,7 +225,7 @@
                         </ImageView>
                         <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/dark-fern-right.png" />
+                              <Image url="/resources/images/dark-fern-right.png" />
                            </image>
                            <effect>
                               <ColorAdjust brightness="-0.15">

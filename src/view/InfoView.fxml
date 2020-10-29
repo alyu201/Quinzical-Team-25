@@ -37,7 +37,7 @@
                      <children>
                         <ImageView fitHeight="540.0" fitWidth="1100.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/waves-6.png" />
+                              <Image url="/resources/images/waves-6.png" />
                            </image>
                         </ImageView>
                         <VBox prefWidth="100.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

@@ -37,7 +37,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../resources/images/settings-icon-hover.png" />
+                                    <Image url="/resources/images/settings-icon-hover.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -52,7 +52,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../resources/images/main-icon.png" />
+                                    <Image url="/resources/images/main-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -156,7 +156,7 @@
                      <children>
                         <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/play-points-left.png" />
+                              <Image url="/resources/images/play-points-left.png" />
                            </image>
                            <effect>
                               <DropShadow color="#0000001a" offsetX="-10.0" />
@@ -164,7 +164,7 @@
                         </ImageView>
                         <ImageView fitHeight="300.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/dark-fern-left.png" />
+                              <Image url="/resources/images/dark-fern-left.png" />
                            </image>
                            <effect>
                               <DropShadow color="#0000001a" offsetX="-10.0" />
@@ -176,7 +176,7 @@
                      <children>
                         <ImageView fitHeight="600.0" fitWidth="743.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/play-points-right.png" />
+                              <Image url="/resources/images/play-points-right.png" />
                            </image>
                            <effect>
                               <DropShadow color="#0000001a" offsetX="10.0" />
@@ -184,7 +184,7 @@
                         </ImageView>
                         <ImageView fitHeight="450.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/dark-fern-right.png" />
+                              <Image url="/resources/images/dark-fern-right.png" />
                            </image>
                            <effect>
                               <DropShadow color="#0000001a" offsetX="10.0" />
@@ -192,7 +192,7 @@
                         </ImageView>
                         <ImageView fitHeight="600.0" fitWidth="743.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <image>
-                              <Image url="@../resources/images/bbq.png" />
+                              <Image url="/resources/images/bbq.png" />
                            </image>
                            <effect>
                               <DropShadow color="#0000001a" offsetX="10.0" />

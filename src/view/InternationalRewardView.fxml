@@ -22,12 +22,12 @@
          <children>
             <ImageView fitHeight="350.0" fitWidth="800.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../resources/images/waves-6.png" />
+                  <Image url="/resources/images/waves-6.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="350.0" fitWidth="800.0" pickOnBounds="true" style="-fx-opacity: 0.6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../resources/images/international-rays.png" />
+                  <Image url="/resources/images/international-rays.png" />
                </image>
                <effect>
                   <Blend mode="ADD" opacity="0.7">
@@ -43,7 +43,7 @@
             </ImageView>
             <ImageView fitHeight="370.0" fitWidth="735.0" pickOnBounds="true" translateX="65.0" translateY="-30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../resources/images/international-ferns.png" />
+                  <Image url="/resources/images/international-ferns.png" />
                </image>
                <effect>
                   <DropShadow color="#00000033" />
@@ -51,7 +51,7 @@
             </ImageView>
             <ImageView fitHeight="350.0" fitWidth="800.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../resources/images/international-confetti.png" />
+                  <Image url="/resources/images/international-confetti.png" />
                </image>
                <effect>
                   <DropShadow color="#00000033" offsetY="2.0">
@@ -67,7 +67,7 @@
                      <children>
                         <ImageView fitHeight="250.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../resources/images/international-modules.png" />
+                              <Image url="/resources/images/international-modules.png" />
                            </image>
                            <effect>
                               <DropShadow color="#00000033" />
