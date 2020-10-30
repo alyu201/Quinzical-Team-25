@@ -65,7 +65,7 @@ public class RewardController {
 	 * and answer on screen.
 	 */
 	public void initialize() {
-		this.model = model.getMainModel();
+		this.model = MainModel.getMainModel();
 		if (!(this.model.getName().getValue() == null)) {
 			this.labelName.textProperty().bind(this.model.getName());
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {

@@ -150,7 +150,6 @@ public class PointsPlayController {
 			int r = 0;
 			int c = 0;
 			int completedCategories = 0;
-			List<Boolean> questionCompleted = new ArrayList<Boolean>();
 			for (String category : questionCategories) {
 				boolean flag = false;
 				Label label = new Label(category);
@@ -162,6 +161,7 @@ public class PointsPlayController {
 				this.gridPanePoints.add(label, c, r);
 				r++;
 				ArrayList<QuinzicalTuple> filteredQuestions = new ArrayList<QuinzicalTuple>();
+				ArrayList<Boolean> questionCompleted = new ArrayList<Boolean>();
 				for (QuinzicalTuple question : this.model.getGameQuestions()) {
 					if (!filteredQuestions.contains(question) && category.equals(question.getCategory())) {
 						filteredQuestions.add(question);
