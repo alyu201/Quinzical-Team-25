@@ -86,7 +86,7 @@ public class QuestionController {
 	private Button buttonReturnToMain;
 	
 	private TTSQuestionThread thread;
-
+	
 	/**
 	 * Initialize the controller and populate the name, winnings and functions of
 	 * user details within the menu. Load the current question into the scene.
@@ -222,6 +222,7 @@ public class QuestionController {
 	private void onClickLabelName(Event e) {
 		this.thread.killVoice();
 		this.thread.interrupt();
+		this.timer.cancel();
 		SceneManager.changeScene(getClass().getResource("/view/NameView.fxml"), e);
 	}
 
@@ -275,6 +276,7 @@ public class QuestionController {
 	private void onClickButtonDontKnow(Event e) {
 		this.thread.killVoice();
 		this.thread.interrupt();
+		this.timer.cancel();
 		this.model.getCurrentQuestion().setCorrectlyAnswered(false);
 		SceneManager.changeScene(getClass().getResource("/view/RewardView.fxml"), e);
 	}
@@ -319,6 +321,7 @@ public class QuestionController {
 	private void onClickButtonEnter(Event e) {
 		this.thread.killVoice();
 		this.thread.interrupt();
+		this.timer.cancel();
 		if (this.textFieldAnswer.getText().trim().length() > 0) {
 			this.timer.cancel();
 			if (isAnswerCorrect()) {
@@ -356,6 +359,7 @@ public class QuestionController {
 	 */
 	@FXML
 	private void onClickButtonReturnToMain(Event e) {
+		this.timer.cancel();
 		SceneManager.changeScene(getClass().getResource("/view/MainMenuView.fxml"), e);
 	}
 }

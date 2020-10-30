@@ -66,7 +66,7 @@ public class LeaderboardController {
 	 * user details within the menu.
 	 */
 	public void initialize() {
-		this.model = model.getMainModel();
+		this.model = MainModel.getMainModel();
 		if (this.model.getName().getValue() != null) {
 			this.labelName.textProperty().bind(this.model.getName());
 			if (this.model.getCurrentGameType().equals(GameType.GAMESMODULE)) {

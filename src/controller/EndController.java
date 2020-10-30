@@ -62,7 +62,7 @@ public class EndController {
 	 * the user is in practice mode.
 	 */
 	public void initialize() {
-		this.model = model.getMainModel();
+		this.model = MainModel.getMainModel();
 
 		// Set biline
 		if ((this.model.isAddedToLeaderboardGame() && this.model.getCurrentGameType().equals(GameType.GAMESMODULE))

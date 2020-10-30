@@ -80,9 +80,8 @@ public class PointsPracticeController {
 		}
 
 		// There is no existing practice question set yet
-		if (!(this.model.getPracticeQuestions().size() == 0)) {
+		if (this.model.getPracticeQuestions().size() == 0) {
 
-		} else {
 			// Scope to tuples for currentCategory
 			String currentCategory = this.model.getCurrentCategory();
 			ArrayList<QuinzicalTuple> xs = new ArrayList<QuinzicalTuple>();
